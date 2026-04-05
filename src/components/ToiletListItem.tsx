@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Toilet } from '../types/toilet';
-import { formatDistance, formatWheelchairTime } from '../services/overpass';
+import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from '../types/toilet';
+import { formatDistance } from '../services/overpass';
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -12,7 +12,7 @@ interface ToiletListItemProps {
   onToggleFavorite?: (id: string) => void;
 }
 
-export function ToiletListItem({
+export const ToiletListItem = memo(function ToiletListItem({
   toilet,
   isNearest,
   isFavorite,
@@ -21,6 +21,8 @@ export function ToiletListItem({
   onToggleFavorite,
 }: ToiletListItemProps) {
   const displayName = toilet.name || 'Barrierefreie Toilette';
+  const catColor = CATEGORY_COLORS[toilet.category];
+  const isReliable = toilet.category === 'public_24h' || toilet.category === 'station';
 
   return (
     <TouchableOpacity
@@ -46,7 +48,10 @@ export function ToiletListItem({
 
       <View style={styles.info}>
         <View style={styles.header}>
-          <Text style={[styles.name, isNearest && styles.nearestName]} numberOfLines={1}>
+          <Text
+            style={[styles.name, isNearest && styles.nearestName, !isReliable && styles.dimName]}
+            numberOfLines={1}
+          >
             {displayName}
           </Text>
           {isNearest && (
@@ -56,20 +61,29 @@ export function ToiletListItem({
           )}
         </View>
 
-        {toilet.distance != null && (
-          <View style={styles.metaRow}>
-            <Text style={styles.time}>{formatWheelchairTime(toilet.distance)}</Text>
-            <Text style={styles.separator}> · </Text>
-            <Text style={styles.distance}>{formatDistance(toilet.distance)}</Text>
+        {/* Category + meta row */}
+        <View style={styles.metaRow}>
+          <View style={[styles.categoryBadge, { backgroundColor: catColor }]}>
+            <Text style={styles.categoryText}>{CATEGORY_LABELS[toilet.category]}</Text>
           </View>
-        )}
+          {toilet.distance != null && (
+            <Text style={styles.distance}>{formatDistance(toilet.distance)}</Text>
+          )}
+        </View>
 
-        {toilet.city && (
-          <Text style={styles.detail} numberOfLines={1}>
-            {toilet.city}
-            {toilet.tags?.includes('kostenlos') ? ' · Kostenlos' : ''}
-          </Text>
-        )}
+        {/* Extra info line */}
+        <View style={styles.detailRow}>
+          {toilet.city && <Text style={styles.detail}>{toilet.city}</Text>}
+          {toilet.tags?.includes('kostenlos') && <Text style={styles.detail}> · Kostenlos</Text>}
+          {toilet.fee === 'no' && !toilet.tags?.includes('kostenlos') && (
+            <Text style={styles.detail}> · Kostenlos</Text>
+          )}
+          {toilet.tags?.includes('eurokey') && <Text style={styles.detailHighlight}> · Eurokey</Text>}
+          {toilet.opening_hours && toilet.opening_hours !== '24/7' && (
+            <Text style={styles.detail} numberOfLines={1}> · {toilet.opening_hours}</Text>
+          )}
+          {toilet.opening_hours === '24/7' && <Text style={styles.detailHighlight}> · 24/7</Text>}
+        </View>
       </View>
 
       <TouchableOpacity
@@ -84,7 +98,7 @@ export function ToiletListItem({
       </TouchableOpacity>
     </TouchableOpacity>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 18,
     paddingHorizontal: 16,
-    minHeight: 80,
+    minHeight: 84,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#e0e0e0',
   },
@@ -131,6 +145,9 @@ const styles = StyleSheet.create({
   nearestName: {
     color: '#1b7a2b',
   },
+  dimName: {
+    color: '#888',
+  },
   badge: {
     backgroundColor: '#34a853',
     paddingHorizontal: 8,
@@ -145,25 +162,37 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
+    marginTop: 5,
+    gap: 6,
   },
-  time: {
-    fontSize: 15,
+  categoryBadge: {
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 8,
+  },
+  categoryText: {
+    fontSize: 11,
     fontWeight: '700',
-    color: '#1a73e8',
-  },
-  separator: {
-    fontSize: 14,
-    color: '#999',
+    color: '#fff',
   },
   distance: {
     fontSize: 14,
     color: '#666',
   },
+  detailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 3,
+    flexWrap: 'wrap',
+  },
   detail: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#888',
-    marginTop: 2,
+  },
+  detailHighlight: {
+    fontSize: 12,
+    color: '#34a853',
+    fontWeight: '600',
   },
   navButton: {
     backgroundColor: '#1a73e8',

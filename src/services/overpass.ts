@@ -1,4 +1,4 @@
-import { Toilet } from '../types/toilet';
+import { Toilet, ToiletCategory } from '../types/toilet';
 import { loadNearbyTiles } from '../data/tileLoader';
 
 /**
@@ -8,13 +8,14 @@ import { loadNearbyTiles } from '../data/tileLoader';
 export function getNearbyToilets(
   lat: number,
   lon: number,
-  maxResults: number = 50
+  maxResults: number = 200
 ): Toilet[] {
   const raw = loadNearbyTiles(lat, lon);
 
   return raw
     .map((t) => ({
       ...t,
+      category: t.category as ToiletCategory,
       distance: getDistanceMeters(lat, lon, t.lat, t.lon),
     }))
     .sort((a, b) => a.distance - b.distance)
@@ -51,17 +52,4 @@ export function formatDistance(meters: number): string {
     return `${Math.round(meters)} m`;
   }
   return `${(meters / 1000).toFixed(1)} km`;
-}
-
-/**
- * Estimate wheelchair travel time. ~70m/min average wheelchair speed on pavement.
- * Returns formatted string like "6 Min." or "< 1 Min."
- */
-const WHEELCHAIR_SPEED_M_PER_MIN = 70;
-
-export function formatWheelchairTime(meters: number): string {
-  const mins = Math.ceil(meters / WHEELCHAIR_SPEED_M_PER_MIN);
-  if (mins < 1) return '< 1 Min.';
-  if (mins === 1) return '1 Min.';
-  return `${mins} Min.`;
 }

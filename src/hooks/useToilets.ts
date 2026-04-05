@@ -7,15 +7,19 @@ interface UseToiletsResult {
   toilets: Toilet[];
   nearest: Toilet | null;
   userLocation: { lat: number; lon: number } | null;
+  searchLocation: { lat: number; lon: number } | null;
   loading: boolean;
   error: string | null;
   refresh: () => void;
+  searchAt: (lat: number, lon: number) => void;
+  backToMyLocation: () => void;
 }
 
 export function useToilets(): UseToiletsResult {
   const [toilets, setToilets] = useState<Toilet[]>([]);
   const [nearest, setNearest] = useState<Toilet | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lon: number } | null>(null);
+  const [searchLocation, setSearchLocation] = useState<{ lat: number; lon: number } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,6 +53,7 @@ export function useToilets(): UseToiletsResult {
 
       const coords = { lat: location.coords.latitude, lon: location.coords.longitude };
       setUserLocation(coords);
+      setSearchLocation(null);
       loadToilets(coords.lat, coords.lon);
     } catch (err: any) {
       setError('Standort konnte nicht ermittelt werden.');
@@ -62,12 +67,26 @@ export function useToilets(): UseToiletsResult {
   }, [initLocation]);
 
   const refresh = useCallback(() => {
-    if (userLocation) {
+    if (searchLocation) {
+      loadToilets(searchLocation.lat, searchLocation.lon);
+    } else if (userLocation) {
       loadToilets(userLocation.lat, userLocation.lon);
     } else {
       initLocation();
     }
-  }, [userLocation, loadToilets, initLocation]);
+  }, [userLocation, searchLocation, loadToilets, initLocation]);
 
-  return { toilets, nearest, userLocation, loading, error, refresh };
+  const searchAt = useCallback((lat: number, lon: number) => {
+    setSearchLocation({ lat, lon });
+    loadToilets(lat, lon);
+  }, [loadToilets]);
+
+  const backToMyLocation = useCallback(() => {
+    setSearchLocation(null);
+    if (userLocation) {
+      loadToilets(userLocation.lat, userLocation.lon);
+    }
+  }, [userLocation, loadToilets]);
+
+  return { toilets, nearest, userLocation, searchLocation, loading, error, refresh, searchAt, backToMyLocation };
 }
