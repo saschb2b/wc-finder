@@ -9,7 +9,6 @@ import {
   FlatList,
   Linking,
   ScrollView,
-  TextInput,
 } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -22,18 +21,15 @@ import { ReportSheet } from './src/components/ReportSheet';
 
 const isWeb = Platform.OS === 'web';
 
-// Lazy-load native-only map
 let MapView: any = null;
 let Marker: any = null;
 let PROVIDER_GOOGLE: any = null;
-let ToiletMarker: any = null;
 
 if (!isWeb) {
   const maps = require('react-native-maps');
   MapView = maps.default;
   Marker = maps.Marker;
   PROVIDER_GOOGLE = maps.PROVIDER_GOOGLE;
-  ToiletMarker = require('./src/components/ToiletMarker').ToiletMarker;
 }
 
 function openNavigation(toilet: Toilet) {
@@ -45,6 +41,16 @@ function openNavigation(toilet: Toilet) {
   if (url) Linking.openURL(url);
 }
 
+const CITIES: Record<string, { lat: number; lon: number }> = {
+  'Hannover': { lat: 52.3759, lon: 9.7320 },
+  'Dortmund': { lat: 51.5136, lon: 7.4653 },
+  'Berlin': { lat: 52.5200, lon: 13.4050 },
+  'Hamburg': { lat: 53.5511, lon: 9.9937 },
+  'München': { lat: 48.1351, lon: 11.5820 },
+  'Köln': { lat: 50.9375, lon: 6.9603 },
+  'Frankfurt': { lat: 50.1109, lon: 8.6821 },
+};
+
 function AppContent() {
   const { toilets, nearest, userLocation, searchLocation, loading, error, refresh, searchAt, backToMyLocation } = useToilets();
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -54,22 +60,19 @@ function AppContent() {
   const [filter, setFilter] = useState<'reliable' | 'favorites' | 'all'>('reliable');
   const [mapMoved, setMapMoved] = useState(false);
   const [mapCenter, setMapCenter] = useState<{ lat: number; lon: number } | null>(null);
-  const [searchText, setSearchText] = useState('');
-  const [showSearch, setShowSearch] = useState(false);
+  const [showCities, setShowCities] = useState(false);
   const [reportToilet, setReportToilet] = useState<Toilet | undefined>(undefined);
   const [showReport, setShowReport] = useState(false);
+  const [mapRegion, setMapRegion] = useState<{ lat: number; lon: number; latD: number; lonD: number } | null>(null);
+
+  // --- Callbacks ---
 
   const focusToilet = useCallback((toilet: Toilet) => {
     setSelectedToilet(toilet);
     setListExpanded(false);
     if (!isWeb) {
       mapRef.current?.animateToRegion(
-        {
-          latitude: toilet.lat,
-          longitude: toilet.lon,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005,
-        },
+        { latitude: toilet.lat, longitude: toilet.lon, latitudeDelta: 0.005, longitudeDelta: 0.005 },
         500
       );
     }
@@ -78,14 +81,10 @@ function AppContent() {
   const focusUser = useCallback(() => {
     backToMyLocation();
     setMapMoved(false);
+    setShowCities(false);
     if (userLocation && !isWeb) {
       mapRef.current?.animateToRegion(
-        {
-          latitude: userLocation.lat,
-          longitude: userLocation.lon,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02,
-        },
+        { latitude: userLocation.lat, longitude: userLocation.lon, latitudeDelta: 0.02, longitudeDelta: 0.02 },
         500
       );
     }
@@ -100,26 +99,15 @@ function AppContent() {
 
   const handleRegionChange = useCallback((region: any) => {
     setMapCenter({ lat: region.latitude, lon: region.longitude });
+    setMapRegion({ lat: region.latitude, lon: region.longitude, latD: region.latitudeDelta, lonD: region.longitudeDelta });
     setMapMoved(true);
   }, []);
-
-  // Quick city jump — common cities for wheelchair travelers
-  const CITIES: Record<string, { lat: number; lon: number }> = useMemo(() => ({
-    'Hannover': { lat: 52.3759, lon: 9.7320 },
-    'Dortmund': { lat: 51.5136, lon: 7.4653 },
-    'Berlin': { lat: 52.5200, lon: 13.4050 },
-    'Hamburg': { lat: 53.5511, lon: 9.9937 },
-    'München': { lat: 48.1351, lon: 11.5820 },
-    'Köln': { lat: 50.9375, lon: 6.9603 },
-    'Frankfurt': { lat: 50.1109, lon: 8.6821 },
-  }), []);
 
   const jumpToCity = useCallback((name: string) => {
     const city = CITIES[name];
     if (!city) return;
     searchAt(city.lat, city.lon);
-    setShowSearch(false);
-    setSearchText('');
+    setShowCities(false);
     setMapMoved(false);
     if (!isWeb) {
       mapRef.current?.animateToRegion(
@@ -127,9 +115,22 @@ function AppContent() {
         500
       );
     }
-  }, [CITIES, searchAt]);
+  }, [searchAt]);
 
-  const displayedToilet = selectedToilet || nearest;
+  // --- Derived data ---
+
+  const visibleToilets = useMemo(() => {
+    if (!mapRegion) return toilets.slice(0, 50);
+    const pad = 0.1;
+    return toilets
+      .filter((t) =>
+        t.lat > mapRegion.lat - mapRegion.latD / 2 - pad &&
+        t.lat < mapRegion.lat + mapRegion.latD / 2 + pad &&
+        t.lon > mapRegion.lon - mapRegion.lonD / 2 - pad &&
+        t.lon < mapRegion.lon + mapRegion.lonD / 2 + pad
+      )
+      .slice(0, 50);
+  }, [toilets, mapRegion]);
 
   const filteredToilets = filter === 'favorites'
     ? toilets.filter((t) => isFavorite(t.id))
@@ -137,93 +138,86 @@ function AppContent() {
     ? toilets.filter((t) => t.category === 'public_24h' || t.category === 'station')
     : toilets;
 
-  // For the emergency button + nearest, always use reliable toilets
   const reliableNearest = toilets.find(
     (t) => t.category === 'public_24h' || t.category === 'station'
   ) || nearest;
-
-  // --- LOADING ---
-  if (loading && !userLocation) {
-    return (
-      <SafeAreaView style={styles.centered}>
-        <StatusBar style="dark" />
-        <ActivityIndicator size="large" color="#1a73e8" />
-        <Text style={styles.loadingText}>Standort wird ermittelt...</Text>
-        <Text style={styles.loadingSubtext}>Suche barrierefreie Toiletten in der Nähe</Text>
-      </SafeAreaView>
-    );
-  }
-
-  // --- ERROR ---
-  if (error && toilets.length === 0) {
-    return (
-      <SafeAreaView style={styles.centered}>
-        <StatusBar style="dark" />
-        <Text style={styles.errorText}>{error}</Text>
-        <TouchableOpacity style={styles.retryButton} onPress={refresh}>
-          <Text style={styles.retryText}>Erneut versuchen</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    );
-  }
-
-  // --- EMERGENCY BUTTON (always uses reliable toilet, not a cafe) ---
-  const emergencyButton = reliableNearest && (
-    <TouchableOpacity
-      style={styles.emergencyButton}
-      onPress={() => openNavigation(reliableNearest)}
-      activeOpacity={0.85}
-      accessibilityRole="button"
-      accessibilityLabel={`Nächste Toilette jetzt navigieren, ${reliableNearest.distance != null ? formatDistance(reliableNearest.distance) : ''}`}
-    >
-      <Text style={styles.emergencyLabel}>Nächste 24/7 Toilette</Text>
-      <Text style={styles.emergencyTime}>
-        {reliableNearest.distance != null ? formatDistance(reliableNearest.distance) : ''}
-      </Text>
-      <Text style={styles.emergencyDist}>
-        {reliableNearest.name || 'Barrierefreie Toilette'}
-        {reliableNearest.city ? ` · ${reliableNearest.city}` : ''}
-      </Text>
-      <View style={styles.emergencyAction}>
-        <Text style={styles.emergencyActionText}>JETZT NAVIGIEREN</Text>
-      </View>
-    </TouchableOpacity>
-  );
 
   const reliableCount = toilets.filter(
     (t) => t.category === 'public_24h' || t.category === 'station'
   ).length;
 
-  // --- Filter bar ---
+  // --- Loading ---
+  if (loading && !userLocation) {
+    return (
+      <SafeAreaView style={styles.centered}>
+        <StatusBar style="dark" />
+        <ActivityIndicator size="large" color="#1a73e8" />
+        <Text style={styles.loadingTitle}>WC Finder</Text>
+        <Text style={styles.loadingSub}>Standort wird ermittelt...</Text>
+      </SafeAreaView>
+    );
+  }
+
+  // --- Error ---
+  if (error && toilets.length === 0) {
+    return (
+      <SafeAreaView style={styles.centered}>
+        <StatusBar style="dark" />
+        <Text style={styles.errorText}>{error}</Text>
+        <TouchableOpacity style={styles.primaryBtn} onPress={refresh}>
+          <Text style={styles.primaryBtnText}>Erneut versuchen</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
+
+  // --- Compact nearest card for bottom panel ---
+  const nearestCard = reliableNearest && (
+    <TouchableOpacity
+      style={styles.nearestCard}
+      onPress={() => openNavigation(reliableNearest)}
+      activeOpacity={0.85}
+    >
+      <View style={styles.nearestInfo}>
+        <Text style={styles.nearestLabel}>Nächste 24/7 Toilette</Text>
+        <Text style={styles.nearestName} numberOfLines={1}>
+          {reliableNearest.name || 'Barrierefreie Toilette'}
+          {reliableNearest.city ? ` · ${reliableNearest.city}` : ''}
+        </Text>
+      </View>
+      <View style={styles.nearestRight}>
+        {reliableNearest.distance != null && (
+          <Text style={styles.nearestDist}>{formatDistance(reliableNearest.distance)}</Text>
+        )}
+        <View style={styles.nearestNavBtn}>
+          <Text style={styles.nearestNavText}>Route</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+
+  // --- Filter chips ---
   const filterBar = (
     <View style={styles.filterBar}>
-      <TouchableOpacity
-        style={[styles.filterChip, filter === 'reliable' && styles.filterChipActive]}
-        onPress={() => setFilter('reliable')}
-      >
-        <Text style={[styles.filterChipText, filter === 'reliable' && styles.filterChipTextActive]}>
-          24/7 ({reliableCount})
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.filterChip, filter === 'favorites' && styles.filterChipFav]}
-        onPress={() => setFilter('favorites')}
-      >
-        <Text style={[styles.filterChipText, filter === 'favorites' && styles.filterChipTextActive]}>
-          {'\u2605'} Favoriten
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.filterChip, filter === 'all' && styles.filterChipActive]}
-        onPress={() => setFilter('all')}
-      >
-        <Text style={[styles.filterChipText, filter === 'all' && styles.filterChipTextActive]}>
-          Alle ({toilets.length})
-        </Text>
-      </TouchableOpacity>
+      {([
+        { key: 'reliable' as const, label: `24/7 (${reliableCount})` },
+        { key: 'favorites' as const, label: '\u2605 Favoriten' },
+        { key: 'all' as const, label: `Alle (${toilets.length})` },
+      ]).map((f) => (
+        <TouchableOpacity
+          key={f.key}
+          style={[styles.chip, filter === f.key && (f.key === 'favorites' ? styles.chipFav : styles.chipActive)]}
+          onPress={() => setFilter(f.key)}
+        >
+          <Text style={[styles.chipText, filter === f.key && styles.chipTextActive]}>
+            {f.label}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 
+  // --- List ---
   const renderList = () => (
     <>
       {filterBar}
@@ -251,7 +245,7 @@ function AppContent() {
               {filter === 'favorites'
                 ? 'Noch keine Favoriten gespeichert.'
                 : filter === 'reliable'
-                ? 'Keine 24/7-Toiletten in der Nähe gefunden.'
+                ? 'Keine 24/7-Toiletten in der Nähe.'
                 : 'Keine Toiletten gefunden.'}
             </Text>
           </View>
@@ -260,7 +254,7 @@ function AppContent() {
     </>
   );
 
-  // --- WEB ---
+  // --- WEB (debug only) ---
   if (isWeb) {
     return (
       <SafeAreaView style={styles.flex}>
@@ -268,7 +262,7 @@ function AppContent() {
         <View style={styles.webHeader}>
           <Text style={styles.webTitle}>WC Finder</Text>
         </View>
-        {emergencyButton}
+        {nearestCard}
         {renderList()}
       </SafeAreaView>
     );
@@ -280,289 +274,230 @@ function AppContent() {
       <StatusBar style="dark" />
 
       {/* Map */}
-      <View style={listExpanded ? styles.mapCollapsed : styles.mapExpanded}>
+      <View style={listExpanded ? styles.mapSmall : styles.mapFull}>
         <MapView
           ref={mapRef}
           style={styles.map}
           provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
           initialRegion={
             userLocation
-              ? {
-                  latitude: userLocation.lat,
-                  longitude: userLocation.lon,
-                  latitudeDelta: 0.04,
-                  longitudeDelta: 0.04,
-                }
-              : {
-                  latitude: 52.3759,
-                  longitude: 9.732,
-                  latitudeDelta: 0.1,
-                  longitudeDelta: 0.1,
-                }
+              ? { latitude: userLocation.lat, longitude: userLocation.lon, latitudeDelta: 0.04, longitudeDelta: 0.04 }
+              : { latitude: 52.3759, longitude: 9.732, latitudeDelta: 0.1, longitudeDelta: 0.1 }
           }
           showsUserLocation
           showsMyLocationButton={false}
           showsCompass={false}
           onRegionChangeComplete={handleRegionChange}
         >
-          {toilets.map((toilet) => (
+          {visibleToilets.map((toilet) => (
             <Marker
               key={toilet.id}
               coordinate={{ latitude: toilet.lat, longitude: toilet.lon }}
               title={toilet.name || 'Barrierefreie Toilette'}
               description={toilet.distance != null ? formatDistance(toilet.distance) : undefined}
               onPress={() => focusToilet(toilet)}
-            >
-              <ToiletMarker isNearest={toilet.id === nearest?.id} />
-            </Marker>
+              pinColor={toilet.id === nearest?.id ? '#34a853' : '#1a73e8'}
+              tracksViewChanges={false}
+            />
           ))}
         </MapView>
 
-        {/* Search bar */}
-        <View style={styles.searchRow}>
-          <TouchableOpacity
-            style={styles.searchBar}
-            onPress={() => setShowSearch(!showSearch)}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.searchIcon}>🔍</Text>
-            <Text style={styles.searchPlaceholder}>
-              {searchLocation ? 'Anderer Standort' : 'Stadt suchen...'}
-            </Text>
-          </TouchableOpacity>
+        {/* Search bar overlay */}
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={() => setShowCities(!showCities)}
+          activeOpacity={0.9}
+        >
+          <Text style={styles.searchBarText}>
+            {searchLocation ? 'Anderer Standort' : 'Stadt suchen...'}
+          </Text>
           {searchLocation && (
-            <TouchableOpacity style={styles.backToMeBtn} onPress={focusUser} activeOpacity={0.8}>
-              <Text style={styles.backToMeText}>Mein Standort</Text>
+            <TouchableOpacity onPress={focusUser} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <Text style={styles.searchBarReset}>Zurück</Text>
             </TouchableOpacity>
           )}
-        </View>
+        </TouchableOpacity>
 
-        {/* City quick-jump */}
-        {showSearch && (
-          <View style={styles.cityPanel}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityScroll}>
-              {Object.keys(CITIES).map((name) => (
-                <TouchableOpacity
-                  key={name}
-                  style={styles.cityChip}
-                  onPress={() => jumpToCity(name)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.cityChipText}>{name}</Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-          </View>
+        {/* City chips */}
+        {showCities && (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.cityRow}
+            contentContainerStyle={styles.cityRowContent}
+          >
+            {Object.keys(CITIES).map((name) => (
+              <TouchableOpacity key={name} style={styles.cityChip} onPress={() => jumpToCity(name)}>
+                <Text style={styles.cityChipText}>{name}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
         )}
 
-        {/* "Hier suchen" button when map is panned */}
-        {mapMoved && !showSearch && (
-          <TouchableOpacity
-            style={styles.searchHereBtn}
-            onPress={handleSearchHere}
-            activeOpacity={0.85}
-          >
+        {/* "Hier suchen" pill */}
+        {mapMoved && !showCities && (
+          <TouchableOpacity style={styles.searchHerePill} onPress={handleSearchHere} activeOpacity={0.9}>
             <Text style={styles.searchHereText}>Hier suchen</Text>
           </TouchableOpacity>
         )}
 
-        {/* Map buttons */}
-        <TouchableOpacity style={styles.myLocationBtn} onPress={focusUser} activeOpacity={0.8}>
-          <Text style={styles.myLocationIcon}>◎</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.refreshBtn} onPress={refresh} activeOpacity={0.8}>
-          <Text style={styles.refreshIcon}>↻</Text>
+        {/* My location button */}
+        <TouchableOpacity style={styles.locBtn} onPress={focusUser} activeOpacity={0.8}>
+          <Text style={styles.locBtnIcon}>◎</Text>
         </TouchableOpacity>
       </View>
 
       {/* Bottom panel */}
-      <View style={styles.bottomPanel}>
-        {/* Emergency button */}
-        {emergencyButton}
+      <View style={styles.panel}>
+        {/* Nearest card */}
+        {nearestCard}
 
         {/* Toggle list */}
-        <TouchableOpacity
-          style={styles.toggleBar}
-          onPress={() => setListExpanded(!listExpanded)}
-          activeOpacity={0.7}
-        >
+        <TouchableOpacity style={styles.toggleBar} onPress={() => setListExpanded(!listExpanded)} activeOpacity={0.7}>
           <View style={styles.toggleHandle} />
-          <Text style={styles.toggleText}>
-            {listExpanded ? 'Karte zeigen' : `${toilets.length} Toiletten in der Nähe`}
+          <Text style={styles.toggleLabel}>
+            {listExpanded ? 'Karte zeigen' : `${filteredToilets.length} Toiletten`}
           </Text>
         </TouchableOpacity>
 
-        {listExpanded && <View style={styles.listContainer}>{renderList()}</View>}
+        {listExpanded && <View style={styles.listWrap}>{renderList()}</View>}
       </View>
 
-      {/* Report new toilet FAB */}
+      {/* Report FAB */}
       <TouchableOpacity
-        style={styles.reportFab}
+        style={styles.fab}
         onPress={() => { setReportToilet(undefined); setShowReport(true); }}
         activeOpacity={0.85}
       >
-        <Text style={styles.reportFabIcon}>+</Text>
+        <Text style={styles.fabIcon}>+</Text>
+        <Text style={styles.fabLabel}>Melden</Text>
       </TouchableOpacity>
 
-      {/* Report modal */}
-      <ReportSheet
-        toilet={reportToilet}
-        visible={showReport}
-        onClose={() => setShowReport(false)}
-      />
+      {/* Report sheet */}
+      <ReportSheet toilet={reportToilet} visible={showReport} onClose={() => setShowReport(false)} />
     </View>
   );
 }
 
+const S = {
+  blue: '#1a73e8',
+  green: '#34a853',
+  bg: '#fff',
+  textPrimary: '#1a1a1a',
+  textSecondary: '#666',
+  textMuted: '#999',
+  border: '#e8e8e8',
+  shadow: { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.12, shadowRadius: 4, elevation: 3 } as const,
+};
+
 const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: '#fff' },
+  flex: { flex: 1, backgroundColor: S.bg },
   map: { flex: 1 },
-  mapExpanded: { flex: 1 },
-  mapCollapsed: { height: 180 },
+  mapFull: { flex: 1 },
+  mapSmall: { height: 200 },
+
+  // Loading / Error
   centered: {
     flex: 1, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: '#fff', paddingHorizontal: 32,
+    backgroundColor: S.bg, paddingHorizontal: 32,
   },
-  loadingText: { marginTop: 16, fontSize: 18, fontWeight: '600', color: '#1a1a1a' },
-  loadingSubtext: { marginTop: 6, fontSize: 14, color: '#666' },
-  errorText: { fontSize: 16, color: '#333', textAlign: 'center', marginBottom: 20, lineHeight: 22 },
-  retryButton: { backgroundColor: '#1a73e8', paddingHorizontal: 24, paddingVertical: 12, borderRadius: 24 },
-  retryText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  loadingTitle: { marginTop: 20, fontSize: 22, fontWeight: '700', color: S.textPrimary },
+  loadingSub: { marginTop: 6, fontSize: 14, color: S.textSecondary },
+  errorText: { fontSize: 16, color: S.textPrimary, textAlign: 'center', marginBottom: 20, lineHeight: 22 },
+  primaryBtn: { backgroundColor: S.blue, paddingHorizontal: 24, paddingVertical: 12, borderRadius: 24 },
+  primaryBtnText: { color: '#fff', fontSize: 16, fontWeight: '600' },
 
   // Web
-  webHeader: { paddingTop: 48, paddingBottom: 16, paddingHorizontal: 20, backgroundColor: '#1a73e8' },
-  webTitle: { fontSize: 24, fontWeight: '700', color: '#fff' },
-
-  // Emergency button
-  emergencyButton: {
-    marginHorizontal: 16, marginVertical: 10, padding: 20,
-    backgroundColor: '#34a853', borderRadius: 20,
-    alignItems: 'center',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2, shadowRadius: 8, elevation: 6,
-  },
-  emergencyLabel: {
-    fontSize: 13, fontWeight: '600', color: 'rgba(255,255,255,0.85)',
-    textTransform: 'uppercase', letterSpacing: 1,
-  },
-  emergencyTime: {
-    fontSize: 36, fontWeight: '800', color: '#fff', marginTop: 2,
-  },
-  emergencyDist: {
-    fontSize: 14, color: 'rgba(255,255,255,0.8)', marginTop: 2,
-  },
-  emergencyAction: {
-    marginTop: 14, backgroundColor: '#fff',
-    paddingHorizontal: 32, paddingVertical: 14, borderRadius: 28,
-  },
-  emergencyActionText: {
-    fontSize: 16, fontWeight: '800', color: '#34a853', letterSpacing: 0.5,
-  },
-
-  // Filter bar
-  filterBar: {
-    flexDirection: 'row', paddingHorizontal: 16, paddingVertical: 8, gap: 8,
-  },
-  filterChip: {
-    paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20,
-    backgroundColor: '#f0f0f0',
-  },
-  filterChipActive: {
-    backgroundColor: '#1a73e8',
-  },
-  filterChipFav: {
-    backgroundColor: '#f5a623',
-  },
-  filterChipText: {
-    fontSize: 14, fontWeight: '600', color: '#666',
-  },
-  filterChipTextActive: {
-    color: '#fff',
-  },
+  webHeader: { paddingTop: 48, paddingBottom: 16, paddingHorizontal: 20, backgroundColor: S.blue },
+  webTitle: { fontSize: 22, fontWeight: '700', color: '#fff' },
 
   // Search bar
-  searchRow: {
-    position: 'absolute', top: 50, left: 16, right: 16,
-    flexDirection: 'row', gap: 8,
-  },
   searchBar: {
-    flex: 1, flexDirection: 'row', alignItems: 'center',
-    backgroundColor: '#fff', borderRadius: 24, paddingHorizontal: 16, paddingVertical: 12,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.15, shadowRadius: 4, elevation: 4,
+    position: 'absolute', top: 52, left: 16, right: 16,
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12,
+    ...S.shadow,
   },
-  searchIcon: { fontSize: 16, marginRight: 8 },
-  searchPlaceholder: { fontSize: 15, color: '#888' },
-  backToMeBtn: {
-    backgroundColor: '#1a73e8', borderRadius: 24,
-    paddingHorizontal: 14, paddingVertical: 12,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.15, shadowRadius: 4, elevation: 4,
-  },
-  backToMeText: { fontSize: 13, color: '#fff', fontWeight: '700' },
+  searchBarText: { fontSize: 15, color: S.textMuted },
+  searchBarReset: { fontSize: 13, color: S.blue, fontWeight: '700' },
 
-  // City quick-jump
-  cityPanel: {
-    position: 'absolute', top: 100, left: 0, right: 0,
-  },
-  cityScroll: {
-    paddingHorizontal: 16, gap: 8,
-  },
+  // City chips
+  cityRow: { position: 'absolute', top: 102, left: 0, right: 0 },
+  cityRowContent: { paddingHorizontal: 16, gap: 8 },
   cityChip: {
-    backgroundColor: '#fff', borderRadius: 20,
-    paddingHorizontal: 16, paddingVertical: 10,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 2, elevation: 2,
+    backgroundColor: '#fff', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8,
+    ...S.shadow,
   },
-  cityChipText: { fontSize: 14, fontWeight: '600', color: '#1a1a1a' },
+  cityChipText: { fontSize: 13, fontWeight: '600', color: S.textPrimary },
 
-  // Search here button
-  searchHereBtn: {
-    position: 'absolute', top: 100, alignSelf: 'center',
-    backgroundColor: '#1a73e8', borderRadius: 24,
-    paddingHorizontal: 20, paddingVertical: 12,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4,
+  // Search here
+  searchHerePill: {
+    position: 'absolute', top: 102, alignSelf: 'center',
+    backgroundColor: S.blue, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 10,
+    ...S.shadow,
   },
-  searchHereText: { fontSize: 14, color: '#fff', fontWeight: '700' },
+  searchHereText: { fontSize: 13, color: '#fff', fontWeight: '700' },
 
-  // Map buttons
-  myLocationBtn: {
-    position: 'absolute', top: 140, right: 16,
-    width: 48, height: 48, borderRadius: 24, backgroundColor: '#fff',
+  // Location button
+  locBtn: {
+    position: 'absolute', bottom: 16, right: 16,
+    width: 44, height: 44, borderRadius: 22, backgroundColor: '#fff',
     alignItems: 'center', justifyContent: 'center',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4,
+    ...S.shadow,
   },
-  myLocationIcon: { fontSize: 24, color: '#1a73e8' },
-  refreshBtn: {
-    position: 'absolute', top: 196, right: 16,
-    width: 48, height: 48, borderRadius: 24, backgroundColor: '#fff',
-    alignItems: 'center', justifyContent: 'center',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4,
-  },
-  refreshIcon: { fontSize: 24, color: '#1a73e8' },
+  locBtnIcon: { fontSize: 20, color: S.blue },
 
   // Bottom panel
-  bottomPanel: {
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 20, borderTopRightRadius: 20,
-    shadowColor: '#000', shadowOffset: { width: 0, height: -3 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 10,
-    paddingTop: 4,
+  panel: {
+    backgroundColor: S.bg,
+    borderTopLeftRadius: 16, borderTopRightRadius: 16,
+    shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.08, shadowRadius: 6, elevation: 8,
   },
+
+  // Nearest card
+  nearestCard: {
+    flexDirection: 'row', alignItems: 'center',
+    marginHorizontal: 16, marginTop: 14, marginBottom: 4,
+    padding: 14, backgroundColor: '#f4fbf5', borderRadius: 14,
+    borderWidth: 1, borderColor: '#d4edda',
+  },
+  nearestInfo: { flex: 1, marginRight: 10 },
+  nearestLabel: { fontSize: 11, fontWeight: '700', color: S.green, textTransform: 'uppercase', letterSpacing: 0.5 },
+  nearestName: { fontSize: 14, fontWeight: '600', color: S.textPrimary, marginTop: 2 },
+  nearestRight: { alignItems: 'center', gap: 4 },
+  nearestDist: { fontSize: 13, fontWeight: '700', color: S.textSecondary },
+  nearestNavBtn: { backgroundColor: S.green, paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20 },
+  nearestNavText: { color: '#fff', fontSize: 13, fontWeight: '700' },
+
+  // Toggle bar
   toggleBar: { alignItems: 'center', paddingVertical: 10 },
-  toggleHandle: { width: 40, height: 4, borderRadius: 2, backgroundColor: '#d0d0d0', marginBottom: 6 },
-  toggleText: { fontSize: 14, color: '#888', fontWeight: '500' },
-  listContainer: { maxHeight: 420 },
+  toggleHandle: { width: 36, height: 4, borderRadius: 2, backgroundColor: '#d8d8d8', marginBottom: 5 },
+  toggleLabel: { fontSize: 13, color: S.textMuted, fontWeight: '500' },
+  listWrap: { maxHeight: 420 },
+
+  // Filter chips
+  filterBar: { flexDirection: 'row', paddingHorizontal: 16, paddingVertical: 8, gap: 6 },
+  chip: { paddingHorizontal: 14, paddingVertical: 7, borderRadius: 18, backgroundColor: '#f0f0f0' },
+  chipActive: { backgroundColor: S.blue },
+  chipFav: { backgroundColor: '#f5a623' },
+  chipText: { fontSize: 13, fontWeight: '600', color: S.textSecondary },
+  chipTextActive: { color: '#fff' },
 
   // Report FAB
-  reportFab: {
-    position: 'absolute', bottom: 24, right: 16,
-    width: 56, height: 56, borderRadius: 28,
-    backgroundColor: '#1a73e8', alignItems: 'center', justifyContent: 'center',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.25, shadowRadius: 6, elevation: 6,
+  fab: {
+    position: 'absolute', bottom: 20, right: 16,
+    flexDirection: 'row', alignItems: 'center', gap: 4,
+    backgroundColor: S.blue, borderRadius: 24,
+    paddingHorizontal: 16, paddingVertical: 12,
+    ...S.shadow,
   },
-  reportFabIcon: { fontSize: 28, color: '#fff', fontWeight: '600', marginTop: -2 },
+  fabIcon: { fontSize: 18, color: '#fff', fontWeight: '700' },
+  fabLabel: { fontSize: 13, color: '#fff', fontWeight: '600' },
 
   // List
   listContent: { paddingBottom: 40 },
   emptyState: { alignItems: 'center', paddingVertical: 32, paddingHorizontal: 24 },
-  emptyText: { fontSize: 16, color: '#666', textAlign: 'center' },
+  emptyText: { fontSize: 15, color: S.textMuted, textAlign: 'center' },
 });
 
 export default function App() {

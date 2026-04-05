@@ -8,7 +8,7 @@ import { loadNearbyTiles } from '../data/tileLoader';
 export function getNearbyToilets(
   lat: number,
   lon: number,
-  maxResults: number = 200
+  maxResults: number = 100
 ): Toilet[] {
   const raw = loadNearbyTiles(lat, lon);
 
