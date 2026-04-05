@@ -1,0 +1,33 @@
+{
+  "name": "wc-finder",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "lint": "expo lint",
+    "quality": "tsc --noEmit"
+  },
+  "dependencies": {
+    "expo": "~54.0.33",
+    "expo-linking": "~8.0.11",
+    "expo-location": "~19.0.8",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "^19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-maps": "1.20.1",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.17",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}

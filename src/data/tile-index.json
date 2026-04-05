@@ -1,0 +1,664 @@
+{
+  "generated": "2026-04-05",
+  "source": "toilettenhero.de (OpenStreetMap data)",
+  "totalCount": 9068,
+  "tileCount": 82,
+  "tiles": [
+    {
+      "key": "45_8",
+      "latMin": 45,
+      "latMax": 46,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 6
+    },
+    {
+      "key": "46_10",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 2
+    },
+    {
+      "key": "46_12",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 4
+    },
+    {
+      "key": "46_13",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 14
+    },
+    {
+      "key": "46_14",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 15
+    },
+    {
+      "key": "46_15",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 15,
+      "lonMax": 16,
+      "count": 5
+    },
+    {
+      "key": "46_6",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 112
+    },
+    {
+      "key": "46_7",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 105
+    },
+    {
+      "key": "46_8",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 36
+    },
+    {
+      "key": "46_9",
+      "latMin": 46,
+      "latMax": 47,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 39
+    },
+    {
+      "key": "47_10",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 57
+    },
+    {
+      "key": "47_11",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 94
+    },
+    {
+      "key": "47_12",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 68
+    },
+    {
+      "key": "47_13",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 72
+    },
+    {
+      "key": "47_14",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 11
+    },
+    {
+      "key": "47_15",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 15,
+      "lonMax": 16,
+      "count": 95
+    },
+    {
+      "key": "47_16",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 16,
+      "lonMax": 17,
+      "count": 17
+    },
+    {
+      "key": "47_6",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 3
+    },
+    {
+      "key": "47_7",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 122
+    },
+    {
+      "key": "47_8",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 427
+    },
+    {
+      "key": "47_9",
+      "latMin": 47,
+      "latMax": 48,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 204
+    },
+    {
+      "key": "48_10",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 147
+    },
+    {
+      "key": "48_11",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 354
+    },
+    {
+      "key": "48_12",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 72
+    },
+    {
+      "key": "48_13",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 29
+    },
+    {
+      "key": "48_14",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 91
+    },
+    {
+      "key": "48_15",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 15,
+      "lonMax": 16,
+      "count": 35
+    },
+    {
+      "key": "48_16",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 16,
+      "lonMax": 17,
+      "count": 374
+    },
+    {
+      "key": "48_7",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 31
+    },
+    {
+      "key": "48_8",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 154
+    },
+    {
+      "key": "48_9",
+      "latMin": 48,
+      "latMax": 49,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 309
+    },
+    {
+      "key": "49_10",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 136
+    },
+    {
+      "key": "49_11",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 195
+    },
+    {
+      "key": "49_12",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 45
+    },
+    {
+      "key": "49_13",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 4
+    },
+    {
+      "key": "49_6",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 36
+    },
+    {
+      "key": "49_7",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 135
+    },
+    {
+      "key": "49_8",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 428
+    },
+    {
+      "key": "49_9",
+      "latMin": 49,
+      "latMax": 50,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 136
+    },
+    {
+      "key": "50_10",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 137
+    },
+    {
+      "key": "50_11",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 86
+    },
+    {
+      "key": "50_12",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 62
+    },
+    {
+      "key": "50_13",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 24
+    },
+    {
+      "key": "50_14",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 3
+    },
+    {
+      "key": "50_6",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 179
+    },
+    {
+      "key": "50_7",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 110
+    },
+    {
+      "key": "50_8",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 296
+    },
+    {
+      "key": "50_9",
+      "latMin": 50,
+      "latMax": 51,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 47
+    },
+    {
+      "key": "51_10",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 69
+    },
+    {
+      "key": "51_11",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 77
+    },
+    {
+      "key": "51_12",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 130
+    },
+    {
+      "key": "51_13",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 166
+    },
+    {
+      "key": "51_14",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 55
+    },
+    {
+      "key": "51_6",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 355
+    },
+    {
+      "key": "51_7",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 435
+    },
+    {
+      "key": "51_8",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 116
+    },
+    {
+      "key": "51_9",
+      "latMin": 51,
+      "latMax": 52,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 81
+    },
+    {
+      "key": "52_10",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 91
+    },
+    {
+      "key": "52_11",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 60
+    },
+    {
+      "key": "52_12",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 32
+    },
+    {
+      "key": "52_13",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 650
+    },
+    {
+      "key": "52_14",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 4
+    },
+    {
+      "key": "52_7",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 33
+    },
+    {
+      "key": "52_8",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 100
+    },
+    {
+      "key": "52_9",
+      "latMin": 52,
+      "latMax": 53,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 177
+    },
+    {
+      "key": "53_10",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 197
+    },
+    {
+      "key": "53_11",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 36
+    },
+    {
+      "key": "53_12",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 32
+    },
+    {
+      "key": "53_13",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 23
+    },
+    {
+      "key": "53_14",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 23
+    },
+    {
+      "key": "53_6",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 6,
+      "lonMax": 7,
+      "count": 12
+    },
+    {
+      "key": "53_7",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 47
+    },
+    {
+      "key": "53_8",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 190
+    },
+    {
+      "key": "53_9",
+      "latMin": 53,
+      "latMax": 54,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 199
+    },
+    {
+      "key": "54_10",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 10,
+      "lonMax": 11,
+      "count": 118
+    },
+    {
+      "key": "54_11",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 11,
+      "lonMax": 12,
+      "count": 27
+    },
+    {
+      "key": "54_12",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 12,
+      "lonMax": 13,
+      "count": 129
+    },
+    {
+      "key": "54_13",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 13,
+      "lonMax": 14,
+      "count": 97
+    },
+    {
+      "key": "54_14",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 14,
+      "lonMax": 15,
+      "count": 9
+    },
+    {
+      "key": "54_7",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 7,
+      "lonMax": 8,
+      "count": 8
+    },
+    {
+      "key": "54_8",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 8,
+      "lonMax": 9,
+      "count": 57
+    },
+    {
+      "key": "54_9",
+      "latMin": 54,
+      "latMax": 55,
+      "lonMin": 9,
+      "lonMax": 10,
+      "count": 70
+    }
+  ]
+}
