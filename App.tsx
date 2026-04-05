@@ -18,6 +18,7 @@ import { useFavorites } from './src/hooks/useFavorites';
 import { ToiletListItem } from './src/components/ToiletListItem';
 import { Toilet } from './src/types/toilet';
 import { formatDistance } from './src/services/overpass';
+import { ReportSheet } from './src/components/ReportSheet';
 
 const isWeb = Platform.OS === 'web';
 
@@ -55,6 +56,8 @@ function AppContent() {
   const [mapCenter, setMapCenter] = useState<{ lat: number; lon: number } | null>(null);
   const [searchText, setSearchText] = useState('');
   const [showSearch, setShowSearch] = useState(false);
+  const [reportToilet, setReportToilet] = useState<Toilet | undefined>(undefined);
+  const [showReport, setShowReport] = useState(false);
 
   const focusToilet = useCallback((toilet: Toilet) => {
     setSelectedToilet(toilet);
@@ -238,6 +241,7 @@ function AppContent() {
             onNavigate={openNavigation}
             onSelect={focusToilet}
             onToggleFavorite={toggleFavorite}
+            onReport={(t) => { setReportToilet(t); setShowReport(true); }}
           />
         )}
         contentContainerStyle={styles.listContent}
@@ -390,6 +394,22 @@ function AppContent() {
 
         {listExpanded && <View style={styles.listContainer}>{renderList()}</View>}
       </View>
+
+      {/* Report new toilet FAB */}
+      <TouchableOpacity
+        style={styles.reportFab}
+        onPress={() => { setReportToilet(undefined); setShowReport(true); }}
+        activeOpacity={0.85}
+      >
+        <Text style={styles.reportFabIcon}>+</Text>
+      </TouchableOpacity>
+
+      {/* Report modal */}
+      <ReportSheet
+        toilet={reportToilet}
+        visible={showReport}
+        onClose={() => setShowReport(false)}
+      />
     </View>
   );
 }
@@ -529,6 +549,15 @@ const styles = StyleSheet.create({
   toggleHandle: { width: 40, height: 4, borderRadius: 2, backgroundColor: '#d0d0d0', marginBottom: 6 },
   toggleText: { fontSize: 14, color: '#888', fontWeight: '500' },
   listContainer: { maxHeight: 420 },
+
+  // Report FAB
+  reportFab: {
+    position: 'absolute', bottom: 24, right: 16,
+    width: 56, height: 56, borderRadius: 28,
+    backgroundColor: '#1a73e8', alignItems: 'center', justifyContent: 'center',
+    shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.25, shadowRadius: 6, elevation: 6,
+  },
+  reportFabIcon: { fontSize: 28, color: '#fff', fontWeight: '600', marginTop: -2 },
 
   // List
   listContent: { paddingBottom: 40 },

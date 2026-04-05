@@ -10,6 +10,7 @@ interface ToiletListItemProps {
   onNavigate: (toilet: Toilet) => void;
   onSelect: (toilet: Toilet) => void;
   onToggleFavorite?: (id: string) => void;
+  onReport?: (toilet: Toilet) => void;
 }
 
 export const ToiletListItem = memo(function ToiletListItem({
@@ -19,6 +20,7 @@ export const ToiletListItem = memo(function ToiletListItem({
   onNavigate,
   onSelect,
   onToggleFavorite,
+  onReport,
 }: ToiletListItemProps) {
   const displayName = toilet.name || 'Barrierefreie Toilette';
   const catColor = CATEGORY_COLORS[toilet.category];
@@ -84,6 +86,15 @@ export const ToiletListItem = memo(function ToiletListItem({
           )}
           {toilet.opening_hours === '24/7' && <Text style={styles.detailHighlight}> · 24/7</Text>}
         </View>
+
+        {onReport && (
+          <TouchableOpacity
+            onPress={() => onReport(toilet)}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Text style={styles.reportLink}>Stimmt nicht?</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <TouchableOpacity
@@ -193,6 +204,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#34a853',
     fontWeight: '600',
+  },
+  reportLink: {
+    fontSize: 12, color: '#1a73e8', marginTop: 4,
   },
   navButton: {
     backgroundColor: '#1a73e8',
