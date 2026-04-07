@@ -87,16 +87,6 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
   if (url) Linking.openURL(url);
 }
 
-const CITIES: Record<string, { lat: number; lon: number }> = {
-  Hannover: { lat: 52.3759, lon: 9.732 },
-  Dortmund: { lat: 51.5136, lon: 7.4653 },
-  Berlin: { lat: 52.52, lon: 13.405 },
-  Hamburg: { lat: 53.5511, lon: 9.9937 },
-  München: { lat: 48.1351, lon: 11.582 },
-  Köln: { lat: 50.9375, lon: 6.9603 },
-  Frankfurt: { lat: 50.1109, lon: 8.6821 },
-};
-
 function AppContent() {
   const {
     toilets,
@@ -277,29 +267,6 @@ function AppContent() {
     setMapMoved(true);
     setSelectedToilet(null);
   }, []);
-
-  const jumpToCity = useCallback(
-    (name: string) => {
-      const city = CITIES[name];
-      if (!city) return;
-      searchAt(city.lat, city.lon);
-      setListExpanded(false);
-      setMapMoved(false);
-      if (!isWeb) {
-        animatingToRef.current = { lat: city.lat, lon: city.lon };
-        mapRef.current?.animateToRegion(
-          {
-            latitude: city.lat,
-            longitude: city.lon,
-            latitudeDelta: 0.04,
-            longitudeDelta: 0.04,
-          },
-          500,
-        );
-      }
-    },
-    [searchAt],
-  );
 
   // --- Derived data (MUST be before any early returns) ---
 
@@ -879,44 +846,6 @@ function AppContent() {
                 {requireEurokey ? "🔑 Eurokey" : "🔑 Eurokey"}
               </Text>
             </TouchableOpacity>
-          </View>
-
-          {/* City selector */}
-          <View style={styles.citySelector}>
-            <Text style={styles.citySelectorLabel}>Stadt:</Text>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.cityChips}
-            >
-              {Object.keys(CITIES).map((name) => (
-                <TouchableOpacity
-                  key={name}
-                  style={[
-                    styles.cityChip,
-                    searchLocation &&
-                      Math.abs(CITIES[name].lat - searchLocation.lat) < 0.01 &&
-                      Math.abs(CITIES[name].lon - searchLocation.lon) < 0.01 &&
-                      styles.cityChipActive,
-                  ]}
-                  onPress={() => jumpToCity(name)}
-                >
-                  <Text
-                    style={[
-                      styles.cityChipText,
-                      searchLocation &&
-                        Math.abs(CITIES[name].lat - searchLocation.lat) <
-                          0.01 &&
-                        Math.abs(CITIES[name].lon - searchLocation.lon) <
-                          0.01 &&
-                        styles.cityChipTextActive,
-                    ]}
-                  >
-                    {name}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
           </View>
         </View>
 
@@ -1522,41 +1451,6 @@ const styles = StyleSheet.create({
   secondaryTextActive: {
     color: "#1a73e8",
     fontWeight: "600",
-  },
-
-  // City selector in modal
-  citySelector: {
-    marginTop: 4,
-  },
-  citySelectorLabel: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: S.textMuted,
-    marginBottom: 8,
-  },
-  cityChips: {
-    gap: 8,
-    paddingRight: 16,
-  },
-  cityChip: {
-    backgroundColor: "#f5f5f5",
-    borderRadius: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "#e0e0e0",
-  },
-  cityChipActive: {
-    backgroundColor: "#e8f4fd",
-    borderColor: S.blue,
-  },
-  cityChipText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: S.textSecondary,
-  },
-  cityChipTextActive: {
-    color: S.blue,
   },
 
   // List
