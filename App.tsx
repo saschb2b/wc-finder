@@ -231,12 +231,9 @@ function AppContent() {
     let result = toilets;
 
     // Apply same filters as list: Mode → Favorites → Eurokey
+    // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
     if (filterMode === "now") {
-      result = result.filter((t) => {
-        const status = isCurrentlyOpen(t.opening_hours);
-        // Include: explicitly open OR unknown hours (treat as potentially open)
-        return status === true || status === null;
-      });
+      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
     }
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
@@ -305,19 +302,6 @@ function AppContent() {
         (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
       );
     }
-
-    // Sort: confirmed open first, then unknown, then closed (if shown)
-    result = result.sort((a, b) => {
-      const statusA = isCurrentlyOpen(a.opening_hours);
-      const statusB = isCurrentlyOpen(b.opening_hours);
-      // true (open) > null (unknown) > false (closed)
-      if (statusA === statusB) return 0;
-      if (statusA === true) return -1;
-      if (statusB === true) return 1;
-      if (statusA === null) return -1;
-      if (statusB === null) return 1;
-      return 0;
-    });
 
     return result;
   }, [
@@ -459,15 +443,10 @@ function AppContent() {
   );
 
   // --- Filter chips ---
-  // --- Filter chips ---
-  // Count toilets by open status
-  const confirmedOpenCount = toilets.filter(
+  // "Jetzt geöffnet" shows ONLY confirmed open toilets (strict)
+  const openNowCount = toilets.filter(
     (t) => isCurrentlyOpen(t.opening_hours) === true,
   ).length;
-  const likelyOpenCount = toilets.filter((t) => {
-    const status = isCurrentlyOpen(t.opening_hours);
-    return status === true || status === null;
-  }).length;
 
   const filterBar = (
     <View style={styles.filterContainer}>
@@ -486,7 +465,7 @@ function AppContent() {
               filterMode === "now" && styles.toggleTextActive,
             ]}
           >
-            Wahrscheinlich offen
+            Jetzt geöffnet
           </Text>
           <View
             style={[styles.badge, filterMode === "now" && styles.badgeActive]}
@@ -497,7 +476,7 @@ function AppContent() {
                 filterMode === "now" && styles.badgeTextActive,
               ]}
             >
-              {likelyOpenCount}
+              {openNowCount}
             </Text>
           </View>
         </TouchableOpacity>
@@ -621,7 +600,7 @@ function AppContent() {
               !showFavoritesOnly &&
               !requireEurokey &&
               !wheelchairOnly
-                ? "Keine wahrscheinlich geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
+                ? "Keine geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
                 : showFavoritesOnly
                   ? "Keine Favoriten in dieser Auswahl."
                   : requireEurokey
@@ -665,7 +644,7 @@ function AppContent() {
               : wheelchairOnly
                 ? "Barrierefreie Toiletten"
                 : filterMode === "now"
-                  ? "Wahrscheinlich geöffnet"
+                  ? "Geöffnete Toiletten"
                   : "Alle Toiletten"}
           </Text>
           <View style={styles.modalHeaderActions}>
@@ -705,7 +684,7 @@ function AppContent() {
                   filterMode === "now" && styles.toggleTextActive,
                 ]}
               >
-                Wahrscheinlich offen
+                Jetzt geöffnet
               </Text>
               <View
                 style={[
@@ -719,7 +698,7 @@ function AppContent() {
                     filterMode === "now" && styles.badgeTextActive,
                   ]}
                 >
-                  {likelyOpenCount}
+                  {openNowCount}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -863,7 +842,7 @@ function AppContent() {
             <View style={styles.emptyState}>
               <Text style={styles.emptyText}>
                 {filterMode === "now" && !showFavoritesOnly && !requireEurokey
-                  ? "Keine wahrscheinlich geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
+                  ? "Keine geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
                   : showFavoritesOnly
                     ? "Keine Favoriten in dieser Auswahl."
                     : requireEurokey
