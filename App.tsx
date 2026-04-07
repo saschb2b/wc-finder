@@ -1,4 +1,10 @@
-import React, { useRef, useCallback, useState, useMemo } from "react";
+import React, {
+  useRef,
+  useCallback,
+  useState,
+  useMemo,
+  useEffect,
+} from "react";
 
 // Filter type must be defined outside component
 type FilterMode = "now" | "all";
@@ -319,12 +325,12 @@ function AppContent() {
   // --- Loading ---
   if (loading && !userLocation) {
     return (
-      <SafeAreaView style={styles.centered}>
-        <StatusBar style="dark" />
-        <ActivityIndicator size="large" color="#1a73e8" />
-        <Text style={styles.loadingTitle}>WC Finder</Text>
-        <Text style={styles.loadingSub}>Standort wird ermittelt...</Text>
-      </SafeAreaView>
+      <LoadingScreen
+        onSkip={() => {
+          // Skip location and show default view (Hannover center)
+          setMapMoved(false);
+        }}
+      />
     );
   }
 
@@ -1377,6 +1383,131 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   emptyText: { fontSize: 15, color: S.textMuted, textAlign: "center" },
+});
+
+// --- Loading Screen Component ---
+function LoadingScreen({ onSkip }: { onSkip: () => void }) {
+  const [dots, setDots] = useState("");
+  const [showSkip, setShowSkip] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((d) => (d.length >= 3 ? "" : d + "."));
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowSkip(true), 5000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <SafeAreaView style={loadingStyles.container}>
+      <StatusBar style="dark" />
+
+      {/* Icon */}
+      <View style={loadingStyles.iconContainer}>
+        <Text style={loadingStyles.icon}>🚻</Text>
+      </View>
+
+      {/* Title */}
+      <Text style={loadingStyles.title}>WC Finder</Text>
+      <Text style={loadingStyles.subtitle}>Barrierefreie Toiletten finden</Text>
+
+      {/* Loading indicator */}
+      <View style={loadingStyles.loadingBox}>
+        <ActivityIndicator size="small" color="#1a73e8" />
+        <Text style={loadingStyles.loadingText}>
+          Standort wird ermittelt{dots}
+        </Text>
+      </View>
+
+      {/* Info text */}
+      <Text style={loadingStyles.infoText}>
+        Dein Standort hilft uns, die nächste erreichbare Toilette zu finden.
+      </Text>
+
+      {/* Skip button (appears after 5s) */}
+      {showSkip && (
+        <TouchableOpacity
+          style={loadingStyles.skipButton}
+          onPress={onSkip}
+          activeOpacity={0.8}
+        >
+          <Text style={loadingStyles.skipText}>
+            🗺️ Karte stattdessen anzeigen
+          </Text>
+        </TouchableOpacity>
+      )}
+    </SafeAreaView>
+  );
+}
+
+const loadingStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 32,
+  },
+  iconContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 20,
+    backgroundColor: "#e8f4fd",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 24,
+  },
+  icon: {
+    fontSize: 40,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: "#1a1a1a",
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    marginBottom: 40,
+  },
+  loadingBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    gap: 10,
+    marginBottom: 20,
+  },
+  loadingText: {
+    fontSize: 15,
+    color: "#1a73e8",
+    fontWeight: "600",
+    minWidth: 200,
+  },
+  infoText: {
+    fontSize: 13,
+    color: "#888",
+    textAlign: "center",
+    maxWidth: 280,
+    lineHeight: 18,
+  },
+  skipButton: {
+    marginTop: 32,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+  },
+  skipText: {
+    fontSize: 14,
+    color: "#1a73e8",
+    fontWeight: "600",
+  },
 });
 
 export default function App() {
