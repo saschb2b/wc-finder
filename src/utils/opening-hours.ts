@@ -57,6 +57,7 @@ function isInSeason(startMonth: string, endMonth: string): boolean {
  * Parse day range like "Fr-Sa" or "Mo-Fr" into array of day indices
  * Returns array of day numbers (0=Sun, 1=Mon, ..., 6=Sat)
  * Supports both German (Mo, Di, Mi) and English (Mo, Tu, We) day codes
+ * Also supports PH (Public Holidays) - returns empty array (not a regular day)
  */
 function parseDayRange(daysStr: string): number[] {
   const dayMap: Record<string, number> = {
@@ -73,6 +74,8 @@ function parseDayRange(daysStr: string): number[] {
     tu: 2,
     we: 3,
     th: 4,
+    // PH (Public Holidays) - we don't track holidays, so return empty
+    // This means "PH off" won't affect regular day calculations
   };
 
   const lower = daysStr.toLowerCase().trim();
@@ -123,66 +126,145 @@ function parseDayRange(daysStr: string): number[] {
 }
 
 /**
+ * Check if a time period (start-end) contains the current time
+ * Handles overnight periods (e.g., 22:00-06:00)
+ */
+function isTimeInRange(
+  currentTime: number,
+  startTime: number,
+  endTime: number,
+): boolean {
+  const isOvernight = startTime > endTime;
+
+  if (isOvernight) {
+    // Overnight: open from startTime to midnight AND midnight to endTime
+    return currentTime >= startTime || currentTime <= endTime;
+  } else {
+    // Normal hours - note: endTime can be 1440 (24:00) which is midnight
+    return currentTime >= startTime && currentTime < endTime;
+  }
+}
+
+/**
  * Parse a single day+time rule like "Tu 09:00-00:00" or "Fr-Sa 23:00-05:00"
+ * Also handles multiple time periods: "Mo-Fr 12:00-15:00,19:00-00:00"
  * Returns true if currently open according to this rule, false otherwise
+ * Returns null if this rule doesn't apply to current day
  */
 function checkDayTimeRule(
   rule: string,
   currentDay: number,
   currentTime: number,
-): boolean {
+): boolean | null {
+  // Check for "off" or "closed" keywords - means explicitly closed
+  if (/\b(off|closed|geschlossen)\b/i.test(rule)) {
+    // Extract the days that are "off"
+    const daysMatch = rule.match(
+      /^([a-z]{2}(?:\s*,\s*[a-z]{2})?(?:\s*-\s*[a-z]{2})?)\s+/i,
+    );
+    if (daysMatch) {
+      const daysPart = daysMatch[1];
+      const applicableDays = parseDayRange(daysPart);
+      // If today is in the "off" days, we're definitely closed
+      if (applicableDays.includes(currentDay)) {
+        return false;
+      }
+    }
+    // Rule doesn't apply to today, so don't affect the result
+    return null;
+  }
+
+  // Extract the days part and time part(s)
+  // Match: day spec followed by time periods (comma-separated allowed)
+  // e.g., "Mo-Fr 12:00-15:00,19:00-00:00" or "Tu 09:00-00:00"
   const dayTimeMatch = rule.match(
-    /([a-z]{2}(?:\s*-\s*[a-z]{2})?)\s+(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/i,
+    /([a-z]{2}(?:\s*,\s*[a-z]{2})?(?:\s*-\s*[a-z]{2})?)\s+([\d:,\-–]+)/i,
   );
 
-  if (!dayTimeMatch) return false;
+  if (!dayTimeMatch) return null;
 
   const daysPart = dayTimeMatch[1];
-  const startHour = parseInt(dayTimeMatch[2], 10);
-  const startMin = parseInt(dayTimeMatch[3], 10);
-  let endHour = parseInt(dayTimeMatch[4], 10);
-  const endMin = parseInt(dayTimeMatch[5], 10);
-
-  // Handle 00:00 as midnight (24:00) - end of day
-  // So 09:00-00:00 means 09:00 to 24:00 (midnight)
-  const endTime =
-    endHour === 0 && endMin === 0 ? 24 * 60 : endHour * 60 + endMin;
-  const startTime = startHour * 60 + startMin;
-  const isOvernight = startTime > endTime;
+  const timePart = dayTimeMatch[2];
 
   // Parse which days this applies to
   const applicableDays = parseDayRange(daysPart);
 
-  // Check if current day is in the list
-  if (applicableDays.includes(currentDay)) {
-    // Check time range
-    if (isOvernight) {
-      // Overnight: open from startTime to midnight AND midnight to endTime
-      if (currentTime >= startTime || currentTime <= endTime) {
-        return true;
+  // If current day is not in the list, this rule doesn't apply
+  if (!applicableDays.includes(currentDay)) {
+    // For overnight hours, check if yesterday's session extends to today
+    const timeRanges = timePart.split(",").map((t) => t.trim());
+    for (const range of timeRanges) {
+      const timeMatch = range.match(
+        /(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/,
+      );
+      if (!timeMatch) continue;
+
+      const startHour = parseInt(timeMatch[1], 10);
+      const startMin = parseInt(timeMatch[2], 10);
+      let endHour = parseInt(timeMatch[3], 10);
+      const endMin = parseInt(timeMatch[4], 10);
+
+      const endTime =
+        endHour === 0 && endMin === 0 ? 24 * 60 : endHour * 60 + endMin;
+      const startTime = startHour * 60 + startMin;
+
+      if (startTime > endTime && currentTime <= endTime) {
+        // Overnight and we're in the early morning tail
+        const yesterday = currentDay === 0 ? 6 : currentDay - 1;
+        if (applicableDays.includes(yesterday)) {
+          // For multi-day ranges: don't extend the LAST day into the next day
+          // e.g., "Fr-Sa 23:00-05:00" on Sunday: Saturday is the last day,
+          // so don't extend Saturday's hours into Sunday
+          const isMultiDay = applicableDays.length > 1;
+          const yesterdayWasLastDay =
+            isMultiDay && !applicableDays.includes(currentDay);
+          if (!yesterdayWasLastDay) {
+            return true;
+          } else {
+            // Yesterday was the last day of a multi-day range and we're after
+            // its closing time - explicitly closed
+            return false;
+          }
+        }
       }
-    } else {
-      // Normal hours - note: endTime can be 1440 (24:00) which is midnight
-      if (currentTime >= startTime && currentTime < endTime) {
+    }
+    // Rule doesn't apply to today and no overnight extension - explicitly closed
+    return false;
+  }
+
+  // Current day is applicable - check all time periods
+  const timeRanges = timePart.split(",").map((t) => t.trim());
+
+  for (const range of timeRanges) {
+    const timeMatch = range.match(
+      /(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/,
+    );
+    if (!timeMatch) continue;
+
+    const startHour = parseInt(timeMatch[1], 10);
+    const startMin = parseInt(timeMatch[2], 10);
+    let endHour = parseInt(timeMatch[3], 10);
+    const endMin = parseInt(timeMatch[4], 10);
+
+    // Handle 00:00 as midnight (24:00) - end of day
+    const endTime =
+      endHour === 0 && endMin === 0 ? 24 * 60 : endHour * 60 + endMin;
+    const startTime = startHour * 60 + startMin;
+
+    if (isTimeInRange(currentTime, startTime, endTime)) {
+      return true;
+    }
+
+    // Check overnight tail for the next day
+    if (startTime > endTime && currentTime <= endTime) {
+      const yesterday = currentDay === 0 ? 6 : currentDay - 1;
+      if (applicableDays.includes(yesterday)) {
         return true;
       }
     }
   }
 
-  // For overnight hours: check if we're in the early morning tail of yesterday's session
-  if (isOvernight && currentTime <= endTime) {
-    const yesterday = currentDay === 0 ? 6 : currentDay - 1;
-
-    if (applicableDays.includes(yesterday)) {
-      const isMultiDay = applicableDays.length > 1;
-      const isLastDay = !applicableDays.includes(currentDay);
-
-      if (!isMultiDay || !isLastDay) {
-        return true;
-      }
-    }
-  }
-
+  // Day applies but no time period matches - we're closed
   return false;
 }
 
@@ -226,6 +308,7 @@ export function isCurrentlyOpen(opening_hours?: string): boolean | null {
   // Handle multiple day rules separated by ;
   // e.g., "Su 09:00-00:00; Mo 09:00-00:00; Tu 09:00-00:00"
   const rules = opening_hours.split(";").map((r) => r.trim());
+  let hasApplicableRule = false;
   let hasValidDayRule = false;
 
   for (const rule of rules) {
@@ -233,15 +316,25 @@ export function isCurrentlyOpen(opening_hours?: string): boolean | null {
     const looksLikeDayRule = /^[a-z]{2}/i.test(rule);
     if (looksLikeDayRule) {
       hasValidDayRule = true;
-      if (checkDayTimeRule(rule, currentDay, currentTime)) {
-        return true;
+      const result = checkDayTimeRule(rule, currentDay, currentTime);
+      if (result === true) {
+        return true; // Found an open period
+      } else if (result === false) {
+        hasApplicableRule = true; // Rule applies but we're closed
       }
+      // result === null means rule doesn't apply to this day
     }
   }
 
-  // If we found valid day rules but none matched, we're closed
-  if (hasValidDayRule) {
+  // If we found applicable rules but none said we're open, we're closed
+  if (hasApplicableRule) {
     return false;
+  }
+
+  // If we found valid day rules but none were applicable to today, return unknown
+  // (This could be a seasonal rule or other special case)
+  if (hasValidDayRule) {
+    return null;
   }
 
   // Simple time only: "08:00-20:00" (applies to all days)
