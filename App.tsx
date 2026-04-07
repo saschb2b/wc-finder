@@ -399,6 +399,16 @@ function AppContent() {
         >
           <Text style={styles.nearestNavText}>Route</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cardReportBtn}
+          onPress={() => {
+            setReportToilet(toiletToShow);
+            setShowReport(true);
+          }}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <Text style={styles.cardReportText}>Melden</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -585,13 +595,25 @@ function AppContent() {
                 ? "Geöffnete Toiletten"
                 : "Alle Toiletten"}
           </Text>
-          <TouchableOpacity
-            onPress={() => setListExpanded(false)}
-            style={styles.modalCloseBtn}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <Text style={styles.modalCloseText}>✕</Text>
-          </TouchableOpacity>
+          <View style={styles.modalHeaderActions}>
+            <TouchableOpacity
+              onPress={() => {
+                setReportToilet(undefined);
+                setShowReport(true);
+              }}
+              style={styles.modalReportBtn}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Text style={styles.modalReportText}>+ Melden</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setListExpanded(false)}
+              style={styles.modalCloseBtn}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Text style={styles.modalCloseText}>✕</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Filter in modal */}
@@ -923,20 +945,7 @@ function AppContent() {
         </View>
       </View>
 
-      {/* Report FAB */}
-      <TouchableOpacity
-        style={styles.fab}
-        onPress={() => {
-          setReportToilet(undefined);
-          setShowReport(true);
-        }}
-        activeOpacity={0.85}
-      >
-        <Text style={styles.fabIcon}>+</Text>
-        <Text style={styles.fabLabel}>Melden</Text>
-      </TouchableOpacity>
-
-      {/* Report sheet */}
+      {/* Report sheet - triggered from list modal or bottom card */}
       <ReportSheet
         toilet={reportToilet}
         visible={showReport}
@@ -1037,14 +1046,14 @@ const styles = StyleSheet.create({
   },
   searchHereText: { fontSize: 13, color: "#fff", fontWeight: "700" },
 
-  // Location button
+  // Location button - positioned above bottom panel
   locBtn: {
     position: "absolute",
-    bottom: 16,
+    bottom: 140, // Above bottom panel (~120px height + margin)
     right: 16,
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -1120,6 +1129,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   nearestNavText: { color: "#fff", fontSize: 13, fontWeight: "700" },
+  cardReportBtn: {
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+  },
+  cardReportText: {
+    fontSize: 11,
+    color: "#1a73e8",
+    fontWeight: "500",
+  },
 
   // List button (replaces toggle)
   listButton: {
@@ -1182,6 +1200,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     color: S.textPrimary,
+  },
+  modalHeaderActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  modalReportBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 16,
+  },
+  modalReportText: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: S.blue,
   },
   modalCloseBtn: {
     width: 36,
@@ -1357,23 +1391,6 @@ const styles = StyleSheet.create({
   cityChipTextActive: {
     color: S.blue,
   },
-
-  // Report FAB
-  fab: {
-    position: "absolute",
-    bottom: 20,
-    right: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    backgroundColor: S.blue,
-    borderRadius: 24,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    ...S.shadow,
-  },
-  fabIcon: { fontSize: 18, color: "#fff", fontWeight: "700" },
-  fabLabel: { fontSize: 13, color: "#fff", fontWeight: "600" },
 
   // List
   listContent: { paddingBottom: 40 },
