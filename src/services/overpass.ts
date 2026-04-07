@@ -1,5 +1,5 @@
 import { Toilet, ToiletCategory } from "../types/toilet";
-import { loadNearbyTiles } from "../data/tileLoader";
+import { loadNearbyTiles, loadTilesInBounds } from "../data/tileLoader";
 
 /**
  * Gets nearby accessible toilets by loading only relevant geo-tiles.
@@ -32,11 +32,9 @@ export function getToiletsInBounds(
   lonMin: number,
   lonMax: number,
 ): Toilet[] {
-  // Use the existing tile loader which has static requires
-  // It loads 9 tiles (center + 8 neighbors) which covers the visible area
-  const centerLat = (latMin + latMax) / 2;
-  const centerLon = (lonMin + lonMax) / 2;
-  const raw = loadNearbyTiles(centerLat, centerLon);
+  // Load all tiles needed to cover the visible bounds
+  // This ensures we don't miss toilets at the edges of the visible area
+  const raw = loadTilesInBounds(latMin, latMax, lonMin, lonMax);
 
   return raw
     .filter(
