@@ -62,7 +62,15 @@ Toilet locations are merged and deduplicated from:
 
 ## Screenshots
 
-*Coming soon*
+<p align="center">
+  <img src="assets/images/map_hannover_sanifair_tran_Station.png" width="280" alt="Map view with detail card" />
+  <img src="assets/images/list_now_open.png" width="280" alt="List view with open status" />
+  <img src="assets/images/euro_key.png" width="280" alt="Eurokey filter" />
+</p>
+
+| Map View | List View | Filters |
+|----------|-----------|---------|
+| Interactive map with toilet markers and detail cards | Sortable list with real-time open/closed status | Filter by Eurokey, wheelchair access, free entry |
 
 ---
 

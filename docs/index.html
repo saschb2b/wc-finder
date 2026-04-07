@@ -313,6 +313,37 @@
                 color: var(--color-text-muted);
             }
 
+            /* Screenshots */
+            .screenshots {
+                padding: 80px 0;
+                background: var(--color-bg);
+            }
+
+            .screenshots-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .screenshot {
+                text-align: center;
+            }
+
+            .screenshot img {
+                width: 100%;
+                max-width: 280px;
+                height: auto;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                border: 1px solid var(--color-border);
+            }
+
+            .screenshot p {
+                margin-top: 12px;
+                font-size: 14px;
+                color: var(--color-text-secondary);
+            }
+
             /* Download */
             .download {
                 padding: 100px 0;
@@ -420,6 +451,9 @@
                 .categories-grid {
                     grid-template-columns: repeat(2, 1fr);
                 }
+                .screenshots-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
             }
 
             @media (max-width: 640px) {
@@ -437,6 +471,13 @@
                 }
                 .categories-grid {
                     grid-template-columns: repeat(2, 1fr);
+                }
+                .screenshots-grid {
+                    grid-template-columns: 1fr;
+                    gap: 32px;
+                }
+                .screenshot img {
+                    max-width: 240px;
                 }
                 .nav-links {
                     display: none;
@@ -597,6 +638,32 @@
                         <div class="category-icon">⛽</div>
                         <h4>Tankstellen</h4>
                         <p>Raststätten und Autobahntankstellen</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="screenshots" id="screenshots">
+            <div class="container">
+                <h2 class="section-title">Screenshots</h2>
+                <div class="screenshots-grid">
+                    <div class="screenshot">
+                        <img
+                            src="map_hannover_sanifair_tran_Station.png"
+                            alt="Kartenansicht mit Details"
+                        />
+                        <p>Kartenansicht mit Detail-Informationen</p>
+                    </div>
+                    <div class="screenshot">
+                        <img
+                            src="list_now_open.png"
+                            alt="Liste der geöffneten Toiletten"
+                        />
+                        <p>Liste mit Öffnungszeiten-Status</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="euro_key.png" alt="Eurokey-Filter" />
+                        <p>Filter für Eurokey-Zugang</p>
                     </div>
                 </div>
             </div>
