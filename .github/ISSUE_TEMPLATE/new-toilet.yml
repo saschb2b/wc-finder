@@ -1,0 +1,68 @@
+name: 📍 New Toilet
+about: Add a new accessible toilet location
+title: '[NEW] '
+labels: ['new-toilet', 'community']
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Location Name
+      description: Name of the place (e.g., "McDonald's Hauptbahnhof")
+      placeholder: Name of the location
+    validations:
+      required: true
+
+  - type: input
+    id: address
+    attributes:
+      label: Address
+      description: Street address or nearby landmark
+      placeholder: Bahnhofstraße 1, 12345 Berlin
+    validations:
+      required: true
+
+  - type: input
+    id: coordinates
+    attributes:
+      label: Coordinates (optional)
+      description: If you know the exact lat/lon, paste here. Or use Google Maps → Share → Copy link
+      placeholder: 52.5200, 13.4050
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What type of location is this?
+      options:
+        - Public 24/7 Toilet (always open)
+        - Train Station / Rest Stop
+        - Restaurant / Cafe / Fast Food
+        - Shopping Mall / Store
+        - Gas Station
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: accessibility
+    attributes:
+      label: Accessibility Features
+      options:
+        - label: Wheelchair accessible
+        - label: Eurokey required
+        - label: Free to use
+        - label: Changing table available
+
+  - type: input
+    id: hours
+    attributes:
+      label: Opening Hours
+      description: When is this toilet accessible?
+      placeholder: 24/7 or Mo-Sa 08:00-22:00
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional Details
+      description: Any other important information?
+      placeholder: Key code at register, ask staff, etc.

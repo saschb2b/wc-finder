@@ -1,0 +1,95 @@
+name: Process Community Reports
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  process-new-toilet:
+    name: Process New Toilet Report
+    if: contains(github.event.issue.labels.*.name, 'new-toilet')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add to processing queue
+        run: |
+          echo "New toilet report: #${{ github.event.issue.number }}"
+          echo "Title: ${{ github.event.issue.title }}"
+
+          # Create a JSON file for manual review queue
+          mkdir -p .github/data-queue
+          cat > .github/data-queue/new-${{ github.event.issue.number }}.json << 'EOF'
+          {
+            "issue_number": ${{ github.event.issue.number }},
+            "title": "${{ github.event.issue.title }}",
+            "body": "${{ github.event.issue.body }}",
+            "created_at": "${{ github.event.issue.created_at }}",
+            "url": "${{ github.event.issue.html_url }}"
+          }
+          EOF
+
+      - name: Comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `👋 Thanks for your contribution!
+
+            This new toilet has been added to the review queue.
+
+            **Next steps:**
+            1. A maintainer will verify the location
+            2. Once approved, it will be added to the next data update
+            3. You'll be notified when it's live in the app
+
+            Want to speed this up? You can also add it directly to OpenStreetMap at https://www.openstreetmap.org`
+            })
+
+  process-correction:
+    name: Process Data Correction
+    if: contains(github.event.issue.labels.*.name, 'data-correction')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract toilet info
+        id: extract
+        run: |
+          # Extract toilet ID from issue body
+          BODY='${{ github.event.issue.body }}'
+          if [[ $BODY =~ osm_[0-9]+ ]]; then
+            echo "toilet_id=${BASH_REMATCH[0]}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment with instructions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const toiletId = '${{ steps.extract.outputs.toilet_id }}';
+            const message = toiletId
+              ? `🔍 Found toilet ID: **${toiletId}**\n\nThis correction will be reviewed and applied to the next data update.`
+              : `⚠️ Could not automatically identify the toilet. Please make sure to include the toilet name or ID from the app.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+  stale-reports:
+    name: Close Stale Reports
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: 'This report has been inactive for 30 days. Will close in 7 days if no update.'
+          close-issue-message: 'Closing due to inactivity. Feel free to reopen if still relevant.'
+          days-before-stale: 30
+          days-before-close: 7
+          only-labels: 'community'

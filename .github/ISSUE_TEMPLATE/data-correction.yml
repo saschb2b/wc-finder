@@ -1,0 +1,42 @@
+name: 📝 Data Correction
+about: Report wrong or outdated information about an existing toilet
+title: '[CORRECTION] '
+labels: ['data-correction', 'community']
+body:
+  - type: input
+    id: toilet_id
+    attributes:
+      label: Toilet ID or Name
+      description: Find this in the app (tap toilet → details)
+      placeholder: osm_12345678 or "McDonald's Berlin"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: What needs correction?
+      options:
+        - Location is wrong
+        - Name is wrong
+        - Opening hours changed
+        - No longer wheelchair accessible
+        - Permanently closed
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: correct_info
+    attributes:
+      label: Correct Information
+      description: What should it be instead?
+      placeholder: The correct name is..., Opening hours are now...
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source (optional)
+      description: How do you know this? (personal visit, website, etc.)
