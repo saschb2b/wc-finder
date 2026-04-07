@@ -25,10 +25,8 @@ import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
-import {
-  ToiletListItem,
-  isCurrentlyOpen,
-} from "./src/components/ToiletListItem";
+import { ToiletListItem } from "./src/components/ToiletListItem";
+import { isCurrentlyOpen } from "./src/utils/opening-hours";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
@@ -979,12 +977,7 @@ function AppContent() {
             {exploreBounds
               ? "🔍 Bereich erkunden"
               : searchLocation
-                ? "📍 " +
-                  (Object.entries(CITIES).find(
-                    ([_, c]) =>
-                      Math.abs(c.lat - searchLocation.lat) < 0.01 &&
-                      Math.abs(c.lon - searchLocation.lon) < 0.01,
-                  )?.[0] || "Anderer Standort")
+                ? "📍 Standort"
                 : "📍 Mein Standort"}
           </Text>
         </View>

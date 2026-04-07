@@ -215,8 +215,8 @@ async function main() {
   );
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2));
 
-  const cats = { gastro: 0, other: 0 };
-  for (const t of unique) cats[t.category]++;
+  const cats: Record<string, number> = { gastro: 0, other: 0 };
+  for (const t of unique) cats[t.category] = (cats[t.category] || 0) + 1;
 
   console.log(`\n--- Results ---`);
   console.log(`Total businesses: ${unique.length}`);

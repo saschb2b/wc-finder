@@ -126,7 +126,7 @@ export const ToiletListItem = memo(function ToiletListItem({
               <Text style={styles.tagText}>Kostenlos</Text>
             </View>
           )}
-          {toilet.hours?.type === "24/7" && (
+          {toilet.hours?.type === "24_7" && (
             <View style={[styles.tag, styles.tag24h]}>
               <Text style={styles.tagText}>24/7</Text>
             </View>

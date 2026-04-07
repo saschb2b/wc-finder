@@ -8,26 +8,49 @@ import {
   WeeklyHours,
   DaySchedule,
   TimePeriod,
-  timeToMinutes
-} from '../types/opening-hours';
+  timeToMinutes,
+} from "../types/opening-hours";
 
 const DAY_MAP: Record<string, number> = {
-  // German
-  'so': 0, 'son': 0, 'sonntag': 0,
-  'mo': 1, 'mon': 1, 'montag': 1,
-  'di': 2, 'die': 2, 'dienstag': 2,
-  'mi': 3, 'mit': 3, 'mittwoch': 3,
-  'do': 4, 'don': 4, 'donnerstag': 4,
-  'fr': 5, 'fre': 5, 'freitag': 5,
-  'sa': 6, 'sam': 6, 'samstag': 6,
-  // English
-  'su': 0, 'sun': 0, 'sunday': 0,
-  'mo': 1, 'mon': 1, 'monday': 1,
-  'tu': 2, 'tue': 2, 'tuesday': 2,
-  'we': 3, 'wed': 3, 'wednesday': 3,
-  'th': 4, 'thu': 4, 'thursday': 4,
-  'fr': 5, 'fri': 5, 'friday': 5,
-  'sa': 6, 'sat': 6, 'saturday': 6,
+  // German + English combined (overlaps are fine)
+  so: 0,
+  son: 0,
+  sonntag: 0,
+  su: 0,
+  sun: 0,
+  sunday: 0,
+  mo: 1,
+  mon: 1,
+  montag: 1,
+  monday: 1,
+  di: 2,
+  die: 2,
+  dienstag: 2,
+  tu: 2,
+  tue: 2,
+  tuesday: 2,
+  mi: 3,
+  mit: 3,
+  mittwoch: 3,
+  we: 3,
+  wed: 3,
+  wednesday: 3,
+  do: 4,
+  don: 4,
+  donnerstag: 4,
+  th: 4,
+  thu: 4,
+  thursday: 4,
+  fr: 5,
+  fre: 5,
+  freitag: 5,
+  fri: 5,
+  friday: 5,
+  sa: 6,
+  sam: 6,
+  samstag: 6,
+  sat: 6,
+  saturday: 6,
 };
 
 /** Parse a day code to day index (0-6) */
@@ -66,7 +89,7 @@ function parseDayRange(rangeStr: string): number[] {
   }
 
   // Comma-separated days (e.g., "Sa,So" or "Sa, So, PH")
-  const parts = normalized.split(/[,\s]+/).filter(p => p.length >= 2);
+  const parts = normalized.split(/[,\s]+/).filter((p) => p.length >= 2);
   for (const part of parts) {
     const day = parseDay(part);
     if (day !== null && !days.includes(day)) {
@@ -80,7 +103,7 @@ function parseDayRange(rangeStr: string): number[] {
 /** Parse a time string like "09:00" or "9:00" to minutes */
 function parseTime(timeStr: string): number {
   const normalized = timeStr.trim();
-  const [hours, mins] = normalized.split(':').map(Number);
+  const [hours, mins] = normalized.split(":").map(Number);
 
   // Handle 00:00 as 24:00 (end of day) - but only if it's a closing time
   // This is handled by the caller
@@ -96,7 +119,7 @@ function parsePeriod(periodStr: string): TimePeriod | null {
   let close = parseTime(`${match[3]}:${match[4]}`);
 
   // Handle 00:00 as end of day (24:00)
-  if (match[3] === '00' && match[4] === '00') {
+  if (match[3] === "00" && match[4] === "00") {
     close = 24 * 60; // 1440 minutes
   }
 
@@ -130,28 +153,37 @@ function createEmptyWeekly(): WeeklyHours {
  * Main normalization function
  * Converts various opening hours formats to standardized format
  */
-export function normalizeOpeningHours(input: string | undefined): StandardizedHours {
-  if (!input || input.trim() === '') {
-    return { type: 'unknown' };
+export function normalizeOpeningHours(
+  input: string | undefined,
+): StandardizedHours {
+  if (!input || input.trim() === "") {
+    return { type: "unknown" };
   }
 
   const normalized = input.trim();
 
   // Handle 24/7
-  if (normalized === '24/7' || normalized.toLowerCase() === '24/7') {
-    return { type: '24_7' };
+  if (normalized === "24/7" || normalized.toLowerCase() === "24/7") {
+    return { type: "24_7" };
   }
 
   // Check for unparseable patterns
-  if (/[{}]|\|\||comment|"|season|variable|appointment|nachAbsprache/i.test(normalized)) {
-    return { type: 'unknown', original: normalized };
+  if (
+    /[{}]|\|\||comment|"|season|variable|appointment|nachAbsprache/i.test(
+      normalized,
+    )
+  ) {
+    return { type: "unknown", original: normalized };
   }
 
   const weekly = createEmptyWeekly();
   let hasValidData = false;
 
   // Split by semicolon for multiple rules
-  const rules = normalized.split(';').map(r => r.trim()).filter(r => r.length > 0);
+  const rules = normalized
+    .split(";")
+    .map((r) => r.trim())
+    .filter((r) => r.length > 0);
 
   for (const rule of rules) {
     // Skip "off" and "closed" rules - they just mean closed (already default)
@@ -160,7 +192,9 @@ export function normalizeOpeningHours(input: string | undefined): StandardizedHo
     }
 
     // Check for seasonal pattern (e.g., "Apr-Sep 08:00-20:00")
-    const seasonalMatch = rule.match(/([a-z]{3,4})\s*[-–]\s*([a-z]{3,4})\s+(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/i);
+    const seasonalMatch = rule.match(
+      /([a-z]{3,4})\s*[-–]\s*([a-z]{3,4})\s+(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/i,
+    );
     if (seasonalMatch) {
       // For seasonal, just use the times (we can't easily check current season)
       // Mark as seasonal type but still parse the schedule
@@ -178,7 +212,9 @@ export function normalizeOpeningHours(input: string | undefined): StandardizedHo
     // Try to extract day part and time part
     // Pattern: days followed by times
     // Examples: "Mo-Fr 09:00-17:00", "Sa,So 10:00-18:00", "Mo 09:00-12:00,14:00-18:00"
-    const dayTimeMatch = rule.match(/^([a-z]{2}(?:\s*[,\s]\s*[a-z]{2})*(?:\s*-\s*[a-z]{2})?)\s+(.+)$/i);
+    const dayTimeMatch = rule.match(
+      /^([a-z]{2}(?:\s*[,\s]\s*[a-z]{2})*(?:\s*-\s*[a-z]{2})?)\s+(.+)$/i,
+    );
 
     if (dayTimeMatch) {
       const dayPart = dayTimeMatch[1];
@@ -189,7 +225,7 @@ export function normalizeOpeningHours(input: string | undefined): StandardizedHo
 
       // Parse time periods (can be multiple, e.g., "12:00-15:00,19:00-00:00")
       const periods: TimePeriod[] = [];
-      const timeRanges = timePart.split(',').map(t => t.trim());
+      const timeRanges = timePart.split(",").map((t) => t.trim());
 
       for (const range of timeRanges) {
         const period = parsePeriod(range);
@@ -218,36 +254,42 @@ export function normalizeOpeningHours(input: string | undefined): StandardizedHo
   }
 
   if (!hasValidData) {
-    return { type: 'unknown', original: normalized };
+    return { type: "unknown", original: normalized };
   }
 
   // Check if it's actually 24/7
   const firstDay = weekly[0];
-  if (firstDay.isOpen &&
-      firstDay.periods.length === 1 &&
-      firstDay.periods[0].open === 0 &&
-      firstDay.periods[0].close === 24 * 60) {
-    const allSame = [1, 2, 3, 4, 5, 6].every(i => {
+  if (
+    firstDay.isOpen &&
+    firstDay.periods.length === 1 &&
+    firstDay.periods[0].open === 0 &&
+    firstDay.periods[0].close === 24 * 60
+  ) {
+    const allSame = [1, 2, 3, 4, 5, 6].every((i) => {
       const day = weekly[i as keyof WeeklyHours];
-      return day.isOpen &&
-             day.periods.length === 1 &&
-             day.periods[0].open === 0 &&
-             day.periods[0].close === 24 * 60;
+      return (
+        day.isOpen &&
+        day.periods.length === 1 &&
+        day.periods[0].open === 0 &&
+        day.periods[0].close === 24 * 60
+      );
     });
     if (allSame) {
-      return { type: '24_7' };
+      return { type: "24_7" };
     }
   }
 
   return {
-    type: 'weekly',
+    type: "weekly",
     weekly,
     original: normalized,
   };
 }
 
 /** Batch normalize hours for all toilets (for migration script) */
-export function batchNormalizeHours(toilets: Array<{ id: string; opening_hours?: string }>): Map<string, StandardizedHours> {
+export function batchNormalizeHours(
+  toilets: Array<{ id: string; opening_hours?: string }>,
+): Map<string, StandardizedHours> {
   const results = new Map<string, StandardizedHours>();
 
   for (const toilet of toilets) {
