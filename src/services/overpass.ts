@@ -1,5 +1,5 @@
-import { Toilet, ToiletCategory } from '../types/toilet';
-import { loadNearbyTiles } from '../data/tileLoader';
+import { Toilet, ToiletCategory } from "../types/toilet";
+import { loadNearbyTiles } from "../data/tileLoader";
 
 /**
  * Gets nearby accessible toilets by loading only relevant geo-tiles.
@@ -8,7 +8,7 @@ import { loadNearbyTiles } from '../data/tileLoader';
 export function getNearbyToilets(
   lat: number,
   lon: number,
-  maxResults: number = 100
+  maxResults: number = 100,
 ): Toilet[] {
   const raw = loadNearbyTiles(lat, lon);
 
@@ -18,8 +18,38 @@ export function getNearbyToilets(
       category: t.category as ToiletCategory,
       distance: getDistanceMeters(lat, lon, t.lat, t.lon),
     }))
-    .sort((a, b) => a.distance - b.distance)
+    .sort((a, b) => (a.distance || 0) - (b.distance || 0))
     .slice(0, maxResults);
+}
+
+/**
+ * Gets toilets within a specific bounding box.
+ * Used for "Hier suchen" - exploring an area without changing distance reference.
+ */
+export function getToiletsInBounds(
+  latMin: number,
+  latMax: number,
+  lonMin: number,
+  lonMax: number,
+): Toilet[] {
+  // Use the existing tile loader which has static requires
+  // It loads 9 tiles (center + 8 neighbors) which covers the visible area
+  const centerLat = (latMin + latMax) / 2;
+  const centerLon = (lonMin + lonMax) / 2;
+  const raw = loadNearbyTiles(centerLat, centerLon);
+
+  return raw
+    .filter(
+      (t) =>
+        t.lat >= latMin &&
+        t.lat <= latMax &&
+        t.lon >= lonMin &&
+        t.lon <= lonMax,
+    )
+    .map((t) => ({
+      ...t,
+      category: t.category as ToiletCategory,
+    }));
 }
 
 /**
@@ -29,7 +59,7 @@ export function getDistanceMeters(
   lat1: number,
   lon1: number,
   lat2: number,
-  lon2: number
+  lon2: number,
 ): number {
   const R = 6371000;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
