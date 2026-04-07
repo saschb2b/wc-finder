@@ -1,0 +1,135 @@
+name: Build & Release APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  quality:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: TypeScript check
+        run: pnpm typecheck
+
+      - name: Run tests
+        run: pnpm test
+
+  build-apk:
+    name: Build & Release APK
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build APK on EAS
+        run: |
+          # Start build and capture the build ID
+          BUILD_OUTPUT=$(eas build --platform android --profile preview --non-interactive --json)
+          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.[0].id')
+          echo "BUILD_ID=$BUILD_ID" >> $GITHUB_ENV
+          echo "Build ID: $BUILD_ID"
+
+      - name: Wait for build and download APK
+        run: |
+          echo "Waiting for EAS build to complete..."
+
+          # Poll for build completion (max 30 minutes)
+          for i in {1..60}; do
+            BUILD_STATUS=$(eas build:view ${{ env.BUILD_ID }} --json | jq -r '.status')
+            echo "Build status: $BUILD_STATUS"
+
+            if [ "$BUILD_STATUS" = "FINISHED" ]; then
+              echo "Build completed!"
+              break
+            elif [ "$BUILD_STATUS" = "ERRORED" ]; then
+              echo "Build failed!"
+              exit 1
+            fi
+
+            sleep 30
+          done
+
+          # Get the download URL
+          DOWNLOAD_URL=$(eas build:view ${{ env.BUILD_ID }} --json | jq -r '.artifacts.buildUrl')
+          echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+
+          # Download the APK
+          curl -L -o wc-finder.apk "$DOWNLOAD_URL"
+          ls -lh wc-finder.apk
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: wc-finder.apk
+          name: WC Finder ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          body: |
+            ## WC Finder Android APK
+
+            ### Download
+            Download `wc-finder.apk` below and install it on your Android device.
+
+            ### Requirements
+            - Android 6.0+ (API level 23)
+            - Location permission (to find nearest toilets)
+            - Internet connection (for map tiles)
+
+            ### Features
+            - Find accessible toilets near you
+            - Filter by "Open Now", Favorites, Eurokey
+            - Navigate directly to the toilet
+            - Works offline after initial load
+
+            ### Installation
+            1. Download the APK file
+            2. Open it on your Android device
+            3. Allow installation from unknown sources if prompted
+            4. Grant location permission when asked
+
+            ### Data
+            Currently includes curated data for:
+            - Hannover (55+ toilets)
+            - Dortmund (155+ toilets)
+            - Plus OSM data for other areas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update Release Badge
+        run: |
+          echo "## APK Release Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Version: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "APK attached to release" >> $GITHUB_STEP_SUMMARY

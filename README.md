@@ -1,8 +1,31 @@
 # WC Finder
 
+[![Download APK](https://img.shields.io/github/v/release/saschb2b/wc-finder?label=Download%20APK&style=for-the-badge&color=34a853)](https://github.com/saschb2b/wc-finder/releases/latest)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/saschb2b/wc-finder/build.yml?branch=main&style=for-the-badge)](https://github.com/saschb2b/wc-finder/actions)
+
 A free toilet finder for wheelchair users in Germany, Austria, and Switzerland.
 
 You have a Euroschlüssel. You need to go. Where is the nearest accessible toilet you can actually use right now? WC Finder answers that question in one tap.
+
+---
+
+## 📱 Download
+
+### [⬇️ Download Latest APK](https://github.com/saschb2b/wc-finder/releases/latest)
+
+**Installation:**
+1. Click the green button above
+2. Download `wc-finder.apk` from the latest release
+3. Open the file on your Android device
+4. Allow installation from unknown sources if prompted
+5. Grant location permission when asked
+
+**Requirements:**
+- Android 6.0+ (API level 23)
+- Location permission (to find nearest toilets)
+- Internet connection (for map tiles)
+
+---
 
 ## What it does
 
@@ -30,7 +53,7 @@ Toilet locations are merged from three sources:
 
 All data is bundled offline in geo-tiles. The app works without internet after install.
 
-## Getting started
+## Development
 
 ```bash
 pnpm install
@@ -50,7 +73,7 @@ pnpm exec tsx scripts/split-tiles.ts             # split into geo-tiles
 pnpm exec tsx scripts/gen-tile-loader.ts         # generate tile loader
 ```
 
-### Building an APK
+### Building locally
 
 Requires an [Expo](https://expo.dev) account and `EXPO_TOKEN`:
 
@@ -58,7 +81,15 @@ Requires an [Expo](https://expo.dev) account and `EXPO_TOKEN`:
 eas build --platform android --profile preview
 ```
 
-Or push to `main` — GitHub Actions builds the APK automatically.
+### Releasing a new version
+
+```bash
+# Tag a new version to trigger the release workflow
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+GitHub Actions will automatically build and attach the APK to a new release.
 
 ## Contributing
 
