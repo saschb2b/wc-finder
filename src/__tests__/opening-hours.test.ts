@@ -122,4 +122,45 @@ describe("isCurrentlyOpen", () => {
       expect(isCurrentlyOpen("Mo-Fr 09:00-17:00")).toBe(true);
     });
   });
+
+  describe("Google Places format with multiple day rules", () => {
+    // ALEX Dortmund example: "Su 09:00-00:00; Mo 09:00-00:00; Tu 09:00-00:00; ..."
+    const alexHours =
+      "Su 09:00-00:00; Mo 09:00-00:00; Tu 09:00-00:00; We 09:00-00:00; Th 09:00-00:00; Fr 09:00-02:00; Sa 09:00-02:00";
+
+    it("returns true on Tuesday at 18:50 (09:00-midnight)", () => {
+      mockDate("2024-04-09T18:50:00"); // Tuesday 18:50
+      expect(isCurrentlyOpen(alexHours)).toBe(true);
+    });
+
+    it("returns true on Tuesday at 23:59 (just before midnight)", () => {
+      mockDate("2024-04-09T23:59:00"); // Tuesday 23:59
+      expect(isCurrentlyOpen(alexHours)).toBe(true);
+    });
+
+    it("returns false on Wednesday at 00:01 (after midnight)", () => {
+      mockDate("2024-04-10T00:01:00"); // Wednesday 00:01
+      expect(isCurrentlyOpen(alexHours)).toBe(false);
+    });
+
+    it("returns true on Wednesday at 09:00 (opens again)", () => {
+      mockDate("2024-04-10T09:00:00"); // Wednesday 09:00
+      expect(isCurrentlyOpen(alexHours)).toBe(true);
+    });
+
+    it("handles Friday overnight (09:00-02:00) at 23:00", () => {
+      mockDate("2024-04-12T23:00:00"); // Friday 23:00
+      expect(isCurrentlyOpen(alexHours)).toBe(true);
+    });
+
+    it("handles Friday overnight extending to Saturday at 01:00", () => {
+      mockDate("2024-04-13T01:00:00"); // Saturday 01:00 (overnight from Friday)
+      expect(isCurrentlyOpen(alexHours)).toBe(true);
+    });
+
+    it("returns false on Saturday at 04:00 (after Friday overnight closes)", () => {
+      mockDate("2024-04-13T04:00:00"); // Saturday 04:00
+      expect(isCurrentlyOpen(alexHours)).toBe(false);
+    });
+  });
 });
