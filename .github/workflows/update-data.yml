@@ -35,6 +35,10 @@ jobs:
         run: npx tsx scripts/fetch-fuel-germany.ts
         continue-on-error: true
 
+      - name: Fetch Hannover businesses
+        run: npx tsx scripts/fetch-hannover-businesses.ts
+        continue-on-error: true
+
       - name: Merge all sources
         run: npx tsx scripts/merge-sources.ts
 
@@ -66,6 +70,7 @@ jobs:
             ### Changes
             - Fresh OSM wheelchair-accessible toilets
             - Updated fuel station locations
+            - Updated Hannover business locations (restaurants, supermarkets, gyms)
             - Merged and deduplicated with existing data
 
             ### Verification

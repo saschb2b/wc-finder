@@ -107,6 +107,7 @@ function AppContent() {
   const [filterMode, setFilterMode] = useState<FilterMode>("now");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [requireEurokey, setRequireEurokey] = useState(false);
+  const [wheelchairOnly, setWheelchairOnly] = useState(false);
   const [mapMoved, setMapMoved] = useState(false);
   const [mapCenter, setMapCenter] = useState<{
     lat: number;
@@ -239,6 +240,11 @@ function AppContent() {
     if (requireEurokey) {
       result = result.filter((t) => t.tags?.includes("eurokey"));
     }
+    if (wheelchairOnly) {
+      result = result.filter(
+        (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
+      );
+    }
 
     // Then filter by map bounds for performance
     if (mapRegion) {
@@ -267,6 +273,7 @@ function AppContent() {
     filterMode,
     showFavoritesOnly,
     requireEurokey,
+    wheelchairOnly,
     isFavorite,
     selectedToilet,
   ]);
@@ -285,9 +292,21 @@ function AppContent() {
     if (requireEurokey) {
       result = result.filter((t) => t.tags?.includes("eurokey"));
     }
+    if (wheelchairOnly) {
+      result = result.filter(
+        (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
+      );
+    }
 
     return result;
-  }, [toilets, filterMode, showFavoritesOnly, requireEurokey, isFavorite]);
+  }, [
+    toilets,
+    filterMode,
+    showFavoritesOnly,
+    requireEurokey,
+    wheelchairOnly,
+    isFavorite,
+  ]);
 
   // Show the best option based on current filters
   const displayNearest = useMemo(() => {
@@ -373,6 +392,11 @@ function AppContent() {
           {!selectedToilet && requireEurokey && (
             <View style={[styles.contextBadge, styles.contextBadgeEurokey]}>
               <Text style={styles.contextBadgeText}>Eurokey</Text>
+            </View>
+          )}
+          {!selectedToilet && wheelchairOnly && (
+            <View style={[styles.contextBadge, styles.contextBadgeWheelchair]}>
+              <Text style={styles.contextBadgeText}>Barrierefrei</Text>
             </View>
           )}
         </View>
@@ -518,6 +542,23 @@ function AppContent() {
             {requireEurokey ? "🔑 Mit Eurokey" : "🔑 Eurokey"}
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.secondaryBtn,
+            wheelchairOnly && styles.secondaryBtnActive,
+          ]}
+          onPress={() => setWheelchairOnly(!wheelchairOnly)}
+        >
+          <Text
+            style={[
+              styles.secondaryText,
+              wheelchairOnly && styles.secondaryTextActive,
+            ]}
+          >
+            {wheelchairOnly ? "♿ Barrierefrei" : "♿ Rollstuhl"}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -551,13 +592,18 @@ function AppContent() {
         ListEmptyComponent={
           <View style={styles.emptyState}>
             <Text style={styles.emptyText}>
-              {filterMode === "now" && !showFavoritesOnly && !requireEurokey
+              {filterMode === "now" &&
+              !showFavoritesOnly &&
+              !requireEurokey &&
+              !wheelchairOnly
                 ? "Keine geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
                 : showFavoritesOnly
                   ? "Keine Favoriten in dieser Auswahl."
                   : requireEurokey
                     ? "Keine Eurokey-Toiletten in der Nähe."
-                    : "Keine Toiletten gefunden."}
+                    : wheelchairOnly
+                      ? "Keine barrierefreien Toiletten in der Nähe."
+                      : "Keine Toiletten gefunden."}
             </Text>
           </View>
         }
@@ -591,9 +637,11 @@ function AppContent() {
           <Text style={styles.modalTitle}>
             {showFavoritesOnly
               ? "Favoriten"
-              : filterMode === "now"
-                ? "Geöffnete Toiletten"
-                : "Alle Toiletten"}
+              : wheelchairOnly
+                ? "Barrierefreie Toiletten"
+                : filterMode === "now"
+                  ? "Geöffnete Toiletten"
+                  : "Alle Toiletten"}
           </Text>
           <View style={styles.modalHeaderActions}>
             <TouchableOpacity
@@ -1107,6 +1155,7 @@ const styles = StyleSheet.create({
   contextBadgeOpen: { backgroundColor: "#34a853" },
   contextBadgeFav: { backgroundColor: "#f5a623" },
   contextBadgeEurokey: { backgroundColor: "#1a73e8" },
+  contextBadgeWheelchair: { backgroundColor: "#34a853" },
   contextBadgeText: {
     fontSize: 9,
     fontWeight: "700",
@@ -1430,7 +1479,9 @@ function LoadingScreen({ onSkip }: { onSkip: () => void }) {
 
       {/* Title */}
       <Text style={loadingStyles.title}>WC Finder</Text>
-      <Text style={loadingStyles.subtitle}>Barrierefreie Toiletten finden</Text>
+      <Text style={loadingStyles.subtitle}>
+        Toiletten in deiner Nähe finden
+      </Text>
 
       {/* Loading indicator */}
       <View style={loadingStyles.loadingBox}>

@@ -2,7 +2,7 @@
 
 ## Project
 
-WC Finder — a React Native (Expo SDK 54) app that helps wheelchair users find the nearest accessible toilet with a Euroschlüssel (EU key) in Germany, Austria, and Switzerland. 17,000+ toilets bundled offline in geo-tiles.
+WC Finder — a React Native (Expo SDK 54) app that helps wheelchair users find the nearest accessible toilet with a Euroschlüssel (EU key) in Germany, Austria, and Switzerland. 11,000+ toilets bundled offline in geo-tiles.
 
 ## Commands
 
@@ -25,6 +25,23 @@ pnpm exec tsx scripts/gen-tile-loader.ts         # regenerate tile loader
 ```
 
 After running the pipeline, `src/data/tileLoader.ts` and `src/data/tiles/` are updated. The intermediate files (`toilets.json`, `osm-toilets.json`, `tfa-toilets.json`) are not committed — only tiles are.
+
+### Enrich with Google Places (optional)
+
+To add businesses not in OpenStreetMap:
+
+```bash
+# 1. Set GOOGLE_PLACES_API_KEY in .env file
+# 2. Fetch places around a location (e.g., Hannover)
+npx tsx scripts/fetch-google-places.ts 52.375 9.82 1000
+
+# 3. Merge into dataset
+npx tsx scripts/merge-sources.ts
+npx tsx scripts/split-tiles.ts
+npx tsx scripts/gen-tile-loader.ts
+```
+
+Cost: Free tier 5,000 places/month, then $17 per 1,000.
 
 ## Architecture
 

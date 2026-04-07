@@ -70,7 +70,7 @@ export function useToilets(): UseToiletsResult {
     setNearest(results.length > 0 ? results[0] : null);
 
     if (results.length === 0) {
-      setError("Keine barrierefreien Toiletten in der Nähe gefunden.");
+      setError("Keine Toiletten in der Nähe gefunden.");
     }
 
     setLoading(false);

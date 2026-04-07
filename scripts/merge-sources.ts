@@ -103,8 +103,11 @@ function main() {
   const osmToilets = loadIfExists("osm-toilets.json"); // overpass direct (basic)
   const osmEnhancedToilets = loadIfExists("osm-enhanced.json"); // overpass (enhanced with fuel, hotels, etc.)
   const manualToilets = loadIfExists("manual-curated.json"); // manual curation
+  const majorCitiesToilets = loadIfExists("major-cities.json"); // curated major cities
   const tfaToilets = loadIfExists("tfa-toilets.json"); // curated Hannover
   const dortmundToilets = loadIfExists("dortmund-toilets.json"); // curated Dortmund
+  const hannoverBizToilets = loadIfExists("hannover-businesses.json"); // Hannover businesses
+  const googlePlacesToilets = loadIfExists("google-places.json"); // Google Places API data
 
   // Merge: add all, deduplicate by proximity
   // Higher-priority sources added later will replace lower-priority duplicates
@@ -188,13 +191,16 @@ function main() {
   }
 
   console.log(
-    "Merging (priority: toilettenhero < OSM < OSM Enhanced < Manual < TFA < Dortmund)...\n",
+    "Merging (priority: toilettenhero < OSM < OSM Enhanced < Manual < Major Cities < TFA < Dortmund)...\n",
   );
   addWithDedup(thToilets, "toilettenhero");
   addWithDedup(osmToilets, "OSM basic");
   addWithDedup(osmEnhancedToilets, "OSM enhanced (fuel, hotels, etc.)");
   addWithDedup(manualToilets, "Manual curated");
+  addWithDedup(majorCitiesToilets, "Major cities curated");
   addWithDedup(tfaToilets, "curated Hannover (TFA)");
+  addWithDedup(hannoverBizToilets, "Hannover businesses");
+  addWithDedup(googlePlacesToilets, "Google Places API");
   addWithDedup(dortmundToilets, "curated Dortmund");
 
   // Stats
@@ -238,11 +244,36 @@ function main() {
     `    with opening hours: ${dortmund.filter((t) => t.opening_hours).length}`,
   );
 
+  // Major cities stats
+  const berlin = merged.filter(
+    (t) => t.lat > 52.3 && t.lat < 52.7 && t.lon > 13.0 && t.lon < 13.8,
+  );
+  const hamburg = merged.filter(
+    (t) => t.lat > 53.4 && t.lat < 53.7 && t.lon > 9.8 && t.lon < 10.3,
+  );
+  const munich = merged.filter(
+    (t) => t.lat > 48.0 && t.lat < 48.3 && t.lon > 11.4 && t.lon < 11.8,
+  );
+
+  console.log(`\nMajor cities:`);
+  console.log(`  Berlin area: ${berlin.length} toilets`);
+  console.log(
+    `    public_24h: ${berlin.filter((t) => t.category === "public_24h").length}`,
+  );
+  console.log(`  Hamburg area: ${hamburg.length} toilets`);
+  console.log(
+    `    public_24h: ${hamburg.filter((t) => t.category === "public_24h").length}`,
+  );
+  console.log(`  Munich area: ${munich.length} toilets`);
+  console.log(
+    `    public_24h: ${munich.filter((t) => t.category === "public_24h").length}`,
+  );
+
   // Save
   const output = {
     generated: new Date().toISOString().split("T")[0],
     source:
-      "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
+      "Merged: toilettenhero.de + OpenStreetMap + Manual curation + Major cities + Hannover businesses + Google Places + Toiletten für alle + Stadt Hannover + Dortmund",
     count: merged.length,
     toilets: merged,
   };

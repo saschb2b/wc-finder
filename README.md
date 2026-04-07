@@ -29,7 +29,7 @@ You have a Euroschlüssel. You need to go. Where is the nearest accessible toile
 
 ## What it does
 
-- Shows **17,000+ wheelchair-accessible toilets** on a map, sorted by distance
+- Shows **11,000+ wheelchair-accessible toilets** on a map, sorted by distance (plus real-time Google Places results when configured)
 - One tap to navigate to the nearest **24/7 public toilet** via Google Maps
 - Each toilet is categorized: **24/7 public**, **station**, **gastro**, or **other** — so you know which ones are actually usable when you need them
 - **Search by city** — planning a trip to Dortmund? See all toilets there before you arrive
@@ -47,8 +47,8 @@ The distinction between a public 24/7 EU-key toilet and a wheelchair-accessible 
 
 Toilet locations are merged from multiple sources:
 
-- **toilettenhero.de** — 9,000+ locations from OpenStreetMap, filtered for wheelchair accessibility
-- **OpenStreetMap Overpass API** — 16,000+ wheelchair-accessible toilets queried directly
+- **toilettenhero.de** — 11,000+ locations from OpenStreetMap, filtered for wheelchair accessibility
+- **OpenStreetMap Overpass API** — 11,000+ wheelchair-accessible toilets queried directly
   - Basic query: `wheelchair=yes` only
   - Enhanced query: fuel stations, hotels, museums, shopping malls (may have accessible toilets)
 - **Manual curation** — 68+ verified locations at McDonald's, shopping malls, hospitals, and police stations in major cities
@@ -102,6 +102,32 @@ git push origin v1.0.1
 ```
 
 GitHub Actions will automatically build and attach the APK to a new release.
+
+## Optional: Google Places API (Data Enrichment)
+
+To add businesses not in OpenStreetMap (like "Clubhouse by The Harp"):
+
+```bash
+# 1. Get API key at https://developers.google.com/maps/documentation/places/web-service/get-api-key
+# 2. Enable "Places API (New)"
+# 3. Copy and fill in:
+cp .env.example .env
+# Edit .env and add: GOOGLE_PLACES_API_KEY=your_key_here
+
+# 4. Fetch places around your area:
+npx tsx scripts/fetch-google-places.ts 52.375 9.82 1000
+
+# 5. Merge into dataset and rebuild:
+npx tsx scripts/merge-sources.ts
+npx tsx scripts/split-tiles.ts
+npx tsx scripts/gen-tile-loader.ts
+eas build --platform android --profile preview
+```
+
+**Important:**
+- Free tier: 5,000 places/month, then $17 per 1,000
+- Data is fetched once and bundled offline — no runtime API calls
+- Results are merged with existing OSM data
 
 ## Contributing
 

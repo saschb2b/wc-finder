@@ -48,6 +48,8 @@ export const ToiletListItem = memo(function ToiletListItem({
   const catColor = CATEGORY_COLORS[toilet.category];
   const isFree = toilet.tags?.includes("kostenlos") || toilet.fee === "no";
   const hasEurokey = toilet.tags?.includes("eurokey");
+  const isWheelchairAccessible =
+    toilet.tags?.includes("eurokey") || toilet.tags?.includes("barrierefrei");
   const openStatus = isCurrentlyOpen(toilet.opening_hours);
   const formattedHours = formatOpeningHours(toilet.opening_hours);
 
@@ -128,6 +130,11 @@ export const ToiletListItem = memo(function ToiletListItem({
           {hasEurokey && (
             <View style={[styles.tag, styles.tagEurokey]}>
               <Text style={styles.tagText}>Eurokey</Text>
+            </View>
+          )}
+          {isWheelchairAccessible && !hasEurokey && (
+            <View style={[styles.tag, styles.tagWheelchair]}>
+              <Text style={styles.tagText}>♿ Barrierefrei</Text>
             </View>
           )}
           {isFree && (
@@ -259,6 +266,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   tagEurokey: { backgroundColor: "#1a73e8" },
+  tagWheelchair: { backgroundColor: "#34a853" },
   tagFree: { backgroundColor: "#6bb77b" },
   tag24h: { backgroundColor: "#34a853" },
   tagOpen: { backgroundColor: "#34a853" },

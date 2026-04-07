@@ -15,12 +15,13 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste Euroschlüssel-Toilette zu finden.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste Euroschlüssel-Toilette zu finden."
+        "NSLocationWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden."
       },
       "config": {
         "googleMapsApiKey": ""
-      }
+      },
+      "bundleIdentifier": "com.saschb2b.wcfinder"
     },
     "android": {
       "package": "com.saschb2b.wcfinder",
@@ -31,7 +32,9 @@
       "edgeToEdgeEnabled": true,
       "permissions": [
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
       ],
       "config": {
         "googleMaps": {
@@ -42,11 +45,16 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "extra": {
+      "eas": {
+        "projectId": "722813c5-17f3-4b55-97d0-7a1324e3619a"
+      }
+    },
     "plugins": [
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "WC Finder benötigt deinen Standort, um die nächste Euroschlüssel-Toilette zu finden."
+          "locationWhenInUsePermission": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden."
         }
       ]
     ]

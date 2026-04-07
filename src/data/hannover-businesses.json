@@ -1,0 +1,4988 @@
+{
+  "generated": "2026-04-07",
+  "source": "OpenStreetMap - Hannover wheelchair-accessible businesses",
+  "count": 406,
+  "toilets": [
+    {
+      "id": "hbiz_33443257",
+      "lat": 52.441932,
+      "lon": 9.6987006,
+      "name": "Penny Godshorn",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_45406083",
+      "lat": 52.3426051,
+      "lon": 9.662724,
+      "name": "Hotel Restaurant Öhlers",
+      "city": "Ronnenberg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-23:00; Sa-Su,PH 11:30-15:00,17:00-23:00, PH 11:30-15:00,17:00-23:00"
+    },
+    {
+      "id": "hbiz_79204135",
+      "lat": 52.4399281,
+      "lon": 9.7262082,
+      "name": "Lidl",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Lidl"
+    },
+    {
+      "id": "hbiz_83110122",
+      "lat": 52.3362208,
+      "lon": 9.761492,
+      "name": "Penny",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_84456835",
+      "lat": 52.3820446,
+      "lon": 9.7448011,
+      "name": "PENNY",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:30-22:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_85579284",
+      "lat": 52.3399636,
+      "lon": 9.7640288,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-13:00; Su 08:00-11:00",
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_86920435",
+      "lat": 52.3387016,
+      "lon": 9.7663538,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Edeka"
+    },
+    {
+      "id": "hbiz_87000497",
+      "lat": 52.3803133,
+      "lon": 9.7398276,
+      "name": "Kaufland",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-24:00; Sa 07:00-23:30",
+      "operator": "Kaufland"
+    },
+    {
+      "id": "hbiz_87684394",
+      "lat": 52.3419544,
+      "lon": 9.6684791,
+      "name": "Bäckerei Raute",
+      "city": "Ronnenberg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-13:00; Su 08:00-11:00",
+      "operator": "Oliver Raute"
+    },
+    {
+      "id": "hbiz_88913861",
+      "lat": 52.3571401,
+      "lon": 9.7553737,
+      "name": "EDEKA",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Wucherpfennig"
+    },
+    {
+      "id": "hbiz_88923015",
+      "lat": 52.3540725,
+      "lon": 9.7457039,
+      "name": "Pier 51",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-24:00"
+    },
+    {
+      "id": "hbiz_91483227",
+      "lat": 52.3804039,
+      "lon": 9.7373766,
+      "name": "ALDI",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00; Su off",
+      "operator": "ALDI Nord"
+    },
+    {
+      "id": "hbiz_94548669",
+      "lat": 52.3694287,
+      "lon": 9.7499946,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-23:00; Su,PH off",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_94548672",
+      "lat": 52.3697351,
+      "lon": 9.7529113,
+      "name": "Die Drei",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 07:00-13:00; Su 08:00-13:00"
+    },
+    {
+      "id": "hbiz_115378170",
+      "lat": 52.4350736,
+      "lon": 9.7559935,
+      "name": "Aldi",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00; PH off",
+      "operator": "Aldi"
+    },
+    {
+      "id": "hbiz_139264156",
+      "lat": 52.3742208,
+      "lon": 9.7056565,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Wucherpfennig"
+    },
+    {
+      "id": "hbiz_162754446",
+      "lat": 52.4016476,
+      "lon": 9.8029876,
+      "name": "Behnecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:30-12:00; Su off"
+    },
+    {
+      "id": "hbiz_178836489",
+      "lat": 52.338954,
+      "lon": 9.833151,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-23:00",
+      "operator": "Rewe"
+    },
+    {
+      "id": "hbiz_247402307",
+      "lat": 52.4177246,
+      "lon": 9.7655159,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_247402435",
+      "lat": 52.41117,
+      "lon": 9.7517009,
+      "name": "Lidl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Lidl"
+    },
+    {
+      "id": "hbiz_253138974",
+      "lat": 52.4011538,
+      "lon": 9.6458063,
+      "name": "EDEKA Schmidt & Christ",
+      "city": "Seelze",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Edeka"
+    },
+    {
+      "id": "hbiz_253247559",
+      "lat": 52.3932291,
+      "lon": 9.7465219,
+      "name": "Bäckerei Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-13:00"
+    },
+    {
+      "id": "hbiz_253269265",
+      "lat": 52.3943312,
+      "lon": 9.7388007,
+      "name": "cavallo - Königliche Reithalle",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "\"custom\""
+    },
+    {
+      "id": "hbiz_254872909",
+      "lat": 52.4368835,
+      "lon": 9.730096,
+      "name": "Dampfbäckerei Zwick",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-12:00"
+    },
+    {
+      "id": "hbiz_256699459",
+      "lat": 52.3728616,
+      "lon": 9.7095292,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-17:00; Su 08:00-17:00"
+    },
+    {
+      "id": "hbiz_256852508",
+      "lat": 52.3447863,
+      "lon": 9.7168951,
+      "name": "Öztürk",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 10:00-22:00"
+    },
+    {
+      "id": "hbiz_260028926",
+      "lat": 52.4252749,
+      "lon": 9.7816994,
+      "name": "ALDI",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "ALDI Nord"
+    },
+    {
+      "id": "hbiz_260063132",
+      "lat": 52.3223745,
+      "lon": 9.8082443,
+      "name": "Osteria",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_260113653",
+      "lat": 52.3217238,
+      "lon": 9.8063281,
+      "name": "Vita-World",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "\"je nach Messe\""
+    },
+    {
+      "id": "hbiz_265546893",
+      "lat": 52.3664061,
+      "lon": 9.7462983,
+      "name": "Café körbli",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-16:00; Sa,Su 11:00-14:00"
+    },
+    {
+      "id": "hbiz_267556357",
+      "lat": 52.3884213,
+      "lon": 9.7188658,
+      "name": "Werkhof Restaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 11:00-23:00"
+    },
+    {
+      "id": "hbiz_267560996",
+      "lat": 52.3872244,
+      "lon": 9.7220613,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Sa 07:00-13:00; Mo-Fr 06:00-17:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_268506884",
+      "lat": 52.3203418,
+      "lon": 9.7467212,
+      "name": "Brot-Henke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 05:00-18:00, Sa 05:00-13:00, Su 07:30-17:00"
+    },
+    {
+      "id": "hbiz_269911497",
+      "lat": 52.3810302,
+      "lon": 9.8127635,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE Daehnhardt oHG"
+    },
+    {
+      "id": "hbiz_271047495",
+      "lat": 52.3751602,
+      "lon": 9.7023985,
+      "name": "Netto City",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto City"
+    },
+    {
+      "id": "hbiz_275720912",
+      "lat": 52.3585592,
+      "lon": 9.8255341,
+      "name": "Tropeano",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_275721033",
+      "lat": 52.3721074,
+      "lon": 9.7888895,
+      "name": "Aldi",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "ALDI GmbH & Co. KG"
+    },
+    {
+      "id": "hbiz_275721051",
+      "lat": 52.3724549,
+      "lon": 9.7837155,
+      "name": "Subway",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 10:00-22:30, Fr-Sa 10:00-23:00, Su 10:00-22:30",
+      "operator": "Subway"
+    },
+    {
+      "id": "hbiz_275723130",
+      "lat": 52.3470232,
+      "lon": 9.828504,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-16:00",
+      "operator": "Beki Schnellkauf GmbH & CO. KG"
+    },
+    {
+      "id": "hbiz_277932871",
+      "lat": 52.3759205,
+      "lon": 9.7253938,
+      "name": "Kieser Training",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Kieser Training"
+    },
+    {
+      "id": "hbiz_278807511",
+      "lat": 52.3875139,
+      "lon": 9.7481914,
+      "name": "Aldi",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "ALDI Nord"
+    },
+    {
+      "id": "hbiz_279919336",
+      "lat": 52.3777348,
+      "lon": 9.742794,
+      "name": "Lidl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:00-22:00; Su 09:00-22:00",
+      "operator": "Lidl Vertriebs GmbH & Co. KG • Baurat-Köhler-Straße 31 • 31135 Hildesheim"
+    },
+    {
+      "id": "hbiz_280720149",
+      "lat": 52.3342114,
+      "lon": 9.7981703,
+      "name": "Centik",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-20:00; Sa 09:00-19:00",
+      "operator": "Marina Hanke"
+    },
+    {
+      "id": "hbiz_280986281",
+      "lat": 52.4349992,
+      "lon": 9.7566428,
+      "name": "Eiscafé Massimo",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00+; Su 10:00+"
+    },
+    {
+      "id": "hbiz_281895926",
+      "lat": 52.3871007,
+      "lon": 9.7408174,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_281895934",
+      "lat": 52.3463368,
+      "lon": 9.8204648,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE Markt GmbH"
+    },
+    {
+      "id": "hbiz_281895935",
+      "lat": 52.3463239,
+      "lon": 9.8186743,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Netto Marken-Discount AG & Co. KG"
+    },
+    {
+      "id": "hbiz_283331622",
+      "lat": 52.3841269,
+      "lon": 9.7467691,
+      "name": "EDEKA",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-18:30; Su,PH off",
+      "operator": "Edeka"
+    },
+    {
+      "id": "hbiz_283331629",
+      "lat": 52.3814599,
+      "lon": 9.7539049,
+      "name": "Edeka Wucherpfennig",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Wucherpfennig GmbH"
+    },
+    {
+      "id": "hbiz_283331635",
+      "lat": 52.3853655,
+      "lon": 9.7475829,
+      "name": "Chiuy Phat",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 12:00-21:00; Mo off"
+    },
+    {
+      "id": "hbiz_286429591",
+      "lat": 52.3619906,
+      "lon": 9.75374,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:00; Su,PH off",
+      "operator": "EDEKA"
+    },
+    {
+      "id": "hbiz_286429592",
+      "lat": 52.3597466,
+      "lon": 9.7572452,
+      "name": "REWE City",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_288922457",
+      "lat": 52.4371041,
+      "lon": 9.7062943,
+      "name": "Hartmann's Backstube",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00; Su 07:30-17:00"
+    },
+    {
+      "id": "hbiz_289407493",
+      "lat": 52.3191199,
+      "lon": 9.8176527,
+      "name": "Betriebsrestaurant BMW (Jo Paladar)",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_292068508",
+      "lat": 52.3601654,
+      "lon": 9.6785045,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_292068511",
+      "lat": 52.3551445,
+      "lon": 9.6691351,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00; Su,PH off",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_293980380",
+      "lat": 52.3377273,
+      "lon": 9.8140917,
+      "name": "Montelliana",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 17:00-22:30; Su 11:30-15:00 ,17:00-22:30"
+    },
+    {
+      "id": "hbiz_295000328",
+      "lat": 52.3913026,
+      "lon": 9.7444246,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_295297457",
+      "lat": 52.342314,
+      "lon": 9.7242775,
+      "name": "RiX",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-We,Fr-Su 09:00-22:00; Th 09:00-15:00; PH off"
+    },
+    {
+      "id": "hbiz_300878186",
+      "lat": 52.4269131,
+      "lon": 9.603732,
+      "name": "Bäckerei Langrehr",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-13:00; Su 08:00-13:00"
+    },
+    {
+      "id": "hbiz_301170148",
+      "lat": 52.3867573,
+      "lon": 9.8339432,
+      "name": "Heide Bäckerei Meyer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-12:30; Sa 07:00-13:00; Su 07:00-11:00; PH off",
+      "operator": "MH Bäckerei Meyer GmbH"
+    },
+    {
+      "id": "hbiz_301623078",
+      "lat": 52.4466722,
+      "lon": 9.7404712,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 7:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_303252717",
+      "lat": 52.3176868,
+      "lon": 9.7910281,
+      "name": "Netto Marken-Discount",
+      "city": "Laatzen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_303291333",
+      "lat": 52.3840908,
+      "lon": 9.664122,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-13:00; Su 08:00-14:00"
+    },
+    {
+      "id": "hbiz_306489399",
+      "lat": 52.3419236,
+      "lon": 9.7139455,
+      "name": "Yoko Sushi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-21:30",
+      "operator": "Sushi Shop"
+    },
+    {
+      "id": "hbiz_307765700",
+      "lat": 52.312773,
+      "lon": 9.6003453,
+      "name": "Café am Markt",
+      "city": "Gehrden",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-18:00, Su,PH 09:00-18:00",
+      "operator": "Dogan Yeniyayla"
+    },
+    {
+      "id": "hbiz_311470811",
+      "lat": 52.3820165,
+      "lon": 9.7253714,
+      "name": "Guru to Go",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-15:00, Mo-Sa 17:00-21:00"
+    },
+    {
+      "id": "hbiz_311470989",
+      "lat": 52.3870575,
+      "lon": 9.7238142,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 07:00-13:00; Su 08:00-13:00"
+    },
+    {
+      "id": "hbiz_319233455",
+      "lat": 52.3969864,
+      "lon": 9.640273,
+      "name": "Raute CaféBackStube",
+      "city": "Seelze",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00; Su 07:30-17:00"
+    },
+    {
+      "id": "hbiz_320631304",
+      "lat": 52.3127051,
+      "lon": 9.6810093,
+      "name": "Kückenmühle",
+      "city": "Ronnenberg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-22:00",
+      "operator": "Olaf Rössel"
+    },
+    {
+      "id": "hbiz_321256992",
+      "lat": 52.3757103,
+      "lon": 9.7361672,
+      "name": "Pho Viet Nam",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-21:00,Sa 12:00-20:00; PH off"
+    },
+    {
+      "id": "hbiz_322834673",
+      "lat": 52.3723,
+      "lon": 9.7336972,
+      "name": "Enchilada",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Su-Th 17:00-24:00, Fr 17:00-02:00, Sa 12:00-02:00"
+    },
+    {
+      "id": "hbiz_323100957",
+      "lat": 52.374307,
+      "lon": 9.7352553,
+      "name": "Vapiano",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Tu,Su 11:00-22:00, Fr,Sa 11:00-24:00",
+      "operator": "Vapiano"
+    },
+    {
+      "id": "hbiz_323101022",
+      "lat": 52.3724468,
+      "lon": 9.7361646,
+      "name": "Francesca & Fratelli",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_323101231",
+      "lat": 52.3701744,
+      "lon": 9.7379067,
+      "name": "Denns BioMarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:00",
+      "operator": "Dennree GmbH"
+    },
+    {
+      "id": "hbiz_327037065",
+      "lat": 52.4004528,
+      "lon": 9.6466934,
+      "name": "Wong-Kei",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_331295396",
+      "lat": 52.3439771,
+      "lon": 9.7641368,
+      "name": "Lidl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Lidl"
+    },
+    {
+      "id": "hbiz_336653674",
+      "lat": 52.3406142,
+      "lon": 9.7284853,
+      "name": "nah & gut",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Oct-Apr: Mo-Sa 08:00-20:00; May-Sep: Mo-Sa 08:00-21:00",
+      "operator": "Krone"
+    },
+    {
+      "id": "hbiz_338839212",
+      "lat": 52.3789643,
+      "lon": 9.7234517,
+      "name": "hanoMacke e. V.",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_340293603",
+      "lat": 52.367903,
+      "lon": 9.7206729,
+      "name": "Happy Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Sa 00:00-05:00,12:00-24:00; Mo-Fr 09:00-24:00; Su 12:00-24:00"
+    },
+    {
+      "id": "hbiz_344238459",
+      "lat": 52.3741627,
+      "lon": 9.7899738,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00; PH off",
+      "operator": "EDEKA-Markt Minden-Hannover GmbH Wittelsbacherallee 61, 32427 Minden"
+    },
+    {
+      "id": "hbiz_344446939",
+      "lat": 52.3746428,
+      "lon": 9.745238,
+      "name": "Sushi-Do",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Fr 12:30-21:00; Sa 17:00-21:00; PH off"
+    },
+    {
+      "id": "hbiz_345379469",
+      "lat": 52.3081981,
+      "lon": 9.8113633,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_345379480",
+      "lat": 52.3071518,
+      "lon": 9.811081,
+      "name": "Eiscafé Venezia",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_345569213",
+      "lat": 52.3699059,
+      "lon": 9.8172104,
+      "name": "Alte Mühle",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "We-Su 12:00-22:00"
+    },
+    {
+      "id": "hbiz_346250094",
+      "lat": 52.3647542,
+      "lon": 9.6942657,
+      "name": "Penny Lindener Hafen",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Penny-Markt GmbH"
+    },
+    {
+      "id": "hbiz_346788751",
+      "lat": 52.398544,
+      "lon": 9.7151291,
+      "name": "PENNY",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:30-22:00",
+      "operator": "PENNY"
+    },
+    {
+      "id": "hbiz_348485157",
+      "lat": 52.4144584,
+      "lon": 9.7794448,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_349975958",
+      "lat": 52.3732125,
+      "lon": 9.734566,
+      "name": "Brauhaus Ernst-August",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 11:00+"
+    },
+    {
+      "id": "hbiz_350385354",
+      "lat": 52.3774157,
+      "lon": 9.7419694,
+      "name": "Bakerman",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_353119010",
+      "lat": 52.3741319,
+      "lon": 9.739297,
+      "name": "Mövenpick",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Mövenpick"
+    },
+    {
+      "id": "hbiz_353119987",
+      "lat": 52.3751312,
+      "lon": 9.7347023,
+      "name": "Bratwurst-Glöckle",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 09:00-24:00, Fr,Sa 09:00-03:00, Su,PH 12:00-21:00"
+    },
+    {
+      "id": "hbiz_354660872",
+      "lat": 52.3693393,
+      "lon": 9.7427039,
+      "name": "Subway",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-22:00; Sa,Su,PH 10:00-22:00",
+      "operator": "Subway"
+    },
+    {
+      "id": "hbiz_363735270",
+      "lat": 52.3657701,
+      "lon": 9.7620485,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_364513758",
+      "lat": 52.3764994,
+      "lon": 9.7284851,
+      "name": "Bull's Kitchen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th, Su 12:00-21:00; Fr-Sa 12:00-22:00; Su,PH 14:00-21:00",
+      "operator": "Bull"
+    },
+    {
+      "id": "hbiz_368367095",
+      "lat": 52.3720362,
+      "lon": 9.7355013,
+      "name": "Pizza Pavillon",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_369114178",
+      "lat": 52.3740269,
+      "lon": 9.7398965,
+      "name": "enercity expo Café",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_372514623",
+      "lat": 52.3173862,
+      "lon": 9.7896361,
+      "name": "Altlaatzener Döner",
+      "city": "Laatzen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-22:00"
+    },
+    {
+      "id": "hbiz_378328532",
+      "lat": 52.3722502,
+      "lon": 9.7845655,
+      "name": "Post Cafe",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Deutsche Post"
+    },
+    {
+      "id": "hbiz_382926932",
+      "lat": 52.3851409,
+      "lon": 9.6704128,
+      "name": "Aldi",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00",
+      "operator": "Aldi Nord"
+    },
+    {
+      "id": "hbiz_387509149",
+      "lat": 52.3709167,
+      "lon": 9.7378136,
+      "name": "KUHnstwerk",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 11:30-22:00"
+    },
+    {
+      "id": "hbiz_388428407",
+      "lat": 52.3810992,
+      "lon": 9.7446626,
+      "name": "05ELF",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 11:00-24:00+"
+    },
+    {
+      "id": "hbiz_388473857",
+      "lat": 52.3139898,
+      "lon": 9.8028545,
+      "name": "Gartenhaus",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-18:00"
+    },
+    {
+      "id": "hbiz_389566278",
+      "lat": 52.3939281,
+      "lon": 9.7224476,
+      "name": "Lidl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Lidl"
+    },
+    {
+      "id": "hbiz_389895632",
+      "lat": 52.384283,
+      "lon": 9.7075222,
+      "name": "Café im Wallmodenpalais",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-17:00"
+    },
+    {
+      "id": "hbiz_393954226",
+      "lat": 52.3905714,
+      "lon": 9.7530987,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE GmbH"
+    },
+    {
+      "id": "hbiz_413400465",
+      "lat": 52.3708398,
+      "lon": 9.7411735,
+      "name": "Cafe Extrablatt",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:30-24:00; Su,PH 09:00-24:00",
+      "operator": "CEH Gastro GmbH"
+    },
+    {
+      "id": "hbiz_419478912",
+      "lat": 52.3937472,
+      "lon": 9.6845371,
+      "name": "Rautes Markt-Café",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 06:30-17:00; Su 08:00-17:00"
+    },
+    {
+      "id": "hbiz_421315401",
+      "lat": 52.388262,
+      "lon": 9.7488594,
+      "name": "EDEKA",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Edeka"
+    },
+    {
+      "id": "hbiz_427587478",
+      "lat": 52.3576861,
+      "lon": 9.6933996,
+      "name": "Ganesha",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Fr 11:00-14:30,17:00-22:30; Sa-Su 12:00-22:30; PH unknown"
+    },
+    {
+      "id": "hbiz_429535552",
+      "lat": 52.4063493,
+      "lon": 9.7995951,
+      "name": "Spesso",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-23:00+; Sa 09:00-23:00+; Su 10:00-23:00+"
+    },
+    {
+      "id": "hbiz_429835861",
+      "lat": 52.3685277,
+      "lon": 9.7403365,
+      "name": "Meiers Lebenslust",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Mo-Su 11:30+"
+    },
+    {
+      "id": "hbiz_435245914",
+      "lat": 52.3752978,
+      "lon": 9.6945684,
+      "name": "Limmehr",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Su 11:30-23:00"
+    },
+    {
+      "id": "hbiz_444828995",
+      "lat": 52.4152673,
+      "lon": 9.7973987,
+      "name": "Naturkost Bothfeld",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:30-19:00; Sa 08:30-16:00",
+      "operator": "Rita Bachmaier und Hans-Joachim Stäudle"
+    },
+    {
+      "id": "hbiz_452043683",
+      "lat": 52.3313874,
+      "lon": 9.7749245,
+      "name": "Wirtshaus Wülfel",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 12:00-22:30; Su, PH 12:00-21:00"
+    },
+    {
+      "id": "hbiz_452986988",
+      "lat": 52.3757801,
+      "lon": 9.7340826,
+      "name": "Burger King",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Su,PH 11:00-24:00; Mo-Th 10:00-24:00; Fr,Sa 10:00-03:00",
+      "operator": "Burger King"
+    },
+    {
+      "id": "hbiz_458914585",
+      "lat": 52.3838634,
+      "lon": 9.664943,
+      "name": "Lukullus",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo, We-Su 12:00-14:30,17:00-22:00; Su 12:00-14:30,17:00-21:00; Tu off"
+    },
+    {
+      "id": "hbiz_467581196",
+      "lat": 52.3733879,
+      "lon": 9.6677011,
+      "name": "nah und gut",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "EDEKA"
+    },
+    {
+      "id": "hbiz_470209794",
+      "lat": 52.3761899,
+      "lon": 9.7215365,
+      "name": "Brotmeisterei Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-17:00; Sa 07:00-13:00"
+    },
+    {
+      "id": "hbiz_470209795",
+      "lat": 52.3773363,
+      "lon": 9.7229161,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-17:30; Sa 07:30-13:00; Su 08:00-15:00"
+    },
+    {
+      "id": "hbiz_477975018",
+      "lat": 52.3691644,
+      "lon": 9.7233838,
+      "name": "NP",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "NP"
+    },
+    {
+      "id": "hbiz_503560800",
+      "lat": 52.372596,
+      "lon": 9.7323865,
+      "name": "Teestübchen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 10:00-23:00; Fr-Su 09:30-23:00"
+    },
+    {
+      "id": "hbiz_503999499",
+      "lat": 52.3620523,
+      "lon": 9.7160903,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_512082623",
+      "lat": 52.3628397,
+      "lon": 9.7398564,
+      "name": "Restaurant Cafe bell’ ARTE",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 11:00-24:00"
+    },
+    {
+      "id": "hbiz_514554730",
+      "lat": 52.3569764,
+      "lon": 9.8535926,
+      "name": "Aldi",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00; PH off",
+      "operator": "Aldi Nord"
+    },
+    {
+      "id": "hbiz_551287325",
+      "lat": 52.4113932,
+      "lon": 9.7485897,
+      "name": "Patisserie Elysée",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-18:00; Sa 08:00-17:00; Su 08:30-17:00"
+    },
+    {
+      "id": "hbiz_551592233",
+      "lat": 52.3977558,
+      "lon": 9.771657,
+      "name": "Netto City",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto City"
+    },
+    {
+      "id": "hbiz_559302558",
+      "lat": 52.3959837,
+      "lon": 9.8562087,
+      "name": "Bei Ranko",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "We-Sa 17:00-22:00; Su,PH 11:30-14:30,17:00-21:00"
+    },
+    {
+      "id": "hbiz_571387873",
+      "lat": 52.388733,
+      "lon": 9.8147513,
+      "name": "Penny",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_577280867",
+      "lat": 52.3981703,
+      "lon": 9.7705509,
+      "name": "XII Apostel",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Tu off; We-Sa 18:00-23:00; Su 13:00-23:00"
+    },
+    {
+      "id": "hbiz_601155533",
+      "lat": 52.3726425,
+      "lon": 9.7370426,
+      "name": "Cafe Extrablatt",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:30-24:00; Su,PH 09:00-24:00",
+      "operator": "CEH Gastro GmbH"
+    },
+    {
+      "id": "hbiz_611764944",
+      "lat": 52.3821203,
+      "lon": 9.7536958,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Göing"
+    },
+    {
+      "id": "hbiz_631985630",
+      "lat": 52.3194383,
+      "lon": 9.7942216,
+      "name": "Calenberger Backstube",
+      "city": "Laatzen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-19:00; Su off"
+    },
+    {
+      "id": "hbiz_659524705",
+      "lat": 52.3453543,
+      "lon": 9.7169768,
+      "name": "BIZIM Market",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:00",
+      "operator": "Bizim Market"
+    },
+    {
+      "id": "hbiz_659524816",
+      "lat": 52.345472,
+      "lon": 9.7174816,
+      "name": "Bäckerei Schäfer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00; PH off"
+    },
+    {
+      "id": "hbiz_661072973",
+      "lat": 52.3015408,
+      "lon": 9.8049255,
+      "name": "Hanisch",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:30-20:00; Su 07:30-10:30"
+    },
+    {
+      "id": "hbiz_670232805",
+      "lat": 52.3925752,
+      "lon": 9.7345966,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_677374189",
+      "lat": 52.3701384,
+      "lon": 9.7275011,
+      "name": "caffè casa",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:30-17:00"
+    },
+    {
+      "id": "hbiz_677378753",
+      "lat": 52.3703437,
+      "lon": 9.7285448,
+      "name": "Vegan Village",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 11:30-15:30,17:00-21:00"
+    },
+    {
+      "id": "hbiz_682366740",
+      "lat": 52.3392477,
+      "lon": 9.7167745,
+      "name": "Ricklinger Gasthaus Anno 1901",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Tu off; We-Fr 17:00-22:00; Sa-Su,PH 12:00-22:00"
+    },
+    {
+      "id": "hbiz_692175870",
+      "lat": 52.3911539,
+      "lon": 9.8539628,
+      "name": "Café Engelke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00; Su,PH 08:00-17:00"
+    },
+    {
+      "id": "hbiz_695138028",
+      "lat": 52.4340491,
+      "lon": 9.6115318,
+      "name": "Die Brotkunst",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 05:00-18:00; Sa 05:00-13:00; Su 06:30-12:00"
+    },
+    {
+      "id": "hbiz_695140536",
+      "lat": 52.4365573,
+      "lon": 9.6119143,
+      "name": "Raute",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 05:30-18:00; Sa 05:30-13:00; Su 07:30-16:30"
+    },
+    {
+      "id": "hbiz_705670383",
+      "lat": 52.3792818,
+      "lon": 9.7955503,
+      "name": "GHotel - Restaurant & Bar",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 16:00-22:00"
+    },
+    {
+      "id": "hbiz_707481124",
+      "lat": 52.4411103,
+      "lon": 9.6816389,
+      "name": "Rodizio Baumhaus",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_717810398",
+      "lat": 52.4000105,
+      "lon": 9.8272017,
+      "name": "Penny",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_723073540",
+      "lat": 52.3709038,
+      "lon": 9.8044126,
+      "name": "Monte Collo No.1",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 11:30-22:00"
+    },
+    {
+      "id": "hbiz_727691168",
+      "lat": 52.3735304,
+      "lon": 9.7068657,
+      "name": "Buck's Backparadies",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 06:30-13:00; Su 08:00-12:00"
+    },
+    {
+      "id": "hbiz_747099904",
+      "lat": 52.3797215,
+      "lon": 9.7726809,
+      "name": "Yukon Market Hall",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_857316281",
+      "lat": 52.3685593,
+      "lon": 9.7440522,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 07:00-13:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_938884343",
+      "lat": 52.3650708,
+      "lon": 9.7470778,
+      "name": "Rewe Tobias Walbe oHG",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Tobias Walbe oHG"
+    },
+    {
+      "id": "hbiz_938884500",
+      "lat": 52.3281045,
+      "lon": 9.7778308,
+      "name": "Black Stork",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "closed"
+    },
+    {
+      "id": "hbiz_938884715",
+      "lat": 52.3619268,
+      "lon": 9.7495978,
+      "name": "Cafe & Bar Celona",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 09:00-18:00+",
+      "operator": "Cafe & Bar Celona"
+    },
+    {
+      "id": "hbiz_938884799",
+      "lat": 52.3375608,
+      "lon": 9.7687018,
+      "name": "Miss Saigon",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 11:30-21:00; Su,PH 12:00-21:00"
+    },
+    {
+      "id": "hbiz_938884803",
+      "lat": 52.3275682,
+      "lon": 9.7779099,
+      "name": "Brauereigaststätte Wienecke XI.",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:30-10:00"
+    },
+    {
+      "id": "hbiz_940423345",
+      "lat": 52.4029029,
+      "lon": 9.7359592,
+      "name": "Brot Henke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 05:00-13:00"
+    },
+    {
+      "id": "hbiz_993639852",
+      "lat": 52.3934415,
+      "lon": 9.6215209,
+      "name": "Netto Marken-Discount",
+      "city": "Seelze",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_1002996753",
+      "lat": 52.3807689,
+      "lon": 9.7453293,
+      "name": "Café Mezzo",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-24:00; Su 09:00-23:00"
+    },
+    {
+      "id": "hbiz_1005720582",
+      "lat": 52.3818812,
+      "lon": 9.7374207,
+      "name": "DiGuo Asia-Markt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-17:30; Sa 09:00-12:00"
+    },
+    {
+      "id": "hbiz_1005789289",
+      "lat": 52.3772977,
+      "lon": 9.7333328,
+      "name": "Lokal Vier",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1013933687",
+      "lat": 52.3535099,
+      "lon": 9.7408948,
+      "name": "Fährhaus",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1016612968",
+      "lat": 52.4131263,
+      "lon": 9.7358308,
+      "name": "Aldi",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "ALDI Nord"
+    },
+    {
+      "id": "hbiz_1059251991",
+      "lat": 52.4380434,
+      "lon": 9.6010852,
+      "name": "Heidebäckerei Rehbock",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:00-12:00; Su 07:30-10:30"
+    },
+    {
+      "id": "hbiz_1194198210",
+      "lat": 52.371243,
+      "lon": 9.712627,
+      "name": "Honey´s Linden",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo 17:00-23:00; Tu-Th,Su 12:00-23:00; Fr,Sa 12:00-02:00"
+    },
+    {
+      "id": "hbiz_1229519348",
+      "lat": 52.4152526,
+      "lon": 9.7820145,
+      "name": "Baba",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-23:00"
+    },
+    {
+      "id": "hbiz_1245124105",
+      "lat": 52.3670117,
+      "lon": 9.7194277,
+      "name": "Berlin Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 09:00-00:30, Fr,Sa 09:00-02:00; PH 09:00-02:00"
+    },
+    {
+      "id": "hbiz_1286244485",
+      "lat": 52.3857052,
+      "lon": 9.7467973,
+      "name": "Denns BioMarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:00",
+      "operator": "Dennree GmbH"
+    },
+    {
+      "id": "hbiz_1288177272",
+      "lat": 52.4094881,
+      "lon": 9.8013788,
+      "name": "Brasserie Rendezvous",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-21:00"
+    },
+    {
+      "id": "hbiz_1375199632",
+      "lat": 52.3383887,
+      "lon": 9.8342506,
+      "name": "Istanbul",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 11:00-23:00; Su 11:00-24:00"
+    },
+    {
+      "id": "hbiz_1381588570",
+      "lat": 52.3599179,
+      "lon": 9.8278648,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_1425189621",
+      "lat": 52.3886715,
+      "lon": 9.7508774,
+      "name": "Lister Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 10:00-23:00; Sa,Su 11:00-23:00"
+    },
+    {
+      "id": "hbiz_1449843693",
+      "lat": 52.3443526,
+      "lon": 9.6708285,
+      "name": "EDEKA E-Center Cramer",
+      "city": "Ronnenberg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Wilhelm Cramer GmbH"
+    },
+    {
+      "id": "hbiz_1463797766",
+      "lat": 52.3709696,
+      "lon": 9.803316,
+      "name": "Café Kleegarten",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1503149351",
+      "lat": 52.3990764,
+      "lon": 9.776557,
+      "name": "Pieper",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1504379828",
+      "lat": 52.3999381,
+      "lon": 9.6791126,
+      "name": "Restaurant Ofelia",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 14:00-02:00"
+    },
+    {
+      "id": "hbiz_1514472215",
+      "lat": 52.3339633,
+      "lon": 9.6639783,
+      "name": "Aldi Nord",
+      "city": "Ronnenberg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Aldi Nord"
+    },
+    {
+      "id": "hbiz_1552594776",
+      "lat": 52.3417115,
+      "lon": 9.8364755,
+      "name": "Heiser",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-16:00; Sa 06:00-11:00; Su 08:00-11:00"
+    },
+    {
+      "id": "hbiz_1565334576",
+      "lat": 52.3331967,
+      "lon": 9.6902543,
+      "name": "PENNY",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_1579413586",
+      "lat": 52.310481,
+      "lon": 9.7733833,
+      "name": "Wiesendachhaus im Luftbad Laatzen",
+      "city": "Laatzen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Su 11:00-20:00; PH 11:00-20:00"
+    },
+    {
+      "id": "hbiz_1580260686",
+      "lat": 52.3202221,
+      "lon": 9.7951725,
+      "name": "Mongolei Haus",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1584710236",
+      "lat": 52.3582544,
+      "lon": 9.7484787,
+      "name": "Borchers",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 06:30-13:00; Su 08:00-11:00"
+    },
+    {
+      "id": "hbiz_1596675648",
+      "lat": 52.3851783,
+      "lon": 9.7248389,
+      "name": "Marokkanische Lebensmittel",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-We 13:30-19:00; Th 13:30-20:00; Fr 10:00-20:00; Sa 10:00-18:00"
+    },
+    {
+      "id": "hbiz_1607440784",
+      "lat": 52.3369616,
+      "lon": 9.7174869,
+      "name": "Elena",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Fr 16:00-22:00; Sa,Su 12:00-22:00; Mo off"
+    },
+    {
+      "id": "hbiz_1611048288",
+      "lat": 52.333905,
+      "lon": 9.7164836,
+      "name": "Allegro",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-16:00; PH off"
+    },
+    {
+      "id": "hbiz_1625453120",
+      "lat": 52.3828316,
+      "lon": 9.7178889,
+      "name": "Sprengelstube",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 07:45-17:00; Fr 07:45-16:30",
+      "operator": "Studentenwerk Hannover"
+    },
+    {
+      "id": "hbiz_1646073438",
+      "lat": 52.3896794,
+      "lon": 9.7555542,
+      "name": "Pharos",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Th 12:00-22:00; Fr-Sa 12:00-22:30; Su 11:00-21:00"
+    },
+    {
+      "id": "hbiz_1653322299",
+      "lat": 52.4394419,
+      "lon": 9.7383464,
+      "name": "Thang Long",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_1676673462",
+      "lat": 52.3828489,
+      "lon": 9.7400829,
+      "name": "La Cantina",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Su 17:00+"
+    },
+    {
+      "id": "hbiz_1913367605",
+      "lat": 52.3405887,
+      "lon": 9.6928271,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-14:00; PH,Su 07:00-14:00",
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_1927206742",
+      "lat": 52.3763236,
+      "lon": 9.7564044,
+      "name": "Göing",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 07:00-14:00; Su 08:00-17:00"
+    },
+    {
+      "id": "hbiz_1927237036",
+      "lat": 52.3947115,
+      "lon": 9.7231716,
+      "name": "Cevahir Market",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-19:00; PH off"
+    },
+    {
+      "id": "hbiz_1945869315",
+      "lat": 52.3949971,
+      "lon": 9.7908896,
+      "name": "Restaurant Piano",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-14:00,18:00-21:30; Sa 17:00-21:30; Su,PH off"
+    },
+    {
+      "id": "hbiz_1965844542",
+      "lat": 52.3450078,
+      "lon": 9.8215161,
+      "name": "Café Parthier & Chocolaterie",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo 09:00-17:00; We-Sa 09:00-17:00; Su,PH 10:00-17:00"
+    },
+    {
+      "id": "hbiz_1965946756",
+      "lat": 52.3219254,
+      "lon": 9.8183591,
+      "name": "Mensa Große Pause",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 08:00-15:00; Fr 08:00-14:30",
+      "operator": "Studentenwerk Hannover"
+    },
+    {
+      "id": "hbiz_1965946764",
+      "lat": 52.3139878,
+      "lon": 9.8161948,
+      "name": "IKEA Restaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 10:00-20:00",
+      "operator": "IKEA"
+    },
+    {
+      "id": "hbiz_1973458484",
+      "lat": 52.3763405,
+      "lon": 9.7484261,
+      "name": "Aspera",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 16:00-23:00"
+    },
+    {
+      "id": "hbiz_1993753716",
+      "lat": 52.3959685,
+      "lon": 9.7652328,
+      "name": "Hofbäckerei",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_2048090792",
+      "lat": 52.3900779,
+      "lon": 9.8633871,
+      "name": "Das Schützenhaus Misburg",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Th,Fr 18:00-21:30;Sa 13:00-21:30;Su,PH 12:00-18:00"
+    },
+    {
+      "id": "hbiz_2050519548",
+      "lat": 52.3022997,
+      "lon": 9.8050672,
+      "name": "Restaurant Dilara",
+      "city": "Laatzen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo,We-Sa 17:00-22:00; Su,PH 12:00-15:00,17:00-21:00; Tu off"
+    },
+    {
+      "id": "hbiz_2057794231",
+      "lat": 52.3287876,
+      "lon": 9.7049751,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_2104465058",
+      "lat": 52.3650963,
+      "lon": 9.7181934,
+      "name": "Pizzeria Napoli",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 16:00-23:00"
+    },
+    {
+      "id": "hbiz_2126380029",
+      "lat": 52.3408148,
+      "lon": 9.702036,
+      "name": "nah&gut Wucherpfennig",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-19:00",
+      "operator": "Wucherpfennig"
+    },
+    {
+      "id": "hbiz_2135140525",
+      "lat": 52.3409732,
+      "lon": 9.6935554,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Rewe"
+    },
+    {
+      "id": "hbiz_2141350260",
+      "lat": 52.4136505,
+      "lon": 9.8255204,
+      "name": "Estragon",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 18:00-21:00",
+      "operator": "Best Western"
+    },
+    {
+      "id": "hbiz_2282026859",
+      "lat": 52.315641,
+      "lon": 9.7221244,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_2283339167",
+      "lat": 52.3610907,
+      "lon": 9.7161762,
+      "name": "RIAS BAIXAS 2",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 10:00-23:00; Tu off; Fr,Sa 10:00-24:00; Su 10:00-21:30",
+      "operator": "RIAS BAIXAS 2 GbR"
+    },
+    {
+      "id": "hbiz_2283370801",
+      "lat": 52.3575494,
+      "lon": 9.7159349,
+      "name": "beneFit Fitness Hannover Linden-Süd",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "beneFit Fitness & Wellness GmbH"
+    },
+    {
+      "id": "hbiz_2286146951",
+      "lat": 52.3744105,
+      "lon": 9.7386436,
+      "name": "Nordsee",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Nordsee"
+    },
+    {
+      "id": "hbiz_2295882650",
+      "lat": 52.3890717,
+      "lon": 9.8121391,
+      "name": "Bäckerei Pieper",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 08:00-15:00; Su 08:00-13:00"
+    },
+    {
+      "id": "hbiz_2306729434",
+      "lat": 52.3893619,
+      "lon": 9.8138178,
+      "name": "ÖZ URFA 63",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_2331721397",
+      "lat": 52.3184804,
+      "lon": 9.6603145,
+      "name": "Calenberger Backstube",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Su 08:00-16:30; Sa 06:00-16:30"
+    },
+    {
+      "id": "hbiz_2343008163",
+      "lat": 52.3061393,
+      "lon": 9.8130715,
+      "name": "Lebenstraum",
+      "city": "Laatzen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 09:00-23:00; Fr-Sa 09:00-24:00; Su,PH 10:00-20:00"
+    },
+    {
+      "id": "hbiz_2365539675",
+      "lat": 52.3796446,
+      "lon": 9.7404808,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_2379045567",
+      "lat": 52.3050847,
+      "lon": 9.8141061,
+      "name": "denn's Biomarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-20:00",
+      "operator": "denn's Biomarkt"
+    },
+    {
+      "id": "hbiz_2387557801",
+      "lat": 52.4310689,
+      "lon": 9.85038,
+      "name": "Tandur",
+      "city": "Isernhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 11:30-22:00"
+    },
+    {
+      "id": "hbiz_2389792827",
+      "lat": 52.3914811,
+      "lon": 9.8523076,
+      "name": "Carpe Diem",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo 09:00-14:00; We,Th 09:00-18:00; Fr 09:00-20:00; Sa 09:00-13:00; PH off"
+    },
+    {
+      "id": "hbiz_2413596269",
+      "lat": 52.3997328,
+      "lon": 9.8078643,
+      "name": "NP",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00",
+      "operator": "NP"
+    },
+    {
+      "id": "hbiz_2430272330",
+      "lat": 52.4102172,
+      "lon": 9.6642051,
+      "name": "Raute",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 06:30-17:00; Su 07:30-17:00"
+    },
+    {
+      "id": "hbiz_2482675209",
+      "lat": 52.4401334,
+      "lon": 9.7544567,
+      "name": "Empire",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:30-15:00,17:30-23:00"
+    },
+    {
+      "id": "hbiz_2505832504",
+      "lat": 52.3912404,
+      "lon": 9.7351222,
+      "name": "Bäckerei Kasper",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 05:30-18:00; Sa,Su 06:00-17:00"
+    },
+    {
+      "id": "hbiz_2527145922",
+      "lat": 52.3304095,
+      "lon": 9.7877792,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_2528868389",
+      "lat": 52.3650611,
+      "lon": 9.7480259,
+      "name": "Urfa Tadim",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:00-22:00; Sa,Su 12:00-22:00"
+    },
+    {
+      "id": "hbiz_2533510315",
+      "lat": 52.3666031,
+      "lon": 9.742803,
+      "name": "Bella Italia",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Th 12:00-15:00,18:00-23:00; Fr,Sa 12:00-23:00"
+    },
+    {
+      "id": "hbiz_2560224441",
+      "lat": 52.4052883,
+      "lon": 9.7139083,
+      "name": "Beiwi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 12:00-15:00,17:30-22:00; Sa 12:00-22:30; Su 12:00-22:00"
+    },
+    {
+      "id": "hbiz_2610996122",
+      "lat": 52.374903,
+      "lon": 9.739167,
+      "name": "Pommesglück",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 11:00-19:30"
+    },
+    {
+      "id": "hbiz_2694856821",
+      "lat": 52.3624428,
+      "lon": 9.8332666,
+      "name": "Restaurant Leonardo",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-10:30, Sa,Su 06:30-12:00, Mo-Su 18:00-21:30"
+    },
+    {
+      "id": "hbiz_2705714431",
+      "lat": 52.3821355,
+      "lon": 9.7265364,
+      "name": "Cheers",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 09:00-01:00"
+    },
+    {
+      "id": "hbiz_2725038950",
+      "lat": 52.410787,
+      "lon": 9.8118341,
+      "name": "Bäckerei Heiser",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-16:00; Sa 06:00-11:00; Su 08:00-11:00"
+    },
+    {
+      "id": "hbiz_2734176992",
+      "lat": 52.4138169,
+      "lon": 9.8058055,
+      "name": "Tom's II",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:00-15:00,17:00-22:30; Sa-Su,PH 13:00-22:30"
+    },
+    {
+      "id": "hbiz_2734197539",
+      "lat": 52.4207996,
+      "lon": 9.7982311,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_2737043093",
+      "lat": 52.3858502,
+      "lon": 9.8310686,
+      "name": "Hansa Croque",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Th 11:30-22:00; Fr 11:30-23:00; Sa 17:00-23:00,Su 12:00-22:00"
+    },
+    {
+      "id": "hbiz_2758737003",
+      "lat": 52.3834242,
+      "lon": 9.80526,
+      "name": "Kannelloni",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:30-19:00; Sa,Su 11:00-18:00"
+    },
+    {
+      "id": "hbiz_2758737012",
+      "lat": 52.3845293,
+      "lon": 9.8044044,
+      "name": "Kanne",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_2758737014",
+      "lat": 52.381805,
+      "lon": 9.805311,
+      "name": "K11 - Frauenklinik / Viszeral- und Transplantationschirurgie",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_2761347913",
+      "lat": 52.4175598,
+      "lon": 9.7605554,
+      "name": "Halil Erol Yunus Market 2",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_2845408100",
+      "lat": 52.3927821,
+      "lon": 9.7504405,
+      "name": "Nahkauf",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00; Su 09:00-12:00",
+      "operator": "Nahkauf"
+    },
+    {
+      "id": "hbiz_2966730414",
+      "lat": 52.3611541,
+      "lon": 9.8294139,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:00-18:00; Su 08:00-17:00",
+      "operator": "Schäfer’s Brot- und Kuchen-Spezialitäten GmbH"
+    },
+    {
+      "id": "hbiz_3004641269",
+      "lat": 52.4380771,
+      "lon": 9.6096026,
+      "name": "Istanbul Restaurant",
+      "city": "Garbsen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-22:00"
+    },
+    {
+      "id": "hbiz_3017264444",
+      "lat": 52.4302194,
+      "lon": 9.6171635,
+      "name": "Asia Star",
+      "city": "Garbsen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 12:00-14:30, 18:00-22:00"
+    },
+    {
+      "id": "hbiz_3071789950",
+      "lat": 52.3768036,
+      "lon": 9.6931314,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-23:00",
+      "operator": "REWE Katharina Schell oHG"
+    },
+    {
+      "id": "hbiz_3109241048",
+      "lat": 52.3699287,
+      "lon": 9.7357603,
+      "name": "Angelo Masala",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-18:00, Sa 07:00-15:00"
+    },
+    {
+      "id": "hbiz_3137499518",
+      "lat": 52.3883697,
+      "lon": 9.749981,
+      "name": "naturahaus",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:30-18:30; Sa 08:30-14:00"
+    },
+    {
+      "id": "hbiz_3164443316",
+      "lat": 52.3890024,
+      "lon": 9.7340509,
+      "name": "Habesha Shop",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo,We-Sa 11:00-23:30; Tu 09:00-23:30; Su 15:00-23:00"
+    },
+    {
+      "id": "hbiz_3200053229",
+      "lat": 52.4034844,
+      "lon": 9.7911345,
+      "name": "denn's Biomarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:00",
+      "operator": "denn's Biomarkt"
+    },
+    {
+      "id": "hbiz_3228926420",
+      "lat": 52.3582276,
+      "lon": 9.7156115,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00; PH off",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_3232921913",
+      "lat": 52.3420264,
+      "lon": 9.7173432,
+      "name": "Calenberger Backstube",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00; Su 08:00-17:00",
+      "operator": "Calenberger Backstube"
+    },
+    {
+      "id": "hbiz_3234319660",
+      "lat": 52.3828934,
+      "lon": 9.7458242,
+      "name": "Chang an Noodle House",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 12:00-15:00, 17:00-21:30"
+    },
+    {
+      "id": "hbiz_3236587453",
+      "lat": 52.4157785,
+      "lon": 9.7327124,
+      "name": "L'Osteria",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 11:30-23:00; Fr-Sa 11:30-24:00; Su,PH 12:00-23:00",
+      "operator": "L'Osteria"
+    },
+    {
+      "id": "hbiz_3272442561",
+      "lat": 52.3582938,
+      "lon": 9.7471637,
+      "name": "Vipassana Meditationsgruppe Hannover im Margot-Engelke-Zentrum",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "\"Siehe Webseite\""
+    },
+    {
+      "id": "hbiz_3346033337",
+      "lat": 52.311327,
+      "lon": 9.6029733,
+      "name": "Hünerberg",
+      "city": "Gehrden",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:15-18:00; Sa 06:00-13:00; Su,PH off"
+    },
+    {
+      "id": "hbiz_3355499567",
+      "lat": 52.3137322,
+      "lon": 9.6001071,
+      "name": "Café Engelchen",
+      "city": "Gehrden",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th,Sa 09:00-18:00; Su 14:00-18:00; Fr off",
+      "operator": "Claudia Strohbach"
+    },
+    {
+      "id": "hbiz_3372190953",
+      "lat": 52.3847209,
+      "lon": 9.6652912,
+      "name": "faire Bohne",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_3385877760",
+      "lat": 52.3481829,
+      "lon": 9.8120699,
+      "name": "Bäckerei Steinecke",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 07:00-13:00"
+    },
+    {
+      "id": "hbiz_3398052233",
+      "lat": 52.3939108,
+      "lon": 9.6936268,
+      "name": "REWE City",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_3517735337",
+      "lat": 52.367662,
+      "lon": 9.7193622,
+      "name": "Backwerk",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa,Su 06:00-17:00",
+      "operator": "BackWerk"
+    },
+    {
+      "id": "hbiz_3560362043",
+      "lat": 52.3611872,
+      "lon": 9.8269288,
+      "name": "REWE Andreas Friesen oHG",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:30",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_3640955384",
+      "lat": 52.3962872,
+      "lon": 9.7861762,
+      "name": "Speisesaal",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_3750759173",
+      "lat": 52.3645664,
+      "lon": 9.7181335,
+      "name": "Hozain",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:30-21:00",
+      "operator": "PENNY"
+    },
+    {
+      "id": "hbiz_3756985256",
+      "lat": 52.3474127,
+      "lon": 9.7154744,
+      "name": "Ricklinger Mittagstisch",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-18:30; Sa 09:00-15:00; PH closed",
+      "operator": "Elvan's Kitchen"
+    },
+    {
+      "id": "hbiz_3762917347",
+      "lat": 52.3893916,
+      "lon": 9.8565043,
+      "name": "Schäfer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_3789342384",
+      "lat": 52.3594274,
+      "lon": 9.7507718,
+      "name": "Mimis Thai Kitchen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 12:00-15:00,17:30-21:00"
+    },
+    {
+      "id": "hbiz_3862834857",
+      "lat": 52.372612,
+      "lon": 9.7308621,
+      "name": "Café Anna Leine",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-18:00; Sa 10:00-15:00"
+    },
+    {
+      "id": "hbiz_3873179083",
+      "lat": 52.3636635,
+      "lon": 9.7481858,
+      "name": "McFit",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McFit"
+    },
+    {
+      "id": "hbiz_3995142633",
+      "lat": 52.3754486,
+      "lon": 9.7701386,
+      "name": "Parkrestaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Hannover Congress Centrum"
+    },
+    {
+      "id": "hbiz_4014911915",
+      "lat": 52.3755972,
+      "lon": 9.7425539,
+      "name": "Stadtmauer",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 16:00-18:00+; Sa 11:00+"
+    },
+    {
+      "id": "hbiz_4177675462",
+      "lat": 52.3883578,
+      "lon": 9.8129666,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00; PH off",
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_4212835403",
+      "lat": 52.4190289,
+      "lon": 9.694734,
+      "name": "Hanisch",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:30-19:00"
+    },
+    {
+      "id": "hbiz_4226787290",
+      "lat": 52.4267321,
+      "lon": 9.8580187,
+      "name": "Café Papa am See",
+      "city": "Isernhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "PH,Mo-Su 10:00-17:00"
+    },
+    {
+      "id": "hbiz_4258500161",
+      "lat": 52.3993743,
+      "lon": 9.7649461,
+      "name": "Balkenholl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-19:00"
+    },
+    {
+      "id": "hbiz_4309100082",
+      "lat": 52.4488833,
+      "lon": 9.7488236,
+      "name": "Leibniz 56",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 17:00-18:00+; Su,Mo off"
+    },
+    {
+      "id": "hbiz_4328195789",
+      "lat": 52.4150171,
+      "lon": 9.7023857,
+      "name": "Kervan Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_4349628563",
+      "lat": 52.3695565,
+      "lon": 9.7043815,
+      "name": "Domino's",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 10:30-23:00",
+      "operator": "Domino's"
+    },
+    {
+      "id": "hbiz_4367587393",
+      "lat": 52.3717528,
+      "lon": 9.7933282,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 07:00-12:00; Su 08:00-11:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_4397778429",
+      "lat": 52.4309825,
+      "lon": 9.8528981,
+      "name": "Rewe",
+      "city": "Isernhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "REWE Marcel Peters oHG"
+    },
+    {
+      "id": "hbiz_4436278039",
+      "lat": 52.3992322,
+      "lon": 9.7335241,
+      "name": "Bernhardt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_4459433614",
+      "lat": 52.3713883,
+      "lon": 9.7372076,
+      "name": "Sissi und Franz",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 11:00-0:00; Fr - Sa 11:00-01:00; Su 12:00-0:00"
+    },
+    {
+      "id": "hbiz_4459433615",
+      "lat": 52.372125,
+      "lon": 9.7402743,
+      "name": "Café-Bar Bernini",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_4465969089",
+      "lat": 52.3723388,
+      "lon": 9.7384571,
+      "name": "Heide-Bäckerei Meyer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-19:00; Su,PH off",
+      "operator": "Dr. Gerhard Bosselmann"
+    },
+    {
+      "id": "hbiz_4548474225",
+      "lat": 52.3798752,
+      "lon": 9.7324784,
+      "name": "Drip Burger",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 16:00-23:00, Sa-Su 15:00-23:00"
+    },
+    {
+      "id": "hbiz_4605547111",
+      "lat": 52.4002301,
+      "lon": 9.8041707,
+      "name": "Gallo Nero",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo 12:00-14:30,18:00-22:30; We-Fr 12:00-14:30,18:00-22:30; Sa 18:00-22:30"
+    },
+    {
+      "id": "hbiz_4717333344",
+      "lat": 52.3939443,
+      "lon": 9.6835955,
+      "name": "Lieblingsbar",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 12:00-24:00, Fr 12:00-01:00, Sa 10:00-01:00, Su 10:00-23:00"
+    },
+    {
+      "id": "hbiz_4738325921",
+      "lat": 52.3399266,
+      "lon": 9.8651463,
+      "name": "Brotzeit",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "hbiz_4748567567",
+      "lat": 52.3611944,
+      "lon": 9.7209067,
+      "name": "Döner-Kebap Haus",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-22:00"
+    },
+    {
+      "id": "hbiz_4788440278",
+      "lat": 52.3702663,
+      "lon": 9.7362643,
+      "name": "Wok 'n' Joy",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_4807197538",
+      "lat": 52.3907056,
+      "lon": 9.7062785,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-19:00; Sa 07:00-18:00; Su 08:00-13:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_4836816663",
+      "lat": 52.3346331,
+      "lon": 9.8009151,
+      "name": "Özcan Market",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_4846309021",
+      "lat": 52.3792298,
+      "lon": 9.7298037,
+      "name": "Bodega Argentina",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-23:00"
+    },
+    {
+      "id": "hbiz_4864383991",
+      "lat": 52.4387844,
+      "lon": 9.7341494,
+      "name": "fitbox",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-20:00; Sa 10:00-16:00"
+    },
+    {
+      "id": "hbiz_4879791188",
+      "lat": 52.3387477,
+      "lon": 9.7738796,
+      "name": "GriffReich",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "GriffReich"
+    },
+    {
+      "id": "hbiz_4971214322",
+      "lat": 52.4205908,
+      "lon": 9.793769,
+      "name": "H`Vin",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Fr 16:00+; Sa-Su 10:00+"
+    },
+    {
+      "id": "hbiz_4995156366",
+      "lat": 52.3256131,
+      "lon": 9.7257946,
+      "name": "Calenberger Backstube",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-15:00; Su 08:00-15:00"
+    },
+    {
+      "id": "hbiz_5165682887",
+      "lat": 52.369677,
+      "lon": 9.7243815,
+      "name": "Francesca & Fratelli",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 12:00+"
+    },
+    {
+      "id": "hbiz_5190544034",
+      "lat": 52.3111039,
+      "lon": 9.6078058,
+      "name": "Lagune",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_5265713465",
+      "lat": 52.385823,
+      "lon": 9.7239666,
+      "name": "24grad Kaffeerösterei",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-19:00; Sa 09:00-19:00; Su 09:00-18:00",
+      "operator": "24 grad"
+    },
+    {
+      "id": "hbiz_5343312314",
+      "lat": 52.3718266,
+      "lon": 9.7926166,
+      "name": "Der echte Gaues",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:30-17:00; Sa 07:30-16:00; Su 07:30-15:00"
+    },
+    {
+      "id": "hbiz_5377678904",
+      "lat": 52.3516688,
+      "lon": 9.6932395,
+      "name": "Kaufland",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Kaufland Stiftung & Co. KG"
+    },
+    {
+      "id": "hbiz_5456059651",
+      "lat": 52.3622325,
+      "lon": 9.7776319,
+      "name": "Kanne Café",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-17:00; Sa-Su,PH 10:00-16:00",
+      "operator": "Kanne Café"
+    },
+    {
+      "id": "hbiz_5508798028",
+      "lat": 52.3092362,
+      "lon": 9.6077415,
+      "name": "Boaz",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 10:00-22:00"
+    },
+    {
+      "id": "hbiz_5551984062",
+      "lat": 52.3577931,
+      "lon": 9.7674065,
+      "name": "Cafe Extrablatt",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:30-24:00; Su,PH 09:30-24:00",
+      "operator": "CEH Gastro GmbH"
+    },
+    {
+      "id": "hbiz_5569097035",
+      "lat": 52.359666,
+      "lon": 9.7252558,
+      "name": "Bistro",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_5610456853",
+      "lat": 52.3429438,
+      "lon": 9.7635161,
+      "name": "McDonald's",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's"
+    },
+    {
+      "id": "hbiz_5692433291",
+      "lat": 52.3356963,
+      "lon": 9.7729445,
+      "name": "Penny",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Penny"
+    },
+    {
+      "id": "hbiz_5708106042",
+      "lat": 52.3909025,
+      "lon": 9.721275,
+      "name": "Mama's Kitchen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo,Tu,Th,Fr,Sa 17:00-22:00; We,Su off",
+      "operator": "Mama's Kitchen Hannover"
+    },
+    {
+      "id": "hbiz_5733722857",
+      "lat": 52.4008958,
+      "lon": 9.668962,
+      "name": "Café Anna Blume",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "We-Sa 13:00-18:30; Su 11:00-18:00; Mo,Tu off",
+      "operator": "Ute Wrede"
+    },
+    {
+      "id": "hbiz_5894377986",
+      "lat": 52.3743252,
+      "lon": 9.7407585,
+      "name": "Mary's",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_5894399985",
+      "lat": 52.3732354,
+      "lon": 9.7376488,
+      "name": "Nordsee",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 10:00-20:00",
+      "operator": "Nordsee"
+    },
+    {
+      "id": "hbiz_5894403613",
+      "lat": 52.3756254,
+      "lon": 9.7390795,
+      "name": "Galeria Restaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:30-19:00"
+    },
+    {
+      "id": "hbiz_5894420290",
+      "lat": 52.3712353,
+      "lon": 9.7360212,
+      "name": "Atrium",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 12:00-22:00"
+    },
+    {
+      "id": "hbiz_5896495985",
+      "lat": 52.3759922,
+      "lon": 9.7107124,
+      "name": "Der Nachbarin Café",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_5902621758",
+      "lat": 52.3836041,
+      "lon": 9.7255681,
+      "name": "Denns BioMarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-20:00",
+      "operator": "Dennree GmbH"
+    },
+    {
+      "id": "hbiz_5905808372",
+      "lat": 52.3858059,
+      "lon": 9.7245075,
+      "name": "Maydonoz Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_5984140170",
+      "lat": 52.3432743,
+      "lon": 9.7805997,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_6080349087",
+      "lat": 52.359634,
+      "lon": 9.6786266,
+      "name": "Subway",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-22:00",
+      "operator": "Subway"
+    },
+    {
+      "id": "hbiz_6119963809",
+      "lat": 52.3749909,
+      "lon": 9.7341402,
+      "name": "Dubai Shawarma",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_6127721934",
+      "lat": 52.3885136,
+      "lon": 9.7129883,
+      "name": "Coffe-Shop Appelstraße",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 07:45-14:45; Fr 07:45-14:15",
+      "operator": "Studentenwerk Hannover"
+    },
+    {
+      "id": "hbiz_6129305678",
+      "lat": 52.4380521,
+      "lon": 9.7354453,
+      "name": "Primavera",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:30-22:00"
+    },
+    {
+      "id": "hbiz_6239551594",
+      "lat": 52.400069,
+      "lon": 9.8281338,
+      "name": "Gorkha Restaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Fr 17:00-21:45; Sa-Su,PH 11:30-14:30,17:00-21:45"
+    },
+    {
+      "id": "hbiz_6357022551",
+      "lat": 52.3595813,
+      "lon": 9.758095,
+      "name": "993 Restaurant & Bar",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 15:00-23:00",
+      "operator": "Alexander Falke"
+    },
+    {
+      "id": "hbiz_6403985662",
+      "lat": 52.3683824,
+      "lon": 9.7540427,
+      "name": "Edeka",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "EDEKA"
+    },
+    {
+      "id": "hbiz_6404067421",
+      "lat": 52.3246381,
+      "lon": 9.7815589,
+      "name": "Lehaha",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 12:00-15:00,17:30-23:00; Sa,Su 12:00-23:00"
+    },
+    {
+      "id": "hbiz_6548459928",
+      "lat": 52.3550509,
+      "lon": 9.670704,
+      "name": "Eiscafé Degrassi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_6567787560",
+      "lat": 52.3654078,
+      "lon": 9.7437802,
+      "name": "Café NaNas, Ausbildungsrestaurant",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-18:00",
+      "operator": "Restaurant Pro Beruf GmbH"
+    },
+    {
+      "id": "hbiz_6600796548",
+      "lat": 52.4084376,
+      "lon": 9.8074202,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-13:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_6630669061",
+      "lat": 52.3876724,
+      "lon": 9.7490531,
+      "name": "Rewe Pick&Go",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "REWE Markt GmbH"
+    },
+    {
+      "id": "hbiz_6652644764",
+      "lat": 52.3999857,
+      "lon": 9.8231864,
+      "name": "Calenberger Backstube",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00; PH off"
+    },
+    {
+      "id": "hbiz_6677131835",
+      "lat": 52.4029876,
+      "lon": 9.8002971,
+      "name": "Pieper",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-13:00; Su 08:00-13:00"
+    },
+    {
+      "id": "hbiz_6710462420",
+      "lat": 52.4188306,
+      "lon": 9.7664053,
+      "name": "Bäckerei Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_6720644481",
+      "lat": 52.3716422,
+      "lon": 9.733347,
+      "name": "Layalina",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-18:00; Sa 11:30-16:00"
+    },
+    {
+      "id": "hbiz_6740175111",
+      "lat": 52.375406,
+      "lon": 9.7064397,
+      "name": "Wohncafé",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Hanova"
+    },
+    {
+      "id": "hbiz_6992612537",
+      "lat": 52.4300388,
+      "lon": 9.7168989,
+      "name": "Heide Bäckerei Meyer",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-19:00"
+    },
+    {
+      "id": "hbiz_7066027627",
+      "lat": 52.3735106,
+      "lon": 9.7301401,
+      "name": "bona'me",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 10:00-00:00"
+    },
+    {
+      "id": "hbiz_7089618172",
+      "lat": 52.4424848,
+      "lon": 9.7225598,
+      "name": "Burger King",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 09:00-24:00, Fr-Sa 09:00-01:00, Su 10:00-24:00",
+      "operator": "BURGER KING Deutschland GmbH"
+    },
+    {
+      "id": "hbiz_7155927650",
+      "lat": 52.3792312,
+      "lon": 9.7421467,
+      "name": "DB Casino",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-14:30",
+      "operator": "DB Gastronomie"
+    },
+    {
+      "id": "hbiz_7167262792",
+      "lat": 52.4337092,
+      "lon": 9.7319619,
+      "name": "IDEAL MARKET",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:45-20:30"
+    },
+    {
+      "id": "hbiz_7389988764",
+      "lat": 52.3333294,
+      "lon": 9.6638668,
+      "name": "Vihaan",
+      "city": "Ronnenberg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 16:00-22:30; Su,PH 12:00-22:00; Mo off"
+    },
+    {
+      "id": "hbiz_7506021077",
+      "lat": 52.3555198,
+      "lon": 9.6714732,
+      "name": "Bäckerei Raute",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00,Su 07:30-17:00; PH off"
+    },
+    {
+      "id": "hbiz_7542616022",
+      "lat": 52.3877674,
+      "lon": 9.733817,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-23:00",
+      "operator": "REWE Christophe Daguerre oHG"
+    },
+    {
+      "id": "hbiz_7617833845",
+      "lat": 52.434311,
+      "lon": 9.8019957,
+      "name": "Tresor Restaurant & Bar",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 17:30+; Su,Mo off",
+      "operator": "Lina Furman und Inna Krasevic"
+    },
+    {
+      "id": "hbiz_7625925912",
+      "lat": 52.3395422,
+      "lon": 9.71831,
+      "name": "Iberica - spanischer Supermarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:30-18:00; Sa 09:00-14:30; PH off"
+    },
+    {
+      "id": "hbiz_7736446753",
+      "lat": 52.3552837,
+      "lon": 9.754609,
+      "name": "Bäckerei Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 07:00-17:00",
+      "operator": "Meisterbäckerei Steinecke GmbH & Co. KG"
+    },
+    {
+      "id": "hbiz_7878413892",
+      "lat": 52.3685905,
+      "lon": 9.714662,
+      "name": "BioLogisch Naturprodukte",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-16:00; Su,PH off"
+    },
+    {
+      "id": "hbiz_8224240050",
+      "lat": 52.3734981,
+      "lon": 9.7354722,
+      "name": "Khao Thai",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_8242817571",
+      "lat": 52.3906025,
+      "lon": 9.7350887,
+      "name": "AL-Sultan",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 08:00-22:00"
+    },
+    {
+      "id": "hbiz_8308779147",
+      "lat": 52.3900607,
+      "lon": 9.8548312,
+      "name": "Bei Alex",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Sa 11:00-22:00; Su,PH 12:00-22:00"
+    },
+    {
+      "id": "hbiz_8399850955",
+      "lat": 52.4064119,
+      "lon": 9.6599757,
+      "name": "Brudis Döner & Burger",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 11:00-23:00"
+    },
+    {
+      "id": "hbiz_8494280274",
+      "lat": 52.3317961,
+      "lon": 9.691498,
+      "name": "Daniels by Edeka Schneevoigt",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 06:00-18:00; Su 07:00-18:00"
+    },
+    {
+      "id": "hbiz_9016284777",
+      "lat": 52.439517,
+      "lon": 9.6195449,
+      "name": "Schäfer's",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_9208168399",
+      "lat": 52.4001657,
+      "lon": 9.7751537,
+      "name": "Die Drei",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:30-18:00; Sa 06:30-13:00; Su 08:00-11:00"
+    },
+    {
+      "id": "hbiz_9333719120",
+      "lat": 52.3887212,
+      "lon": 9.7347762,
+      "name": "CRIS-TIM",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 10:00-19:00"
+    },
+    {
+      "id": "hbiz_9384329966",
+      "lat": 52.3478272,
+      "lon": 9.7086595,
+      "name": "Bistro Emporio",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-18:00; Sa 09:00-15:00; Su off"
+    },
+    {
+      "id": "hbiz_9700592782",
+      "lat": 52.4424884,
+      "lon": 9.6687727,
+      "name": "Schäfer's",
+      "city": "Langenhagen",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-18:30",
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_9758734158",
+      "lat": 52.3627131,
+      "lon": 9.7482459,
+      "name": "Sportraum EMS",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 08:00-20:00; Sa 08:00-14:00"
+    },
+    {
+      "id": "hbiz_9758734209",
+      "lat": 52.368931,
+      "lon": 9.7454478,
+      "name": "Indische Gewürze und Spezialitäten",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo,Tu,Th,Fr 10:00-18:30; Sa 10:00-16:00"
+    },
+    {
+      "id": "hbiz_9842373226",
+      "lat": 52.3918944,
+      "lon": 9.8516196,
+      "name": "Netto Marken-Discount",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00; PH off",
+      "operator": "Netto Marken-Discount"
+    },
+    {
+      "id": "hbiz_9842373338",
+      "lat": 52.3933132,
+      "lon": 9.8554592,
+      "name": "Die EinBURGERung",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "We 16:00-21:00; Th-Sa 12:30-21:00; Su 12:30-20:30"
+    },
+    {
+      "id": "hbiz_9935215653",
+      "lat": 52.3846406,
+      "lon": 9.8607579,
+      "name": "Berlin Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-22:00"
+    },
+    {
+      "id": "hbiz_10028141999",
+      "lat": 52.4228159,
+      "lon": 9.7288645,
+      "name": "Heide Bäckerei",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-18:00, Sa 07:00-13:00"
+    },
+    {
+      "id": "hbiz_10069300015",
+      "lat": 52.380422,
+      "lon": 9.8634052,
+      "name": "Lidl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Lidl"
+    },
+    {
+      "id": "hbiz_10181025644",
+      "lat": 52.3677437,
+      "lon": 9.7200639,
+      "name": "Mega Döner",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_10277699065",
+      "lat": 52.3864706,
+      "lon": 9.8330278,
+      "name": "Misbuger Grill-House",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 10:00-21:00"
+    },
+    {
+      "id": "hbiz_10559683223",
+      "lat": 52.3884263,
+      "lon": 9.8562804,
+      "name": "Balkenholl",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-19:00; Sa 07:00-18:00, PH off"
+    },
+    {
+      "id": "hbiz_10652174033",
+      "lat": 52.3518035,
+      "lon": 9.8215151,
+      "name": "Bäckerei Heiser",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-17:00; Sa 06:00-12:00; Su 08:00-11:00"
+    },
+    {
+      "id": "hbiz_10658372890",
+      "lat": 52.3715514,
+      "lon": 9.713321,
+      "name": "Pizza Punks",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 16:30-22:00; Fr 16:30-23:00; Sa 12:00-23:30; Su 14:00-22:00"
+    },
+    {
+      "id": "hbiz_10983972434",
+      "lat": 52.379652,
+      "lon": 9.729113,
+      "name": "Ma'loa",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 11:30-21:00; Sa-Su 13:00-21:00; PH closed",
+      "operator": "Maloa Franchise GmbH"
+    },
+    {
+      "id": "hbiz_11118625946",
+      "lat": 52.4397339,
+      "lon": 9.7403134,
+      "name": "Pizza am Markt",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 09:00-17:20:00; Sa 11:00-18:00"
+    },
+    {
+      "id": "hbiz_11174608800",
+      "lat": 52.3774847,
+      "lon": 9.7326998,
+      "name": "Wilma Wunder",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th,Su,PH 09:00-23:00; Fr-Sa 09:00-00:00",
+      "operator": "Wilma Wunder"
+    },
+    {
+      "id": "hbiz_11281384382",
+      "lat": 52.3678018,
+      "lon": 9.7230402,
+      "name": "vorveg",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Fr-Su 09:00-16:00; Mo-Th off",
+      "operator": "FLORIAN SKUPSKI"
+    },
+    {
+      "id": "hbiz_11466769451",
+      "lat": 52.3947643,
+      "lon": 9.7361387,
+      "name": "Esty's Taste",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Th 12:00-20:00; Fr-Su 12:00-22:00; Mo off"
+    },
+    {
+      "id": "hbiz_11649465875",
+      "lat": 52.4499791,
+      "lon": 9.7417698,
+      "name": "Mevan",
+      "city": "Langenhagen",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 16:00-22:00; Fr-Sa 12:00-22:30; Su,PH off"
+    },
+    {
+      "id": "hbiz_11694350088",
+      "lat": 52.3987649,
+      "lon": 9.7371825,
+      "name": "Schäfer's",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-20:00",
+      "operator": "Schäfer's"
+    },
+    {
+      "id": "hbiz_11700326620",
+      "lat": 52.3747664,
+      "lon": 9.7444823,
+      "name": "Vatan",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 07:00-18:00; Su 08:00-18:00"
+    },
+    {
+      "id": "hbiz_11786340396",
+      "lat": 52.343672,
+      "lon": 9.759072,
+      "name": "AREZZO",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Tu,Th-Fr 11:00-14:00,17:00-22:30; Sa-Su 17:00-22:00; PH 14:00-22:30",
+      "operator": "Hewad Nabil"
+    },
+    {
+      "id": "hbiz_11794983028",
+      "lat": 52.4001038,
+      "lon": 9.7428346,
+      "name": "Doli",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Tu off; We-Fr 16:00-22:00; Sa 14:00-23:00; Su,PH 14:00-21:00"
+    },
+    {
+      "id": "hbiz_11802311167",
+      "lat": 52.3809353,
+      "lon": 9.7331471,
+      "name": "Burger Brothers",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 17:00-22:00; Fr-Sa 11:30-23:00; Su,PH 12:00-22:00"
+    },
+    {
+      "id": "hbiz_11807222777",
+      "lat": 52.3717302,
+      "lon": 9.7339272,
+      "name": "Wok 'n' Joy",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:30-22:00"
+    },
+    {
+      "id": "hbiz_11809201077",
+      "lat": 52.3739522,
+      "lon": 9.7420045,
+      "name": "Das Brötchen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-15:00"
+    },
+    {
+      "id": "hbiz_11846627907",
+      "lat": 52.3242548,
+      "lon": 9.8276414,
+      "name": "Calenberger Backstube",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_11884116413",
+      "lat": 52.448792,
+      "lon": 9.7413986,
+      "name": "dede Imbiss",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "We-Su 10:00-21:00"
+    },
+    {
+      "id": "hbiz_11980909675",
+      "lat": 52.3656941,
+      "lon": 9.7448863,
+      "name": "Casino im Haus der Region",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mon-Thu 07:00 – 15:00 h Fri 7:00 – 14:30 h  For extrenal guests: Mon-Thu 12:30 - 15:00 h Fri 11:45 - 14:30 h"
+    },
+    {
+      "id": "hbiz_11994859169",
+      "lat": 52.3214321,
+      "lon": 9.822451,
+      "name": "REWE",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:30",
+      "operator": "REWE"
+    },
+    {
+      "id": "hbiz_12118851978",
+      "lat": 52.376218,
+      "lon": 9.7389342,
+      "name": "Busan Chicken",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 12:00-22:00"
+    },
+    {
+      "id": "hbiz_12130631092",
+      "lat": 52.370042,
+      "lon": 9.7337461,
+      "name": "Schorse im Leineschloss",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Sa 10:00-14:30,17:30-22:30"
+    },
+    {
+      "id": "hbiz_12162736983",
+      "lat": 52.3934699,
+      "lon": 9.6928395,
+      "name": "Kantine im Kirchenamt (Anm. erw.)",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 12:00-13:00; PH off",
+      "operator": "apetito catering"
+    },
+    {
+      "id": "hbiz_12348328528",
+      "lat": 52.3597953,
+      "lon": 9.8272555,
+      "name": "Mohnkuchen Café",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Fr 14:00-18:00; Sa,Su 10:00-18:00"
+    },
+    {
+      "id": "hbiz_12406635303",
+      "lat": 52.3570267,
+      "lon": 9.7526276,
+      "name": "Vince Trattoria",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 12:00-24:00"
+    },
+    {
+      "id": "hbiz_12444610671",
+      "lat": 52.3389141,
+      "lon": 9.8138053,
+      "name": "Stadtbäckerei Café Engelke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 06:00-17:00; Su 07:00-17:00"
+    },
+    {
+      "id": "hbiz_12473319376",
+      "lat": 52.3907869,
+      "lon": 9.857495,
+      "name": "Mensa Schulzentrum",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_12529802951",
+      "lat": 52.3195951,
+      "lon": 9.7947843,
+      "name": "SANDY",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "hbiz_12532892505",
+      "lat": 52.3838975,
+      "lon": 9.7461133,
+      "name": "Brudis",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 11:00-23:00"
+    },
+    {
+      "id": "hbiz_12536754963",
+      "lat": 52.3423707,
+      "lon": 9.7149709,
+      "name": "Netto City",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00",
+      "operator": "Netto City"
+    },
+    {
+      "id": "hbiz_12710254623",
+      "lat": 52.3649966,
+      "lon": 9.7727536,
+      "name": "Beydagi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 11:00-22:00"
+    },
+    {
+      "id": "hbiz_12752947307",
+      "lat": 52.3539505,
+      "lon": 9.7212581,
+      "name": "Steinecke",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-17:30; Sa 07:00-13:00; Su 07:00-11:00",
+      "operator": "Steinecke"
+    },
+    {
+      "id": "hbiz_13149575341",
+      "lat": 52.3760187,
+      "lon": 9.738088,
+      "name": "Burger Vision",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th 11:30-23:00; Fr 11:30-24:00; Sa 12:00-24:00; Su,PH 12:00-23:00"
+    },
+    {
+      "id": "hbiz_13198496017",
+      "lat": 52.3803972,
+      "lon": 9.7326275,
+      "name": "Hamachi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo off; Tu-Sa 15:30-21:30; Su 15:00-21:30"
+    },
+    {
+      "id": "hbiz_13335863743",
+      "lat": 52.3767534,
+      "lon": 9.7505452,
+      "name": "Ako - Sushi",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo, We-Fr 12:00-15:00,17:00-21:30; Sa 17:00-21:30; Su 12:00-21:30"
+    },
+    {
+      "id": "hbiz_13336969184",
+      "lat": 52.3614047,
+      "lon": 9.7641988,
+      "name": "Alnatura Super Natur Markt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-21:00",
+      "operator": "Alnatura"
+    },
+    {
+      "id": "hbiz_13354135234",
+      "lat": 52.372895,
+      "lon": 9.7396068,
+      "name": "Peter Pane",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Th,Su 12:00 - 23:00; Fr-Sa 12:00 - 24:00",
+      "operator": "Peter Pane"
+    },
+    {
+      "id": "hbiz_13427145483",
+      "lat": 52.3869437,
+      "lon": 9.7511035,
+      "name": "Reisprinzen",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Tu-Su 17:00-22:00; Mo off"
+    },
+    {
+      "id": "hbiz_13438479272",
+      "lat": 52.3404186,
+      "lon": 9.6240689,
+      "name": "Benther Berg",
+      "city": "Ronnenberg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su,PH 12:00-24:00"
+    },
+    {
+      "id": "hbiz_13460361400",
+      "lat": 52.3735307,
+      "lon": 9.7366439,
+      "name": "Eat Happy",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-21:00",
+      "operator": "Eat Happy"
+    },
+    {
+      "id": "hbiz_13460413179",
+      "lat": 52.3773098,
+      "lon": 9.7392319,
+      "name": "Eat Happy",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 08:00-20:30",
+      "operator": "Eat Happy"
+    },
+    {
+      "id": "hbiz_13460436648",
+      "lat": 52.3755968,
+      "lon": 9.7354547,
+      "name": "Eat Happy",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "operator": "Eat Happy"
+    },
+    {
+      "id": "hbiz_13500689416",
+      "lat": 52.3718702,
+      "lon": 9.7917898,
+      "name": "beki Frischmarkt",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Fr 07:00-20:00; Sa 07:00-16:00",
+      "operator": "EDEKA"
+    },
+    {
+      "id": "hbiz_13514335742",
+      "lat": 52.3151778,
+      "lon": 9.7211881,
+      "name": "Bistro Fenzini",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 09:00-18:00; Su 12:00-16:00"
+    },
+    {
+      "id": "hbiz_13637633236",
+      "lat": 52.3609604,
+      "lon": 9.8315435,
+      "name": "Bambus Garden",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Su 18:00-23:00,12:00-15:00"
+    },
+    {
+      "id": "hbiz_13712451421",
+      "lat": 52.3574081,
+      "lon": 9.8544442,
+      "name": "Rewe",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Mo-Sa 07:00-21:00; PH off",
+      "operator": "Rewe"
+    }
+  ]
+}
