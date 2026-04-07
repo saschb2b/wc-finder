@@ -100,7 +100,9 @@ function main() {
 
   // Load in priority order (lowest priority first)
   const thToilets = loadIfExists("toilets.json"); // toilettenhero
-  const osmToilets = loadIfExists("osm-toilets.json"); // overpass direct
+  const osmToilets = loadIfExists("osm-toilets.json"); // overpass direct (basic)
+  const osmEnhancedToilets = loadIfExists("osm-enhanced.json"); // overpass (enhanced with fuel, hotels, etc.)
+  const manualToilets = loadIfExists("manual-curated.json"); // manual curation
   const tfaToilets = loadIfExists("tfa-toilets.json"); // curated Hannover
   const dortmundToilets = loadIfExists("dortmund-toilets.json"); // curated Dortmund
 
@@ -185,9 +187,13 @@ function main() {
     );
   }
 
-  console.log("Merging (priority: toilettenhero < OSM < TFA < Dortmund)...\n");
+  console.log(
+    "Merging (priority: toilettenhero < OSM < OSM Enhanced < Manual < TFA < Dortmund)...\n",
+  );
   addWithDedup(thToilets, "toilettenhero");
-  addWithDedup(osmToilets, "OSM direct");
+  addWithDedup(osmToilets, "OSM basic");
+  addWithDedup(osmEnhancedToilets, "OSM enhanced (fuel, hotels, etc.)");
+  addWithDedup(manualToilets, "Manual curated");
   addWithDedup(tfaToilets, "curated Hannover (TFA)");
   addWithDedup(dortmundToilets, "curated Dortmund");
 
@@ -236,7 +242,7 @@ function main() {
   const output = {
     generated: new Date().toISOString().split("T")[0],
     source:
-      "Merged: toilettenhero.de + OpenStreetMap + Toiletten für alle + Stadt Hannover + Dortmund",
+      "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
     count: merged.length,
     toilets: merged,
   };
