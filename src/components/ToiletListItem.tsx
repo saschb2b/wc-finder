@@ -2,9 +2,8 @@ import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from "../types/toilet";
 import { formatDistance } from "../services/overpass";
-import { isCurrentlyOpen } from "../utils/opening-hours";
-
-export { isCurrentlyOpen };
+import { OpeningHoursDisplay } from "./OpeningHoursDisplay";
+import { isOpenNow } from "../types/opening-hours";
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -15,23 +14,6 @@ interface ToiletListItemProps {
   onSelect: (toilet: Toilet) => void;
   onToggleFavorite?: (id: string) => void;
   onReport?: (toilet: Toilet) => void;
-}
-
-/**
- * Format opening hours for display - simplify complex strings.
- */
-function formatOpeningHours(hours?: string): string {
-  if (!hours) return "";
-
-  // Keep 24/7 as is
-  if (hours === "24/7") return "24/7";
-
-  // Truncate very long strings
-  if (hours.length > 40) {
-    return hours.substring(0, 37) + "...";
-  }
-
-  return hours;
 }
 
 export const ToiletListItem = memo(function ToiletListItem({
@@ -50,9 +32,10 @@ export const ToiletListItem = memo(function ToiletListItem({
   const hasEurokey = toilet.tags?.includes("eurokey");
   const isWheelchairAccessible =
     toilet.tags?.includes("eurokey") || toilet.tags?.includes("barrierefrei");
-  const openStatus = isCurrentlyOpen(toilet.opening_hours);
-  const formattedHours = formatOpeningHours(toilet.opening_hours);
-  const hasUnknownHours = !toilet.opening_hours || toilet.opening_hours === "";
+
+  // Use new standardized hours format
+  const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
+  const hasUnknownHours = !toilet.hours || toilet.hours.type === "unknown";
 
   const handleFavoritePress = useCallback(
     (e: any) => {
@@ -143,7 +126,7 @@ export const ToiletListItem = memo(function ToiletListItem({
               <Text style={styles.tagText}>Kostenlos</Text>
             </View>
           )}
-          {toilet.opening_hours === "24/7" && (
+          {toilet.hours?.type === "24/7" && (
             <View style={[styles.tag, styles.tag24h]}>
               <Text style={styles.tagText}>24/7</Text>
             </View>
@@ -176,10 +159,10 @@ export const ToiletListItem = memo(function ToiletListItem({
             {toilet.city}
           </Text>
         )}
-        {formattedHours && formattedHours !== "24/7" && (
-          <Text style={styles.hours} numberOfLines={2}>
-            {formattedHours}
-          </Text>
+        {toilet.hours && toilet.hours.type !== "unknown" && (
+          <View style={styles.hoursRow}>
+            <OpeningHoursDisplay hours={toilet.hours} compact />
+          </View>
         )}
       </View>
 
@@ -277,18 +260,15 @@ const styles = StyleSheet.create({
   tag24h: { backgroundColor: "#34a853" },
   tagOpen: { backgroundColor: "#34a853" },
   tagClosed: { backgroundColor: "#ea4335" },
-  tagUnknown: { backgroundColor: "#9aa0a6" }, // Gray for unknown
+  tagUnknown: { backgroundColor: "#9aa0a6" },
   tagNearest: { backgroundColor: "#34a853" },
   city: {
     fontSize: 12,
     color: "#666",
     marginTop: 3,
   },
-  hours: {
-    fontSize: 12,
-    color: "#888",
-    marginTop: 2,
-    lineHeight: 16,
+  hoursRow: {
+    marginTop: 4,
   },
   actions: {
     alignItems: "center",

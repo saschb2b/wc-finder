@@ -1,3 +1,5 @@
+import { StandardizedHours } from "./opening-hours";
+
 export type ToiletCategory = "public_24h" | "station" | "gastro" | "other";
 
 export interface Toilet {
@@ -8,7 +10,10 @@ export interface Toilet {
   city?: string;
   category: ToiletCategory;
   tags?: string[];
+  /** @deprecated Use hours instead */
   opening_hours?: string;
+  /** Standardized opening hours format */
+  hours?: StandardizedHours;
   operator?: string;
   fee?: string;
   distance?: number;

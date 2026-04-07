@@ -269,7 +269,8 @@ function checkDayTimeRule(
 }
 
 /**
- * Check if a toilet is currently open based on opening_hours.
+ * @deprecated Use isOpenNow from types/opening-hours instead
+ * Check if a toilet is currently open based on opening_hours string.
  * Returns: true (open), false (closed), null (unknown)
  */
 export function isCurrentlyOpen(opening_hours?: string): boolean | null {
