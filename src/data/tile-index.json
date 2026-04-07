@@ -1,7 +1,7 @@
 {
   "generated": "2026-04-07",
   "source": "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
-  "totalCount": 11300,
+  "totalCount": 11304,
   "tileCount": 69,
   "tiles": [
     {
@@ -410,7 +410,7 @@
       "latMax": 53,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 366
+      "count": 370
     },
     {
       "key": "53_10",

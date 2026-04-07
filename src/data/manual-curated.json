@@ -1,7 +1,7 @@
 {
   "generated": "2026-04-07",
   "source": "Manual curation (McDonald's, REWE, Malls, Hospitals, Police)",
-  "count": 68,
+  "count": 72,
   "toilets": [
     {
       "id": "manual_mcdonald_s_berlin_hauptbahnhof_5252",
@@ -372,6 +372,62 @@
       "lat": 52.3768,
       "lon": 9.741,
       "name": "McDonald's Hannover Hauptbahnhof",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_a2_rastst_tte_lehrt_5237",
+      "lat": 52.3785,
+      "lon": 9.9745,
+      "name": "McDonald's A2 Raststätte Lehrte Ost",
+      "city": "Lehrte",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_a2_rastst_tte_lehrt_5237",
+      "lat": 52.3775,
+      "lon": 9.9725,
+      "name": "McDonald's A2 Raststätte Lehrte West",
+      "city": "Lehrte",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_a7_rastst_tte_hanno_5242",
+      "lat": 52.4215,
+      "lon": 9.6775,
+      "name": "McDonald's A7 Raststätte Hannover-Nord",
+      "city": "Hannover",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_a7_rastst_tte_hanno_5229",
+      "lat": 52.2985,
+      "lon": 9.7475,
+      "name": "McDonald's A7 Raststätte Hannover-Süd",
       "city": "Hannover",
       "category": "gastro",
       "tags": [
