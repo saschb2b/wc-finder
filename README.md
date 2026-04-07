@@ -45,11 +45,15 @@ The distinction between a public 24/7 EU-key toilet and a wheelchair-accessible 
 
 ## Data sources
 
-Toilet locations are merged from three sources:
+Toilet locations are merged from multiple sources:
 
 - **toilettenhero.de** — 9,000+ locations from OpenStreetMap, filtered for wheelchair accessibility
-- **OpenStreetMap Overpass API** — 16,000+ wheelchair-accessible toilets queried directly, with opening hours, operator, and eurokey tags
+- **OpenStreetMap Overpass API** — 16,000+ wheelchair-accessible toilets queried directly
+  - Basic query: `wheelchair=yes` only
+  - Enhanced query: fuel stations, hotels, museums, shopping malls (may have accessible toilets)
+- **Manual curation** — 68+ verified locations at McDonald's, shopping malls, hospitals, and police stations in major cities
 - **Toiletten für alle + Stadt Hannover** — curated premium accessible locations with care equipment
+- **Stadt Dortmund** — official open data for public toilets
 
 All data is bundled offline in geo-tiles. The app works without internet after install.
 
@@ -65,12 +69,20 @@ Scan the QR code with Expo Go, or press `a` for Android.
 ### Updating toilet data
 
 ```bash
+# Basic update
 pnpm exec tsx scripts/fetch-toilets.ts          # scrape toilettenhero.de
 pnpm exec tsx scripts/fetch-overpass-toilets.ts  # pull from OpenStreetMap
-pnpm exec tsx scripts/fetch-tfa.ts               # curated locations
+pnpm exec tsx scripts/fetch-tfa.ts               # curated Hannover
 pnpm exec tsx scripts/merge-sources.ts           # deduplicate + merge
 pnpm exec tsx scripts/split-tiles.ts             # split into geo-tiles
 pnpm exec tsx scripts/gen-tile-loader.ts         # generate tile loader
+
+# Enhanced dataset (includes fuel stations, hotels, malls)
+pnpm exec tsx scripts/fetch-enhanced-osm.ts      # extended OSM query
+pnpm exec tsx scripts/fetch-manual-curated.ts    # manual curation
+pnpm exec tsx scripts/merge-sources.ts           # merge all sources
+pnpm exec tsx scripts/split-tiles.ts
+pnpm exec tsx scripts/gen-tile-loader.ts
 ```
 
 ### Building locally
