@@ -30,6 +30,7 @@ import { isCurrentlyOpen } from "./src/utils/opening-hours";
 import { OpeningHoursDisplay } from "./src/components/OpeningHoursDisplay";
 import { isOpenNow } from "./src/types/opening-hours";
 import { ToiletDetailCard } from "./src/components/ToiletDetailCard";
+import { ToiletCallout } from "./src/components/ToiletCallout";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
@@ -42,12 +43,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let MapView: any = null;
 let Marker: any = null;
+let Callout: any = null;
 let PROVIDER_GOOGLE: any = null;
 
 if (!isWeb) {
   const maps = require("react-native-maps");
   MapView = maps.default;
   Marker = maps.Marker;
+  Callout = maps.Callout;
   PROVIDER_GOOGLE = maps.PROVIDER_GOOGLE;
 }
 
@@ -903,18 +906,22 @@ function AppContent() {
               <Marker
                 key={toilet.id}
                 coordinate={{ latitude: toilet.lat, longitude: toilet.lon }}
-                title={toilet.name || "Barrierefreie Toilette"}
-                description={
-                  toilet.distance != null
-                    ? formatDistance(toilet.distance)
-                    : undefined
-                }
                 onPress={() => focusToilet(toilet)}
                 pinColor={pinColor}
                 opacity={opacity}
                 zIndex={zIndex}
                 tracksViewChanges={false}
-              />
+              >
+                <Callout
+                  tooltip
+                  onPress={() => openNavigationWithHaptics(toilet)}
+                >
+                  <ToiletCallout
+                    toilet={toilet}
+                    onNavigate={() => openNavigationWithHaptics(toilet)}
+                  />
+                </Callout>
+              </Marker>
             );
           })}
         </MapView>
