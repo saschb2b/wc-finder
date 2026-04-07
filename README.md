@@ -1,11 +1,13 @@
 # WC Finder
 
-[![Download APK](https://img.shields.io/github/v/release/saschb2b/wc-finder?label=Download%20APK&style=for-the-badge&color=34a853)](https://github.com/saschb2b/wc-finder/releases/latest)
+[![Download APK](https://img.shields.io/github/v/release/saschb2b/wc-finder?label=Download%20APK&style=for-the-badge&color=0066cc)](https://github.com/saschb2b/wc-finder/releases/latest)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/saschb2b/wc-finder/build.yml?branch=main&style=for-the-badge)](https://github.com/saschb2b/wc-finder/actions)
 
-A free toilet finder for wheelchair users in Germany, Austria, and Switzerland.
+[Website](https://saschb2b.github.io/wc-finder/) • [Releases](https://github.com/saschb2b/wc-finder/releases)
 
-You have a Euroschlüssel. You need to go. Where is the nearest accessible toilet you can actually use right now? WC Finder answers that question in one tap.
+A free, offline-first toilet finder for wheelchair users in Germany.
+
+Find the nearest accessible toilet with real-time opening hours, Eurokey access info, and one-tap navigation.
 
 ---
 
@@ -13,130 +15,141 @@ You have a Euroschlüssel. You need to go. Where is the nearest accessible toile
 
 ### [⬇️ Download Latest APK](https://github.com/saschb2b/wc-finder/releases/latest)
 
-**Installation:**
-1. Click the green button above
-2. Download `wc-finder.apk` from the latest release
-3. Open the file on your Android device
-4. Allow installation from unknown sources if prompted
-5. Grant location permission when asked
-
 **Requirements:**
 - Android 6.0+ (API level 23)
-- Location permission (to find nearest toilets)
-- Internet connection (for map tiles)
+- Location permission (for finding nearest toilets)
+
+**Installation:**
+1. Download `wc-finder.apk` from the latest release
+2. Open the file on your Android device
+3. Allow installation from unknown sources if prompted
 
 ---
 
-## What it does
+## Features
 
-- Shows **11,000+ wheelchair-accessible toilets** on a map, sorted by distance (plus real-time Google Places results when configured)
-- One tap to navigate to the nearest **24/7 public toilet** via Google Maps
-- Each toilet is categorized: **24/7 public**, **station**, **gastro**, or **other** — so you know which ones are actually usable when you need them
-- **Search by city** — planning a trip to Dortmund? See all toilets there before you arrive
-- **Pan the map** and tap "Hier suchen" to explore any area
-- **Favorites** — save the toilets you trust for your regular routes
-- **Community reporting** — something wrong? Toilet gone? New one found? Report it directly from the app
+- **13,000+ toilets** — Largest database of wheelchair-accessible toilets in Germany
+- **91% with opening hours** — Know if it's open before you go
+- **Real-time status** — "Geöffnet", "Geschlossen", or "Öffnet in 2h"
+- **Eurokey filter** — Find toilets with Eurokey access
+- **Barrierefrei filter** — Wheelchair accessible locations only
+- **Kostenlos filter** — Show only free toilets
+- **Offline support** — All data bundled in the app, works without internet
+- **One-tap navigation** — Open Google Maps, Apple Maps, or Waze
+- **Favorites** — Save trusted locations for quick access
 
-## Why this exists
+---
 
-Existing apps either cost money per month or have incomplete data. WC Finder is free, open-source, and combines multiple data sources to be as complete as possible.
+## Data Sources
 
-The distinction between a public 24/7 EU-key toilet and a wheelchair-accessible toilet inside a Starbucks that closes at 8pm matters when you urgently need to go. WC Finder makes that distinction visible.
+Toilet locations are merged and deduplicated from:
 
-## Data sources
+| Source | Count | Description |
+|--------|-------|-------------|
+| **OSM / toilettenhero** | 11,000+ | Wheelchair-accessible toilets from OpenStreetMap |
+| **Google Places** | 1,800+ | Enriched with opening hours and accessibility info |
+| **Stadt Dortmund** | 150+ | Official open data |
+| **Hannover Biz** | 400+ | Local business partnerships |
+| **Manual Curation** | 100+ | Verified locations at stations, malls, hospitals |
 
-Toilet locations are merged from multiple sources:
+**Coverage:**
+- 13,155 total toilets
+- 91% with opening hours
+- 2,687 open 24/7
+- All data bundled offline — no API calls at runtime
 
-- **toilettenhero.de** — 11,000+ locations from OpenStreetMap, filtered for wheelchair accessibility
-- **OpenStreetMap Overpass API** — 11,000+ wheelchair-accessible toilets queried directly
-  - Basic query: `wheelchair=yes` only
-  - Enhanced query: fuel stations, hotels, museums, shopping malls (may have accessible toilets)
-- **Manual curation** — 68+ verified locations at McDonald's, shopping malls, hospitals, and police stations in major cities
-- **Toiletten für alle + Stadt Hannover** — curated premium accessible locations with care equipment
-- **Stadt Dortmund** — official open data for public toilets
+---
 
-All data is bundled offline in geo-tiles. The app works without internet after install.
+## Screenshots
+
+*Coming soon*
+
+---
 
 ## Development
 
 ```bash
+# Install dependencies
 pnpm install
+
+# Start development server
 pnpm start
 ```
 
-Scan the QR code with Expo Go, or press `a` for Android.
+Scan the QR code with [Expo Go](https://expo.dev/go), or press `a` for Android emulator.
 
-### Updating toilet data
+### Data Pipeline
 
 ```bash
-# Basic update
-pnpm exec tsx scripts/fetch-toilets.ts          # scrape toilettenhero.de
-pnpm exec tsx scripts/fetch-overpass-toilets.ts  # pull from OpenStreetMap
-pnpm exec tsx scripts/fetch-tfa.ts               # curated Hannover
-pnpm exec tsx scripts/merge-sources.ts           # deduplicate + merge
-pnpm exec tsx scripts/split-tiles.ts             # split into geo-tiles
-pnpm exec tsx scripts/gen-tile-loader.ts         # generate tile loader
+# Fetch all sources
+pnpm exec tsx scripts/fetch-toilets.ts          # toilettenhero.de
+pnpm exec tsx scripts/fetch-overpass-toilets.ts  # OpenStreetMap
+pnpm exec tsx scripts/fetch-tfa.ts               # Toiletten für Alle
+pnpm exec tsx scripts/fetch-dortmund.ts          # Stadt Dortmund
 
-# Enhanced dataset (includes fuel stations, hotels, malls)
-pnpm exec tsx scripts/fetch-enhanced-osm.ts      # extended OSM query
-pnpm exec tsx scripts/fetch-manual-curated.ts    # manual curation
-pnpm exec tsx scripts/merge-sources.ts           # merge all sources
-pnpm exec tsx scripts/split-tiles.ts
-pnpm exec tsx scripts/gen-tile-loader.ts
+# Merge and normalize
+pnpm exec tsx scripts/merge-sources.ts           # Deduplicate
+pnpm exec tsx scripts/migrate-hours-format.ts    # Normalize opening hours
+
+# Generate tiles
+pnpm exec tsx scripts/split-tiles.ts             # Geo-tiles
+pnpm exec tsx scripts/gen-tile-loader.ts         # Tile loader
 ```
 
-### Building locally
-
-Requires an [Expo](https://expo.dev) account and `EXPO_TOKEN`:
+### Building
 
 ```bash
+# Local preview build
 eas build --platform android --profile preview
+
+# Production build
+eas build --platform android --profile production
 ```
 
-### Releasing a new version
+### Releasing
 
 ```bash
-# Tag a new version to trigger the release workflow
-git tag v1.0.1
-git push origin v1.0.1
+# Tag triggers release workflow
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
-GitHub Actions will automatically build and attach the APK to a new release.
+GitHub Actions automatically builds and publishes the APK.
 
-## Optional: Google Places API (Data Enrichment)
+---
 
-To add businesses not in OpenStreetMap (like "Clubhouse by The Harp"):
+## Architecture
 
-```bash
-# 1. Get API key at https://developers.google.com/maps/documentation/places/web-service/get-api-key
-# 2. Enable "Places API (New)"
-# 3. Copy and fill in:
-cp .env.example .env
-# Edit .env and add: GOOGLE_PLACES_API_KEY=your_key_here
+- **React Native + Expo SDK 54**
+- **Offline-first**: All toilet data in JSON geo-tiles (1° × 1°)
+- **Standardized hours format**: Structured data instead of parsing strings
+- **No external APIs at runtime**: All data bundled at build time
 
-# 4. Fetch places around your area:
-npx tsx scripts/fetch-google-places.ts 52.375 9.82 1000
+### Tech Stack
 
-# 5. Merge into dataset and rebuild:
-npx tsx scripts/merge-sources.ts
-npx tsx scripts/split-tiles.ts
-npx tsx scripts/gen-tile-loader.ts
-eas build --platform android --profile preview
-```
+| Component | Technology |
+|-----------|------------|
+| Framework | React Native + Expo |
+| Maps | react-native-maps (Google Maps) |
+| Storage | AsyncStorage (favorites) |
+| State | React hooks |
+| Data | Static JSON tiles |
 
-**Important:**
-- Free tier: 5,000 places/month, then $17 per 1,000
-- Data is fetched once and bundled offline — no runtime API calls
-- Results are merged with existing OSM data
+---
 
 ## Contributing
 
-Found a toilet that's missing or has wrong data? You can:
+**Report missing or incorrect toilets:**
+1. Tap **"Melden"** in the app
+2. [Open an issue](https://github.com/saschb2b/wc-finder/issues)
+3. Edit directly on [OpenStreetMap](https://www.openstreetmap.org) (tags: `amenity=toilets`, `wheelchair=yes`)
 
-1. Use the **"+ Melden"** button in the app
-2. Open an [issue](https://github.com/saschb2b/wc-finder/issues) on GitHub
-3. Add or fix the toilet on [OpenStreetMap](https://www.openstreetmap.org) (tag: `amenity=toilets`, `wheelchair=yes`, `eurokey=yes`)
+**Code contributions welcome.** Check [issues](https://github.com/saschb2b/wc-finder/issues) for good first issues.
+
+---
 
 ## License
 
-MIT
+MIT License — Free to use, modify, and distribute.
+
+Data sources: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), [Toilettenhero](https://www.toilettenhero.de/), [Stadt Dortmund](https://opendata.dortmund.de/)
