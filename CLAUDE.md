@@ -20,11 +20,29 @@ pnpm exec tsx scripts/fetch-toilets.ts          # scrape toilettenhero.de
 pnpm exec tsx scripts/fetch-overpass-toilets.ts  # pull from OpenStreetMap
 pnpm exec tsx scripts/fetch-tfa.ts               # curated locations
 pnpm exec tsx scripts/merge-sources.ts           # deduplicate + merge
+pnpm exec tsx scripts/migrate-hours-format.ts    # normalize opening hours
 pnpm exec tsx scripts/split-tiles.ts             # split into geo-tiles
 pnpm exec tsx scripts/gen-tile-loader.ts         # regenerate tile loader
 ```
 
 After running the pipeline, `src/data/tileLoader.ts` and `src/data/tiles/` are updated. The intermediate files (`toilets.json`, `osm-toilets.json`, `tfa-toilets.json`) are not committed — only tiles are.
+
+### Opening Hours Format
+
+Toilets now use a standardized `hours` field (see `src/types/opening-hours.ts`):
+
+```typescript
+interface StandardizedHours {
+  type: '24_7' | 'weekly' | 'seasonal' | 'unknown';
+  weekly?: {
+    0: { isOpen: boolean; periods: [{ open: 540, close: 1020 }] }, // Sunday
+    1: { isOpen: boolean; periods: [{ open: 540, close: 1020 }] }, // Monday
+    // ... etc
+  };
+}
+```
+
+The `migrate-hours-format.ts` script normalizes OSM/Google Places strings to this format.
 
 ### Enrich with Google Places (optional)
 

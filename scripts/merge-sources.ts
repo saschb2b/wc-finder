@@ -9,7 +9,8 @@
  *   3. Run fetch-tfa.ts (curated Hannover)
  *   4. Run fetch-dortmund.ts (curated Dortmund)
  *   5. Run merge-sources.ts (this script)
- *   6. Run split-tiles.ts + gen-tile-loader.ts
+ *   6. Run migrate-hours-format.ts (normalize opening hours to new format)
+ *   7. Run split-tiles.ts + gen-tile-loader.ts
  */
 
 import fs from "fs";
