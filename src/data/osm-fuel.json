@@ -1,3752 +1,8 @@
 {
   "generated": "2026-04-07",
-  "source": "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
-  "count": 11300,
+  "source": "OpenStreetMap - Fuel Stations",
+  "count": 11211,
   "toilets": [
-    {
-      "id": "tfa_hannover_1",
-      "lat": 52.3725,
-      "lon": 9.7347,
-      "name": "Beratungszentrum Inklusion",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Fr 09:00-17:00",
-      "operator": "Stadt Hannover"
-    },
-    {
-      "id": "tfa_hannover_2",
-      "lat": 52.38368,
-      "lon": 9.77168,
-      "name": "Erlebnis-Zoo Hannover",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "09:00-18:00",
-      "operator": "Erlebnis-Zoo Hannover"
-    },
-    {
-      "id": "tfa_hannover_3",
-      "lat": 52.377263,
-      "lon": 9.73923,
-      "name": "Ernst-August-Galerie",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Sa 10:00-20:00",
-      "operator": "Ernst-August-Galerie"
-    },
-    {
-      "id": "tfa_hannover_4",
-      "lat": 52.3933,
-      "lon": 9.7441,
-      "name": "Freizeitheim Vahrenwald",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Fr 09:00-22:00; Sa-So 10:00-18:00",
-      "operator": "Stadt Hannover"
-    },
-    {
-      "id": "tfa_hannover_5",
-      "lat": 52.36,
-      "lon": 9.7317,
-      "name": "Heinz von Heiden Arena (HDI Arena)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "match days / events",
-      "operator": "Hannover 96"
-    },
-    {
-      "id": "tfa_hannover_6",
-      "lat": 52.3695,
-      "lon": 9.7412,
-      "name": "Niedersächsischer Landtag",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Fr 08:00-18:00",
-      "operator": "Niedersächsischer Landtag"
-    },
-    {
-      "id": "tfa_hannover_7",
-      "lat": 52.3737,
-      "lon": 9.7458,
-      "name": "VGH Versicherung",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Fr 08:00-18:00",
-      "operator": "VGH Versicherungen"
-    },
-    {
-      "id": "tfa_hannover_8",
-      "lat": 52.3221,
-      "lon": 9.8101,
-      "name": "Messegelände Hannover (Halle 19/20)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "during exhibitions",
-      "operator": "Deutsche Messe AG"
-    },
-    {
-      "id": "tfa_hannover_9",
-      "lat": 52.3844,
-      "lon": 9.7804,
-      "name": "Kulturhaus Hölderlin eins",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "Mo-Fr 09:00-18:00",
-      "operator": "Stadt Hannover"
-    },
-    {
-      "id": "tfa_langenhagen_1",
-      "lat": 52.4387,
-      "lon": 9.7393,
-      "name": "Flughafen Hannover-Langenhagen",
-      "city": "Langenhagen",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "toilette-fuer-alle",
-        "pflegeliege"
-      ],
-      "opening_hours": "04:30-23:30",
-      "operator": "Flughafen Hannover-Langenhagen GmbH"
-    },
-    {
-      "id": "haj_kroepke",
-      "lat": 52.3745,
-      "lon": 9.7385,
-      "name": "Kröpcke (U-Bahn-Station)",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Su-Th 06:00-22:00; Fr-Sa 06:00-02:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_marktkirche",
-      "lat": 52.3726,
-      "lon": 9.7333,
-      "name": "Marktkirche (unterirdisch)",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Su-Th 06:00-22:00; Fr-Sa 06:00-02:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_weissekreuz",
-      "lat": 52.3809,
-      "lon": 9.7483,
-      "name": "Weißekreuzplatz",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "06:00-23:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_lister",
-      "lat": 52.3851,
-      "lon": 9.7542,
-      "name": "Lister Platz (U-Bahn)",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "07:00-22:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_jahnplatz",
-      "lat": 52.3949,
-      "lon": 9.731,
-      "name": "Jahnplatz",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Apr-Sep 08:00-20:00; Oct-Mar 09:00-16:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_schwarzer_baer",
-      "lat": 52.3699,
-      "lon": 9.7196,
-      "name": "Schwarzer Bär",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Apr-Sep 08:00-19:00; Oct-Mar 09:00-18:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_vahrenwalder",
-      "lat": 52.3989,
-      "lon": 9.7336,
-      "name": "Vahrenwalder Platz",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "07:00-22:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_steintor",
-      "lat": 52.3773,
-      "lon": 9.7335,
-      "name": "Steintor",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Su-Th 06:00-22:00; Fr-Sa 06:00-02:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_raschplatz",
-      "lat": 52.3791,
-      "lon": 9.7426,
-      "name": "Raschplatz (Hauptbahnhof)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "06:00-23:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_hauptbahnhof_sanifair",
-      "lat": 52.376,
-      "lon": 9.741,
-      "name": "Hauptbahnhof Hannover (SANIFAIR)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "04:30-01:00",
-      "operator": "SANIFAIR",
-      "fee": "yes"
-    },
-    {
-      "id": "haj_aegi",
-      "lat": 52.3685,
-      "lon": 9.7275,
-      "name": "Aegidientorplatz",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "06:00-22:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_goetheplatz",
-      "lat": 52.3695,
-      "lon": 9.723,
-      "name": "Goetheplatz",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Apr-Sep 08:00-20:00; Oct-Mar 09:00-17:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_maschsee",
-      "lat": 52.356,
-      "lon": 9.74,
-      "name": "Maschsee (Nordufer)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Apr-Sep 09:00-19:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_maschsee_sued",
-      "lat": 52.351,
-      "lon": 9.738,
-      "name": "Maschsee (Südufer)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Apr-Sep 09:00-19:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_egelistrasse",
-      "lat": 52.382,
-      "lon": 9.745,
-      "name": "Egelistraße",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Apr-Sep 08:00-20:00; Oct-Mar 09:00-17:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_lister_mehweg",
-      "lat": 52.388,
-      "lon": 9.758,
-      "name": "Lister Meile (Nähe Wedekindplatz)",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "07:00-22:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_nordstadt",
-      "lat": 52.4,
-      "lon": 9.725,
-      "name": "Nordstadt (Nähe Christuskirche)",
-      "city": "Hannover",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "07:00-22:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_linden",
-      "lat": 52.37,
-      "lon": 9.71,
-      "name": "Linden-Mitte (Limmerstraße)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 09:00-20:00",
-      "operator": "Limmerstraße"
-    },
-    {
-      "id": "haj_welfenplatz",
-      "lat": 52.385,
-      "lon": 9.725,
-      "name": "Welfenplatz",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Apr-Sep 08:00-20:00; Oct-Mar 09:00-17:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "haj_zoo",
-      "lat": 52.3885,
-      "lon": 9.7695,
-      "name": "Zoo Hannover",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "09:00-19:00",
-      "operator": "Zoo Hannover"
-    },
-    {
-      "id": "haj_berggarten",
-      "lat": 52.39,
-      "lon": 9.705,
-      "name": "Berggarten",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:00-18:00",
-      "operator": "Stadt Hannover"
-    },
-    {
-      "id": "haj_herrenhausen",
-      "lat": 52.397,
-      "lon": 9.698,
-      "name": "Herrenhäuser Gärten",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:00-18:00",
-      "operator": "Stadt Hannover"
-    },
-    {
-      "id": "haj_nanas",
-      "lat": 52.366,
-      "lon": 9.737,
-      "name": "Leineufer (Nanas)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Apr-Sep 08:00-20:00; Oct-Mar 09:00-17:00",
-      "operator": "Stadtentwässerung Hannover"
-    },
-    {
-      "id": "do_net_d9d84f75",
-      "lat": 51.5199340908,
-      "lon": 7.4607139164,
-      "name": "Auslandsgesellschaft",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Auslandsgesellschaft"
-    },
-    {
-      "id": "do_net_f2fbc64f",
-      "lat": 51.5111634161,
-      "lon": 7.4679664266,
-      "name": "Berswordt-Halle (Stadthaus)",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Berswordt-Halle (Stadthaus)"
-    },
-    {
-      "id": "do_net_f872829d",
-      "lat": 51.4754409964,
-      "lon": 7.4397441951,
-      "name": "Bezirksverwaltungsstelle",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bezirksverwaltungsstelle"
-    },
-    {
-      "id": "do_net_b76828fc",
-      "lat": 51.4878192589,
-      "lon": 7.5013427788,
-      "name": "Bezirksverwaltungsstelle",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bezirksverwaltungsstelle"
-    },
-    {
-      "id": "do_net_d1c23eae",
-      "lat": 51.5161273176,
-      "lon": 7.4671850178,
-      "name": "Café Bäumchen",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café Bäumchen"
-    },
-    {
-      "id": "do_net_9a039ea7",
-      "lat": 51.531205897,
-      "lon": 7.4137556811,
-      "name": "Café täglich",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café täglich"
-    },
-    {
-      "id": "do_net_8d0d24ae",
-      "lat": 51.5794191124,
-      "lon": 7.4659211048,
-      "name": "Evangelisches Familienzentrum",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Evangelisches Familienzentrum"
-    },
-    {
-      "id": "do_net_b3964536",
-      "lat": 51.5099269016,
-      "lon": 7.3833947595,
-      "name": "Gastronomiebetrieb \"Altes Brauhaus\"",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gastronomiebetrieb \"Altes Brauhaus\""
-    },
-    {
-      "id": "do_net_0c515b3e",
-      "lat": 51.4802109033,
-      "lon": 7.4900122333,
-      "name": "Gaststätte - Im Justenkamp",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gaststätte - Im Justenkamp"
-    },
-    {
-      "id": "do_net_829983b7",
-      "lat": 51.562212749,
-      "lon": 7.4154490851,
-      "name": "Gut Königsmühle (Stiftung help & hope)",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gut Königsmühle (Stiftung help & hope)"
-    },
-    {
-      "id": "do_net_c2f4ed57",
-      "lat": 51.5052999033,
-      "lon": 7.4484018663,
-      "name": "House of Beauty",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "House of Beauty"
-    },
-    {
-      "id": "do_net_2548c03b",
-      "lat": 51.5765268156,
-      "lon": 7.5625032743,
-      "name": "KGV Auf der Lauke",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "KGV Auf der Lauke"
-    },
-    {
-      "id": "do_net_e15f4e5d",
-      "lat": 51.5327219287,
-      "lon": 7.4531322044,
-      "name": "Kulturort DEPOT",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Kulturort DEPOT"
-    },
-    {
-      "id": "do_net_f1e2a4b8",
-      "lat": 51.5221881327,
-      "lon": 7.5448493577,
-      "name": "Kulturzentrum balou e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Kulturzentrum balou e.V."
-    },
-    {
-      "id": "do_net_8e9b624c",
-      "lat": 51.5166458176,
-      "lon": 7.4632454851,
-      "name": "MKK - Museum für Kunst und Kulturgeschichte",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "MKK - Museum für Kunst und Kulturgeschichte"
-    },
-    {
-      "id": "do_net_9abcd5fc",
-      "lat": 51.5664562503,
-      "lon": 7.5785169255,
-      "name": "Mowwe Restaurant & Café",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Mowwe Restaurant & Café"
-    },
-    {
-      "id": "do_net_87d70e7b",
-      "lat": 51.5438784152,
-      "lon": 7.4698534186,
-      "name": "Nordfriedhof",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Nordfriedhof"
-    },
-    {
-      "id": "do_net_393f743b",
-      "lat": 51.5116893551,
-      "lon": 7.467443833,
-      "name": "Ordnungsamt",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Ordnungsamt"
-    },
-    {
-      "id": "do_net_bf037eaf",
-      "lat": 51.5116678685,
-      "lon": 7.4905386909,
-      "name": "Ostfriedhof",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Ostfriedhof"
-    },
-    {
-      "id": "do_net_81575024",
-      "lat": 51.5712708777,
-      "lon": 7.5680368021,
-      "name": "Restaurant Schöne Aussicht",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Restaurant Schöne Aussicht"
-    },
-    {
-      "id": "do_net_8f3ad767",
-      "lat": 51.4972504274,
-      "lon": 7.3993837428,
-      "name": "Rewe Mankel",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Rewe Mankel"
-    },
-    {
-      "id": "do_net_d1c83195",
-      "lat": 51.5708401884,
-      "lon": 7.3786229815,
-      "name": "Städt. Begegnungszentrum Mengede",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Städt. Begegnungszentrum Mengede"
-    },
-    {
-      "id": "do_net_8a109575",
-      "lat": 51.4889258648,
-      "lon": 7.4999727963,
-      "name": "Stadtteilbibliothek Hörde",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Stadtteilbibliothek Hörde"
-    },
-    {
-      "id": "do_net_17a12e81",
-      "lat": 51.4885479665,
-      "lon": 7.5010810613,
-      "name": "Trattoria Torino",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Trattoria Torino"
-    },
-    {
-      "id": "do_net_8f491a4d",
-      "lat": 51.579420711,
-      "lon": 7.4599549077,
-      "name": "Turnverein Brechten 1913 e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Turnverein Brechten 1913 e.V."
-    },
-    {
-      "id": "do_net_2c61e530",
-      "lat": 51.5076600806,
-      "lon": 7.4701524269,
-      "name": "Wilhelm-Hansmann-Haus",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette",
-        "eurokey"
-      ],
-      "operator": "Wilhelm-Hansmann-Haus",
-      "opening_hours": "24/7"
-    },
-    {
-      "id": "do_net_6bc055c2",
-      "lat": 51.5594494291,
-      "lon": 7.5963866292,
-      "name": "Bäckerei Vorwerk (im Gebäude \"Sacré Coeur\")",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckerei Vorwerk (im Gebäude \"Sacré Coeur\")"
-    },
-    {
-      "id": "do_net_e9ba7cc6",
-      "lat": 51.5098306268,
-      "lon": 7.3820409429,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_521b8d38",
-      "lat": 51.5049941439,
-      "lon": 7.4638853226,
-      "name": "Bäckermeister Grobe Saarlandstr.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe Saarlandstr."
-    },
-    {
-      "id": "do_net_99e777a3",
-      "lat": 51.5518072508,
-      "lon": 7.4534003394,
-      "name": "BergAUF e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "BergAUF e.V."
-    },
-    {
-      "id": "do_net_5d2397f4",
-      "lat": 51.5711843838,
-      "lon": 7.3802143646,
-      "name": "Bezirksverwaltungsstelle",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bezirksverwaltungsstelle"
-    },
-    {
-      "id": "do_net_bb6cdb5c",
-      "lat": 51.4863430239,
-      "lon": 7.5010531254,
-      "name": "Bistro Kontrast",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bistro Kontrast"
-    },
-    {
-      "id": "do_net_64a58b42",
-      "lat": 51.5056020725,
-      "lon": 7.4514283699,
-      "name": "Bürgermeister Lindemann",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bürgermeister Lindemann"
-    },
-    {
-      "id": "do_net_26c84333",
-      "lat": 51.5136939763,
-      "lon": 7.4754819037,
-      "name": "Café Auszeit",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café Auszeit"
-    },
-    {
-      "id": "do_net_e11e9ebe",
-      "lat": 51.5120748251,
-      "lon": 7.4879037848,
-      "name": "Café Rot",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café Rot"
-    },
-    {
-      "id": "do_net_018496a8",
-      "lat": 51.5319692515,
-      "lon": 7.4497731294,
-      "name": "Café Zum Westerholz",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café Zum Westerholz"
-    },
-    {
-      "id": "do_net_b26f83df",
-      "lat": 51.4776776914,
-      "lon": 7.5997989971,
-      "name": "Edeka Meierjohann",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Edeka Meierjohann"
-    },
-    {
-      "id": "do_net_37a84849",
-      "lat": 51.4929188249,
-      "lon": 7.5863747452,
-      "name": "Edeka Meierjohann",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Edeka Meierjohann"
-    },
-    {
-      "id": "do_net_b44b0eb0",
-      "lat": 51.5531112152,
-      "lon": 7.4579621512,
-      "name": "Ehemaliges Wohlfahrtsgebäude",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Ehemaliges Wohlfahrtsgebäude"
-    },
-    {
-      "id": "do_net_7c4bb52c",
-      "lat": 51.5093203359,
-      "lon": 7.3825695649,
-      "name": "Eiscafé Pieruz",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Eiscafé Pieruz"
-    },
-    {
-      "id": "do_net_ad58d270",
-      "lat": 51.5055250146,
-      "lon": 7.4546721128,
-      "name": "El Mundo",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "El Mundo"
-    },
-    {
-      "id": "do_net_92a1502e",
-      "lat": 51.573973492,
-      "lon": 7.4585633426,
-      "name": "Ev. Kindergarten Brechtener Heide",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Ev. Kindergarten Brechtener Heide"
-    },
-    {
-      "id": "do_net_1ebcf833",
-      "lat": 51.4859491507,
-      "lon": 7.4986488885,
-      "name": "Ev. Kirchengemeinde Hörde",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Ev. Kirchengemeinde Hörde"
-    },
-    {
-      "id": "do_net_52bf3de9",
-      "lat": 51.4999494209,
-      "lon": 7.5602171131,
-      "name": "Flüchtlingshilfe e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Flüchtlingshilfe e.V."
-    },
-    {
-      "id": "do_net_c765225b",
-      "lat": 51.5001672612,
-      "lon": 7.3373664389,
-      "name": "Gaststätte Alte Post",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gaststätte Alte Post"
-    },
-    {
-      "id": "do_net_3e0f3aa3",
-      "lat": 51.5228436551,
-      "lon": 7.5359160559,
-      "name": "Gaststätte Farbe bei Georg",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gaststätte Farbe bei Georg"
-    },
-    {
-      "id": "do_net_daac355d",
-      "lat": 51.5675202026,
-      "lon": 7.3715468409,
-      "name": "Hasans Holzkohlegrill",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Hasans Holzkohlegrill"
-    },
-    {
-      "id": "do_net_7c93bf31",
-      "lat": 51.4977481552,
-      "lon": 7.359097133,
-      "name": "Imbissbetrieb Futterluke",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Imbissbetrieb Futterluke"
-    },
-    {
-      "id": "do_net_46bdb3af",
-      "lat": 51.5404672966,
-      "lon": 7.3750051255,
-      "name": "Im schönen Wiesengrund",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Im schönen Wiesengrund"
-    },
-    {
-      "id": "do_net_f8557bdc",
-      "lat": 51.5802480406,
-      "lon": 7.4609268808,
-      "name": "Kinder- und Jugendtreff Brechten",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Kinder- und Jugendtreff Brechten"
-    },
-    {
-      "id": "do_net_b4cacfaa",
-      "lat": 51.5316760446,
-      "lon": 7.4146153641,
-      "name": "Markt-Schänke",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Markt-Schänke"
-    },
-    {
-      "id": "do_net_d0e66483",
-      "lat": 51.5141585528,
-      "lon": 7.4559247767,
-      "name": "Mobile Toilettenanlage/WC-Container",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Mobile Toilettenanlage/WC-Container"
-    },
-    {
-      "id": "do_net_7404fdf1",
-      "lat": 51.5097109437,
-      "lon": 7.4199124158,
-      "name": "Mütterzentrum",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Mütterzentrum"
-    },
-    {
-      "id": "do_net_e2d9d0ee",
-      "lat": 51.5556856069,
-      "lon": 7.4827159231,
-      "name": "Nachbarschaftstreff \"Mittendrin in der Märchensiedlung\"",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Nachbarschaftstreff \"Mittendrin in der Märchensiedlung\""
-    },
-    {
-      "id": "do_net_56437047",
-      "lat": 51.5577657591,
-      "lon": 7.5446650089,
-      "name": "Orient-Grill",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Orient-Grill"
-    },
-    {
-      "id": "do_net_6a107c01",
-      "lat": 51.5113227841,
-      "lon": 7.4655137374,
-      "name": "Rathaus",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Rathaus"
-    },
-    {
-      "id": "do_net_66505355",
-      "lat": 51.5240865606,
-      "lon": 7.4669444545,
-      "name": "\"Raum vor Ort\" der kefb",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "\"Raum vor Ort\" der kefb"
-    },
-    {
-      "id": "do_net_f8d5abe7",
-      "lat": 51.5520138414,
-      "lon": 7.3666279707,
-      "name": "Restaurant Fachwerk",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Restaurant Fachwerk"
-    },
-    {
-      "id": "do_net_3e293c9d",
-      "lat": 51.5572230534,
-      "lon": 7.3821168745,
-      "name": "Restaurant Nette's bei Jelena",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Restaurant Nette's bei Jelena"
-    },
-    {
-      "id": "do_net_d8b0bae0",
-      "lat": 51.4899680467,
-      "lon": 7.5012917493,
-      "name": "Röstwerk",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Röstwerk"
-    },
-    {
-      "id": "do_net_395e45a7",
-      "lat": 51.5584987931,
-      "lon": 7.4559431686,
-      "name": "SG Phönix Eving 13/58 e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "SG Phönix Eving 13/58 e.V."
-    },
-    {
-      "id": "do_net_c2850af4",
-      "lat": 51.5637801879,
-      "lon": 7.383579993,
-      "name": "Sportklause",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Sportklause"
-    },
-    {
-      "id": "do_net_1d58e2ae",
-      "lat": 51.570612075,
-      "lon": 7.3843725735,
-      "name": "Stadtteilbibliothek",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Stadtteilbibliothek"
-    },
-    {
-      "id": "do_net_291f20d9",
-      "lat": 51.5756984622,
-      "lon": 7.5684700016,
-      "name": "Steak Haus Alte Post",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Steak Haus Alte Post"
-    },
-    {
-      "id": "do_net_5407358b",
-      "lat": 51.5126189146,
-      "lon": 7.3876810849,
-      "name": "SV Arminia Marten",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "SV Arminia Marten"
-    },
-    {
-      "id": "do_net_f6b4efeb",
-      "lat": 51.5253420262,
-      "lon": 7.4608536228,
-      "name": "Tortys Café",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Tortys Café"
-    },
-    {
-      "id": "do_net_676ef10b",
-      "lat": 51.546891503,
-      "lon": 7.4290186533,
-      "name": "TuS Freiheit Deusen 1910 e.V.",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "TuS Freiheit Deusen 1910 e.V."
-    },
-    {
-      "id": "do_net_c66b7f89",
-      "lat": 51.4756360074,
-      "lon": 7.4414926238,
-      "name": "Zum Harkort",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Zum Harkort"
-    },
-    {
-      "id": "do_net_6800f0ff",
-      "lat": 51.5007093629,
-      "lon": 7.5917579108,
-      "name": "Zur Dorfschänke",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Zur Dorfschänke"
-    },
-    {
-      "id": "do_net_5a1231e2",
-      "lat": 51.5168916963,
-      "lon": 7.501616072,
-      "name": "Akzent Hotel Körner Hof",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Akzent Hotel Körner Hof"
-    },
-    {
-      "id": "do_net_9a22ec94",
-      "lat": 51.4976857464,
-      "lon": 7.537936258,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_26ea11b1",
-      "lat": 51.5282367769,
-      "lon": 7.5842391852,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_a74f291f",
-      "lat": 51.4890680025,
-      "lon": 7.5010109977,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_d1b4a2e5",
-      "lat": 51.4778986818,
-      "lon": 7.532574884,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_1bff94b7",
-      "lat": 51.4998720733,
-      "lon": 7.3367603806,
-      "name": "Bäckermeister Grobe",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bäckermeister Grobe"
-    },
-    {
-      "id": "do_net_918dd83c",
-      "lat": 51.5523263128,
-      "lon": 7.5444761437,
-      "name": "Bezirksverwaltungsstelle",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bezirksverwaltungsstelle"
-    },
-    {
-      "id": "do_net_e9884baf",
-      "lat": 51.5493086943,
-      "lon": 7.4629026453,
-      "name": "Bezirksverwaltungsstelle",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Bezirksverwaltungsstelle"
-    },
-    {
-      "id": "do_net_2550f36d",
-      "lat": 51.5115366096,
-      "lon": 7.4476223648,
-      "name": "Biercafé West im Eugen Krautscheid Haus",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Biercafé West im Eugen Krautscheid Haus"
-    },
-    {
-      "id": "do_net_5bc6ef3c",
-      "lat": 51.513297818,
-      "lon": 7.4822387523,
-      "name": "Brüderlich Restaurant",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Brüderlich Restaurant"
-    },
-    {
-      "id": "do_net_dbe48610",
-      "lat": 51.493407322,
-      "lon": 7.5572124069,
-      "name": "Café Allegretto",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Café Allegretto"
-    },
-    {
-      "id": "do_net_4577055f",
-      "lat": 51.5215737794,
-      "lon": 7.4605639215,
-      "name": "Dietrich Keuning Haus",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Dietrich Keuning Haus"
-    },
-    {
-      "id": "do_net_405280ad",
-      "lat": 51.5150953858,
-      "lon": 7.4534147017,
-      "name": "Dortmunder U",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Dortmunder U"
-    },
-    {
-      "id": "do_net_38d2e2f0",
-      "lat": 51.5156572054,
-      "lon": 7.5064443134,
-      "name": "Eiscafé San Remo",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Eiscafé San Remo"
-    },
-    {
-      "id": "do_net_4e3825cb",
-      "lat": 51.5628282989,
-      "lon": 7.4833583919,
-      "name": "Friedhof Kemminghausen",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Friedhof Kemminghausen"
-    },
-    {
-      "id": "do_net_2d6c891b",
-      "lat": 51.4819317882,
-      "lon": 7.4894390362,
-      "name": "Gartenverein - Am grünen Entenpoth",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gartenverein - Am grünen Entenpoth"
-    },
-    {
-      "id": "do_net_dfcdaa1d",
-      "lat": 51.5054944206,
-      "lon": 7.3299211367,
-      "name": "Gastronomie \"Hopfen & Salz\"",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gastronomie \"Hopfen & Salz\""
-    },
-    {
-      "id": "do_net_054c8a19",
-      "lat": 51.5325635375,
-      "lon": 7.6142890941,
-      "name": "Gaststätte Alter Hellweg",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gaststätte Alter Hellweg"
-    },
-    {
-      "id": "do_net_8c01566a",
-      "lat": 51.5547615047,
-      "lon": 7.4796461609,
-      "name": "Gaststätte Zur Kanne",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gaststätte Zur Kanne"
-    },
-    {
-      "id": "do_net_4bed4a2b",
-      "lat": 51.5127920513,
-      "lon": 7.4573582399,
-      "name": "Gesundheitsamt",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Gesundheitsamt"
-    },
-    {
-      "id": "do_net_4c882e6e",
-      "lat": 51.4871495265,
-      "lon": 7.5005866444,
-      "name": "Haus Kilp",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Haus Kilp"
-    },
-    {
-      "id": "do_net_0560d686",
-      "lat": 51.5668787741,
-      "lon": 7.538236123,
-      "name": "KIA Motors",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "KIA Motors"
-    },
-    {
-      "id": "do_net_6e3792d5",
-      "lat": 51.4898915208,
-      "lon": 7.4346385298,
-      "name": "Kiosk An der Palmweide",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Kiosk An der Palmweide"
-    },
-    {
-      "id": "do_net_8af1fa1f",
-      "lat": 51.5128012615,
-      "lon": 7.4831705474,
-      "name": "Küchen-Wirtschaft Bismarck",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Küchen-Wirtschaft Bismarck"
-    },
-    {
-      "id": "do_net_aed7a05e",
-      "lat": 51.5137070909,
-      "lon": 7.5076362728,
-      "name": "Pizzeria Am Zehnthof",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Pizzeria Am Zehnthof"
-    },
-    {
-      "id": "do_net_e31788f5",
-      "lat": 51.5025839334,
-      "lon": 7.4175528682,
-      "name": "Pulsschlag - Dorstfelder Bürgerhaus",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Pulsschlag - Dorstfelder Bürgerhaus"
-    },
-    {
-      "id": "do_net_5bc97647",
-      "lat": 51.5449637522,
-      "lon": 7.3737553356,
-      "name": "Quartiersmanagement",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Quartiersmanagement"
-    },
-    {
-      "id": "do_net_a4638227",
-      "lat": 51.4916341053,
-      "lon": 7.5549987457,
-      "name": "Ratskeller",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette",
-        "eurokey"
-      ],
-      "operator": "Ratskeller"
-    },
-    {
-      "id": "do_net_e91f04a8",
-      "lat": 51.5172690869,
-      "lon": 7.4596608667,
-      "name": "Sanifair Dortmund HBF",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Sanifair Dortmund HBF"
-    },
-    {
-      "id": "do_net_9534ecfd",
-      "lat": 51.4969394774,
-      "lon": 7.5367203592,
-      "name": "Schürener Backparadies",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Schürener Backparadies"
-    },
-    {
-      "id": "do_net_288da41c",
-      "lat": 51.5699210505,
-      "lon": 7.3926183572,
-      "name": "Seniorenhaus Hausemannstift",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Seniorenhaus Hausemannstift"
-    },
-    {
-      "id": "do_net_79af8065",
-      "lat": 51.5725416595,
-      "lon": 7.3784156733,
-      "name": "Seniorenpark Mengede",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Seniorenpark Mengede"
-    },
-    {
-      "id": "do_net_09b1cd6a",
-      "lat": 51.5487368918,
-      "lon": 7.4596174504,
-      "name": "Sonnenhof",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Sonnenhof"
-    },
-    {
-      "id": "do_net_896c303c",
-      "lat": 51.5106433953,
-      "lon": 7.4588700868,
-      "name": "Sozialamt",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Sozialamt"
-    },
-    {
-      "id": "do_net_61e937af",
-      "lat": 51.5171089913,
-      "lon": 7.462685615,
-      "name": "Städtische Immobilienwirtschaft",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Städtische Immobilienwirtschaft"
-    },
-    {
-      "id": "do_net_3109b4d2",
-      "lat": 51.5165190113,
-      "lon": 7.4608508881,
-      "name": "Stadt- und Landesbibliothek",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Stadt- und Landesbibliothek"
-    },
-    {
-      "id": "do_net_4bcbf8c9",
-      "lat": 51.5658516369,
-      "lon": 7.3697652448,
-      "name": "Tagespflege Am Königshalt",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Tagespflege Am Königshalt"
-    },
-    {
-      "id": "do_net_0996151c",
-      "lat": 51.5523810758,
-      "lon": 7.5457233843,
-      "name": "Zum Brunnen",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Zum Brunnen"
-    },
-    {
-      "id": "do_net_c57aed95",
-      "lat": 51.5623183867,
-      "lon": 7.5184614428,
-      "name": "Zweirad Frischmuth",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": "Zweirad Frischmuth"
-    },
-    {
-      "id": "do_net_e67c8f77",
-      "lat": 51.5308339376,
-      "lon": 7.4142017594,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "nette-toilette"
-      ],
-      "operator": null
-    },
-    {
-      "id": "do_acc_c165f7cf",
-      "lat": 51.5089750168,
-      "lon": 7.4468599364,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_cf82d5d8",
-      "lat": 51.5239349081,
-      "lon": 7.5506250695,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_0ee9b3a7",
-      "lat": 51.5092446499,
-      "lon": 7.3800047006,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_2acc127b",
-      "lat": 51.5000248056,
-      "lon": 7.333426576,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_21f157fd",
-      "lat": 51.4918938257,
-      "lon": 7.5081609138,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_78170285",
-      "lat": 51.5129291871,
-      "lon": 7.4228998002,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_d90e8ea6",
-      "lat": 51.5712040322,
-      "lon": 7.3814156195,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_70abb0f6",
-      "lat": 51.5139912372,
-      "lon": 7.4725738075,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_c936b3a2",
-      "lat": 51.5131339583,
-      "lon": 7.4851048108,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_dccc1305",
-      "lat": 51.555052638,
-      "lon": 7.4734866914,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_5c3c4ba2",
-      "lat": 51.4968465045,
-      "lon": 7.4587196178,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_fa52c381",
-      "lat": 51.4893391843,
-      "lon": 7.5025496176,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_7d35fa18",
-      "lat": 51.5307232871,
-      "lon": 7.4133089704,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_1dc50e47",
-      "lat": 51.5122647562,
-      "lon": 7.4671420925,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_eae8c2e1",
-      "lat": 51.5525188124,
-      "lon": 7.5415831463,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_4644f2b9",
-      "lat": 51.5213011604,
-      "lon": 7.450442354,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_a8e3b7af",
-      "lat": 51.488710258,
-      "lon": 7.5132130444,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_acc_dc923331",
-      "lat": 51.4761941262,
-      "lon": 7.4378747569,
-      "name": "Öffentliche Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "operator": "Öffentliche Toilette"
-    },
-    {
-      "id": "do_hbf_sanifair",
-      "lat": 51.5178,
-      "lon": 7.4593,
-      "name": "Dortmund Hauptbahnhof (SANIFAIR)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei",
-        "eurokey",
-        "wickeltisch"
-      ],
-      "opening_hours": "04:30-01:00",
-      "operator": "SANIFAIR",
-      "fee": "yes"
-    },
-    {
-      "id": "do_wall_ecn",
-      "lat": 51.5141,
-      "lon": 7.4645,
-      "name": "Wall ECN Toilette",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Stadt Dortmund"
-    },
-    {
-      "id": "do_hansaplatz",
-      "lat": 51.5125,
-      "lon": 7.4615,
-      "name": "Hansaplatz WC-Anlage",
-      "city": "Dortmund",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "06:00-23:00",
-      "operator": "Stadt Dortmund"
-    },
-    {
-      "id": "do_signal_iduna",
-      "lat": 51.4926,
-      "lon": 7.4518,
-      "name": "Signal Iduna Park (BVB Stadion)",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "match days / events",
-      "operator": "BVB"
-    },
-    {
-      "id": "haj_shell_kfc",
-      "lat": 52.3715,
-      "lon": 9.7695,
-      "name": "Shell / KFC (Hildesheimer Str.)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Shell"
-    },
-    {
-      "id": "haj_aral_limmer",
-      "lat": 52.3965,
-      "lon": 9.715,
-      "name": "Aral / Burger King (Limmerstr.)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Aral"
-    },
-    {
-      "id": "haj_jet_nord",
-      "lat": 52.419,
-      "lon": 9.744,
-      "name": "JET Tankstelle (Hannover-Nord)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "JET"
-    },
-    {
-      "id": "haj_shell_sued",
-      "lat": 52.345,
-      "lon": 9.728,
-      "name": "Shell (Hannover-Süd / B3)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Shell"
-    },
-    {
-      "id": "haj_total_misburg",
-      "lat": 52.389,
-      "lon": 9.832,
-      "name": "TotalEnergies (Misburg)",
-      "city": "Hannover",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "TotalEnergies"
-    },
-    {
-      "id": "haj_mcdonalds_hbf",
-      "lat": 52.377,
-      "lon": 9.741,
-      "name": "McDonald's (Hauptbahnhof)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "haj_mcdonalds_mitte",
-      "lat": 52.373,
-      "lon": 9.735,
-      "name": "McDonald's (Georgstr.)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's"
-    },
-    {
-      "id": "haj_mcdonalds_a2",
-      "lat": 52.432,
-      "lon": 9.785,
-      "name": "McDonald's (A2 Autobahn)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's"
-    },
-    {
-      "id": "haj_klinikum_mitte",
-      "lat": 52.365,
-      "lon": 9.804,
-      "name": "Klinikum Hannover (Mitte)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Klinikum Hannover"
-    },
-    {
-      "id": "haj_krankenhaus_nordstadt",
-      "lat": 52.393,
-      "lon": 9.721,
-      "name": "Krankenhaus Nordstadt",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Krankenhaus Nordstadt"
-    },
-    {
-      "id": "haj_polizei_zentral",
-      "lat": 52.375,
-      "lon": 9.74,
-      "name": "Polizeiinspektion (Bahnhof)",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei"
-    },
-    {
-      "id": "do_shell_city",
-      "lat": 51.5145,
-      "lon": 7.455,
-      "name": "Shell (Ruhrallee / City)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Shell"
-    },
-    {
-      "id": "do_aral_westfalenhallen",
-      "lat": 51.493,
-      "lon": 7.46,
-      "name": "Aral (Westfalenhallen)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Aral"
-    },
-    {
-      "id": "do_jet_hoerde",
-      "lat": 51.485,
-      "lon": 7.501,
-      "name": "JET Tankstelle (Hörde)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "JET"
-    },
-    {
-      "id": "do_total_mengede",
-      "lat": 51.572,
-      "lon": 7.386,
-      "name": "TotalEnergies (Mengede)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "TotalEnergies"
-    },
-    {
-      "id": "do_shell_a45",
-      "lat": 51.475,
-      "lon": 7.52,
-      "name": "Shell (A45 Raststätte Dortmund-Süd)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Shell"
-    },
-    {
-      "id": "do_aral_a2",
-      "lat": 51.536,
-      "lon": 7.425,
-      "name": "Aral (A2 Raststätte Dortmund-Nord)",
-      "city": "Dortmund",
-      "category": "station",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Aral"
-    },
-    {
-      "id": "do_mcdonalds_westenhellweg",
-      "lat": 51.513,
-      "lon": 7.465,
-      "name": "McDonald's (Westenhellweg)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's"
-    },
-    {
-      "id": "do_mcdonalds_hoerde",
-      "lat": 51.48,
-      "lon": 7.505,
-      "name": "McDonald's (Hörde)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's"
-    },
-    {
-      "id": "do_mcdonalds_a40",
-      "lat": 51.515,
-      "lon": 7.38,
-      "name": "McDonald's (A40 Autobahn)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's"
-    },
-    {
-      "id": "do_klinikum_mitte",
-      "lat": 51.4953,
-      "lon": 7.4055,
-      "name": "Klinikum Dortmund (Mitte)",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Klinikum Dortmund"
-    },
-    {
-      "id": "do_klinikum_west",
-      "lat": 51.5118,
-      "lon": 7.4365,
-      "name": "Klinikum Dortmund (West)",
-      "city": "Dortmund",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Klinikum Dortmund"
-    },
-    {
-      "id": "do_polizei_hbf",
-      "lat": 51.518,
-      "lon": 7.46,
-      "name": "Polizeiinspektion (Hauptbahnhof)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei",
-      "fee": "no"
-    },
-    {
-      "id": "do_nightrooms",
-      "lat": 51.515,
-      "lon": 7.465,
-      "name": "Nightrooms (Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "Nightrooms"
-    },
-    {
-      "id": "do_prisma",
-      "lat": 51.513,
-      "lon": 7.468,
-      "name": "Prisma (Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "Prisma"
-    },
-    {
-      "id": "do_fzw",
-      "lat": 51.498,
-      "lon": 7.45,
-      "name": "FZW (Club & Kulturzentrum)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-05:00",
-      "operator": "FZW Dortmund"
-    },
-    {
-      "id": "do_ringlokschuppen",
-      "lat": 51.495,
-      "lon": 7.455,
-      "name": "Ringlokschuppen (Biergarten & Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 20:00-04:00",
-      "operator": "Ringlokschuppen"
-    },
-    {
-      "id": "haj_faust",
-      "lat": 52.38,
-      "lon": 9.72,
-      "name": "FAUST (Kultur- und Musikclub)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "FAUST Hannover"
-    },
-    {
-      "id": "haj_capitol",
-      "lat": 52.376,
-      "lon": 9.745,
-      "name": "Capitol (Club)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-05:00",
-      "operator": "Capitol Hannover"
-    },
-    {
-      "id": "haj_braufass",
-      "lat": 52.376,
-      "lon": 9.735,
-      "name": "Braufass (Steintorviertel)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Braufass"
-    },
-    {
-      "id": "haj_glocksee",
-      "lat": 52.378,
-      "lon": 9.718,
-      "name": "Glocksee (Kulturzentrum)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-05:00",
-      "operator": "Glocksee"
-    },
-    {
-      "id": "haj_beethoven",
-      "lat": 52.376,
-      "lon": 9.738,
-      "name": "Beethoven (Club)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-05:00",
-      "operator": "Beethoven Club"
-    },
-    {
-      "id": "haj_cubo",
-      "lat": 52.374,
-      "lon": 9.739,
-      "name": "CUBO (Lounge & Club)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-04:00",
-      "operator": "CUBO"
-    },
-    {
-      "id": "haj_lux",
-      "lat": 52.377,
-      "lon": 9.732,
-      "name": "LUX (Club)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "LUX Club Hannover"
-    },
-    {
-      "id": "haj_silberhochzeit",
-      "lat": 52.375,
-      "lon": 9.736,
-      "name": "Silberhochzeit (Bar)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 19:00-03:00",
-      "operator": "Silberhochzeit"
-    },
-    {
-      "id": "haj_berlin_cocktailbar",
-      "lat": 52.373,
-      "lon": 9.738,
-      "name": "Die Berliner Cocktailbar",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Die Berliner"
-    },
-    {
-      "id": "haj_wohnzimmer",
-      "lat": 52.376,
-      "lon": 9.74,
-      "name": "Das Wohnzimmer (Bar)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Das Wohnzimmer"
-    },
-    {
-      "id": "haj_eschenbach",
-      "lat": 52.373,
-      "lon": 9.737,
-      "name": "Eschenbach (Kneipe)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 17:00-02:00",
-      "operator": "Eschenbach"
-    },
-    {
-      "id": "haj_provinz",
-      "lat": 52.375,
-      "lon": 9.735,
-      "name": "Die Provinz (Bar)",
-      "city": "Hannover",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Die Provinz"
-    },
-    {
-      "id": "do_sonic",
-      "lat": 51.515,
-      "lon": 7.468,
-      "name": "Sonic (Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "Sonic Club"
-    },
-    {
-      "id": "do_mogli",
-      "lat": 51.513,
-      "lon": 7.467,
-      "name": "Mogli (Bar)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Mogli"
-    },
-    {
-      "id": "do_bierermann",
-      "lat": 51.513,
-      "lon": 7.466,
-      "name": "Biere-Mann (Kneipe)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 17:00-02:00",
-      "operator": "Biere-Mann"
-    },
-    {
-      "id": "do_hovels",
-      "lat": 51.515,
-      "lon": 7.463,
-      "name": "Hövels Hausbrauerei",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 17:00-01:00",
-      "operator": "Hövels"
-    },
-    {
-      "id": "do_pantheon",
-      "lat": 51.495,
-      "lon": 7.45,
-      "name": "Pantheon (Club - Strobelallee)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-05:00",
-      "operator": "Pantheon"
-    },
-    {
-      "id": "do_bullwinkel",
-      "lat": 51.487,
-      "lon": 7.505,
-      "name": "Bullwinkel (Hörde - Bar)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 18:00-03:00",
-      "operator": "Bullwinkel"
-    },
-    {
-      "id": "do_subrosa",
-      "lat": 51.512,
-      "lon": 7.468,
-      "name": "Subrosa (Bar)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Mo-Sa 19:00-03:00",
-      "operator": "Subrosa"
-    },
-    {
-      "id": "do_pilgrim",
-      "lat": 51.514,
-      "lon": 7.469,
-      "name": "Pilgrim (Bar & Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 22:00-05:00",
-      "operator": "Pilgrim"
-    },
-    {
-      "id": "do_maximal",
-      "lat": 51.495,
-      "lon": 7.452,
-      "name": "Maximal (Club)",
-      "city": "Dortmund",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "Fr-Sa 23:00-06:00",
-      "operator": "Maximal"
-    },
-    {
-      "id": "manual_mcdonald_s_berlin_hauptbahnhof_5252",
-      "lat": 52.5251,
-      "lon": 13.3694,
-      "name": "McDonald's Berlin Hauptbahnhof",
-      "city": "Berlin",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_alexanderplatz_5252",
-      "lat": 52.5219,
-      "lon": 13.4132,
-      "name": "McDonald's Alexanderplatz",
-      "city": "Berlin",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_potsdamer_platz_5250",
-      "lat": 52.5096,
-      "lon": 13.3759,
-      "name": "McDonald's Potsdamer Platz",
-      "city": "Berlin",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_zoologischer_garten_5250",
-      "lat": 52.5074,
-      "lon": 13.3324,
-      "name": "McDonald's Zoologischer Garten",
-      "city": "Berlin",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_friedrichstra_e_5252",
-      "lat": 52.52,
-      "lon": 13.388,
-      "name": "McDonald's Friedrichstraße",
-      "city": "Berlin",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_hamburg_hauptbahnho_5355",
-      "lat": 53.5527,
-      "lon": 10.0069,
-      "name": "McDonald's Hamburg Hauptbahnhof",
-      "city": "Hamburg",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_jungfernstieg_5355",
-      "lat": 53.5521,
-      "lon": 9.9937,
-      "name": "McDonald's Jungfernstieg",
-      "city": "Hamburg",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-23:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_reeperbahn_5354",
-      "lat": 53.5493,
-      "lon": 9.9626,
-      "name": "McDonald's Reeperbahn",
-      "city": "Hamburg",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_altona_5355",
-      "lat": 53.5511,
-      "lon": 9.9352,
-      "name": "McDonald's Altona",
-      "city": "Hamburg",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_m_nchen_hauptbahnho_4814",
-      "lat": 48.1402,
-      "lon": 11.561,
-      "name": "McDonald's München Hauptbahnhof",
-      "city": "München",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_marienplatz_4813",
-      "lat": 48.1373,
-      "lon": 11.5755,
-      "name": "Mcdonald's Marienplatz",
-      "city": "München",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "07:00-23:00",
-      "operator": "Mcdonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_stachus_4813",
-      "lat": 48.1391,
-      "lon": 11.5657,
-      "name": "McDonald's Stachus",
-      "city": "München",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_ostbahnhof_4812",
-      "lat": 48.1275,
-      "lon": 11.6046,
-      "name": "McDonald's Ostbahnhof",
-      "city": "München",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_k_ln_hauptbahnhof_5094",
-      "lat": 50.943,
-      "lon": 6.9583,
-      "name": "McDonald's Köln Hauptbahnhof",
-      "city": "Köln",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_heumarkt_5093",
-      "lat": 50.9361,
-      "lon": 6.9603,
-      "name": "McDonald's Heumarkt",
-      "city": "Köln",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_neumarkt_5093",
-      "lat": 50.9372,
-      "lon": 6.9478,
-      "name": "McDonald's Neumarkt",
-      "city": "Köln",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_frankfurt_hauptbahn_5010",
-      "lat": 50.1071,
-      "lon": 8.6636,
-      "name": "McDonald's Frankfurt Hauptbahnhof",
-      "city": "Frankfurt",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_hauptwache_5011",
-      "lat": 50.1141,
-      "lon": 8.6795,
-      "name": "McDonald's Hauptwache",
-      "city": "Frankfurt",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_konstablerwache_5011",
-      "lat": 50.1136,
-      "lon": 8.6868,
-      "name": "McDonald's Konstablerwache",
-      "city": "Frankfurt",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_stuttgart_hauptbahn_4878",
-      "lat": 48.7833,
-      "lon": 9.1803,
-      "name": "McDonald's Stuttgart Hauptbahnhof",
-      "city": "Stuttgart",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_k_nigstra_e_4877",
-      "lat": 48.7758,
-      "lon": 9.1829,
-      "name": "McDonald's Königstraße",
-      "city": "Stuttgart",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "07:00-23:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_d_sseldorf_hauptbah_5121",
-      "lat": 51.2198,
-      "lon": 6.7949,
-      "name": "McDonald's Düsseldorf Hauptbahnhof",
-      "city": "Düsseldorf",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_k_nigsallee_5122",
-      "lat": 51.2256,
-      "lon": 6.7806,
-      "name": "McDonald's Königsallee",
-      "city": "Düsseldorf",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "07:00-23:00",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_leipzig_hauptbahnho_5134",
-      "lat": 51.3455,
-      "lon": 12.3811,
-      "name": "McDonald's Leipzig Hauptbahnhof",
-      "city": "Leipzig",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_dresden_hauptbahnho_5104",
-      "lat": 51.0406,
-      "lon": 13.7325,
-      "name": "McDonald's Dresden Hauptbahnhof",
-      "city": "Dresden",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_mcdonald_s_n_rnberg_hauptbahnh_4944",
-      "lat": 49.4456,
-      "lon": 11.0825,
-      "name": "McDonald's Nürnberg Hauptbahnhof",
-      "city": "Nürnberg",
-      "category": "gastro",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "McDonald's",
-      "fee": "no"
-    },
-    {
-      "id": "manual_rewe_city_berlin_alexanderplat_5252",
-      "lat": 52.5225,
-      "lon": 13.4132,
-      "name": "REWE City Berlin Alexanderplatz",
-      "city": "Berlin",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "07:00-24:00",
-      "operator": "REWE",
-      "fee": "no"
-    },
-    {
-      "id": "manual_rewe_city_m_nchen_hauptbahnhof_4814",
-      "lat": 48.1405,
-      "lon": 11.56,
-      "name": "REWE City München Hauptbahnhof",
-      "city": "München",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "REWE",
-      "fee": "no"
-    },
-    {
-      "id": "manual_rewe_city_hamburg_hauptbahnhof_5255",
-      "lat": 52.5527,
-      "lon": 10.0069,
-      "name": "REWE City Hamburg Hauptbahnhof",
-      "city": "Hamburg",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "07:00-24:00",
-      "operator": "REWE",
-      "fee": "no"
-    },
-    {
-      "id": "manual_rewe_city_frankfurt_hauptbahnh_5010",
-      "lat": 50.1075,
-      "lon": 8.663,
-      "name": "REWE City Frankfurt Hauptbahnhof",
-      "city": "Frankfurt",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-24:00",
-      "operator": "REWE",
-      "fee": "no"
-    },
-    {
-      "id": "manual_alexa__alexa_center__5251",
-      "lat": 52.519,
-      "lon": 13.414,
-      "name": "Alexa (Alexa-Center)",
-      "city": "Berlin",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Alexa",
-      "fee": "no"
-    },
-    {
-      "id": "manual_gesundbrunnen_center_5254",
-      "lat": 52.549,
-      "lon": 13.39,
-      "name": "Gesundbrunnen-Center",
-      "city": "Berlin",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Gesundbrunnen-Center",
-      "fee": "no"
-    },
-    {
-      "id": "manual_east_side_mall_5250",
-      "lat": 52.501,
-      "lon": 13.442,
-      "name": "East Side Mall",
-      "city": "Berlin",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "East",
-      "fee": "no"
-    },
-    {
-      "id": "manual_europa_passage_5355",
-      "lat": 53.551,
-      "lon": 9.993,
-      "name": "Europa Passage",
-      "city": "Hamburg",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Europa",
-      "fee": "no"
-    },
-    {
-      "id": "manual_hanse_viertel_5355",
-      "lat": 53.557,
-      "lon": 9.99,
-      "name": "Hanse-Viertel",
-      "city": "Hamburg",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Hanse-Viertel",
-      "fee": "no"
-    },
-    {
-      "id": "manual_olympia_einkaufszentrum_4818",
-      "lat": 48.182,
-      "lon": 11.53,
-      "name": "Olympia-Einkaufszentrum",
-      "city": "München",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:30-20:00",
-      "operator": "Olympia-Einkaufszentrum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_riem_arcaden_4813",
-      "lat": 48.137,
-      "lon": 11.69,
-      "name": "Riem-Arcaden",
-      "city": "München",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Riem-Arcaden",
-      "fee": "no"
-    },
-    {
-      "id": "manual_rhein_center_5098",
-      "lat": 50.98,
-      "lon": 6.9,
-      "name": "Rhein-Center",
-      "city": "Köln",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Rhein-Center",
-      "fee": "no"
-    },
-    {
-      "id": "manual_city_center_chorweiler_5102",
-      "lat": 51.025,
-      "lon": 6.895,
-      "name": "City-Center Chorweiler",
-      "city": "Köln",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:30-20:00",
-      "operator": "City-Center",
-      "fee": "no"
-    },
-    {
-      "id": "manual_myzeil_5011",
-      "lat": 50.1145,
-      "lon": 8.681,
-      "name": "MyZeil",
-      "city": "Frankfurt",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "MyZeil",
-      "fee": "no"
-    },
-    {
-      "id": "manual_skyline_plaza_5011",
-      "lat": 50.11,
-      "lon": 8.645,
-      "name": "Skyline Plaza",
-      "city": "Frankfurt",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Skyline",
-      "fee": "no"
-    },
-    {
-      "id": "manual_milaneo_4879",
-      "lat": 48.791,
-      "lon": 9.18,
-      "name": "Milaneo",
-      "city": "Stuttgart",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Milaneo",
-      "fee": "no"
-    },
-    {
-      "id": "manual_k_nigsbau_passagen_4877",
-      "lat": 48.779,
-      "lon": 9.177,
-      "name": "Königsbau-Passagen",
-      "city": "Stuttgart",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Königsbau-Passagen",
-      "fee": "no"
-    },
-    {
-      "id": "manual_k__galerie_5122",
-      "lat": 51.226,
-      "lon": 6.779,
-      "name": "Kö-Galerie",
-      "city": "Düsseldorf",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Kö-Galerie",
-      "fee": "no"
-    },
-    {
-      "id": "manual_schadow_arkaden_5122",
-      "lat": 51.225,
-      "lon": 6.782,
-      "name": "Schadow Arkaden",
-      "city": "Düsseldorf",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Schadow",
-      "fee": "no"
-    },
-    {
-      "id": "manual_paunsdorf_center_5136",
-      "lat": 51.365,
-      "lon": 12.42,
-      "name": "Paunsdorf-Center",
-      "city": "Leipzig",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:30-20:00",
-      "operator": "Paunsdorf-Center",
-      "fee": "no"
-    },
-    {
-      "id": "manual_promenaden_hauptbahnhof_5134",
-      "lat": 51.345,
-      "lon": 12.38,
-      "name": "Promenaden Hauptbahnhof",
-      "city": "Leipzig",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "06:00-23:00",
-      "operator": "Promenaden",
-      "fee": "no"
-    },
-    {
-      "id": "manual_centrum_galerie_5104",
-      "lat": 51.048,
-      "lon": 13.74,
-      "name": "Centrum-Galerie",
-      "city": "Dresden",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Centrum-Galerie",
-      "fee": "no"
-    },
-    {
-      "id": "manual_altmarkt_galerie_5105",
-      "lat": 51.05,
-      "lon": 13.735,
-      "name": "Altmarkt-Galerie",
-      "city": "Dresden",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-21:00",
-      "operator": "Altmarkt-Galerie",
-      "fee": "no"
-    },
-    {
-      "id": "manual_n_rnberg_arkaden_4944",
-      "lat": 49.449,
-      "lon": 11.077,
-      "name": "Nürnberg Arkaden",
-      "city": "Nürnberg",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "10:00-20:00",
-      "operator": "Nürnberg",
-      "fee": "no"
-    },
-    {
-      "id": "manual_franken_center_4945",
-      "lat": 49.459,
-      "lon": 11.098,
-      "name": "Franken-Center",
-      "city": "Nürnberg",
-      "category": "other",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "09:30-20:00",
-      "operator": "Franken-Center",
-      "fee": "no"
-    },
-    {
-      "id": "manual_charit____universit_tsmedizin__5252",
-      "lat": 52.523,
-      "lon": 13.376,
-      "name": "Charité - Universitätsmedizin Berlin (Mitte)",
-      "city": "Berlin",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Charité",
-      "fee": "no"
-    },
-    {
-      "id": "manual_charit__campus_virchow_5254",
-      "lat": 52.544,
-      "lon": 13.344,
-      "name": "Charité Campus Virchow",
-      "city": "Berlin",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Charité",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_hamburg_e_5359",
-      "lat": 53.591,
-      "lon": 9.977,
-      "name": "Universitätsklinikum Hamburg-Eppendorf",
-      "city": "Hamburg",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_klinikum_m_nchen__lmu__4813",
-      "lat": 48.136,
-      "lon": 11.56,
-      "name": "Klinikum München (LMU)",
-      "city": "München",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Klinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_k_ln_5087",
-      "lat": 50.878,
-      "lon": 6.988,
-      "name": "Universitätsklinikum Köln",
-      "city": "Köln",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_frankfurt_5009",
-      "lat": 50.096,
-      "lon": 8.657,
-      "name": "Universitätsklinikum Frankfurt",
-      "city": "Frankfurt",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_klinikum_stuttgart_4876",
-      "lat": 48.765,
-      "lon": 9.171,
-      "name": "Klinikum Stuttgart",
-      "city": "Stuttgart",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Klinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_d_sseldor_5119",
-      "lat": 51.197,
-      "lon": 6.794,
-      "name": "Universitätsklinikum Düsseldorf",
-      "city": "Düsseldorf",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_leipzig_5132",
-      "lat": 51.326,
-      "lon": 12.389,
-      "name": "Universitätsklinikum Leipzig",
-      "city": "Leipzig",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_dresden_5105",
-      "lat": 51.059,
-      "lon": 13.781,
-      "name": "Universitätsklinikum Dresden",
-      "city": "Dresden",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_universit_tsklinikum_erlangen_4959",
-      "lat": 49.598,
-      "lon": 11.007,
-      "name": "Universitätsklinikum Erlangen",
-      "city": "Erlangen",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Universitätsklinikum",
-      "fee": "no"
-    },
-    {
-      "id": "manual_polizei_berlin_mitte_5252",
-      "lat": 52.52,
-      "lon": 13.405,
-      "name": "Polizei Berlin Mitte",
-      "city": "Berlin",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei",
-      "fee": "no"
-    },
-    {
-      "id": "manual_polizei_hamburg_davidwache_5249",
-      "lat": 52.49,
-      "lon": 13.387,
-      "name": "Polizei Hamburg Davidwache",
-      "city": "Hamburg",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei",
-      "fee": "no"
-    },
-    {
-      "id": "manual_polizei_k_ln_hauptbahnhof_5294",
-      "lat": 52.943,
-      "lon": 6.958,
-      "name": "Polizei Köln Hauptbahnhof",
-      "city": "Köln",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei",
-      "fee": "no"
-    },
-    {
-      "id": "manual_polizei_stuttgart_mitte_4877",
-      "lat": 48.776,
-      "lon": 9.178,
-      "name": "Polizei Stuttgart Mitte",
-      "city": "Stuttgart",
-      "category": "public_24h",
-      "tags": [
-        "barrierefrei"
-      ],
-      "opening_hours": "24/7",
-      "operator": "Polizei",
-      "fee": "no"
-    },
     {
       "id": "fuel_12260880",
       "lat": 51.0148364,
@@ -5690,7 +1946,7 @@
       "lat": 51.8114524,
       "lon": 9.8910802,
       "name": "Aral",
-      "city": "Einbeck",
+      "city": "",
       "category": "other",
       "tags": [],
       "operator": "Aral"
@@ -7005,8 +3261,7 @@
       "name": "Calpam",
       "city": "",
       "category": "other",
-      "tags": [],
-      "operator": "Calpam"
+      "tags": []
     },
     {
       "id": "fuel_59931484",
@@ -7473,6 +3728,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Orlen"
+    },
+    {
+      "id": "fuel_69171888",
+      "lat": 48.1764292,
+      "lon": 11.2594808,
+      "name": "Agip",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-24:00, Sa 06:00-24:00, Su 07:00-24:00",
+      "operator": "Agip"
     },
     {
       "id": "fuel_69280623",
@@ -8442,6 +4708,16 @@
       "category": "other",
       "tags": [],
       "operator": "Westfalen AG"
+    },
+    {
+      "id": "fuel_91197030",
+      "lat": 52.0805483,
+      "lon": 8.7204715,
+      "name": "Freie",
+      "city": "Bad Salzuflen",
+      "category": "other",
+      "tags": [],
+      "operator": "Jürgen Ripka"
     },
     {
       "id": "fuel_91405377",
@@ -10120,6 +6396,17 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-21:00; Sa 07:00-21:00; PH,Su 08:00-21:00",
       "operator": "Total"
+    },
+    {
+      "id": "fuel_171035054",
+      "lat": 49.5142023,
+      "lon": 8.5463096,
+      "name": "HEM",
+      "city": "Mannheim",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Su 05:00-24:00",
+      "operator": "Timo Bletzer"
     },
     {
       "id": "fuel_171310844",
@@ -12024,6 +8311,17 @@
       "operator": "JET"
     },
     {
+      "id": "fuel_247169969",
+      "lat": 49.7929339,
+      "lon": 9.9161543,
+      "name": "Aral",
+      "city": "Würzburg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Aral"
+    },
+    {
       "id": "fuel_247264949",
       "lat": 51.5295949,
       "lon": 6.797897,
@@ -13367,6 +9665,17 @@
       "tags": [],
       "opening_hours": "06:00-21:00",
       "operator": "Esso"
+    },
+    {
+      "id": "fuel_252325020",
+      "lat": 50.140086,
+      "lon": 8.5053513,
+      "name": "Aral",
+      "city": "Bad Soden am Taunus",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "05:00-23:55",
+      "operator": "Aral"
     },
     {
       "id": "fuel_252325608",
@@ -16226,11 +12535,21 @@
       "lat": 52.098472,
       "lon": 9.3507845,
       "name": "ARAL",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
+    },
+    {
+      "id": "fuel_262346597",
+      "lat": 52.0984248,
+      "lon": 9.3513709,
+      "name": "Westfalen",
       "city": "Hameln",
       "category": "other",
       "tags": [],
-      "operator": "Aral",
-      "opening_hours": "24/7"
+      "opening_hours": "24/7",
+      "operator": "V.Barghorn"
     },
     {
       "id": "fuel_262366887",
@@ -16907,6 +13226,17 @@
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Sa 06:00-22:00; Su, PH 08:00-22:00",
+      "operator": "Tamoil"
+    },
+    {
+      "id": "fuel_264877674",
+      "lat": 52.439222,
+      "lon": 9.5886874,
+      "name": "HEM",
+      "city": "Garbsen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
       "operator": "Tamoil"
     },
     {
@@ -19388,6 +15718,17 @@
       "operator": "Avia"
     },
     {
+      "id": "fuel_270524239",
+      "lat": 49.5930266,
+      "lon": 8.6388104,
+      "name": "Minera Station Di Napoli",
+      "city": "Hemsbach",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-22:00; Sa 06:00-22:00; Su 07:00-22:00",
+      "operator": "Di Napoli"
+    },
+    {
       "id": "fuel_270524732",
       "lat": 50.8080011,
       "lon": 7.2313937,
@@ -19586,6 +15927,16 @@
       "category": "other",
       "tags": [],
       "operator": "Jet"
+    },
+    {
+      "id": "fuel_270802444",
+      "lat": 48.0902482,
+      "lon": 9.2248829,
+      "name": "ECO Tankstelle Sigmaringen",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "ECO"
     },
     {
       "id": "fuel_270804452",
@@ -20657,6 +17008,16 @@
       "operator": "Uwe Dahm GmbH"
     },
     {
+      "id": "fuel_274089845",
+      "lat": 50.4417579,
+      "lon": 7.6662713,
+      "name": "Aral",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
+    },
+    {
       "id": "fuel_274112192",
       "lat": 47.5191233,
       "lon": 10.2817623,
@@ -21201,8 +17562,7 @@
       "city": "Düsseldorf",
       "category": "other",
       "tags": [],
-      "operator": "Total Deutschland GmbH",
-      "opening_hours": "24/7"
+      "operator": "Total Deutschland GmbH"
     },
     {
       "id": "fuel_276168657",
@@ -22382,6 +18742,15 @@
       "category": "other",
       "tags": [],
       "operator": "Indipend."
+    },
+    {
+      "id": "fuel_278993519",
+      "lat": 53.5592732,
+      "lon": 8.1028036,
+      "name": "GEW Gas-Station",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_279018506",
@@ -24722,11 +21091,21 @@
       "lat": 51.4118096,
       "lon": 6.9920596,
       "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
+    },
+    {
+      "id": "fuel_286637434",
+      "lat": 51.4118126,
+      "lon": 6.9926356,
+      "name": "Star",
       "city": "Essen",
       "category": "other",
       "tags": [],
-      "operator": "Esso",
-      "opening_hours": "Mo-Fr 06:00-22:00; Sa, Su 07:00-22:00"
+      "opening_hours": "Mo-Fr 06:00-22:00; Sa, Su 07:00-22:00",
+      "operator": "Star"
     },
     {
       "id": "fuel_286657520",
@@ -25734,6 +22113,16 @@
       "operator": "Jet"
     },
     {
+      "id": "fuel_289447927",
+      "lat": 50.8264614,
+      "lon": 8.9147977,
+      "name": "Freie Tankstelle",
+      "city": "Kirchhain",
+      "category": "other",
+      "tags": [],
+      "operator": "Freie Tankstelle"
+    },
+    {
       "id": "fuel_289543239",
       "lat": 50.4749136,
       "lon": 7.7929799,
@@ -26288,7 +22677,7 @@
       "lat": 48.1489586,
       "lon": 11.5199704,
       "name": "Shell",
-      "city": "München",
+      "city": "",
       "category": "other",
       "tags": [],
       "operator": "Shell"
@@ -27515,11 +23904,10 @@
       "lat": 49.3181606,
       "lon": 11.3397194,
       "name": "SB Tankstelle Kaufland",
-      "city": "Burgthann",
+      "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Kaufland",
-      "opening_hours": "24/7"
+      "operator": "Kaufland"
     },
     {
       "id": "fuel_293573941",
@@ -28326,7 +24714,7 @@
       "lat": 51.8362705,
       "lon": 7.2838756,
       "name": "Star",
-      "city": "Dülmen",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Fr 05:00-00:00; Sa-Su 00:00-24:00",
@@ -28342,6 +24730,16 @@
       "tags": [],
       "opening_hours": "Mo-Fr 07:00-22:00; Sa 08:00-22:00; Su 06:00-22:00",
       "operator": "D'Addario"
+    },
+    {
+      "id": "fuel_296413080",
+      "lat": 51.8360213,
+      "lon": 7.2843079,
+      "name": "bft",
+      "city": "Dülmen",
+      "category": "other",
+      "tags": [],
+      "operator": "Pennekamp"
     },
     {
       "id": "fuel_296416155",
@@ -30893,8 +27291,7 @@
       "name": "Biodiesel Tankstelle",
       "city": "",
       "category": "other",
-      "tags": [],
-      "opening_hours": "24/7"
+      "tags": []
     },
     {
       "id": "fuel_306675788",
@@ -32118,7 +28515,7 @@
       "lat": 53.6216447,
       "lon": 9.9995349,
       "name": "Shell",
-      "city": "Hamburg",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
@@ -33264,6 +29661,16 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-23:00, Sa-Su 07:00-23:00",
       "operator": "Avia"
+    },
+    {
+      "id": "fuel_316631075",
+      "lat": 48.430236,
+      "lon": 11.5938407,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
     },
     {
       "id": "fuel_316631643",
@@ -34747,8 +31154,7 @@
       "city": "Salzkotten",
       "category": "other",
       "tags": [],
-      "operator": "Classic",
-      "opening_hours": "24/7"
+      "operator": "Classic"
     },
     {
       "id": "fuel_324030868",
@@ -35432,11 +31838,10 @@
       "lat": 51.0233405,
       "lon": 7.000983,
       "name": "Shell",
-      "city": "Leverkusen",
+      "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Shell",
-      "opening_hours": "06:00-22:00"
+      "operator": "Shell"
     },
     {
       "id": "fuel_332296774",
@@ -36272,6 +32677,16 @@
       "operator": "Aral"
     },
     {
+      "id": "fuel_339322584",
+      "lat": 51.2184483,
+      "lon": 6.4777656,
+      "name": "Truck Service",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
+    },
+    {
       "id": "fuel_339353232",
       "lat": 51.1200954,
       "lon": 6.4305319,
@@ -36409,7 +32824,7 @@
       "lat": 51.1431282,
       "lon": 6.4108923,
       "name": "Tankstelle",
-      "city": "Mönchengladbach",
+      "city": "",
       "category": "other",
       "tags": [],
       "operator": "Franz Wilms Mineralölhandel"
@@ -43493,6 +39908,17 @@
       "tags": []
     },
     {
+      "id": "fuel_428836854",
+      "lat": 48.5329108,
+      "lon": 9.0777519,
+      "name": "Esso",
+      "city": "Tübingen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "ECHO GmbH"
+    },
+    {
       "id": "fuel_428836895",
       "lat": 48.5815873,
       "lon": 9.6841412,
@@ -44877,11 +41303,21 @@
       "lat": 52.1929842,
       "lon": 8.5569255,
       "name": "Autohof Bünde (LKW)",
-      "city": "Bünde",
+      "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Shell",
-      "opening_hours": "24/7"
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_441349028",
+      "lat": 52.1930889,
+      "lon": 8.5567188,
+      "name": "Autohof Bünde, LPG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
     },
     {
       "id": "fuel_441408334",
@@ -46085,8 +42521,7 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Raiffeisen O-L-D eG",
-      "opening_hours": "24/7"
+      "operator": "Raiffeisen O-L-D eG"
     },
     {
       "id": "fuel_459737330",
@@ -46383,6 +42818,16 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Shell Paderborn Brüggemeier Tankstellen GmbH"
+    },
+    {
+      "id": "fuel_468436890",
+      "lat": 51.7222148,
+      "lon": 9.0170695,
+      "name": "Q1-Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Anton Schlüter"
     },
     {
       "id": "fuel_469086425",
@@ -46725,8 +43170,7 @@
       "name": "International Diesel Service",
       "city": "",
       "category": "other",
-      "tags": [],
-      "operator": "rolande"
+      "tags": []
     },
     {
       "id": "fuel_472690692",
@@ -50066,8 +46510,18 @@
       "city": "Butzbach",
       "category": "other",
       "tags": [],
-      "operator": "Aral",
-      "opening_hours": "Mo-Fr 05:00-23:00; Sa,Su 07:00-23:00"
+      "operator": "Aral"
+    },
+    {
+      "id": "fuel_589376123",
+      "lat": 50.4365199,
+      "lon": 8.6815141,
+      "name": "Total",
+      "city": "Butzbach",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-23:00; Sa,Su 07:00-23:00",
+      "operator": "Mehmet Kaynar"
     },
     {
       "id": "fuel_589430921",
@@ -50334,7 +46788,7 @@
       "lat": 49.2193042,
       "lon": 9.2152919,
       "name": "Agip",
-      "city": "Bad Friedrichshall",
+      "city": "",
       "category": "other",
       "tags": [],
       "operator": "Agip"
@@ -50918,7 +47372,7 @@
       "lat": 49.9629739,
       "lon": 11.6107781,
       "name": "Shell",
-      "city": "Bayreuth",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
@@ -52134,6 +48588,17 @@
       "operator": "Agip"
     },
     {
+      "id": "fuel_666945698",
+      "lat": 53.8022807,
+      "lon": 10.3859638,
+      "name": "Shell",
+      "city": "Bad Oldesloe",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Strauß GmbH"
+    },
+    {
       "id": "fuel_667035367",
       "lat": 51.4482959,
       "lon": 6.2681301,
@@ -53042,6 +49507,16 @@
       "category": "other",
       "tags": [],
       "operator": "BFT"
+    },
+    {
+      "id": "fuel_687693244",
+      "lat": 51.0273936,
+      "lon": 7.0419812,
+      "name": "Aral",
+      "city": "Leverkusen",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
     },
     {
       "id": "fuel_687697216",
@@ -55881,11 +52356,10 @@
       "lat": 51.7337184,
       "lon": 8.2479385,
       "name": "Raiffeisen",
-      "city": "Wadersloh",
+      "city": "",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Sa 08:00-12:00,13:30-17:00",
-      "operator": "Raiffeisen"
+      "opening_hours": "Mo-Sa 08:00-12:00,13:30-17:00"
     },
     {
       "id": "fuel_732712791",
@@ -56059,8 +52533,7 @@
       "city": "Ennepetal",
       "category": "other",
       "tags": [],
-      "operator": "Raiffeisen",
-      "opening_hours": "Mo-Sa 06:00-22:00; Su,PH off"
+      "operator": "Raiffeisen"
     },
     {
       "id": "fuel_732712879",
@@ -57403,6 +53876,16 @@
       "tags": []
     },
     {
+      "id": "fuel_732713726",
+      "lat": 52.7903375,
+      "lon": 14.0472322,
+      "name": "Propan Geppert GmbH",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 08:00-17:00; Sa 10:00-12:00"
+    },
+    {
       "id": "fuel_732713747",
       "lat": 51.3842825,
       "lon": 10.4134434,
@@ -58642,7 +55125,7 @@
       "lat": 51.608089,
       "lon": 6.9333814,
       "name": "Raiffeisen",
-      "city": "Bottrop",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Sa 07:00-22:00; Su 09:00-22:00",
@@ -60231,8 +56714,7 @@
       "city": "Marsberg",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Fr 08:00-18:00; Sa 08:00-16:00; Su 10:00-17:00",
-      "operator": "JET"
+      "opening_hours": "Mo-Fr 08:00-18:00; Sa 08:00-16:00; Su 10:00-17:00"
     },
     {
       "id": "fuel_732716084",
@@ -61011,8 +57493,7 @@
       "city": "Leipzig",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Fr 07:00-18:00; Sa 09:00-12:00",
-      "operator": "Independent"
+      "opening_hours": "Mo-Fr 07:00-18:00; Sa 09:00-12:00"
     },
     {
       "id": "fuel_732716522",
@@ -61374,9 +57855,7 @@
       "name": "ALN-Mergner",
       "city": "Gefell",
       "category": "other",
-      "tags": [],
-      "opening_hours": "Mo-Fr 06:00-19:00, Sa 08:00-19:00, Su 09:00-19:00",
-      "operator": "TotalEnergies"
+      "tags": []
     },
     {
       "id": "fuel_732716677",
@@ -61738,8 +58217,7 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-13:00",
-      "operator": "Avia"
+      "opening_hours": "Mo-Fr 07:00-18:00; Sa 07:00-13:00"
     },
     {
       "id": "fuel_732716865",
@@ -61820,8 +58298,7 @@
       "city": "Birnbach",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Fr 08:00-13:00,14:00-18:00; Sa 09:00-13:00",
-      "operator": "Rumag Energy"
+      "opening_hours": "Mo-Fr 08:00-13:00,14:00-18:00; Sa 09:00-13:00"
     },
     {
       "id": "fuel_732716893",
@@ -64558,6 +61035,16 @@
       "operator": "Aral"
     },
     {
+      "id": "fuel_807892994",
+      "lat": 50.680494,
+      "lon": 11.1584739,
+      "name": "AdBlue4you",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Avia"
+    },
+    {
       "id": "fuel_812776340",
       "lat": 49.6486365,
       "lon": 6.9460858,
@@ -64618,6 +61105,16 @@
       "tags": [],
       "opening_hours": "Mo-Sa 06:00-21:00; Su 09:00-20:00",
       "operator": "LTG"
+    },
+    {
+      "id": "fuel_821890341",
+      "lat": 50.4260783,
+      "lon": 7.572197,
+      "name": "bft (LPG)",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "bft"
     },
     {
       "id": "fuel_822868953",
@@ -64791,7 +61288,7 @@
       "lat": 51.4478903,
       "lon": 7.7867178,
       "name": "Total",
-      "city": "Menden (Sauerland)",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
@@ -66887,8 +63384,18 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Burgraf",
-      "opening_hours": "Mo-Fr 05:30-21:00; Sa,Su 07:00-21:00"
+      "operator": "Burgraf"
+    },
+    {
+      "id": "fuel_1010701090",
+      "lat": 49.3341675,
+      "lon": 12.1019741,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:30-21:00; Sa,Su 07:00-21:00",
+      "operator": "Karin Rothkegel"
     },
     {
       "id": "fuel_1011265438",
@@ -67400,7 +63907,7 @@
       "lat": 48.3723652,
       "lon": 13.134068,
       "name": "Tankautomat Stolz",
-      "city": "Kößlarn",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7"
@@ -67831,8 +64338,7 @@
       "city": "Düsseldorf",
       "category": "other",
       "tags": [],
-      "operator": "Markant",
-      "opening_hours": "24/7"
+      "operator": "Markant"
     },
     {
       "id": "fuel_1130794281",
@@ -68966,6 +65472,16 @@
       "category": "other",
       "tags": [],
       "operator": "Friedhelm Loga"
+    },
+    {
+      "id": "fuel_1269940666",
+      "lat": 52.2780206,
+      "lon": 9.3517198,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
     },
     {
       "id": "fuel_1270257235",
@@ -73986,6 +70502,16 @@
       "operator": "Total"
     },
     {
+      "id": "fuel_1623209552",
+      "lat": 52.1926212,
+      "lon": 8.5571108,
+      "name": "Autohof Bünde",
+      "city": "Bünde",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
       "id": "fuel_1623485918",
       "lat": 52.6007222,
       "lon": 7.268659,
@@ -76175,6 +72701,16 @@
       "operator": "Oil!"
     },
     {
+      "id": "fuel_1759651457",
+      "lat": 49.2597574,
+      "lon": 8.6375748,
+      "name": "SB Tank",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Hirt"
+    },
+    {
       "id": "fuel_1761184903",
       "lat": 48.4573649,
       "lon": 8.6975366,
@@ -76458,7 +72994,7 @@
       "lat": 49.1189993,
       "lon": 13.1943586,
       "name": "Avia",
-      "city": "Bayerisch Eisenstein",
+      "city": "",
       "category": "other",
       "tags": [],
       "operator": "Avia"
@@ -78372,6 +74908,16 @@
       "category": "other",
       "tags": [],
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_2001931985",
+      "lat": 51.9106874,
+      "lon": 7.400213,
+      "name": "Lkw-Tankstelle",
+      "city": "Nottuln",
+      "category": "other",
+      "tags": [],
+      "operator": "Raiffeisen Steverland eG"
     },
     {
       "id": "fuel_2004913433",
@@ -80292,6 +76838,16 @@
       "operator": "Fieroh GmbH"
     },
     {
+      "id": "fuel_2289024407",
+      "lat": 51.5519732,
+      "lon": 7.3661811,
+      "name": "bft",
+      "city": "Dortmund",
+      "category": "other",
+      "tags": [],
+      "operator": "bft"
+    },
+    {
       "id": "fuel_2289425080",
       "lat": 53.2332553,
       "lon": 7.4618979,
@@ -80542,8 +77098,7 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "operator": "BFT",
-      "opening_hours": "Mo-Fr 07:00-22:00; Sa 08:00-22:00; Su 09:00-22:00"
+      "operator": "BFT"
     },
     {
       "id": "fuel_2317581073",
@@ -81157,6 +77712,16 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "J. Knittel Söhne Verwaltungsges. mbH"
+    },
+    {
+      "id": "fuel_2387950360",
+      "lat": 48.1502257,
+      "lon": 9.487323,
+      "name": "Avia",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Avia"
     },
     {
       "id": "fuel_2390418363",
@@ -82242,6 +78807,17 @@
       "operator": "Tankstelle Hummel"
     },
     {
+      "id": "fuel_2518547221",
+      "lat": 51.2224356,
+      "lon": 6.8203181,
+      "name": "H2 Tankstelle",
+      "city": "Düsseldorf",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
       "id": "fuel_2519598823",
       "lat": 50.911305,
       "lon": 10.589784,
@@ -82451,6 +79027,17 @@
       "operator": "Esso"
     },
     {
+      "id": "fuel_2560422789",
+      "lat": 49.4154753,
+      "lon": 7.5644991,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Esso"
+    },
+    {
       "id": "fuel_2563088846",
       "lat": 51.9253125,
       "lon": 7.5256432,
@@ -82575,6 +79162,16 @@
       "tags": [],
       "opening_hours": "Mo-Su 04:00-23:00",
       "operator": "Esso"
+    },
+    {
+      "id": "fuel_2595689106",
+      "lat": 49.9543141,
+      "lon": 11.5997191,
+      "name": "Agip",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Agip"
     },
     {
       "id": "fuel_2597335370",
@@ -83546,6 +80143,25 @@
       "tags": []
     },
     {
+      "id": "fuel_2806919502",
+      "lat": 48.0599565,
+      "lon": 9.5944842,
+      "name": "LPG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
+      "id": "fuel_2806919503",
+      "lat": 48.0606368,
+      "lon": 9.6144668,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Sauter"
+    },
+    {
       "id": "fuel_2808084468",
       "lat": 51.2704279,
       "lon": 7.2075295,
@@ -83661,6 +80277,17 @@
       "category": "other",
       "tags": [],
       "operator": "Bodo Stegemann & Söhne GmbH"
+    },
+    {
+      "id": "fuel_2828327994",
+      "lat": 51.4524111,
+      "lon": 8.8368768,
+      "name": "JET",
+      "city": "Marsberg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-We, Fr 05:00-24:00; Th, Su 07:00-24:00; Sa 06:00-24:00",
+      "operator": "JET"
     },
     {
       "id": "fuel_2840729340",
@@ -84392,6 +81019,17 @@
       "tags": []
     },
     {
+      "id": "fuel_2984325131",
+      "lat": 50.4352172,
+      "lon": 11.8555599,
+      "name": "TotalEnergies",
+      "city": "Gefell",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-19:00, Sa 08:00-19:00, Su 09:00-19:00",
+      "operator": "TotalEnergies"
+    },
+    {
       "id": "fuel_2987528347",
       "lat": 52.2341982,
       "lon": 7.4832994,
@@ -85093,8 +81731,7 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Erdgas Schwaben",
-      "opening_hours": "Mo-Th 04:00-23:30; Fr-Sa 04:00-00:00; Su 04:00-23:00"
+      "operator": "Erdgas Schwaben"
     },
     {
       "id": "fuel_3113196413",
@@ -85486,6 +82123,15 @@
       "category": "other",
       "tags": [],
       "operator": "Total Deutschland GmbH"
+    },
+    {
+      "id": "fuel_3207798926",
+      "lat": 49.4568784,
+      "lon": 12.4174326,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_3219313406",
@@ -86014,8 +82660,18 @@
       "city": "",
       "category": "other",
       "tags": [],
-      "operator": "Shell",
-      "opening_hours": "Mo-Fr 05:00-22:00; Sa 06:00-22:00; Su 07:00-22:00; PH 07:00-22:00"
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_3301543861",
+      "lat": 50.329065,
+      "lon": 8.7499383,
+      "name": "HEM Tamoil",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-22:00; Sa 06:00-22:00; Su 07:00-22:00; PH 07:00-22:00",
+      "operator": "HEM"
     },
     {
       "id": "fuel_3303124668",
@@ -86374,6 +83030,15 @@
       "operator": "Stadtwerke Schüttorf"
     },
     {
+      "id": "fuel_3394652500",
+      "lat": 48.1032886,
+      "lon": 12.5642071,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_3396516146",
       "lat": 48.2616802,
       "lon": 11.4686896,
@@ -86479,6 +83144,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Total"
+    },
+    {
+      "id": "fuel_3406884893",
+      "lat": 49.7509918,
+      "lon": 10.7212422,
+      "name": "Tankautomat",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Sa 07:00-09:00; Mo-Sa 18:00-21:00; Su 07:00-21:00",
+      "operator": "Murk"
     },
     {
       "id": "fuel_3409773587",
@@ -86697,6 +83373,16 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Arnd Spies"
+    },
+    {
+      "id": "fuel_3455272405",
+      "lat": 50.8718548,
+      "lon": 9.3378643,
+      "name": "Aral",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
     },
     {
       "id": "fuel_3457160995",
@@ -87103,8 +83789,7 @@
       "city": "Sittensen",
       "category": "other",
       "tags": [],
-      "operator": "Frau Stollberg",
-      "opening_hours": "24/7"
+      "operator": "Frau Stollberg"
     },
     {
       "id": "fuel_3544792613",
@@ -88463,6 +85148,16 @@
       "operator": "Esso"
     },
     {
+      "id": "fuel_3713373290",
+      "lat": 52.9759488,
+      "lon": 7.5173376,
+      "name": "Tankstelle Klaus Albers",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Albers"
+    },
+    {
       "id": "fuel_3714164445",
       "lat": 47.6933928,
       "lon": 10.9885898,
@@ -88786,6 +85481,15 @@
       "tags": []
     },
     {
+      "id": "fuel_3751301145",
+      "lat": 49.8909198,
+      "lon": 11.8975028,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_3756583681",
       "lat": 49.1123856,
       "lon": 9.7856587,
@@ -88800,7 +85504,7 @@
       "lat": 49.4955806,
       "lon": 11.4656977,
       "name": "Tankstelle",
-      "city": "Happurg",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Fr 06:30-19:00; Sa 06:30-18:00; Su 09:30-16:00",
@@ -88821,6 +85525,15 @@
       "id": "fuel_3759572049",
       "lat": 51.4375344,
       "lon": 6.925318,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
+      "id": "fuel_3759881881",
+      "lat": 50.966707,
+      "lon": 12.9792575,
       "name": "Tankstelle",
       "city": "",
       "category": "other",
@@ -88929,6 +85642,16 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-21:00; Sa,Su 07:00-21:00; PH 08:00-21:00",
       "operator": "Jantzon Tankstellen GmbH"
+    },
+    {
+      "id": "fuel_3788120905",
+      "lat": 49.8316132,
+      "lon": 8.8335838,
+      "name": "Esso",
+      "city": "Reinheim",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
     },
     {
       "id": "fuel_3789182680",
@@ -89041,6 +85764,17 @@
       "city": "",
       "category": "other",
       "tags": []
+    },
+    {
+      "id": "fuel_3812657763",
+      "lat": 50.7084139,
+      "lon": 7.578703,
+      "name": "Rumag Energy",
+      "city": "Birnbach",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-21:00; Sa 08:00-21:00; Su,PH 09:00-20:00",
+      "operator": "Rumag Energy"
     },
     {
       "id": "fuel_3814404524",
@@ -89174,6 +85908,16 @@
       "city": "Fehrbellin",
       "category": "other",
       "tags": []
+    },
+    {
+      "id": "fuel_3866671991",
+      "lat": 48.7121136,
+      "lon": 10.7580901,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Autohaus Randi"
     },
     {
       "id": "fuel_3873725711",
@@ -89775,8 +86519,18 @@
       "city": "Ochsenhausen",
       "category": "other",
       "tags": [],
-      "operator": "BayWa",
-      "opening_hours": "Mo-Fr 05:30-23:00; Sa 06:00-23:00; Su, PH 07:00-23:00"
+      "operator": "BayWa"
+    },
+    {
+      "id": "fuel_4074901994",
+      "lat": 48.0724037,
+      "lon": 9.9480502,
+      "name": "RAN",
+      "city": "Ochsenhausen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:30-23:00; Sa 06:00-23:00; Su, PH 07:00-23:00",
+      "operator": "Tiu Elser"
     },
     {
       "id": "fuel_4076378618",
@@ -89902,6 +86656,17 @@
       "category": "other",
       "tags": [],
       "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_4092185992",
+      "lat": 49.2106583,
+      "lon": 9.0701218,
+      "name": "Autohof Bad Rappenau Süd",
+      "city": "Bad Rappenau",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "24-Autobahn-Raststätten GmbH"
     },
     {
       "id": "fuel_4096707449",
@@ -90062,6 +86827,17 @@
       "category": "other",
       "tags": [],
       "operator": "Avia"
+    },
+    {
+      "id": "fuel_4133659390",
+      "lat": 51.3037224,
+      "lon": 12.3737043,
+      "name": "Independent",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Independent"
     },
     {
       "id": "fuel_4135667138",
@@ -90784,6 +87560,16 @@
       "operator": "bp"
     },
     {
+      "id": "fuel_4316798488",
+      "lat": 49.7571854,
+      "lon": 10.1758382,
+      "name": "Tankstelle W&D Wengel und Dettelbacher 24Std.",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
       "id": "fuel_4319914991",
       "lat": 53.7341167,
       "lon": 9.3464236,
@@ -91183,6 +87969,16 @@
       "operator": "Shell"
     },
     {
+      "id": "fuel_4386895609",
+      "lat": 50.062962,
+      "lon": 8.2159916,
+      "name": "Jet",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "JET"
+    },
+    {
       "id": "fuel_4387505728",
       "lat": 50.3167933,
       "lon": 11.8954198,
@@ -91410,6 +88206,15 @@
       "operator": "Team Tankstellen"
     },
     {
+      "id": "fuel_4419487505",
+      "lat": 49.3176643,
+      "lon": 7.1224026,
+      "name": "ARAL",
+      "city": "Spiesen-Elversberg",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_4419735389",
       "lat": 51.1526486,
       "lon": 7.9613185,
@@ -91561,10 +88366,9 @@
       "lat": 49.1072093,
       "lon": 13.0069988,
       "name": "LPG",
-      "city": "Drachselsried",
+      "city": "",
       "category": "other",
-      "tags": [],
-      "operator": "Shell"
+      "tags": []
     },
     {
       "id": "fuel_4455381792",
@@ -92238,6 +89042,16 @@
       "operator": "Sonderlandeplatz Hahnweide"
     },
     {
+      "id": "fuel_4573520131",
+      "lat": 48.6326299,
+      "lon": 9.430117,
+      "name": "Private",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Sonderlandeplatz Hahnweide"
+    },
+    {
       "id": "fuel_4577158668",
       "lat": 50.4705108,
       "lon": 6.5334055,
@@ -92417,6 +89231,16 @@
       "lat": 50.9146521,
       "lon": 6.835723,
       "name": "Mundorf Tank Autohof Frechen",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_4681881677",
+      "lat": 50.9148573,
+      "lon": 6.8356103,
+      "name": "PKW Mundorf Tank Autohof Frechen",
       "city": "",
       "category": "other",
       "tags": [],
@@ -93160,6 +89984,16 @@
       "operator": "tankpool24 GmbH"
     },
     {
+      "id": "fuel_4792941606",
+      "lat": 49.859126,
+      "lon": 8.4366591,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Calpam"
+    },
+    {
       "id": "fuel_4794127163",
       "lat": 51.1693728,
       "lon": 6.8231826,
@@ -93190,6 +90024,17 @@
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Sa 07:00-20:00; Su 08:30-14:00; PH 08:30-14:00"
+    },
+    {
+      "id": "fuel_4798296984",
+      "lat": 48.9716073,
+      "lon": 9.3868218,
+      "name": "Tankautomat",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
     },
     {
       "id": "fuel_4805433966",
@@ -94138,7 +90983,7 @@
       "lat": 48.3380983,
       "lon": 11.607737,
       "name": "Shell",
-      "city": "Fürholzen",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
@@ -94332,6 +91177,17 @@
       "tags": []
     },
     {
+      "id": "fuel_5167803983",
+      "lat": 48.7094965,
+      "lon": 8.7588085,
+      "name": "Jet",
+      "city": "Calw",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Sa 05:00-24:00, Su,PH 06:00-23:00",
+      "operator": "JET"
+    },
+    {
       "id": "fuel_5168496387",
       "lat": 48.3305275,
       "lon": 8.6668659,
@@ -94499,6 +91355,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Shell"
+    },
+    {
+      "id": "fuel_5218382421",
+      "lat": 48.6409339,
+      "lon": 8.0381683,
+      "name": "Shell (LKW)",
+      "city": "Achern",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Euro RastPark Achern"
     },
     {
       "id": "fuel_5222140387",
@@ -94675,6 +91542,16 @@
       "city": "",
       "category": "other",
       "tags": []
+    },
+    {
+      "id": "fuel_5284784221",
+      "lat": 49.1070752,
+      "lon": 13.0065157,
+      "name": "Shell",
+      "city": "Drachselsried",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
     },
     {
       "id": "fuel_5287512803",
@@ -95116,6 +91993,16 @@
       "operator": "Shell"
     },
     {
+      "id": "fuel_5386760048",
+      "lat": 52.1400384,
+      "lon": 10.3352415,
+      "name": "Aral",
+      "city": "Salzgitter",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
+    },
+    {
       "id": "fuel_5389163434",
       "lat": 49.7878674,
       "lon": 7.6624113,
@@ -95197,6 +92084,17 @@
       "tags": [],
       "opening_hours": "Mo-Sa 05:00-23:00, Su 07:00-23:00",
       "operator": "bft"
+    },
+    {
+      "id": "fuel_5413339845",
+      "lat": 51.6738775,
+      "lon": 8.6130398,
+      "name": "Autogas",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Fischer"
     },
     {
       "id": "fuel_5414544621",
@@ -95282,6 +92180,15 @@
       "category": "other",
       "tags": [],
       "operator": "Total"
+    },
+    {
+      "id": "fuel_5428863475",
+      "lat": 53.3581225,
+      "lon": 8.6502804,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_5433708234",
@@ -95841,6 +92748,16 @@
       "operator": "Independent"
     },
     {
+      "id": "fuel_5601412604",
+      "lat": 51.6081586,
+      "lon": 6.9330653,
+      "name": "Raiffeisen",
+      "city": "Bottrop",
+      "category": "other",
+      "tags": [],
+      "operator": "Raiffeisen"
+    },
+    {
       "id": "fuel_5601575812",
       "lat": 49.1757604,
       "lon": 9.3196531,
@@ -95895,6 +92812,15 @@
       "operator": "Gerrit Klemm"
     },
     {
+      "id": "fuel_5619876593",
+      "lat": 50.5879004,
+      "lon": 10.4230873,
+      "name": "LKW-Tankplatz",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_5621187747",
       "lat": 50.129888,
       "lon": 8.6943175,
@@ -95934,6 +92860,17 @@
       "category": "other",
       "tags": [],
       "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_5633868708",
+      "lat": 53.2932895,
+      "lon": 9.5048261,
+      "name": "Shell Autohof",
+      "city": "Sittensen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
     },
     {
       "id": "fuel_5643350477",
@@ -96119,6 +93056,15 @@
       "operator": "Score"
     },
     {
+      "id": "fuel_5708840177",
+      "lat": 48.9872876,
+      "lon": 8.3332714,
+      "name": "LPG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_5708867977",
       "lat": 53.1170738,
       "lon": 9.9546393,
@@ -96179,6 +93125,17 @@
       "operator": "Eissing Tankstellen GmbH"
     },
     {
+      "id": "fuel_5717561127",
+      "lat": 52.2470892,
+      "lon": 11.8816161,
+      "name": "M1 Burg",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Mundt GmbH Magdeburg"
+    },
+    {
       "id": "fuel_5717631754",
       "lat": 49.2114554,
       "lon": 8.1194061,
@@ -96220,6 +93177,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Total"
+    },
+    {
+      "id": "fuel_5743785894",
+      "lat": 48.0966445,
+      "lon": 11.9618912,
+      "name": "Energie Südbayern Erdgas",
+      "city": "Ebersberg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-22:00; Sa, Su 07:00-22:00",
+      "operator": "Energie Südbayern"
     },
     {
       "id": "fuel_5743806482",
@@ -96282,6 +93250,16 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-22:00; Sa,Su,PH 08:00-20:00",
       "operator": "Cinthia Real Estate GmbH"
+    },
+    {
+      "id": "fuel_5754960676",
+      "lat": 50.6610113,
+      "lon": 11.996266,
+      "name": "ORLEN",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-22:00; Sa,Su 08:00-20:00"
     },
     {
       "id": "fuel_5754960698",
@@ -96868,6 +93846,15 @@
       "operator": "Präg Mineralöl GmbH"
     },
     {
+      "id": "fuel_5983793898",
+      "lat": 51.142969,
+      "lon": 6.4104742,
+      "name": "mobilität & energie Mitte-West",
+      "city": "Mönchengladbach",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_5998964751",
       "lat": 52.1269944,
       "lon": 10.050112,
@@ -97035,6 +94022,15 @@
       "operator": "Reifen Krieger"
     },
     {
+      "id": "fuel_6034475862",
+      "lat": 51.544953,
+      "lon": 12.0150593,
+      "name": "Total LKW",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_6036877469",
       "lat": 54.2879501,
       "lon": 10.2213752,
@@ -97074,6 +94070,17 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-22:00; Sa 07:00-21:00; Su 08:00-21:00",
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_6047409885",
+      "lat": 48.9993742,
+      "lon": 12.1468701,
+      "name": "AS 24",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "AS 24"
     },
     {
       "id": "fuel_6051038064",
@@ -97753,6 +94760,16 @@
       "opening_hours": "Mo-Fr 05:00-20:00; Sa,Su,Ph 07:00-20:00"
     },
     {
+      "id": "fuel_6254302653",
+      "lat": 49.2193152,
+      "lon": 9.2153331,
+      "name": "Agip",
+      "city": "Bad Friedrichshall",
+      "category": "other",
+      "tags": [],
+      "operator": "Agip"
+    },
+    {
       "id": "fuel_6255993974",
       "lat": 52.5607097,
       "lon": 13.1227012,
@@ -97917,6 +94934,16 @@
       "city": "Gerhardshofen",
       "category": "other",
       "tags": []
+    },
+    {
+      "id": "fuel_6297425467",
+      "lat": 49.3183232,
+      "lon": 11.3391198,
+      "name": "Avanti",
+      "city": "Burgthann",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
     },
     {
       "id": "fuel_6301136685",
@@ -98489,6 +95516,16 @@
       "operator": "Agip"
     },
     {
+      "id": "fuel_6513402272",
+      "lat": 49.4610977,
+      "lon": 7.1563859,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
       "id": "fuel_6518716550",
       "lat": 52.4006531,
       "lon": 7.9342157,
@@ -98663,6 +95700,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Raiffeisen"
+    },
+    {
+      "id": "fuel_6566382080",
+      "lat": 51.188595,
+      "lon": 6.8455191,
+      "name": "H2 Tankstelle",
+      "city": "Düsseldorf",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
     },
     {
       "id": "fuel_6567556364",
@@ -98935,6 +95983,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Jenne Landmaschinen GmbH"
+    },
+    {
+      "id": "fuel_6657165390",
+      "lat": 49.0913612,
+      "lon": 11.8887062,
+      "name": "Total Trucks",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Total"
     },
     {
       "id": "fuel_6658200848",
@@ -99652,6 +96711,15 @@
       "operator": "Total"
     },
     {
+      "id": "fuel_6924879071",
+      "lat": 51.7325648,
+      "lon": 10.2393887,
+      "name": "Autogas-Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_6925809063",
       "lat": 50.9530649,
       "lon": 7.3189116,
@@ -99772,6 +96840,17 @@
       "id": "fuel_6964913919",
       "lat": 50.0135166,
       "lon": 8.7942736,
+      "name": "Aral",
+      "city": "Dietzenbach",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Dural Demir"
+    },
+    {
+      "id": "fuel_6964913933",
+      "lat": 50.0133153,
+      "lon": 8.7944755,
       "name": "Aral",
       "city": "Dietzenbach",
       "category": "other",
@@ -100605,6 +97684,17 @@
       "operator": "Orlen"
     },
     {
+      "id": "fuel_7164332237",
+      "lat": 49.3039294,
+      "lon": 8.9017166,
+      "name": "Lenz Energie - AdBlue Tankstelle PKW / LKW",
+      "city": "Waibstadt",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "PH,Mo-Su 00:00-24:00",
+      "operator": "Lenz Energie AG"
+    },
+    {
       "id": "fuel_7171293745",
       "lat": 54.1027573,
       "lon": 13.3772023,
@@ -100741,6 +97831,16 @@
       "operator": "Agip"
     },
     {
+      "id": "fuel_7195424679",
+      "lat": 48.6819444,
+      "lon": 10.1572485,
+      "name": "Ladestation",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Stadtwerke Heidenheim"
+    },
+    {
       "id": "fuel_7197773678",
       "lat": 50.8228005,
       "lon": 6.252346,
@@ -100843,6 +97943,17 @@
       "category": "other",
       "tags": [],
       "operator": "Enrico Brauner"
+    },
+    {
+      "id": "fuel_7231487733",
+      "lat": 51.2893361,
+      "lon": 7.321088,
+      "name": "Raiffeisen",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Sa 06:00-22:00; Su,PH off",
+      "operator": "Raiffeisen Südwestfalen"
     },
     {
       "id": "fuel_7235283282",
@@ -101233,6 +98344,15 @@
       "tags": [],
       "opening_hours": "Mo-Fr 04:00-22:00; Sa 05:00-22:00; Su, Ph 07:00-22:00",
       "operator": "Tankdot GmbH"
+    },
+    {
+      "id": "fuel_7304504076",
+      "lat": 49.1188776,
+      "lon": 13.1943796,
+      "name": "AVIA Tankstelle und Werkstatt Buchinger",
+      "city": "Bayerisch Eisenstein",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_7308463984",
@@ -101724,6 +98844,17 @@
       "id": "fuel_7373015674",
       "lat": 51.8689283,
       "lon": 10.5592657,
+      "name": "Q1",
+      "city": "Bad Harzburg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-19:00; Sa,Su,PH 07:00-19:00",
+      "operator": "Q1"
+    },
+    {
+      "id": "fuel_7373015680",
+      "lat": 51.8690047,
+      "lon": 10.5594479,
       "name": "Q1",
       "city": "Bad Harzburg",
       "category": "other",
@@ -102519,6 +99650,15 @@
       "tags": []
     },
     {
+      "id": "fuel_7660932125",
+      "lat": 50.9142689,
+      "lon": 6.835497,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_7666475862",
       "lat": 51.2566381,
       "lon": 6.6825764,
@@ -102752,6 +99892,28 @@
       "operator": "Agip"
     },
     {
+      "id": "fuel_7810727329",
+      "lat": 48.7818231,
+      "lon": 11.4189813,
+      "name": "Servicestation S49",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Audi AG"
+    },
+    {
+      "id": "fuel_7810727330",
+      "lat": 48.7818232,
+      "lon": 11.4190995,
+      "name": "Servicestation S49",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Audi AG"
+    },
+    {
       "id": "fuel_7813863985",
       "lat": 50.8532544,
       "lon": 12.0766117,
@@ -102957,6 +100119,16 @@
       "tags": []
     },
     {
+      "id": "fuel_7878282185",
+      "lat": 48.3723394,
+      "lon": 13.1340649,
+      "name": "Stolz",
+      "city": "Kößlarn",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 07:30-19:00; Sa 08:00-16:00; Su,PH off"
+    },
+    {
       "id": "fuel_7879668136",
       "lat": 49.2831573,
       "lon": 8.1497961,
@@ -103096,6 +100268,15 @@
       "category": "other",
       "tags": [],
       "operator": "Halfmann"
+    },
+    {
+      "id": "fuel_7934905783",
+      "lat": 50.653926,
+      "lon": 6.7920168,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_7935719472",
@@ -103397,11 +100578,22 @@
       "lat": 53.512233,
       "lon": 10.0893203,
       "name": "AS24",
-      "city": "Hamburg",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
       "operator": "AS 24"
+    },
+    {
+      "id": "fuel_8121881954",
+      "lat": 53.5121927,
+      "lon": 10.0888283,
+      "name": "Total",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "TotalEnergies"
     },
     {
       "id": "fuel_8143707017",
@@ -103409,6 +100601,16 @@
       "lon": 6.5632853,
       "name": "Tankstelle",
       "city": "Bocholt",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_8155258975",
+      "lat": 49.7570297,
+      "lon": 10.1758644,
+      "name": "Tankpool 24",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7"
@@ -103527,6 +100729,16 @@
       "operator": "AAFES"
     },
     {
+      "id": "fuel_8240834178",
+      "lat": 49.2840368,
+      "lon": 8.1409402,
+      "name": "OIL! Tankstelle",
+      "city": "Edenkoben",
+      "category": "other",
+      "tags": [],
+      "operator": "OIL!"
+    },
+    {
       "id": "fuel_8247163365",
       "lat": 50.890538,
       "lon": 10.8478603,
@@ -103628,6 +100840,38 @@
       "tags": [],
       "opening_hours": "Mo-Sa 06:00-22:00, Su 07:00-21:00",
       "operator": "Manuela Zier"
+    },
+    {
+      "id": "fuel_8309462360",
+      "lat": 52.3121764,
+      "lon": 10.6347505,
+      "name": "Shell Lkw",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_8309462364",
+      "lat": 52.312751,
+      "lon": 10.6355143,
+      "name": "Shell LNG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_8309462370",
+      "lat": 52.3126862,
+      "lon": 10.634844,
+      "name": "Shell Pkw",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
     },
     {
       "id": "fuel_8314936228",
@@ -103780,6 +101024,28 @@
       "id": "fuel_8358343944",
       "lat": 48.7936011,
       "lon": 11.4116995,
+      "name": "Audi AG - Tankstelle T08",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7 \"only for authorized\"",
+      "operator": "Audi AG"
+    },
+    {
+      "id": "fuel_8358343945",
+      "lat": 48.7935687,
+      "lon": 11.4118119,
+      "name": "Audi AG - Tankstelle T08",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7 \"only for authorized\"",
+      "operator": "Audi AG"
+    },
+    {
+      "id": "fuel_8358343946",
+      "lat": 48.793585,
+      "lon": 11.4117566,
       "name": "Audi AG - Tankstelle T08",
       "city": "",
       "category": "other",
@@ -103977,6 +101243,16 @@
       "operator": "Erich Gotthard GmbH"
     },
     {
+      "id": "fuel_8431443130",
+      "lat": 50.919262,
+      "lon": 6.1742571,
+      "name": "Shell Tankhof",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
       "id": "fuel_8431936922",
       "lat": 51.0773492,
       "lon": 6.3288862,
@@ -104016,6 +101292,15 @@
       "tags": []
     },
     {
+      "id": "fuel_8436479723",
+      "lat": 48.2273293,
+      "lon": 7.7535633,
+      "name": "LPG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_8438864915",
       "lat": 47.9242608,
       "lon": 10.6688923,
@@ -104034,6 +101319,17 @@
       "city": "",
       "category": "other",
       "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_8441784090",
+      "lat": 47.8809588,
+      "lon": 10.0402924,
+      "name": "Shell",
+      "city": "Aichstetten",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
       "operator": "Shell"
     },
     {
@@ -104109,6 +101405,16 @@
       "operator": "Keck Energieservice GmbH"
     },
     {
+      "id": "fuel_8465675026",
+      "lat": 49.1441402,
+      "lon": 9.3086485,
+      "name": "LNG",
+      "city": "Ellhofen",
+      "category": "other",
+      "tags": [],
+      "operator": "EDI;Shell"
+    },
+    {
       "id": "fuel_8476342259",
       "lat": 51.2562616,
       "lon": 8.9340619,
@@ -104167,6 +101473,16 @@
       "id": "fuel_8491896296",
       "lat": 50.7406854,
       "lon": 11.8865087,
+      "name": "TWT",
+      "city": "Triptis",
+      "category": "other",
+      "tags": [],
+      "operator": "TWT Tanken Waschen Triptis GmbH"
+    },
+    {
+      "id": "fuel_8491896297",
+      "lat": 50.7408762,
+      "lon": 11.8865455,
       "name": "TWT",
       "city": "Triptis",
       "category": "other",
@@ -104399,6 +101715,16 @@
       "category": "other",
       "tags": [],
       "operator": "Avia"
+    },
+    {
+      "id": "fuel_8572193469",
+      "lat": 51.7336521,
+      "lon": 8.2486559,
+      "name": "Raiffeisen",
+      "city": "Wadersloh",
+      "category": "other",
+      "tags": [],
+      "operator": "Raiffeisen"
     },
     {
       "id": "fuel_8579359972",
@@ -104724,6 +102050,17 @@
       "tags": [],
       "opening_hours": "Mo-Sa 07:00-20:30; Su 08:00-20:00",
       "operator": "Robert Gisbertz"
+    },
+    {
+      "id": "fuel_8740261448",
+      "lat": 51.8687894,
+      "lon": 7.3773821,
+      "name": "bft",
+      "city": "Dülmen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 07:00-19:00",
+      "operator": "Josef Hoenhorst"
     },
     {
       "id": "fuel_8740306788",
@@ -105245,6 +102582,16 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Shell"
+    },
+    {
+      "id": "fuel_8825571141",
+      "lat": 52.4979888,
+      "lon": 9.4565597,
+      "name": "Bio CNG Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "orangegas.com"
     },
     {
       "id": "fuel_8829829860",
@@ -106006,6 +103353,26 @@
       "tags": []
     },
     {
+      "id": "fuel_9008476951",
+      "lat": 47.7660111,
+      "lon": 12.1056435,
+      "name": "Inntaler Autohof Raubling",
+      "city": "Raubling",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_9008476952",
+      "lat": 47.7658767,
+      "lon": 12.1059147,
+      "name": "Inntaler Autohof Raubling (LPG)",
+      "city": "Raubling",
+      "category": "other",
+      "tags": [],
+      "operator": "Inntaler"
+    },
+    {
       "id": "fuel_9013089375",
       "lat": 52.6758907,
       "lon": 7.4778488,
@@ -106311,6 +103678,16 @@
       "operator": "RVK"
     },
     {
+      "id": "fuel_9210767349",
+      "lat": 50.6279444,
+      "lon": 7.0100351,
+      "name": "Wasserstoffbetankungsanlage",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "H2-Tankstelle"
+    },
+    {
       "id": "fuel_9212150900",
       "lat": 53.0096568,
       "lon": 7.5877916,
@@ -106320,6 +103697,16 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Paul Rolfes"
+    },
+    {
+      "id": "fuel_9218264012",
+      "lat": 51.1885172,
+      "lon": 11.163184,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
     },
     {
       "id": "fuel_9222066871",
@@ -107335,6 +104722,16 @@
       "opening_hours": "Mo-Fr 07:00-17:00; Sa 07:00-13:00"
     },
     {
+      "id": "fuel_9456289460",
+      "lat": 51.8116215,
+      "lon": 9.8911226,
+      "name": "Aral",
+      "city": "Einbeck",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
+    },
+    {
       "id": "fuel_9457606432",
       "lat": 52.4300523,
       "lon": 13.312741,
@@ -107479,6 +104876,17 @@
       "city": "Mannheim",
       "category": "other",
       "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9483736965",
+      "lat": 53.4260027,
+      "lon": 11.4938954,
+      "name": "LTG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
       "operator": "Shell"
     },
     {
@@ -107629,6 +105037,56 @@
       "id": "fuel_9521822259",
       "lat": 53.18221,
       "lon": 8.6208785,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9521822260",
+      "lat": 53.182204,
+      "lon": 8.6210448,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9521822261",
+      "lat": 53.1822687,
+      "lon": 8.6208852,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9521822262",
+      "lat": 53.1822639,
+      "lon": 8.6210475,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9521822263",
+      "lat": 53.1823419,
+      "lon": 8.6208909,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
+      "id": "fuel_9521822264",
+      "lat": 53.1823365,
+      "lon": 8.6210518,
       "name": "Shell",
       "city": "",
       "category": "other",
@@ -108276,6 +105734,16 @@
       "operator": "Autohaus & Tankstelle Rosendahl"
     },
     {
+      "id": "fuel_9757987952",
+      "lat": 53.861396,
+      "lon": 10.6132771,
+      "name": "rolande",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "rolande"
+    },
+    {
       "id": "fuel_9768994324",
       "lat": 52.5442357,
       "lon": 13.6468889,
@@ -108672,6 +106140,17 @@
       "operator": "Shell"
     },
     {
+      "id": "fuel_9931172964",
+      "lat": 47.900882,
+      "lon": 10.6401858,
+      "name": "Esso Station Dönmez",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Th 04:00-23:30; Fr-Sa 04:00-00:00; Su 04:00-23:00",
+      "operator": "Familie Dönmez"
+    },
+    {
       "id": "fuel_9931794028",
       "lat": 53.3876885,
       "lon": 10.1875156,
@@ -108732,6 +106211,16 @@
       "operator": "Kreutzmann GmbH & Co. KG"
     },
     {
+      "id": "fuel_9952716982",
+      "lat": 48.6732405,
+      "lon": 10.8249853,
+      "name": "Shell LKW",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Kreutzmann GmbH & Co. KG"
+    },
+    {
       "id": "fuel_9955600856",
       "lat": 52.5754461,
       "lon": 7.9991224,
@@ -108771,6 +106260,16 @@
       "tags": [],
       "opening_hours": "Mo-Su 06:00-22:00",
       "operator": "Autohaus Rasch"
+    },
+    {
+      "id": "fuel_9963975796",
+      "lat": 50.7141294,
+      "lon": 7.5564751,
+      "name": "A Energie Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 07:00-22:00; Sa 08:00-22:00; Su 09:00-22:00"
     },
     {
       "id": "fuel_9964057833",
@@ -109033,6 +106532,16 @@
       "lat": 49.3491832,
       "lon": 6.7874103,
       "name": "tankpool24",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "tankpool24"
+    },
+    {
+      "id": "fuel_10075636119",
+      "lat": 49.3491002,
+      "lon": 6.787582,
+      "name": "Tankstelle",
       "city": "",
       "category": "other",
       "tags": [],
@@ -109453,6 +106962,16 @@
       "operator": "Shell"
     },
     {
+      "id": "fuel_10240678613",
+      "lat": 52.3585786,
+      "lon": 13.1142532,
+      "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "BarMaGas"
+    },
+    {
       "id": "fuel_10244901641",
       "lat": 47.8038935,
       "lon": 10.2998234,
@@ -109532,6 +107051,15 @@
       "tags": []
     },
     {
+      "id": "fuel_10265054758",
+      "lat": 50.8793027,
+      "lon": 6.9159357,
+      "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_10265055208",
       "lat": 51.4310181,
       "lon": 6.7378526,
@@ -109575,6 +107103,15 @@
       "lat": 51.8307882,
       "lon": 8.2148383,
       "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
+      "id": "fuel_10265076233",
+      "lat": 51.8310534,
+      "lon": 8.2148598,
+      "name": "Tankstelle",
       "city": "",
       "category": "other",
       "tags": []
@@ -109702,6 +107239,15 @@
       "operator": "LIQUIND"
     },
     {
+      "id": "fuel_10265223184",
+      "lat": 50.1949436,
+      "lon": 8.649205,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_10265316297",
       "lat": 50.1813663,
       "lon": 9.0052213,
@@ -109713,15 +107259,23 @@
       "operator": "BayWa"
     },
     {
+      "id": "fuel_10265504895",
+      "lat": 49.4243969,
+      "lon": 7.5593433,
+      "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_10265505183",
       "lat": 49.3305482,
       "lon": 8.542436,
       "name": "LNG",
-      "city": "Hockenheim",
+      "city": "",
       "category": "other",
       "tags": [],
-      "operator": "LIQUIND",
-      "opening_hours": "24/7"
+      "operator": "LIQUIND"
     },
     {
       "id": "fuel_10265520766",
@@ -109752,6 +107306,16 @@
       "category": "other",
       "tags": [],
       "operator": "Shell"
+    },
+    {
+      "id": "fuel_10265536605",
+      "lat": 48.8639555,
+      "lon": 10.5182264,
+      "name": "BAYWA",
+      "city": "Nördlingen",
+      "category": "other",
+      "tags": [],
+      "operator": "BayWa AG Energie Tankstelle Nördlingen"
     },
     {
       "id": "fuel_10265540826",
@@ -109793,6 +107357,25 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "tankpool24"
+    },
+    {
+      "id": "fuel_10265558364",
+      "lat": 49.0449282,
+      "lon": 11.3411224,
+      "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_10265558365",
+      "lat": 49.0448983,
+      "lon": 11.3412263,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_10265587244",
@@ -109924,6 +107507,26 @@
       "operator": "Shell"
     },
     {
+      "id": "fuel_10539938356",
+      "lat": 52.9977111,
+      "lon": 9.9206035,
+      "name": "LNG",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Hoyer"
+    },
+    {
+      "id": "fuel_10539954209",
+      "lat": 49.5103367,
+      "lon": 10.1950946,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Shell"
+    },
+    {
       "id": "fuel_10554980994",
       "lat": 50.5034102,
       "lon": 7.9278574,
@@ -109977,6 +107580,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "GLOBUS Markt"
+    },
+    {
+      "id": "fuel_10556757171",
+      "lat": 50.4095886,
+      "lon": 8.0716524,
+      "name": "RATIO LPG Station",
+      "city": "Limburg an der Lahn",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Ratio Erdöl GmbH & Co. KG"
     },
     {
       "id": "fuel_10556772527",
@@ -110155,6 +107769,17 @@
       "opening_hours": "Mo-Su 00:00-23:59"
     },
     {
+      "id": "fuel_10654107200",
+      "lat": 50.8115678,
+      "lon": 6.990817,
+      "name": "Shell",
+      "city": "Wesseling",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Shell"
+    },
+    {
       "id": "fuel_10655332481",
       "lat": 51.0629353,
       "lon": 11.2504147,
@@ -110311,6 +107936,15 @@
       "operator": "Knauber Gas GmbH & Co. KG"
     },
     {
+      "id": "fuel_10744214653",
+      "lat": 50.8229866,
+      "lon": 6.2518613,
+      "name": "SB Markt",
+      "city": "Eschweiler",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_10748225890",
       "lat": 52.6835538,
       "lon": 13.5977925,
@@ -110408,7 +108042,7 @@
       "lat": 53.4614143,
       "lon": 10.0113094,
       "name": "METRO Hamburg-Harburg",
-      "city": "Hamburg",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "24/7",
@@ -111305,6 +108939,16 @@
       "operator": "LEU"
     },
     {
+      "id": "fuel_11025505170",
+      "lat": 50.8529792,
+      "lon": 9.7257714,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
+    },
+    {
       "id": "fuel_11035167678",
       "lat": 48.2923791,
       "lon": 10.6598718,
@@ -111349,6 +108993,24 @@
       "id": "fuel_11048626414",
       "lat": 48.4195805,
       "lon": 9.5379732,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
+      "id": "fuel_11048626415",
+      "lat": 48.4195773,
+      "lon": 9.5381448,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
+      "id": "fuel_11048626416",
+      "lat": 48.4195743,
+      "lon": 9.5383174,
       "name": "Tankstelle",
       "city": "",
       "category": "other",
@@ -111468,6 +109130,15 @@
       "tags": [],
       "opening_hours": "06:00-22:00",
       "operator": "Lutz Münchberg"
+    },
+    {
+      "id": "fuel_11103486186",
+      "lat": 48.1390153,
+      "lon": 8.2377519,
+      "name": "Car-Point",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_11108343687",
@@ -111706,6 +109377,17 @@
       "operator": "Esso"
     },
     {
+      "id": "fuel_11199912486",
+      "lat": 50.9933413,
+      "lon": 11.3222212,
+      "name": "star",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 05:00-22:00; Sa,Su 06:00-22:00",
+      "operator": "star"
+    },
+    {
       "id": "fuel_11207313965",
       "lat": 51.020639,
       "lon": 6.1292519,
@@ -111723,6 +109405,15 @@
       "category": "other",
       "tags": [],
       "operator": "star"
+    },
+    {
+      "id": "fuel_11213125797",
+      "lat": 53.4820054,
+      "lon": 10.2077661,
+      "name": "LKW",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_11222061485",
@@ -112123,6 +109814,16 @@
       "operator": "Stadtwerke Rostock"
     },
     {
+      "id": "fuel_11403389102",
+      "lat": 54.0229569,
+      "lon": 12.231948,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Stadtwerke Rostock"
+    },
+    {
       "id": "fuel_11407220633",
       "lat": 52.5766013,
       "lon": 13.3786961,
@@ -112404,6 +110105,15 @@
       "tags": []
     },
     {
+      "id": "fuel_11601936917",
+      "lat": 51.4431887,
+      "lon": 12.1282418,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_11607205895",
       "lat": 50.8991832,
       "lon": 7.1632231,
@@ -112455,6 +110165,16 @@
       "category": "other",
       "tags": [],
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_11627035797",
+      "lat": 48.1050517,
+      "lon": 8.4159641,
+      "name": "Tankpool24",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
     },
     {
       "id": "fuel_11630275490",
@@ -112577,6 +110297,15 @@
       "category": "other",
       "tags": [],
       "operator": "HNVG"
+    },
+    {
+      "id": "fuel_11716954140",
+      "lat": 47.8164475,
+      "lon": 11.7133532,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_11722101236",
@@ -112816,6 +110545,15 @@
       "operator": "F. Pfeil"
     },
     {
+      "id": "fuel_11823884331",
+      "lat": 49.5137783,
+      "lon": 7.3718275,
+      "name": "ARAL LKW",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_11824334873",
       "lat": 50.6809873,
       "lon": 12.5930401,
@@ -112847,6 +110585,28 @@
       "operator": "Aral"
     },
     {
+      "id": "fuel_11827017641",
+      "lat": 51.2955549,
+      "lon": 13.7298457,
+      "name": "Aral LKW",
+      "city": "Schönfeld",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Aral"
+    },
+    {
+      "id": "fuel_11827175208",
+      "lat": 52.1604685,
+      "lon": 9.9977121,
+      "name": "Aral",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Marion Schäl"
+    },
+    {
       "id": "fuel_11827362346",
       "lat": 52.9354974,
       "lon": 7.6559169,
@@ -112855,6 +110615,17 @@
       "category": "other",
       "tags": [],
       "operator": "Raifeisen Ems-Vechte"
+    },
+    {
+      "id": "fuel_11828114074",
+      "lat": 52.3146517,
+      "lon": 13.6628428,
+      "name": "Aral LKW",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Deutsche BP"
     },
     {
       "id": "fuel_11828180260",
@@ -112876,6 +110647,16 @@
       "category": "other",
       "tags": [],
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_11828241871",
+      "lat": 52.6181482,
+      "lon": 8.3652574,
+      "name": "Aral PKW",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral PKW"
     },
     {
       "id": "fuel_11828320904",
@@ -112901,6 +110682,17 @@
       "id": "fuel_11830547397",
       "lat": 53.2980403,
       "lon": 11.5336342,
+      "name": "Shell",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "BMÖ"
+    },
+    {
+      "id": "fuel_11830547398",
+      "lat": 53.2978179,
+      "lon": 11.5336356,
       "name": "Shell",
       "city": "",
       "category": "other",
@@ -113168,6 +110960,17 @@
       "tags": []
     },
     {
+      "id": "fuel_11947839854",
+      "lat": 53.1041718,
+      "lon": 11.1293846,
+      "name": "VR PLUS Energie (Autohof)",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "VR PLUS Altmark-Wendland eG"
+    },
+    {
       "id": "fuel_11947922511",
       "lat": 53.2709387,
       "lon": 10.6275805,
@@ -113279,6 +111082,39 @@
       "tags": [],
       "opening_hours": "Mo-Fr 07:30-18:30; Sa 08:00-18:00; Su 09:00-17:00",
       "operator": "Reiner Kellermeier"
+    },
+    {
+      "id": "fuel_12003352724",
+      "lat": 51.0361808,
+      "lon": 13.7488076,
+      "name": "H2 Tankstelle",
+      "city": "Dresden",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_12003615931",
+      "lat": 52.3705687,
+      "lon": 13.5273269,
+      "name": "H2 Tankstelle",
+      "city": "Schönefeld",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "TEAL Mobility"
+    },
+    {
+      "id": "fuel_12007434451",
+      "lat": 51.023336,
+      "lon": 7.0006688,
+      "name": "H2 Tankstelle",
+      "city": "Leverkusen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "06:00-22:00",
+      "operator": "H2 MOBILITY"
     },
     {
       "id": "fuel_12023011572",
@@ -113435,6 +111271,16 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:00-20:00; Sa 08:00-19:00",
       "operator": "Franken Petrol Tankstelle Bernd Tramowsky"
+    },
+    {
+      "id": "fuel_12077129806",
+      "lat": 48.4094309,
+      "lon": 10.4444838,
+      "name": "Aral Shop",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Aral"
     },
     {
       "id": "fuel_12082202530",
@@ -113678,6 +111524,15 @@
       "tags": [],
       "opening_hours": "Mo-Su 06:00-22:00",
       "operator": "Shell"
+    },
+    {
+      "id": "fuel_12172577822",
+      "lat": 52.4726703,
+      "lon": 13.7379828,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_12180826147",
@@ -114708,6 +112563,17 @@
       "operator": "Winkler GmbH & Co. KG"
     },
     {
+      "id": "fuel_12480220528",
+      "lat": 51.4481366,
+      "lon": 7.7867451,
+      "name": "Total",
+      "city": "Menden (Sauerland)",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Su,PH 00:00-00:00",
+      "operator": "Total"
+    },
+    {
       "id": "fuel_12496900322",
       "lat": 52.3732189,
       "lon": 13.127208,
@@ -114736,6 +112602,17 @@
       "tags": [],
       "opening_hours": "24/7",
       "operator": "Alternoil"
+    },
+    {
+      "id": "fuel_12509133451",
+      "lat": 52.726356,
+      "lon": 8.1772356,
+      "name": "International Diesel Service Q8",
+      "city": "Bakum",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Q8"
     },
     {
       "id": "fuel_12514460190",
@@ -115052,7 +112929,7 @@
       "lat": 48.5397528,
       "lon": 12.1038327,
       "name": "Esso",
-      "city": "Landshut",
+      "city": "",
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Su 06:00-22:00",
@@ -115319,6 +113196,17 @@
       "operator": "Verbio"
     },
     {
+      "id": "fuel_12738607379",
+      "lat": 49.3302308,
+      "lon": 8.542275,
+      "name": "Verbio BioLNG-Tankstelle Hockenheim",
+      "city": "Hockenheim",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Verbio"
+    },
+    {
       "id": "fuel_12738607966",
       "lat": 49.0416826,
       "lon": 8.3229973,
@@ -115469,6 +113357,16 @@
       "lat": 51.2874023,
       "lon": 14.1120735,
       "name": "Tankpoint",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Raiffeisen-Handelsgenossenschaft eG Kamenz"
+    },
+    {
+      "id": "fuel_12759964846",
+      "lat": 51.2874123,
+      "lon": 14.1122827,
+      "name": "Tankpoint",
       "city": "Kamenz",
       "category": "other",
       "tags": [],
@@ -115505,6 +113403,15 @@
       "tags": [],
       "opening_hours": "Mo-Fr 06:30-20:00; Sa 07:00-19:00; Su 09:00-19:00",
       "operator": "Seibold GmbH"
+    },
+    {
+      "id": "fuel_12765770294",
+      "lat": 48.8249438,
+      "lon": 9.319978,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
     },
     {
       "id": "fuel_12768266425",
@@ -115915,6 +113822,17 @@
       "operator": "SB-Tankstelle"
     },
     {
+      "id": "fuel_12909321152",
+      "lat": 48.4117066,
+      "lon": 10.8622227,
+      "name": "H2 Tankstelle",
+      "city": "Augsburg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Tyczka Hydrogen"
+    },
+    {
       "id": "fuel_12920786084",
       "lat": 47.5603865,
       "lon": 7.9631302,
@@ -116229,6 +114147,16 @@
       "operator": "Stadt Herborn"
     },
     {
+      "id": "fuel_13044534984",
+      "lat": 49.2114893,
+      "lon": 8.1194141,
+      "name": "Globus",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Globus"
+    },
+    {
       "id": "fuel_13050762859",
       "lat": 51.5557092,
       "lon": 7.1599741,
@@ -116364,6 +114292,17 @@
       "operator": "TotalEnergies"
     },
     {
+      "id": "fuel_13069633117",
+      "lat": 49.236572,
+      "lon": 6.9422064,
+      "name": "H2 Tankstelle",
+      "city": "Saarbrücken",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
       "id": "fuel_13069638170",
       "lat": 48.610695,
       "lon": 10.2109799,
@@ -116375,6 +114314,83 @@
       "operator": "MorGen Mobility GmbH"
     },
     {
+      "id": "fuel_13069638171",
+      "lat": 48.6107889,
+      "lon": 10.210807,
+      "name": "Jet",
+      "city": "Giengen an der Brenz",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Goran Divljak"
+    },
+    {
+      "id": "fuel_13072992272",
+      "lat": 53.5734114,
+      "lon": 9.9194674,
+      "name": "H2 Tankstelle",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13073119669",
+      "lat": 48.7031724,
+      "lon": 9.0050393,
+      "name": "H2 Tankstelle",
+      "city": "Sindelfingen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13074413073",
+      "lat": 49.9629818,
+      "lon": 11.6109301,
+      "name": "H2 Tankstelle",
+      "city": "Bayreuth",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13074605496",
+      "lat": 50.3720917,
+      "lon": 11.7882214,
+      "name": "H2 Tankstelle",
+      "city": "Berg bei Hof",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13074745984",
+      "lat": 48.3380305,
+      "lon": 11.6071871,
+      "name": "H2 Tankstelle",
+      "city": "Fürholzen",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
+      "operator": "Autobahn Tank & Rast GmbH"
+    },
+    {
+      "id": "fuel_13075981166",
+      "lat": 48.0303736,
+      "lon": 7.862775,
+      "name": "TotalEnergies",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-22:00; Sa 07:00-22:00; Su,PH 08:00-22:00",
+      "operator": "TotalEnergies"
+    },
+    {
       "id": "fuel_13076014780",
       "lat": 50.8116178,
       "lon": 6.9910169,
@@ -116383,6 +114399,17 @@
       "category": "other",
       "tags": [],
       "opening_hours": "Mo-Su 06:00-22:00",
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13076321390",
+      "lat": 52.4808249,
+      "lon": 13.5021999,
+      "name": "H2 Tankstelle",
+      "city": "Berlin",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7",
       "operator": "H2 MOBILITY"
     },
     {
@@ -116438,6 +114465,36 @@
       "operator": "H2 MOBILITY"
     },
     {
+      "id": "fuel_13093085358",
+      "lat": 48.5396736,
+      "lon": 12.1038464,
+      "name": "H2 Tankstelle",
+      "city": "Landshut",
+      "category": "other",
+      "tags": [],
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13093103943",
+      "lat": 48.1490007,
+      "lon": 11.5200421,
+      "name": "H2 Tankstelle",
+      "city": "München",
+      "category": "other",
+      "tags": [],
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13093134293",
+      "lat": 49.6186976,
+      "lon": 11.4077709,
+      "name": "H2 Tankstelle",
+      "city": "Schnaittach-Hormersdorf",
+      "category": "other",
+      "tags": [],
+      "operator": "TEAL Mobility"
+    },
+    {
       "id": "fuel_13094973195",
       "lat": 53.5514188,
       "lon": 8.5996771,
@@ -116459,6 +114516,36 @@
       "operator": "H2 MOBILITY"
     },
     {
+      "id": "fuel_13094988623",
+      "lat": 50.2108392,
+      "lon": 8.6577012,
+      "name": "Hessol",
+      "city": "Bad Homburg v.d. Höhe",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
+      "id": "fuel_13094991625",
+      "lat": 53.4613475,
+      "lon": 10.0115034,
+      "name": "H2 Tankstelle",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [],
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13095006412",
+      "lat": 53.6216649,
+      "lon": 9.9993812,
+      "name": "H2 Tankstelle",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [],
+      "operator": "H2 MOBILITY"
+    },
+    {
       "id": "fuel_13096935679",
       "lat": 49.8968341,
       "lon": 8.6117186,
@@ -116466,8 +114553,18 @@
       "city": "Weiterstadt",
       "category": "other",
       "tags": [],
-      "operator": "H2 MOBILITY",
-      "opening_hours": "Mo-Su 00:00-00:00"
+      "operator": "H2 MOBILITY"
+    },
+    {
+      "id": "fuel_13096935680",
+      "lat": 49.8968851,
+      "lon": 8.6115208,
+      "name": "Shell",
+      "city": "Weiterstadt",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Su 00:00-00:00",
+      "operator": "Sven Fittje GmbH"
     },
     {
       "id": "fuel_13097085965",
@@ -116699,6 +114796,16 @@
       "tags": []
     },
     {
+      "id": "fuel_13175870731",
+      "lat": 50.7779365,
+      "lon": 9.5865827,
+      "name": "Esso",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Esso"
+    },
+    {
       "id": "fuel_13180189340",
       "lat": 47.6035727,
       "lon": 7.655539,
@@ -116769,6 +114876,16 @@
       "operator": "bft"
     },
     {
+      "id": "fuel_13227522141",
+      "lat": 49.8050035,
+      "lon": 12.1851769,
+      "name": "LKW",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "24/7"
+    },
+    {
       "id": "fuel_13231030620",
       "lat": 50.6212534,
       "lon": 8.3618787,
@@ -116831,6 +114948,17 @@
       "tags": [],
       "opening_hours": "Mo-Sa 06:00-22:00; Su 08:00-22:00",
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_13246061636",
+      "lat": 49.4958815,
+      "lon": 11.4658546,
+      "name": "Auto Koch Tankstation",
+      "city": "Happurg",
+      "category": "other",
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:30-19:00; Sa 06:30-18:00; Su 09:30-16:00",
+      "operator": "Auto Koch GmbH"
     },
     {
       "id": "fuel_13270397540",
@@ -117115,6 +115243,15 @@
       "tags": []
     },
     {
+      "id": "fuel_13395011610",
+      "lat": 51.1160337,
+      "lon": 9.2936767,
+      "name": "Tankstelle",
+      "city": "",
+      "category": "other",
+      "tags": []
+    },
+    {
       "id": "fuel_13404326692",
       "lat": 51.4966027,
       "lon": 11.9864851,
@@ -117255,6 +115392,16 @@
       "id": "fuel_13436499188",
       "lat": 50.23413,
       "lon": 7.1486384,
+      "name": "ED",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "ED"
+    },
+    {
+      "id": "fuel_13436499189",
+      "lat": 50.2340109,
+      "lon": 7.1483638,
       "name": "ED",
       "city": "",
       "category": "other",
@@ -117724,6 +115871,16 @@
       "category": "other",
       "tags": [],
       "operator": "Aral"
+    },
+    {
+      "id": "fuel_13648019652",
+      "lat": 51.4931192,
+      "lon": 8.1237445,
+      "name": "Avia",
+      "city": "",
+      "category": "other",
+      "tags": [],
+      "operator": "Avia"
     },
     {
       "id": "fuel_13661407292",
