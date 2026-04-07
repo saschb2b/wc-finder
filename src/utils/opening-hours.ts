@@ -3,18 +3,34 @@
  */
 function parseMonth(monthStr: string): number | null {
   const months: Record<string, number> = {
-    jan: 0, january: 0,
-    feb: 1, february: 1,
-    mar: 2, march: 2, mär: 2,
-    apr: 3, april: 3,
-    may: 4, mai: 4,
-    jun: 5, june: 5,
-    jul: 6, july: 6,
-    aug: 7, august: 7,
-    sep: 8, sept: 8, september: 8,
-    oct: 9, october: 9, okt: 9,
-    nov: 10, november: 10,
-    dec: 11, december: 11, dez: 11,
+    jan: 0,
+    january: 0,
+    feb: 1,
+    february: 1,
+    mar: 2,
+    march: 2,
+    mär: 2,
+    apr: 3,
+    april: 3,
+    may: 4,
+    mai: 4,
+    jun: 5,
+    june: 5,
+    jul: 6,
+    july: 6,
+    aug: 7,
+    august: 7,
+    sep: 8,
+    sept: 8,
+    september: 8,
+    oct: 9,
+    october: 9,
+    okt: 9,
+    nov: 10,
+    november: 10,
+    dec: 11,
+    december: 11,
+    dez: 11,
   };
   return months[monthStr.toLowerCase()] ?? null;
 }
@@ -38,6 +54,68 @@ function isInSeason(startMonth: string, endMonth: string): boolean {
 }
 
 /**
+ * Parse day range like "Fr-Sa" or "Mo-Fr" into array of day indices
+ * Returns array of day numbers (0=Sun, 1=Mon, ..., 6=Sat)
+ */
+function parseDayRange(daysStr: string): number[] {
+  const dayMap: Record<string, number> = {
+    so: 0,
+    mo: 1,
+    di: 2,
+    mi: 3,
+    do: 4,
+    fr: 5,
+    sa: 6,
+  };
+
+  const lower = daysStr.toLowerCase().trim();
+  const result: number[] = [];
+
+  // Handle special keywords
+  if (lower.includes("täglich") || lower.includes("daily")) {
+    return [0, 1, 2, 3, 4, 5, 6];
+  }
+  if (lower.includes("weekend")) {
+    return [0, 6]; // Sun, Sat
+  }
+  if (lower.includes("weekday")) {
+    return [1, 2, 3, 4, 5]; // Mon-Fri
+  }
+
+  // Handle range like "mo-fr" or "fr-sa"
+  const rangeMatch = lower.match(/(\w{2})\s*-\s*(\w{2})/);
+  if (rangeMatch) {
+    const startDay = rangeMatch[1];
+    const endDay = rangeMatch[2];
+    const startIdx = dayMap[startDay];
+    const endIdx = dayMap[endDay];
+
+    if (startIdx !== undefined && endIdx !== undefined) {
+      if (startIdx <= endIdx) {
+        // Normal range: Mo-Fr (1-5)
+        for (let i = startIdx; i <= endIdx; i++) result.push(i);
+      } else {
+        // Wrapping range: Fr-Mo (5-1)
+        for (let i = startIdx; i <= 6; i++) result.push(i);
+        for (let i = 0; i <= endIdx; i++) result.push(i);
+      }
+      return result;
+    }
+  }
+
+  // Handle individual days like "mo,we,fr" or single day "sa"
+  for (const [dayCode, dayNum] of Object.entries(dayMap)) {
+    // Use word boundary to avoid partial matches
+    const pattern = new RegExp(`(^|[^a-z])${dayCode}([^a-z]|$)`);
+    if (pattern.test(lower)) {
+      result.push(dayNum);
+    }
+  }
+
+  return [...new Set(result)]; // Remove duplicates
+}
+
+/**
  * Check if a toilet is currently open based on opening_hours.
  * Returns: true (open), false (closed), null (unknown)
  */
@@ -50,20 +128,6 @@ export function isCurrentlyOpen(opening_hours?: string): boolean | null {
   const now = new Date();
   const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
   const currentTime = now.getHours() * 60 + now.getMinutes();
-
-  // Parse day ranges: Mo-Fr, Sa-So, etc.
-  const dayMap: Record<number, string> = {
-    0: "so",
-    1: "mo",
-    2: "di",
-    3: "mi",
-    4: "do",
-    5: "fr",
-    6: "sa",
-  };
-  const currentDayCode = dayMap[currentDay];
-  const isWeekend = currentDay === 0 || currentDay === 6;
-  const isWeekday = !isWeekend;
 
   // Check for seasonal restrictions: "Apr-Sep 08:00-20:00"
   const seasonalMatch = opening_hours.match(
@@ -88,44 +152,84 @@ export function isCurrentlyOpen(opening_hours?: string): boolean | null {
     return currentTime >= startTime && currentTime <= endTime;
   }
 
-  // Check for simple time ranges: "08:00-20:00" (applies to all days mentioned)
-  const timeMatch = opening_hours.match(
-    /(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/,
+  // Check for day + time ranges: "Fr-Sa 23:00-05:00"
+  const dayTimeMatch = opening_hours.match(
+    /([a-z]{2}(?:\s*-\s*[a-z]{2})?)\s+(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/i,
   );
-  if (timeMatch) {
-    const startHour = parseInt(timeMatch[1], 10);
-    const startMin = parseInt(timeMatch[2], 10);
-    const endHour = parseInt(timeMatch[3], 10);
-    const endMin = parseInt(timeMatch[4], 10);
 
-    // Check if this applies to current day
-    const daysLower = opening_hours.toLowerCase();
-    const matchesToday =
-      daysLower.includes(currentDayCode) ||
-      daysLower.includes("täglich") ||
-      daysLower.includes("daily") ||
-      (isWeekend &&
-        (daysLower.includes("sa") ||
-          daysLower.includes("so") ||
-          daysLower.includes("weekend"))) ||
-      (isWeekday &&
-        (daysLower.includes("mo") ||
-          daysLower.includes("di") ||
-          daysLower.includes("mi") ||
-          daysLower.includes("do") ||
-          daysLower.includes("fr") ||
-          daysLower.includes("weekday")));
+  if (dayTimeMatch) {
+    const daysPart = dayTimeMatch[1];
+    const startHour = parseInt(dayTimeMatch[2], 10);
+    const startMin = parseInt(dayTimeMatch[3], 10);
+    const endHour = parseInt(dayTimeMatch[4], 10);
+    const endMin = parseInt(dayTimeMatch[5], 10);
 
-    if (!matchesToday) return false;
+    const startTime = startHour * 60 + startMin;
+    const endTime = endHour * 60 + endMin;
+    const isOvernight = startTime > endTime;
+
+    // Parse which days this applies to
+    const applicableDays = parseDayRange(daysPart);
+
+    // Check if current day is in the list
+    if (applicableDays.includes(currentDay)) {
+      // Check time range
+      if (isOvernight) {
+        // Overnight: open from startTime to midnight AND midnight to endTime
+        // So we're open if time >= startTime OR time <= endTime
+        if (currentTime >= startTime || currentTime <= endTime) {
+          return true;
+        }
+      } else {
+        // Normal hours
+        if (currentTime >= startTime && currentTime <= endTime) {
+          return true;
+        }
+      }
+    }
+
+    // For overnight hours: check if we're in the early morning tail of yesterday's session
+    // e.g., Saturday 02:00 with "Fr 23:00-05:00" (single day) - the Friday night session extends to Saturday 05:00
+    // BUT: For multi-day ranges like "Fr-Sa", we should NOT extend Saturday into Sunday
+    // because "Fr-Sa" means Friday AND Saturday, not Friday through Sunday
+    if (isOvernight && currentTime <= endTime) {
+      const yesterday = currentDay === 0 ? 6 : currentDay - 1;
+
+      // Only extend into the next day if:
+      // 1. Yesterday is in the applicable days, AND
+      // 2. Either it's a single day, OR yesterday is NOT the last day of the range
+      if (applicableDays.includes(yesterday)) {
+        const isMultiDay = applicableDays.length > 1;
+        const isLastDay = !applicableDays.includes(currentDay);
+
+        // If it's multi-day and yesterday was the last day, don't extend
+        // (e.g., "Fr-Sa" on Sunday: Saturday is the last day, don't extend to Sunday)
+        if (!isMultiDay || !isLastDay) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  // Simple time only: "08:00-20:00" (applies to all days)
+  const timeOnlyMatch = opening_hours.match(
+    /^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/,
+  );
+
+  if (timeOnlyMatch) {
+    const startHour = parseInt(timeOnlyMatch[1], 10);
+    const startMin = parseInt(timeOnlyMatch[2], 10);
+    const endHour = parseInt(timeOnlyMatch[3], 10);
+    const endMin = parseInt(timeOnlyMatch[4], 10);
 
     const startTime = startHour * 60 + startMin;
     const endTime = endHour * 60 + endMin;
 
-    // Handle overnight hours (e.g., 22:00-06:00)
     if (startTime > endTime) {
       return currentTime >= startTime || currentTime <= endTime;
     }
-
     return currentTime >= startTime && currentTime <= endTime;
   }
 
