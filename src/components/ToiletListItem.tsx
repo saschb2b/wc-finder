@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from "../types/toilet";
 import { formatDistance } from "../services/overpass";
 import { OpeningHoursDisplay } from "./OpeningHoursDisplay";
-import { isOpenNow } from "../types/opening-hours";
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -28,14 +27,7 @@ export const ToiletListItem = memo(function ToiletListItem({
 }: ToiletListItemProps) {
   const displayName = toilet.name || "Barrierefreie Toilette";
   const catColor = CATEGORY_COLORS[toilet.category];
-  const isFree = toilet.tags?.includes("kostenlos") || toilet.fee === "no";
   const hasEurokey = toilet.tags?.includes("eurokey");
-  const isWheelchairAccessible =
-    toilet.tags?.includes("eurokey") || toilet.tags?.includes("barrierefrei");
-
-  // Use new standardized hours format
-  const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
-  const hasUnknownHours = !toilet.hours || toilet.hours.type === "unknown";
 
   const handleFavoritePress = useCallback(
     (e: any) => {
@@ -104,7 +96,7 @@ export const ToiletListItem = memo(function ToiletListItem({
           )}
         </View>
 
-        {/* Row 2: tags */}
+        {/* Row 2: essential tags only */}
         <View style={styles.tagRow}>
           <View style={[styles.tag, { backgroundColor: catColor }]}>
             <Text style={styles.tagText}>
@@ -116,34 +108,9 @@ export const ToiletListItem = memo(function ToiletListItem({
               <Text style={styles.tagText}>Eurokey</Text>
             </View>
           )}
-          {isWheelchairAccessible && !hasEurokey && (
-            <View style={[styles.tag, styles.tagWheelchair]}>
-              <Text style={styles.tagText}>♿ Barrierefrei</Text>
-            </View>
-          )}
-          {isFree && (
-            <View style={[styles.tag, styles.tagFree]}>
-              <Text style={styles.tagText}>Kostenlos</Text>
-            </View>
-          )}
           {toilet.hours?.type === "24_7" && (
             <View style={[styles.tag, styles.tag24h]}>
               <Text style={styles.tagText}>24/7</Text>
-            </View>
-          )}
-          {openStatus === true && (
-            <View style={[styles.tag, styles.tagOpen]}>
-              <Text style={styles.tagText}>Geöffnet</Text>
-            </View>
-          )}
-          {openStatus === false && (
-            <View style={[styles.tag, styles.tagClosed]}>
-              <Text style={styles.tagText}>Geschlossen</Text>
-            </View>
-          )}
-          {hasUnknownHours && openStatus !== false && (
-            <View style={[styles.tag, styles.tagUnknown]}>
-              <Text style={styles.tagText}>Zeiten unbekannt</Text>
             </View>
           )}
           {isNearest && (
@@ -153,17 +120,16 @@ export const ToiletListItem = memo(function ToiletListItem({
           )}
         </View>
 
-        {/* Row 3: city + opening hours - allow wrapping for readability */}
-        {toilet.city && (
-          <Text style={styles.city} numberOfLines={1}>
-            {toilet.city}
-          </Text>
-        )}
-        {toilet.hours && toilet.hours.type !== "unknown" && (
+        {/* Row 3: hours - compact, never truncates */}
+        {toilet.hours && toilet.hours.type !== "unknown" ? (
           <View style={styles.hoursRow}>
             <OpeningHoursDisplay hours={toilet.hours} compact />
           </View>
-        )}
+        ) : toilet.city ? (
+          <Text style={styles.city} numberOfLines={1}>
+            {toilet.city}
+          </Text>
+        ) : null}
       </View>
 
       {/* Right: actions */}
@@ -198,7 +164,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "#e8e8e8",
@@ -219,7 +185,11 @@ const styles = StyleSheet.create({
   },
   favIcon: { fontSize: 22, color: "#d0d0d0" },
   favIconActive: { color: "#f5a623" },
-  info: { flex: 1, marginRight: 10 },
+  info: {
+    flex: 1,
+    marginRight: 10,
+    minWidth: 0, // Important for text truncation
+  },
   row: {
     flexDirection: "row",
     alignItems: "baseline",
@@ -240,7 +210,7 @@ const styles = StyleSheet.create({
   tagRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 5,
+    marginTop: 4,
     gap: 4,
   },
   tag: {
@@ -255,20 +225,15 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   tagEurokey: { backgroundColor: "#1a73e8" },
-  tagWheelchair: { backgroundColor: "#34a853" },
-  tagFree: { backgroundColor: "#6bb77b" },
   tag24h: { backgroundColor: "#34a853" },
-  tagOpen: { backgroundColor: "#34a853" },
-  tagClosed: { backgroundColor: "#ea4335" },
-  tagUnknown: { backgroundColor: "#9aa0a6" },
   tagNearest: { backgroundColor: "#34a853" },
   city: {
     fontSize: 12,
     color: "#666",
-    marginTop: 3,
+    marginTop: 2,
   },
   hoursRow: {
-    marginTop: 4,
+    marginTop: 3,
   },
   actions: {
     alignItems: "center",

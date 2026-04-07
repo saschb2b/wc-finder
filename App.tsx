@@ -27,6 +27,8 @@ import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
 import { ToiletListItem } from "./src/components/ToiletListItem";
 import { isCurrentlyOpen } from "./src/utils/opening-hours";
+import { OpeningHoursDisplay } from "./src/components/OpeningHoursDisplay";
+import { isOpenNow } from "./src/types/opening-hours";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
@@ -58,13 +60,14 @@ function openNavigationWithHaptics(
 
 function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
   // Check if toilet is closed
-  const openStatus = isCurrentlyOpen(toilet.opening_hours);
+  const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
 
   if (openStatus === false && showClosedWarning) {
     // Show warning before navigating
+    const hoursText = toilet.hours?.original || "unbekannt";
     Alert.alert(
       "Toilette geschlossen",
-      `\"${toilet.name}\" ist aktuell geschlossen (Öffnungszeiten: ${toilet.opening_hours}).\n\nTrotzdem Navigation starten?`,
+      `\"${toilet.name}\" ist aktuell geschlossen (Öffnungszeiten: ${hoursText}).\n\nTrotzdem Navigation starten?`,
       [
         { text: "Abbrechen", style: "cancel" },
         {
@@ -276,13 +279,13 @@ function AppContent() {
     // Apply same filters as list: Mode → Favorites → Eurokey
     // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
     if (filterMode === "now") {
-      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
+      result = result.filter((t) => t.hours && isOpenNow(t.hours));
     }
 
     // Sort by open status: confirmed open > unknown > closed (at bottom)
     result = result.sort((a, b) => {
-      const statusA = isCurrentlyOpen(a.opening_hours);
-      const statusB = isCurrentlyOpen(b.opening_hours);
+      const statusA = a.hours ? isOpenNow(a.hours) : null;
+      const statusB = b.hours ? isOpenNow(b.hours) : null;
       // true (open) > null (unknown) > false (closed)
       if (statusA === statusB) return 0;
       if (statusA === true) return -1;
@@ -343,7 +346,7 @@ function AppContent() {
     // Apply same filters: Mode → Favorites → Eurokey
     // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
     if (filterMode === "now") {
-      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
+      result = result.filter((t) => t.hours && isOpenNow(t.hours));
     }
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
@@ -387,16 +390,15 @@ function AppContent() {
     }
     // Fallback: if filtered list is empty, try to find ANY open toilet
     if (filterMode === "now") {
-      return toilets.find((t) => isCurrentlyOpen(t.opening_hours) === true);
+      return toilets.find((t) => t.hours && isOpenNow(t.hours));
     }
     return nearest;
   }, [filteredToilets, filterMode, toilets, nearest]);
 
   // Helper to check if toilet is currently open
   const getOpenStatus = (t: Toilet): boolean => {
-    if (!t.opening_hours || t.opening_hours === "24/7") return true;
-    const status = isCurrentlyOpen(t.opening_hours);
-    return status !== false; // Treat unknown as open
+    if (!t.hours || t.hours.type === "unknown") return true; // Treat unknown as open
+    return isOpenNow(t.hours);
   };
 
   // Prefer open toilets for "nearest" suggestions
@@ -471,10 +473,10 @@ function AppContent() {
           {toiletToShow.name || "Barrierefreie Toilette"}
           {toiletToShow.city ? ` · ${toiletToShow.city}` : ""}
         </Text>
-        {toiletToShow.opening_hours && (
-          <Text style={styles.nearestHours} numberOfLines={1}>
-            {toiletToShow.opening_hours}
-          </Text>
+        {toiletToShow.hours && toiletToShow.hours.type !== "unknown" && (
+          <View style={styles.nearestHoursRow}>
+            <OpeningHoursDisplay hours={toiletToShow.hours} compact />
+          </View>
         )}
       </View>
       <View style={styles.nearestRight}>
@@ -507,11 +509,12 @@ function AppContent() {
   // --- Filter chips ---
   // "Jetzt geöffnet" shows ONLY confirmed open toilets (strict)
   const openNowCount = toilets.filter(
-    (t) => isCurrentlyOpen(t.opening_hours) === true,
+    (t) => t.hours && isOpenNow(t.hours),
   ).length;
   // "Alle" shows all except definitely closed
   const allAvailableCount = toilets.filter(
-    (t) => isCurrentlyOpen(t.opening_hours) !== false,
+    (t) =>
+      !t.hours || t.hours.type === "unknown" || isOpenNow(t.hours) !== false,
   ).length;
 
   const filterBar = (
@@ -934,7 +937,7 @@ function AppContent() {
           {visibleToilets.map((toilet) => {
             const isSelected = toilet.id === selectedToilet?.id;
             const isFavorite = toilet.id ? favoriteIds.has(toilet.id) : false;
-            const openStatus = isCurrentlyOpen(toilet.opening_hours);
+            const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
             const isClosed = openStatus === false;
 
             // Pin color priority: selected > favorite > category-based
@@ -1209,7 +1212,7 @@ const styles = StyleSheet.create({
   },
   nearestRight: { alignItems: "center", gap: 4 },
   nearestDist: { fontSize: 13, fontWeight: "700", color: S.textSecondary },
-  nearestHours: { fontSize: 11, color: S.textMuted, marginTop: 2 },
+  nearestHoursRow: { marginTop: 4 },
   nearestCardActive: { backgroundColor: "#e8f4fd", borderColor: S.blue },
   nearestNavBtn: {
     backgroundColor: S.green,
