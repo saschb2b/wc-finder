@@ -29,6 +29,7 @@ import { ToiletListItem } from "./src/components/ToiletListItem";
 import { isCurrentlyOpen } from "./src/utils/opening-hours";
 import { OpeningHoursDisplay } from "./src/components/OpeningHoursDisplay";
 import { isOpenNow } from "./src/types/opening-hours";
+import { ToiletDetailCard } from "./src/components/ToiletDetailCard";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
@@ -439,71 +440,15 @@ function AppContent() {
   const toiletToShow = selectedToilet || displayNearest;
 
   const bottomCard = toiletToShow && (
-    <View
-      style={[styles.nearestCard, selectedToilet && styles.nearestCardActive]}
-    >
-      <View style={styles.nearestInfo}>
-        <View style={styles.nearestLabelRow}>
-          <Text style={styles.nearestLabel}>
-            {selectedToilet ? "Ausgewählt" : "Empfohlen"}
-          </Text>
-          {/* Context badges */}
-          {!selectedToilet && filterMode === "now" && (
-            <View style={[styles.contextBadge, styles.contextBadgeOpen]}>
-              <Text style={styles.contextBadgeText}>Geöffnet</Text>
-            </View>
-          )}
-          {!selectedToilet && showFavoritesOnly && (
-            <View style={[styles.contextBadge, styles.contextBadgeFav]}>
-              <Text style={styles.contextBadgeText}>Favorit</Text>
-            </View>
-          )}
-          {!selectedToilet && requireEurokey && (
-            <View style={[styles.contextBadge, styles.contextBadgeEurokey]}>
-              <Text style={styles.contextBadgeText}>Eurokey</Text>
-            </View>
-          )}
-          {!selectedToilet && wheelchairOnly && (
-            <View style={[styles.contextBadge, styles.contextBadgeWheelchair]}>
-              <Text style={styles.contextBadgeText}>Barrierefrei</Text>
-            </View>
-          )}
-        </View>
-        <Text style={styles.nearestName} numberOfLines={1}>
-          {toiletToShow.name || "Barrierefreie Toilette"}
-          {toiletToShow.city ? ` · ${toiletToShow.city}` : ""}
-        </Text>
-        {toiletToShow.hours && toiletToShow.hours.type !== "unknown" && (
-          <View style={styles.nearestHoursRow}>
-            <OpeningHoursDisplay hours={toiletToShow.hours} compact />
-          </View>
-        )}
-      </View>
-      <View style={styles.nearestRight}>
-        {toiletToShow.distance != null && (
-          <Text style={styles.nearestDist}>
-            {formatDistance(toiletToShow.distance)}
-          </Text>
-        )}
-        <TouchableOpacity
-          style={styles.nearestNavBtn}
-          onPress={() => openNavigationWithHaptics(toiletToShow)}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.nearestNavText}>Route</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardReportBtn}
-          onPress={() => {
-            setReportToilet(toiletToShow);
-            setShowReport(true);
-          }}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
-          <Text style={styles.cardReportText}>Melden</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <ToiletDetailCard
+      toilet={toiletToShow}
+      isSelected={!!selectedToilet}
+      onNavigate={() => openNavigationWithHaptics(toiletToShow)}
+      onReport={() => {
+        setReportToilet(toiletToShow);
+        setShowReport(true);
+      }}
+    />
   );
 
   // --- Filter chips ---
