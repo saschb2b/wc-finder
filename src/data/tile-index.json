@@ -1,7 +1,7 @@
 {
   "generated": "2026-04-07",
-  "source": "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
-  "totalCount": 11304,
+  "source": "Merged: toilettenhero.de + OpenStreetMap + Manual curation + Major cities + Hannover businesses + Google Places + Toiletten für alle + Stadt Hannover + Dortmund",
+  "totalCount": 13155,
   "tileCount": 69,
   "tiles": [
     {
@@ -74,7 +74,7 @@
       "latMax": 49,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 401
+      "count": 403
     },
     {
       "key": "48_12",
@@ -114,7 +114,7 @@
       "latMax": 49,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 414
+      "count": 417
     },
     {
       "key": "49_10",
@@ -130,7 +130,7 @@
       "latMax": 50,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 273
+      "count": 274
     },
     {
       "key": "49_12",
@@ -234,7 +234,7 @@
       "latMax": 51,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 223
+      "count": 226
     },
     {
       "key": "50_7",
@@ -242,7 +242,7 @@
       "latMax": 51,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 356
+      "count": 357
     },
     {
       "key": "50_8",
@@ -250,7 +250,7 @@
       "latMax": 51,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 474
+      "count": 477
     },
     {
       "key": "50_9",
@@ -282,7 +282,7 @@
       "latMax": 52,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 162
+      "count": 163
     },
     {
       "key": "51_13",
@@ -290,7 +290,7 @@
       "latMax": 52,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 111
+      "count": 114
     },
     {
       "key": "51_14",
@@ -314,7 +314,7 @@
       "latMax": 52,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 539
+      "count": 542
     },
     {
       "key": "51_7",
@@ -322,7 +322,7 @@
       "latMax": 52,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 745
+      "count": 1512
     },
     {
       "key": "51_8",
@@ -370,7 +370,7 @@
       "latMax": 53,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 367
+      "count": 372
     },
     {
       "key": "52_14",
@@ -410,7 +410,7 @@
       "latMax": 53,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 370
+      "count": 1425
     },
     {
       "key": "53_10",
@@ -418,7 +418,7 @@
       "latMax": 54,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 248
+      "count": 249
     },
     {
       "key": "53_11",
@@ -482,7 +482,7 @@
       "latMax": 54,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 249
+      "count": 252
     },
     {
       "key": "54_10",
