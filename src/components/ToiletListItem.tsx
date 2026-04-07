@@ -52,6 +52,7 @@ export const ToiletListItem = memo(function ToiletListItem({
     toilet.tags?.includes("eurokey") || toilet.tags?.includes("barrierefrei");
   const openStatus = isCurrentlyOpen(toilet.opening_hours);
   const formattedHours = formatOpeningHours(toilet.opening_hours);
+  const hasUnknownHours = !toilet.opening_hours || toilet.opening_hours === "";
 
   const handleFavoritePress = useCallback(
     (e: any) => {
@@ -155,6 +156,11 @@ export const ToiletListItem = memo(function ToiletListItem({
           {openStatus === false && (
             <View style={[styles.tag, styles.tagClosed]}>
               <Text style={styles.tagText}>Geschlossen</Text>
+            </View>
+          )}
+          {hasUnknownHours && openStatus !== false && (
+            <View style={[styles.tag, styles.tagUnknown]}>
+              <Text style={styles.tagText}>Zeiten unbekannt</Text>
             </View>
           )}
           {isNearest && (
@@ -271,6 +277,7 @@ const styles = StyleSheet.create({
   tag24h: { backgroundColor: "#34a853" },
   tagOpen: { backgroundColor: "#34a853" },
   tagClosed: { backgroundColor: "#ea4335" },
+  tagUnknown: { backgroundColor: "#9aa0a6" }, // Gray for unknown
   tagNearest: { backgroundColor: "#34a853" },
   city: {
     fontSize: 12,
