@@ -33,7 +33,6 @@ Find the nearest accessible toilet with real-time opening hours, Eurokey access 
 - **Real-time status** — "Geöffnet", "Geschlossen", or "Öffnet in 2h"
 - **Eurokey filter** — Find toilets with Eurokey access
 - **Barrierefrei filter** — Wheelchair accessible locations only
-- **Kostenlos filter** — Show only free toilets
 - **Offline support** — All data bundled in the app, works without internet
 - **One-tap navigation** — Open Google Maps, Apple Maps, or Waze
 - **Favorites** — Save trusted locations for quick access
