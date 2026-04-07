@@ -32,8 +32,12 @@ import {
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
+import { OnboardingModal } from "./src/components/OnboardingModal";
+import { EmptyState } from "./src/components/EmptyState";
+import { mediumImpact, successNotification } from "./src/utils/haptics";
 
 const isWeb = Platform.OS === "web";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let MapView: any = null;
 let Marker: any = null;
@@ -44,6 +48,14 @@ if (!isWeb) {
   MapView = maps.default;
   Marker = maps.Marker;
   PROVIDER_GOOGLE = maps.PROVIDER_GOOGLE;
+}
+
+function openNavigationWithHaptics(
+  toilet: Toilet,
+  showClosedWarning: boolean = true,
+) {
+  successNotification();
+  openNavigation(toilet, showClosedWarning);
 }
 
 function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
@@ -100,7 +112,25 @@ function AppContent() {
     exploreAt,
     clearExplore,
   } = useToilets();
-  const { favoriteIds, toggleFavorite, isFavorite } = useFavorites();
+  const {
+    favoriteIds,
+    toggleFavorite: rawToggleFavorite,
+    isFavorite,
+  } = useFavorites();
+
+  // Wrap toggleFavorite with haptics
+  const toggleFavorite = useCallback(
+    (id: string) => {
+      const willBeFavorite = !favoriteIds.has(id);
+      if (willBeFavorite) {
+        successNotification();
+      } else {
+        mediumImpact();
+      }
+      rawToggleFavorite(id);
+    },
+    [favoriteIds, rawToggleFavorite],
+  );
   const mapRef = useRef<any>(null);
   const [selectedToilet, setSelectedToilet] = useState<Toilet | null>(null);
   const [listExpanded, setListExpanded] = useState(false);
@@ -126,9 +156,40 @@ function AppContent() {
   // Track programmatic animation target to distinguish from user pans
   const animatingToRef = useRef<{ lat: number; lon: number } | null>(null);
 
+  // Onboarding state
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  // Check if first launch
+  useEffect(() => {
+    const checkFirstLaunch = async () => {
+      try {
+        const hasSeenOnboarding =
+          await AsyncStorage.getItem("hasSeenOnboarding");
+        if (hasSeenOnboarding !== "true") {
+          setShowOnboarding(true);
+        }
+      } catch {
+        // Ignore errors
+      }
+    };
+    if (!isWeb) {
+      checkFirstLaunch();
+    }
+  }, []);
+
+  const handleOnboardingComplete = useCallback(async () => {
+    setShowOnboarding(false);
+    try {
+      await AsyncStorage.setItem("hasSeenOnboarding", "true");
+    } catch {
+      // Ignore errors
+    }
+  }, []);
+
   // --- Callbacks ---
 
   const focusToilet = useCallback((toilet: Toilet) => {
+    mediumImpact();
     setSelectedToilet(toilet);
     setListExpanded(false);
     if (!isWeb) {
@@ -147,6 +208,7 @@ function AppContent() {
   }, []);
 
   const focusUser = useCallback(() => {
+    mediumImpact();
     backToMyLocation();
     setSelectedToilet(null);
     setMapMoved(false);
@@ -165,6 +227,7 @@ function AppContent() {
   }, [userLocation, backToMyLocation]);
 
   const handleSearchHere = useCallback(() => {
+    mediumImpact();
     if (mapRegion) {
       // exploreAt loads toilets in the visible bounds but keeps distance from userLocation
       exploreAt(mapRegion.lat, mapRegion.lon, mapRegion.latD, mapRegion.lonD);
@@ -373,25 +436,20 @@ function AppContent() {
   // --- Loading ---
   if (loading && !userLocation) {
     return (
-      <LoadingScreen
-        onSkip={() => {
-          // Skip location and show default view (Hannover center)
-          setMapMoved(false);
-        }}
-      />
+      <>
+        <StatusBar style="dark" />
+        <EmptyState type="loading" />
+      </>
     );
   }
 
   // --- Error ---
   if (error && toilets.length === 0) {
     return (
-      <SafeAreaView style={styles.centered}>
+      <>
         <StatusBar style="dark" />
-        <Text style={styles.errorText}>{error}</Text>
-        <TouchableOpacity style={styles.primaryBtn} onPress={refresh}>
-          <Text style={styles.primaryBtnText}>Erneut versuchen</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+        <EmptyState type="error" onAction={refresh} message={error} />
+      </>
     );
   }
 
@@ -447,7 +505,7 @@ function AppContent() {
         )}
         <TouchableOpacity
           style={styles.nearestNavBtn}
-          onPress={() => openNavigation(toiletToShow)}
+          onPress={() => openNavigationWithHaptics(toiletToShow)}
           activeOpacity={0.8}
         >
           <Text style={styles.nearestNavText}>Route</Text>
@@ -485,7 +543,10 @@ function AppContent() {
             styles.toggleBtn,
             filterMode === "now" && styles.toggleBtnActive,
           ]}
-          onPress={() => setFilterMode("now")}
+          onPress={() => {
+            mediumImpact();
+            setFilterMode("now");
+          }}
         >
           <Text
             style={[
@@ -514,7 +575,10 @@ function AppContent() {
             styles.toggleBtn,
             filterMode === "all" && styles.toggleBtnActive,
           ]}
-          onPress={() => setFilterMode("all")}
+          onPress={() => {
+            mediumImpact();
+            setFilterMode("all");
+          }}
         >
           <Text
             style={[
@@ -546,7 +610,10 @@ function AppContent() {
             styles.secondaryBtn,
             showFavoritesOnly && styles.secondaryBtnActive,
           ]}
-          onPress={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          onPress={() => {
+            mediumImpact();
+            setShowFavoritesOnly(!showFavoritesOnly);
+          }}
         >
           <Text
             style={[
@@ -563,7 +630,10 @@ function AppContent() {
             styles.secondaryBtn,
             requireEurokey && styles.secondaryBtnActive,
           ]}
-          onPress={() => setRequireEurokey(!requireEurokey)}
+          onPress={() => {
+            mediumImpact();
+            setRequireEurokey(!requireEurokey);
+          }}
         >
           <Text
             style={[
@@ -580,7 +650,10 @@ function AppContent() {
             styles.secondaryBtn,
             wheelchairOnly && styles.secondaryBtnActive,
           ]}
-          onPress={() => setWheelchairOnly(!wheelchairOnly)}
+          onPress={() => {
+            mediumImpact();
+            setWheelchairOnly(!wheelchairOnly);
+          }}
         >
           <Text
             style={[
@@ -611,7 +684,7 @@ function AppContent() {
             isNearest={item.id === nearest?.id}
             isFavorite={isFavorite(item.id)}
             isSelected={item.id === selectedToilet?.id}
-            onNavigate={openNavigation}
+            onNavigate={openNavigationWithHaptics}
             onSelect={focusToilet}
             onToggleFavorite={toggleFavorite}
             onReport={(t) => {
@@ -622,22 +695,15 @@ function AppContent() {
         )}
         contentContainerStyle={styles.listContent}
         ListEmptyComponent={
-          <View style={styles.emptyState}>
-            <Text style={styles.emptyText}>
-              {filterMode === "now" &&
-              !showFavoritesOnly &&
-              !requireEurokey &&
-              !wheelchairOnly
-                ? "Keine geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
-                : showFavoritesOnly
-                  ? "Keine Favoriten in dieser Auswahl."
-                  : requireEurokey
-                    ? "Keine Eurokey-Toiletten in der Nähe."
-                    : wheelchairOnly
-                      ? "Keine barrierefreien Toiletten in der Nähe."
-                      : "Keine Toiletten gefunden."}
-            </Text>
-          </View>
+          <EmptyState
+            type="no-results"
+            onAction={() => {
+              setFilterMode("all");
+              setShowFavoritesOnly(false);
+              setRequireEurokey(false);
+              setWheelchairOnly(false);
+            }}
+          />
         }
       />
     </>
@@ -867,17 +933,15 @@ function AppContent() {
           )}
           contentContainerStyle={styles.modalListContent}
           ListEmptyComponent={
-            <View style={styles.emptyState}>
-              <Text style={styles.emptyText}>
-                {filterMode === "now" && !showFavoritesOnly && !requireEurokey
-                  ? "Keine geöffneten Toiletten in der Nähe.\nTippe auf 'Alle' um alle zu sehen."
-                  : showFavoritesOnly
-                    ? "Keine Favoriten in dieser Auswahl."
-                    : requireEurokey
-                      ? "Keine Eurokey-Toiletten in der Nähe."
-                      : "Keine Toiletten gefunden."}
-              </Text>
-            </View>
+            <EmptyState
+              type="no-results"
+              onAction={() => {
+                setFilterMode("all");
+                setShowFavoritesOnly(false);
+                setRequireEurokey(false);
+                setWheelchairOnly(false);
+              }}
+            />
           }
         />
       </SafeAreaView>
@@ -888,6 +952,13 @@ function AppContent() {
   return (
     <View style={styles.flex}>
       <StatusBar style="dark" />
+
+      {/* Onboarding Modal */}
+      <OnboardingModal
+        visible={showOnboarding}
+        onComplete={handleOnboardingComplete}
+        onRequestLocation={focusUser}
+      />
 
       {/* List Modal */}
       <ListModal />
