@@ -1,7 +1,7 @@
 {
   "generated": "2026-04-07",
-  "source": "Merged: toilettenhero.de + OpenStreetMap + Toiletten für alle + Stadt Hannover + Dortmund",
-  "count": 212,
+  "source": "Merged: toilettenhero.de + OpenStreetMap (basic + enhanced) + Manual curation + Toiletten für alle + Stadt Hannover + Dortmund",
+  "count": 278,
   "toilets": [
     {
       "id": "tfa_hannover_1",
@@ -2267,7 +2267,8 @@
         "barrierefrei"
       ],
       "opening_hours": "24/7",
-      "operator": "McDonald's"
+      "operator": "McDonald's",
+      "fee": "no"
     },
     {
       "id": "haj_mcdonalds_mitte",
@@ -2489,12 +2490,13 @@
       "lon": 7.46,
       "name": "Polizeiinspektion (Hauptbahnhof)",
       "city": "Dortmund",
-      "category": "other",
+      "category": "gastro",
       "tags": [
         "barrierefrei"
       ],
       "opening_hours": "24/7",
-      "operator": "Polizei"
+      "operator": "Polizei",
+      "fee": "no"
     },
     {
       "id": "do_nightrooms",
@@ -2820,6 +2822,930 @@
       ],
       "opening_hours": "Fr-Sa 23:00-06:00",
       "operator": "Maximal"
+    },
+    {
+      "id": "manual_mcdonald_s_berlin_hauptbahnhof_5252",
+      "lat": 52.5251,
+      "lon": 13.3694,
+      "name": "McDonald's Berlin Hauptbahnhof",
+      "city": "Berlin",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_alexanderplatz_5252",
+      "lat": 52.5219,
+      "lon": 13.4132,
+      "name": "McDonald's Alexanderplatz",
+      "city": "Berlin",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_potsdamer_platz_5250",
+      "lat": 52.5096,
+      "lon": 13.3759,
+      "name": "McDonald's Potsdamer Platz",
+      "city": "Berlin",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_zoologischer_garten_5250",
+      "lat": 52.5074,
+      "lon": 13.3324,
+      "name": "McDonald's Zoologischer Garten",
+      "city": "Berlin",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_friedrichstra_e_5252",
+      "lat": 52.52,
+      "lon": 13.388,
+      "name": "McDonald's Friedrichstraße",
+      "city": "Berlin",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_hamburg_hauptbahnho_5355",
+      "lat": 53.5527,
+      "lon": 10.0069,
+      "name": "McDonald's Hamburg Hauptbahnhof",
+      "city": "Hamburg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_jungfernstieg_5355",
+      "lat": 53.5521,
+      "lon": 9.9937,
+      "name": "McDonald's Jungfernstieg",
+      "city": "Hamburg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-23:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_reeperbahn_5354",
+      "lat": 53.5493,
+      "lon": 9.9626,
+      "name": "McDonald's Reeperbahn",
+      "city": "Hamburg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_altona_5355",
+      "lat": 53.5511,
+      "lon": 9.9352,
+      "name": "McDonald's Altona",
+      "city": "Hamburg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_m_nchen_hauptbahnho_4814",
+      "lat": 48.1402,
+      "lon": 11.561,
+      "name": "McDonald's München Hauptbahnhof",
+      "city": "München",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_marienplatz_4813",
+      "lat": 48.1373,
+      "lon": 11.5755,
+      "name": "Mcdonald's Marienplatz",
+      "city": "München",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-23:00",
+      "operator": "Mcdonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_stachus_4813",
+      "lat": 48.1391,
+      "lon": 11.5657,
+      "name": "McDonald's Stachus",
+      "city": "München",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_ostbahnhof_4812",
+      "lat": 48.1275,
+      "lon": 11.6046,
+      "name": "McDonald's Ostbahnhof",
+      "city": "München",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_k_ln_hauptbahnhof_5094",
+      "lat": 50.943,
+      "lon": 6.9583,
+      "name": "McDonald's Köln Hauptbahnhof",
+      "city": "Köln",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_heumarkt_5093",
+      "lat": 50.9361,
+      "lon": 6.9603,
+      "name": "McDonald's Heumarkt",
+      "city": "Köln",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_neumarkt_5093",
+      "lat": 50.9372,
+      "lon": 6.9478,
+      "name": "McDonald's Neumarkt",
+      "city": "Köln",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_frankfurt_hauptbahn_5010",
+      "lat": 50.1071,
+      "lon": 8.6636,
+      "name": "McDonald's Frankfurt Hauptbahnhof",
+      "city": "Frankfurt",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_hauptwache_5011",
+      "lat": 50.1141,
+      "lon": 8.6795,
+      "name": "McDonald's Hauptwache",
+      "city": "Frankfurt",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_konstablerwache_5011",
+      "lat": 50.1136,
+      "lon": 8.6868,
+      "name": "McDonald's Konstablerwache",
+      "city": "Frankfurt",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_stuttgart_hauptbahn_4878",
+      "lat": 48.7833,
+      "lon": 9.1803,
+      "name": "McDonald's Stuttgart Hauptbahnhof",
+      "city": "Stuttgart",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_k_nigstra_e_4877",
+      "lat": 48.7758,
+      "lon": 9.1829,
+      "name": "McDonald's Königstraße",
+      "city": "Stuttgart",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-23:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_d_sseldorf_hauptbah_5121",
+      "lat": 51.2198,
+      "lon": 6.7949,
+      "name": "McDonald's Düsseldorf Hauptbahnhof",
+      "city": "Düsseldorf",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_k_nigsallee_5122",
+      "lat": 51.2256,
+      "lon": 6.7806,
+      "name": "McDonald's Königsallee",
+      "city": "Düsseldorf",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-23:00",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_leipzig_hauptbahnho_5134",
+      "lat": 51.3455,
+      "lon": 12.3811,
+      "name": "McDonald's Leipzig Hauptbahnhof",
+      "city": "Leipzig",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_dresden_hauptbahnho_5104",
+      "lat": 51.0406,
+      "lon": 13.7325,
+      "name": "McDonald's Dresden Hauptbahnhof",
+      "city": "Dresden",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_mcdonald_s_n_rnberg_hauptbahnh_4944",
+      "lat": 49.4456,
+      "lon": 11.0825,
+      "name": "McDonald's Nürnberg Hauptbahnhof",
+      "city": "Nürnberg",
+      "category": "gastro",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "McDonald's",
+      "fee": "no"
+    },
+    {
+      "id": "manual_rewe_city_berlin_alexanderplat_5252",
+      "lat": 52.5225,
+      "lon": 13.4132,
+      "name": "REWE City Berlin Alexanderplatz",
+      "city": "Berlin",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-24:00",
+      "operator": "REWE",
+      "fee": "no"
+    },
+    {
+      "id": "manual_rewe_city_m_nchen_hauptbahnhof_4814",
+      "lat": 48.1405,
+      "lon": 11.56,
+      "name": "REWE City München Hauptbahnhof",
+      "city": "München",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "REWE",
+      "fee": "no"
+    },
+    {
+      "id": "manual_rewe_city_hamburg_hauptbahnhof_5255",
+      "lat": 52.5527,
+      "lon": 10.0069,
+      "name": "REWE City Hamburg Hauptbahnhof",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-24:00",
+      "operator": "REWE",
+      "fee": "no"
+    },
+    {
+      "id": "manual_rewe_city_frankfurt_hauptbahnh_5010",
+      "lat": 50.1075,
+      "lon": 8.663,
+      "name": "REWE City Frankfurt Hauptbahnhof",
+      "city": "Frankfurt",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-24:00",
+      "operator": "REWE",
+      "fee": "no"
+    },
+    {
+      "id": "manual_alexa__alexa_center__5251",
+      "lat": 52.519,
+      "lon": 13.414,
+      "name": "Alexa (Alexa-Center)",
+      "city": "Berlin",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Alexa",
+      "fee": "no"
+    },
+    {
+      "id": "manual_gesundbrunnen_center_5254",
+      "lat": 52.549,
+      "lon": 13.39,
+      "name": "Gesundbrunnen-Center",
+      "city": "Berlin",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Gesundbrunnen-Center",
+      "fee": "no"
+    },
+    {
+      "id": "manual_east_side_mall_5250",
+      "lat": 52.501,
+      "lon": 13.442,
+      "name": "East Side Mall",
+      "city": "Berlin",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "East",
+      "fee": "no"
+    },
+    {
+      "id": "manual_europa_passage_5355",
+      "lat": 53.551,
+      "lon": 9.993,
+      "name": "Europa Passage",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Europa",
+      "fee": "no"
+    },
+    {
+      "id": "manual_hanse_viertel_5355",
+      "lat": 53.557,
+      "lon": 9.99,
+      "name": "Hanse-Viertel",
+      "city": "Hamburg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Hanse-Viertel",
+      "fee": "no"
+    },
+    {
+      "id": "manual_olympia_einkaufszentrum_4818",
+      "lat": 48.182,
+      "lon": 11.53,
+      "name": "Olympia-Einkaufszentrum",
+      "city": "München",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:30-20:00",
+      "operator": "Olympia-Einkaufszentrum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_riem_arcaden_4813",
+      "lat": 48.137,
+      "lon": 11.69,
+      "name": "Riem-Arcaden",
+      "city": "München",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Riem-Arcaden",
+      "fee": "no"
+    },
+    {
+      "id": "manual_rhein_center_5098",
+      "lat": 50.98,
+      "lon": 6.9,
+      "name": "Rhein-Center",
+      "city": "Köln",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Rhein-Center",
+      "fee": "no"
+    },
+    {
+      "id": "manual_city_center_chorweiler_5102",
+      "lat": 51.025,
+      "lon": 6.895,
+      "name": "City-Center Chorweiler",
+      "city": "Köln",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:30-20:00",
+      "operator": "City-Center",
+      "fee": "no"
+    },
+    {
+      "id": "manual_myzeil_5011",
+      "lat": 50.1145,
+      "lon": 8.681,
+      "name": "MyZeil",
+      "city": "Frankfurt",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "MyZeil",
+      "fee": "no"
+    },
+    {
+      "id": "manual_skyline_plaza_5011",
+      "lat": 50.11,
+      "lon": 8.645,
+      "name": "Skyline Plaza",
+      "city": "Frankfurt",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Skyline",
+      "fee": "no"
+    },
+    {
+      "id": "manual_milaneo_4879",
+      "lat": 48.791,
+      "lon": 9.18,
+      "name": "Milaneo",
+      "city": "Stuttgart",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Milaneo",
+      "fee": "no"
+    },
+    {
+      "id": "manual_k_nigsbau_passagen_4877",
+      "lat": 48.779,
+      "lon": 9.177,
+      "name": "Königsbau-Passagen",
+      "city": "Stuttgart",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Königsbau-Passagen",
+      "fee": "no"
+    },
+    {
+      "id": "manual_k__galerie_5122",
+      "lat": 51.226,
+      "lon": 6.779,
+      "name": "Kö-Galerie",
+      "city": "Düsseldorf",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Kö-Galerie",
+      "fee": "no"
+    },
+    {
+      "id": "manual_schadow_arkaden_5122",
+      "lat": 51.225,
+      "lon": 6.782,
+      "name": "Schadow Arkaden",
+      "city": "Düsseldorf",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Schadow",
+      "fee": "no"
+    },
+    {
+      "id": "manual_paunsdorf_center_5136",
+      "lat": 51.365,
+      "lon": 12.42,
+      "name": "Paunsdorf-Center",
+      "city": "Leipzig",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:30-20:00",
+      "operator": "Paunsdorf-Center",
+      "fee": "no"
+    },
+    {
+      "id": "manual_promenaden_hauptbahnhof_5134",
+      "lat": 51.345,
+      "lon": 12.38,
+      "name": "Promenaden Hauptbahnhof",
+      "city": "Leipzig",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "06:00-23:00",
+      "operator": "Promenaden",
+      "fee": "no"
+    },
+    {
+      "id": "manual_centrum_galerie_5104",
+      "lat": 51.048,
+      "lon": 13.74,
+      "name": "Centrum-Galerie",
+      "city": "Dresden",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Centrum-Galerie",
+      "fee": "no"
+    },
+    {
+      "id": "manual_altmarkt_galerie_5105",
+      "lat": 51.05,
+      "lon": 13.735,
+      "name": "Altmarkt-Galerie",
+      "city": "Dresden",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-21:00",
+      "operator": "Altmarkt-Galerie",
+      "fee": "no"
+    },
+    {
+      "id": "manual_n_rnberg_arkaden_4944",
+      "lat": 49.449,
+      "lon": 11.077,
+      "name": "Nürnberg Arkaden",
+      "city": "Nürnberg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "10:00-20:00",
+      "operator": "Nürnberg",
+      "fee": "no"
+    },
+    {
+      "id": "manual_franken_center_4945",
+      "lat": 49.459,
+      "lon": 11.098,
+      "name": "Franken-Center",
+      "city": "Nürnberg",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:30-20:00",
+      "operator": "Franken-Center",
+      "fee": "no"
+    },
+    {
+      "id": "manual_charit____universit_tsmedizin__5252",
+      "lat": 52.523,
+      "lon": 13.376,
+      "name": "Charité - Universitätsmedizin Berlin (Mitte)",
+      "city": "Berlin",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Charité",
+      "fee": "no"
+    },
+    {
+      "id": "manual_charit__campus_virchow_5254",
+      "lat": 52.544,
+      "lon": 13.344,
+      "name": "Charité Campus Virchow",
+      "city": "Berlin",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Charité",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_hamburg_e_5359",
+      "lat": 53.591,
+      "lon": 9.977,
+      "name": "Universitätsklinikum Hamburg-Eppendorf",
+      "city": "Hamburg",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_klinikum_m_nchen__lmu__4813",
+      "lat": 48.136,
+      "lon": 11.56,
+      "name": "Klinikum München (LMU)",
+      "city": "München",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Klinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_k_ln_5087",
+      "lat": 50.878,
+      "lon": 6.988,
+      "name": "Universitätsklinikum Köln",
+      "city": "Köln",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_frankfurt_5009",
+      "lat": 50.096,
+      "lon": 8.657,
+      "name": "Universitätsklinikum Frankfurt",
+      "city": "Frankfurt",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_klinikum_stuttgart_4876",
+      "lat": 48.765,
+      "lon": 9.171,
+      "name": "Klinikum Stuttgart",
+      "city": "Stuttgart",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Klinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_d_sseldor_5119",
+      "lat": 51.197,
+      "lon": 6.794,
+      "name": "Universitätsklinikum Düsseldorf",
+      "city": "Düsseldorf",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_leipzig_5132",
+      "lat": 51.326,
+      "lon": 12.389,
+      "name": "Universitätsklinikum Leipzig",
+      "city": "Leipzig",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_dresden_5105",
+      "lat": 51.059,
+      "lon": 13.781,
+      "name": "Universitätsklinikum Dresden",
+      "city": "Dresden",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_universit_tsklinikum_erlangen_4959",
+      "lat": 49.598,
+      "lon": 11.007,
+      "name": "Universitätsklinikum Erlangen",
+      "city": "Erlangen",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Universitätsklinikum",
+      "fee": "no"
+    },
+    {
+      "id": "manual_polizei_berlin_mitte_5252",
+      "lat": 52.52,
+      "lon": 13.405,
+      "name": "Polizei Berlin Mitte",
+      "city": "Berlin",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Polizei",
+      "fee": "no"
+    },
+    {
+      "id": "manual_polizei_hamburg_davidwache_5249",
+      "lat": 52.49,
+      "lon": 13.387,
+      "name": "Polizei Hamburg Davidwache",
+      "city": "Hamburg",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Polizei",
+      "fee": "no"
+    },
+    {
+      "id": "manual_polizei_k_ln_hauptbahnhof_5294",
+      "lat": 52.943,
+      "lon": 6.958,
+      "name": "Polizei Köln Hauptbahnhof",
+      "city": "Köln",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Polizei",
+      "fee": "no"
+    },
+    {
+      "id": "manual_polizei_stuttgart_mitte_4877",
+      "lat": 48.776,
+      "lon": 9.178,
+      "name": "Polizei Stuttgart Mitte",
+      "city": "Stuttgart",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "Polizei",
+      "fee": "no"
     }
   ]
 }
