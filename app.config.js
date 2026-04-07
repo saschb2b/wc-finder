@@ -13,6 +13,7 @@ export default {
   },
   ios: {
     supportsTablet: true,
+    bundleIdentifier: "com.saschb2b.wcfinder",
     infoPlist: {
       NSLocationWhenInUseUsageDescription:
         "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
