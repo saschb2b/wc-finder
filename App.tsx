@@ -177,6 +177,21 @@ function AppContent() {
     }
   }, []);
 
+  // Animate to user location once it becomes available
+  useEffect(() => {
+    if (userLocation && !isWeb && mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: userLocation.lat,
+          longitude: userLocation.lon,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
+        },
+        1000,
+      );
+    }
+  }, [userLocation]);
+
   const handleOnboardingComplete = useCallback(async () => {
     setShowOnboarding(false);
     try {
