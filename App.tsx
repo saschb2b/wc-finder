@@ -232,7 +232,11 @@ function AppContent() {
 
     // Apply same filters as list: Mode → Favorites → Eurokey
     if (filterMode === "now") {
-      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
+      result = result.filter((t) => {
+        const status = isCurrentlyOpen(t.opening_hours);
+        // Include: explicitly open OR unknown hours (treat as potentially open)
+        return status === true || status === null;
+      });
     }
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
@@ -284,7 +288,11 @@ function AppContent() {
 
     // Apply same filters: Mode → Favorites → Eurokey
     if (filterMode === "now") {
-      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
+      result = result.filter((t) => {
+        const status = isCurrentlyOpen(t.opening_hours);
+        // Include: explicitly open OR unknown hours (treat as potentially open)
+        return status === true || status === null;
+      });
     }
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
