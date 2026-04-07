@@ -4,6 +4,9 @@ on:
   issues:
     types: [opened, labeled]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   process-new-toilet:
     name: Process New Toilet Report
@@ -88,8 +91,8 @@ jobs:
     steps:
       - uses: actions/stale@v9
         with:
-          stale-issue-message: 'This report has been inactive for 30 days. Will close in 7 days if no update.'
-          close-issue-message: 'Closing due to inactivity. Feel free to reopen if still relevant.'
+          stale-issue-message: "This report has been inactive for 30 days. Will close in 7 days if no update."
+          close-issue-message: "Closing due to inactivity. Feel free to reopen if still relevant."
           days-before-stale: 30
           days-before-close: 7
-          only-labels: 'community'
+          only-labels: "community"
