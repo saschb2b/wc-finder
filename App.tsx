@@ -235,6 +235,20 @@ function AppContent() {
     if (filterMode === "now") {
       result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
     }
+
+    // Sort by open status: confirmed open > unknown > closed (at bottom)
+    result = result.sort((a, b) => {
+      const statusA = isCurrentlyOpen(a.opening_hours);
+      const statusB = isCurrentlyOpen(b.opening_hours);
+      // true (open) > null (unknown) > false (closed)
+      if (statusA === statusB) return 0;
+      if (statusA === true) return -1;
+      if (statusB === true) return 1;
+      if (statusA === null) return -1;
+      if (statusB === null) return 1;
+      return 0;
+    });
+
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
     }
@@ -284,12 +298,9 @@ function AppContent() {
     let result = toilets;
 
     // Apply same filters: Mode → Favorites → Eurokey
+    // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
     if (filterMode === "now") {
-      result = result.filter((t) => {
-        const status = isCurrentlyOpen(t.opening_hours);
-        // Include: explicitly open OR unknown hours (treat as potentially open)
-        return status === true || status === null;
-      });
+      result = result.filter((t) => isCurrentlyOpen(t.opening_hours) === true);
     }
     if (showFavoritesOnly) {
       result = result.filter((t) => isFavorite(t.id));
@@ -302,6 +313,19 @@ function AppContent() {
         (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
       );
     }
+
+    // Sort by open status: confirmed open > unknown > closed (at bottom)
+    result = result.sort((a, b) => {
+      const statusA = isCurrentlyOpen(a.opening_hours);
+      const statusB = isCurrentlyOpen(b.opening_hours);
+      // true (open) > null (unknown) > false (closed)
+      if (statusA === statusB) return 0;
+      if (statusA === true) return -1;
+      if (statusB === true) return 1;
+      if (statusA === null) return -1;
+      if (statusB === null) return 1;
+      return 0;
+    });
 
     return result;
   }, [
@@ -446,6 +470,10 @@ function AppContent() {
   // "Jetzt geöffnet" shows ONLY confirmed open toilets (strict)
   const openNowCount = toilets.filter(
     (t) => isCurrentlyOpen(t.opening_hours) === true,
+  ).length;
+  // "Alle" shows all except definitely closed
+  const allAvailableCount = toilets.filter(
+    (t) => isCurrentlyOpen(t.opening_hours) !== false,
   ).length;
 
   const filterBar = (
