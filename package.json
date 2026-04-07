@@ -9,7 +9,10 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "quality": "tsc --noEmit"
+    "quality": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "expo": "~54.0.33",
@@ -25,7 +28,13 @@
     "react-native-web": "^0.21.2"
   },
   "devDependencies": {
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.1.17",
+    "jest": "^30.3.0",
+    "jest-expo": "^55.0.13",
+    "ts-jest": "^29.4.9",
     "tsx": "^4.21.0",
     "typescript": "~5.9.2"
   },

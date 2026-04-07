@@ -2,6 +2,9 @@ import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from "../types/toilet";
 import { formatDistance } from "../services/overpass";
+import { isCurrentlyOpen } from "../utils/opening-hours";
+
+export { isCurrentlyOpen };
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -12,159 +15,6 @@ interface ToiletListItemProps {
   onSelect: (toilet: Toilet) => void;
   onToggleFavorite?: (id: string) => void;
   onReport?: (toilet: Toilet) => void;
-}
-
-/**
- * Parse month name to month number (0-11)
- */
-function parseMonth(monthStr: string): number | null {
-  const months: Record<string, number> = {
-    jan: 0,
-    january: 0,
-    feb: 1,
-    february: 1,
-    mar: 2,
-    march: 2,
-    mär: 2,
-    apr: 3,
-    april: 3,
-    may: 4,
-    mai: 4,
-    jun: 5,
-    june: 5,
-    jul: 6,
-    july: 6,
-    aug: 7,
-    august: 7,
-    sep: 8,
-    sept: 8,
-    september: 8,
-    oct: 9,
-    october: 9,
-    okt: 9,
-    nov: 10,
-    november: 10,
-    dec: 11,
-    december: 11,
-    dez: 11,
-  };
-  return months[monthStr.toLowerCase()] ?? null;
-}
-
-/**
- * Check if current month is within a seasonal range.
- * Handles: "Apr-Sep", "Mar-Oct", "Oct-Mar" (wrapping around year end)
- */
-function isInSeason(startMonth: string, endMonth: string): boolean {
-  const start = parseMonth(startMonth);
-  const end = parseMonth(endMonth);
-  if (start === null || end === null) return true; // Assume open if can't parse
-
-  const currentMonth = new Date().getMonth(); // 0-11
-
-  if (start <= end) {
-    // Normal range: Apr-Sep (3-8)
-    return currentMonth >= start && currentMonth <= end;
-  } else {
-    // Wrapping range: Oct-Mar (9-2)
-    return currentMonth >= start || currentMonth <= end;
-  }
-}
-
-/**
- * Check if a toilet is currently open based on opening_hours.
- * Returns: true (open), false (closed), null (unknown)
- */
-export function isCurrentlyOpen(opening_hours?: string): boolean | null {
-  if (!opening_hours) return null;
-
-  const now = new Date();
-  const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  const currentTime = hour * 60 + minute;
-
-  // Handle 24/7
-  if (opening_hours === "24/7") return true;
-
-  // Handle seasonal + time format: "Apr-Sep 08:00-20:00" or "Apr-Sep: 8:00-19:00"
-  const seasonalMatch = opening_hours.match(
-    /([a-z]{3,4})\s*[-–]\s*([a-z]{3,4})[:\s]+(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/i,
-  );
-  if (seasonalMatch) {
-    const startMonth = seasonalMatch[1];
-    const endMonth = seasonalMatch[2];
-    const startHour = parseInt(seasonalMatch[3]);
-    const startMin = parseInt(seasonalMatch[4]);
-    const endHour = parseInt(seasonalMatch[5]);
-    const endMin = parseInt(seasonalMatch[6]);
-
-    // Check if we're in season
-    if (!isInSeason(startMonth, endMonth)) {
-      return false; // Outside season = closed
-    }
-
-    // Check time
-    const startTime = startHour * 60 + startMin;
-    const endTime = endHour * 60 + endMin;
-    return currentTime >= startTime && currentTime <= endTime;
-  }
-
-  // Handle simple time range like "06:00-22:00"
-  const simpleMatch = opening_hours.match(
-    /(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/,
-  );
-  if (simpleMatch) {
-    const startHour = parseInt(simpleMatch[1]);
-    const startMin = parseInt(simpleMatch[2]);
-    const endHour = parseInt(simpleMatch[3]);
-    const endMin = parseInt(simpleMatch[4]);
-
-    const startTime = startHour * 60 + startMin;
-    const endTime = endHour * 60 + endMin;
-
-    return currentTime >= startTime && currentTime <= endTime;
-  }
-
-  // Handle day-based ranges like "Mo-Sa 08:00-20:00"
-  const dayMatch = opening_hours.match(
-    /([a-z,\-]+)\s+(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})/i,
-  );
-  if (dayMatch) {
-    const daysStr = dayMatch[1];
-    const startHour = parseInt(dayMatch[2]);
-    const startMin = parseInt(dayMatch[3]);
-    const endHour = parseInt(dayMatch[4]);
-    const endMin = parseInt(dayMatch[5]);
-
-    // Check if current day matches (simplified)
-    const isWeekend = day === 0 || day === 6;
-    const isWeekday = !isWeekend;
-
-    const daysLower = daysStr.toLowerCase();
-    const matchesWeekend =
-      isWeekend &&
-      (daysLower.includes("so") ||
-        daysLower.includes("sa") ||
-        daysLower.includes("weekend"));
-    const matchesWeekday =
-      isWeekday &&
-      (daysLower.includes("mo") ||
-        daysLower.includes("di") ||
-        daysLower.includes("mi") ||
-        daysLower.includes("do") ||
-        daysLower.includes("fr") ||
-        daysLower.includes("weekday"));
-
-    if (!matchesWeekend && !matchesWeekday) return false;
-
-    const startTime = startHour * 60 + startMin;
-    const endTime = endHour * 60 + endMin;
-    return currentTime >= startTime && currentTime <= endTime;
-  }
-
-  // If we can't parse it, return unknown
-  return null;
 }
 
 /**
