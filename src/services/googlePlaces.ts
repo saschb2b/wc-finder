@@ -129,7 +129,7 @@ function convertToToilet(place: GooglePlace): Toilet {
     types.includes("gas_station") ||
     primaryType.includes("gas_station")
   ) {
-    category = "station";
+    category = "tankstelle";
   }
 
   // Build tags

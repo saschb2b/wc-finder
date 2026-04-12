@@ -19,6 +19,8 @@ pnpm typecheck            # run TypeScript type checking
 pnpm exec tsx scripts/fetch-toilets.ts          # scrape toilettenhero.de
 pnpm exec tsx scripts/fetch-overpass-toilets.ts  # pull from OpenStreetMap
 pnpm exec tsx scripts/fetch-tfa.ts               # curated locations
+pnpm exec tsx scripts/fetch-autobahn-rest.ts     # Autobahn rest areas (govt API)
+pnpm exec tsx scripts/fetch-station-toilets.ts   # train station / Sanifair toilets
 pnpm exec tsx scripts/merge-sources.ts           # deduplicate + merge
 pnpm exec tsx scripts/migrate-hours-format.ts    # normalize opening hours
 pnpm exec tsx scripts/split-tiles.ts             # split into geo-tiles
@@ -77,7 +79,7 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 - **No reanimated/bottom-sheet**: removed due to TurboModule crashes in Expo Go — using simple toggle panel instead
 - **Native map pins**: custom marker views (`ToiletMarker.tsx`) were too slow with 50+ markers — using `pinColor` + `tracksViewChanges={false}`
 - **Viewport filtering**: only renders markers visible on the map (max 50) for performance
-- **Categories matter**: `public_24h` (EU key, 24/7) vs `station` vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
+- **Categories matter**: `public_24h` (EU key, 24/7) vs `station` (train/bus) vs `tankstelle` (fuel stations) vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
 - **German UI**: all user-facing text is in German
 
 ## Style

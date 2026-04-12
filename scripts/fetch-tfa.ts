@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-type ToiletCategory = "public_24h" | "station" | "gastro" | "other";
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;
@@ -699,7 +699,7 @@ async function main() {
   );
 
   // Category breakdown
-  const cats = { public_24h: 0, station: 0, gastro: 0, other: 0 };
+  const cats = { public_24h: 0, station: 0, tankstelle: 0, gastro: 0, other: 0 };
   for (const t of CURATED_LOCATIONS) cats[t.category]++;
   console.log(`\nCategories:`);
   console.log(`  public_24h: ${cats.public_24h}`);

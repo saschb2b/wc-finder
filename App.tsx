@@ -407,7 +407,7 @@ function AppContent() {
 
   // Prefer open toilets for "nearest" suggestions
   const reliableToilets = toilets.filter(
-    (t) => t.category === "public_24h" || t.category === "station",
+    (t) => t.category === "public_24h" || t.category === "station" || t.category === "tankstelle",
   );
 
   // First try to find an open reliable toilet, then any reliable, then any open, then just nearest

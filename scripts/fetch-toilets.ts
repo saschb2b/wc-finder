@@ -11,7 +11,7 @@
  * Usage: npx tsx scripts/fetch-toilets.ts
  */
 
-type ToiletCategory = 'public_24h' | 'station' | 'gastro' | 'other';
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;
@@ -291,7 +291,7 @@ async function main() {
   }
 
   // Stats
-  const categories = { public_24h: 0, station: 0, gastro: 0, other: 0 };
+  const categories = { public_24h: 0, station: 0, tankstelle: 0, gastro: 0, other: 0 };
   for (const t of allToilets) categories[t.category]++;
 
   console.log(`\n--- Results ---`);

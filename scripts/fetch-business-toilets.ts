@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-type ToiletCategory = "public_24h" | "station" | "gastro" | "other";
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;

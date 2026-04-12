@@ -25,7 +25,7 @@ interface ToiletEntry {
   lon: number;
   name: string;
   city: string;
-  category: 'public_24h' | 'station' | 'gastro' | 'other';
+  category: 'public_24h' | 'station' | 'tankstelle' | 'gastro' | 'other';
   tags: string[];
   opening_hours?: string;
   operator?: string;

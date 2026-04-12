@@ -20,7 +20,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "src", "data");
 
-type ToiletCategory = "public_24h" | "station" | "gastro" | "other";
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;
@@ -68,28 +68,59 @@ function loadIfExists(filename: string): ToiletEntry[] {
   return data.toilets;
 }
 
+// Known fuel station brands/operators
+const FUEL_BRANDS = [
+  "shell", "aral", "esso", "avia", "total", "totalenergies", "jet",
+  "bft", "star", "agip", "hem", "freie tankstelle", "raiffeisen",
+  "oil!", "tankpool24", "westfalen", "classic", "hoyer", "orlen",
+  "q1", "markant", "sprint", "tamoil", "eni", "bp", "omv", "mol",
+  "lukoil", "repsol", "cepsa", "gulf",
+];
+
+const FUEL_NAME_PATTERNS =
+  /\b(tankstelle|tanken|tank\s*&|gas\s*station|fuel|benzin|zapfsäule)\b/i;
+
+function isFuelStation(toilet: ToiletEntry): boolean {
+  const name = (toilet.name || "").toLowerCase();
+  const op = (toilet.operator || "").toLowerCase();
+  const tags = toilet.tags.map((t) => t.toLowerCase());
+
+  // Check operator
+  if (FUEL_BRANDS.some((b) => op.includes(b))) return true;
+
+  // Check name against brands
+  if (FUEL_BRANDS.some((b) => name.startsWith(b + " ") || name === b))
+    return true;
+
+  // Check name patterns
+  if (FUEL_NAME_PATTERNS.test(name)) return true;
+
+  // Check tags
+  if (tags.includes("fuel") || tags.includes("tankstelle")) return true;
+
+  return false;
+}
+
 /**
- * Fixes categorization based on opening hours.
- * Toilets with seasonal hours should NOT be public_24h.
+ * Fixes categorization based on name/operator/hours.
  */
 function fixCategory(toilet: ToiletEntry): ToiletEntry {
   const hours = (toilet.opening_hours || "").toLowerCase();
+
+  // Reclassify fuel stations from "other" to "tankstelle"
+  if (toilet.category === "other" && isFuelStation(toilet)) {
+    toilet.category = "tankstelle";
+  }
+
+  // Also reclassify fuel stations that were previously categorized as "station"
+  if (toilet.category === "station" && isFuelStation(toilet)) {
+    toilet.category = "tankstelle";
+  }
 
   // If it has seasonal hours (Apr-Sep, summer/winter, etc.), it's not 24/7
   if (hours.match(/(apr|sep|summer|winter|oct|mar|season)/i)) {
     if (toilet.category === "public_24h") {
       toilet.category = "other";
-    }
-  }
-
-  // If it closes at specific times (not 24/7), fix category
-  if (hours && !hours.includes("24/7") && toilet.category === "public_24h") {
-    // Check if it's actually 24/7 with different syntax
-    const is24_7 = hours.includes("00:00-24:00") || hours.includes("24h");
-    if (!is24_7) {
-      // It might be a public toilet but not 24/7 - keep as public but note it's not 24/7
-      // Actually, let's keep public_24h for things open until 22:00+ in city center
-      // But mark seasonal ones as 'other'
     }
   }
 
@@ -109,6 +140,8 @@ function main() {
   const dortmundToilets = loadIfExists("dortmund-toilets.json"); // curated Dortmund
   const hannoverBizToilets = loadIfExists("hannover-businesses.json"); // Hannover businesses
   const googlePlacesToilets = loadIfExists("google-places.json"); // Google Places API data
+  const autobahnToilets = loadIfExists("autobahn-rest.json"); // Autobahn rest areas
+  const stationToilets = loadIfExists("station-toilets.json"); // Train station / Sanifair toilets
 
   // Merge: add all, deduplicate by proximity
   // Higher-priority sources added later will replace lower-priority duplicates
@@ -201,6 +234,8 @@ function main() {
   addWithDedup(majorCitiesToilets, "Major cities curated");
   addWithDedup(tfaToilets, "curated Hannover (TFA)");
   addWithDedup(hannoverBizToilets, "Hannover businesses");
+  addWithDedup(autobahnToilets, "Autobahn rest areas");
+  addWithDedup(stationToilets, "Station/Sanifair toilets");
   addWithDedup(googlePlacesToilets, "Google Places API");
   addWithDedup(dortmundToilets, "curated Dortmund");
 
@@ -274,7 +309,7 @@ function main() {
   const output = {
     generated: new Date().toISOString().split("T")[0],
     source:
-      "Merged: toilettenhero.de + OpenStreetMap + Manual curation + Major cities + Hannover businesses + Google Places + Toiletten für alle + Stadt Hannover + Dortmund",
+      "Merged: toilettenhero.de + OpenStreetMap + Manual curation + Major cities + Hannover businesses + Autobahn rest areas + Station/Sanifair + Google Places + Toiletten für alle + Stadt Hannover + Dortmund",
     count: merged.length,
     toilets: merged,
   };

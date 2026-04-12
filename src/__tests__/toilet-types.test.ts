@@ -10,6 +10,7 @@ describe('Toilet Types', () => {
     it('has labels for all categories', () => {
       expect(CATEGORY_LABELS.public_24h).toBe('24/7 Öffentlich');
       expect(CATEGORY_LABELS.station).toBe('Bahnhof');
+      expect(CATEGORY_LABELS.tankstelle).toBe('Tankstelle');
       expect(CATEGORY_LABELS.gastro).toBe('Gastronomie');
       expect(CATEGORY_LABELS.other).toBe('Sonstige');
     });

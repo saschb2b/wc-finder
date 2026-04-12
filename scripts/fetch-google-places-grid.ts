@@ -33,7 +33,7 @@ if (!GOOGLE_PLACES_API_KEY) {
   process.exit(1);
 }
 
-type ToiletCategory = 'public_24h' | 'station' | 'gastro' | 'other';
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;
@@ -169,7 +169,7 @@ function convertToToilet(place: GooglePlace): ToiletEntry | null {
     types.includes('gas_station') ||
     primaryType.includes('gas_station')
   ) {
-    category = 'station';
+    category = 'tankstelle';
   }
 
   const tags: string[] = [];

@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-type ToiletCategory = 'public_24h' | 'station' | 'gastro' | 'other';
+type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 interface ToiletEntry {
   id: string;
@@ -40,8 +40,13 @@ function classifyFromOsm(tags: Record<string, string>): ToiletCategory {
   const name = (tags.name || '').toLowerCase();
   const operator = (tags.operator || '').toLowerCase();
 
-  // Station toilets
-  if (/sanifair|db station|bahnhof|hbf|raststätte|autohof/.test(name + operator)) {
+  // Fuel stations / Raststätten
+  if (/raststätte|autohof|tankstelle/.test(name + operator)) {
+    return 'tankstelle';
+  }
+
+  // Train station toilets
+  if (/sanifair|db station|bahnhof|hbf/.test(name + operator)) {
     return 'station';
   }
 
@@ -152,7 +157,7 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2));
 
   // Stats
-  const cats = { public_24h: 0, station: 0, gastro: 0, other: 0 };
+  const cats = { public_24h: 0, station: 0, tankstelle: 0, gastro: 0, other: 0 };
   for (const t of unique.values()) cats[t.category]++;
 
   console.log(`\n--- Results ---`);

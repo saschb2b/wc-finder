@@ -607,7 +607,7 @@ const POLICE_LOCATIONS = [
 
 function createToiletEntry(
   loc: (typeof MCDONALDS_LOCATIONS)[0],
-  category: "public_24h" | "station" | "gastro" | "other",
+  category: "public_24h" | "station" | "tankstelle" | "gastro" | "other",
   tags: string[],
 ) {
   return {
@@ -698,7 +698,7 @@ function main() {
   }
 
   console.log("\nBy category:");
-  const cats = { public_24h: 0, station: 0, gastro: 0, other: 0 };
+  const cats = { public_24h: 0, station: 0, tankstelle: 0, gastro: 0, other: 0 };
   for (const t of unique) cats[t.category]++;
   console.log(`  public_24h: ${cats.public_24h}`);
   console.log(`  gastro: ${cats.gastro}`);

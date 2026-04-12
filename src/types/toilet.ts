@@ -1,6 +1,6 @@
 import { StandardizedHours } from "./opening-hours";
 
-export type ToiletCategory = "public_24h" | "station" | "gastro" | "other";
+export type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
 export interface Toilet {
   id: string;
@@ -22,6 +22,7 @@ export interface Toilet {
 export const CATEGORY_LABELS: Record<ToiletCategory, string> = {
   public_24h: "24/7 Öffentlich",
   station: "Bahnhof",
+  tankstelle: "Tankstelle",
   gastro: "Gastronomie",
   other: "Sonstige",
 };
@@ -30,6 +31,7 @@ export const CATEGORY_LABELS: Record<ToiletCategory, string> = {
 export const CATEGORY_COLORS: Record<ToiletCategory, string> = {
   public_24h: "#34a853", // Green - always available, most important
   station: "#1a73e8", // Blue - transit hubs, easy to find
+  tankstelle: "#7b1fa2", // Purple - fuel stations, often 24/7
   gastro: "#f5a623", // Orange - businesses, limited hours
   other: "#9aa0a6", // Gray - miscellaneous
 };
