@@ -1,10 +1,14 @@
 /**
- * Fetches places with restrooms from Google Places API across all major German cities.
+ * Fetches places with restrooms from Google Places API across all major DACH cities.
  * Uses a grid pattern per city to get broad gastro/business coverage.
  *
- * Budget: ~1,000 API calls for 80+ cities (well within 5,000/month free tier)
+ * Tiers control how many cities get expanded coverage:
+ *   --tier 1  → Top 5 cities only (500k+), ~600 API calls
+ *   --tier 2  → Top 30 cities (200k+), ~2,500 API calls
+ *   --tier 3  → All 90+ cities (100k+), ~5,000 API calls  (~$85 above free tier)
+ *   (default) → All cities with original smaller radii (~1,000 calls, free tier)
  *
- * Usage: npx tsx scripts/fetch-google-places-germany.ts [--dry-run]
+ * Usage: npx tsx scripts/fetch-google-places-germany.ts [--tier 1|2|3] [--dry-run]
  */
 
 import fs from "fs";
@@ -60,93 +64,103 @@ interface GooglePlace {
   types?: string[];
 }
 
-// Major German cities (100k+ population) + Austrian/Swiss cities
-const CITIES: Array<{ name: string; lat: number; lon: number; radius: number }> = [
-  // Top 15 (larger radius)
-  { name: "Berlin", lat: 52.52, lon: 13.405, radius: 5 },
-  { name: "Hamburg", lat: 53.551, lon: 9.994, radius: 4 },
-  { name: "München", lat: 48.137, lon: 11.576, radius: 4 },
-  { name: "Köln", lat: 50.938, lon: 6.96, radius: 4 },
-  { name: "Frankfurt", lat: 50.11, lon: 8.682, radius: 4 },
-  { name: "Stuttgart", lat: 48.776, lon: 9.183, radius: 4 },
-  { name: "Düsseldorf", lat: 51.228, lon: 6.774, radius: 3 },
-  { name: "Leipzig", lat: 51.34, lon: 12.375, radius: 3 },
-  { name: "Dresden", lat: 51.051, lon: 13.738, radius: 3 },
-  { name: "Nürnberg", lat: 49.454, lon: 11.078, radius: 3 },
-  { name: "Bremen", lat: 53.079, lon: 8.801, radius: 3 },
-  { name: "Essen", lat: 51.457, lon: 7.012, radius: 3 },
-  { name: "Duisburg", lat: 51.435, lon: 6.763, radius: 3 },
-  { name: "Bochum", lat: 51.482, lon: 7.216, radius: 3 },
-  { name: "Wuppertal", lat: 51.256, lon: 7.151, radius: 3 },
-  // 16-40
-  { name: "Bielefeld", lat: 52.022, lon: 8.532, radius: 3 },
-  { name: "Bonn", lat: 50.737, lon: 7.099, radius: 3 },
-  { name: "Münster", lat: 51.961, lon: 7.628, radius: 3 },
-  { name: "Mannheim", lat: 49.488, lon: 8.467, radius: 3 },
-  { name: "Karlsruhe", lat: 49.007, lon: 8.404, radius: 3 },
-  { name: "Augsburg", lat: 48.366, lon: 10.898, radius: 3 },
-  { name: "Wiesbaden", lat: 50.083, lon: 8.24, radius: 3 },
-  { name: "Mönchengladbach", lat: 51.186, lon: 6.443, radius: 3 },
-  { name: "Gelsenkirchen", lat: 51.518, lon: 7.086, radius: 3 },
-  { name: "Braunschweig", lat: 52.269, lon: 10.522, radius: 3 },
-  { name: "Aachen", lat: 50.776, lon: 6.084, radius: 3 },
-  { name: "Kiel", lat: 54.323, lon: 10.123, radius: 3 },
-  { name: "Chemnitz", lat: 50.828, lon: 12.921, radius: 3 },
-  { name: "Halle", lat: 51.483, lon: 11.97, radius: 3 },
-  { name: "Magdeburg", lat: 52.131, lon: 11.632, radius: 3 },
-  { name: "Freiburg", lat: 47.999, lon: 7.842, radius: 3 },
-  { name: "Krefeld", lat: 51.339, lon: 6.586, radius: 2 },
-  { name: "Mainz", lat: 50.0, lon: 8.271, radius: 3 },
-  { name: "Lübeck", lat: 53.87, lon: 10.687, radius: 3 },
-  { name: "Erfurt", lat: 50.985, lon: 11.03, radius: 3 },
-  { name: "Oberhausen", lat: 51.47, lon: 6.851, radius: 2 },
-  { name: "Rostock", lat: 54.088, lon: 12.14, radius: 3 },
-  { name: "Kassel", lat: 51.316, lon: 9.497, radius: 3 },
-  { name: "Hagen", lat: 51.361, lon: 7.475, radius: 2 },
-  { name: "Potsdam", lat: 52.401, lon: 13.066, radius: 3 },
-  // 41-80
-  { name: "Saarbrücken", lat: 49.234, lon: 6.997, radius: 3 },
-  { name: "Hamm", lat: 51.674, lon: 7.815, radius: 2 },
-  { name: "Ludwigshafen", lat: 49.481, lon: 8.432, radius: 2 },
-  { name: "Oldenburg", lat: 53.143, lon: 8.214, radius: 2 },
-  { name: "Osnabrück", lat: 52.28, lon: 8.043, radius: 3 },
-  { name: "Leverkusen", lat: 51.049, lon: 7.019, radius: 2 },
-  { name: "Heidelberg", lat: 49.398, lon: 8.672, radius: 2 },
-  { name: "Solingen", lat: 51.165, lon: 7.084, radius: 2 },
-  { name: "Darmstadt", lat: 49.872, lon: 8.651, radius: 2 },
-  { name: "Regensburg", lat: 49.014, lon: 12.1, radius: 3 },
-  { name: "Ingolstadt", lat: 48.764, lon: 11.425, radius: 2 },
-  { name: "Würzburg", lat: 49.794, lon: 9.93, radius: 3 },
-  { name: "Wolfsburg", lat: 52.424, lon: 10.787, radius: 2 },
-  { name: "Ulm", lat: 48.401, lon: 9.988, radius: 2 },
-  { name: "Heilbronn", lat: 49.142, lon: 9.219, radius: 2 },
-  { name: "Göttingen", lat: 51.541, lon: 9.936, radius: 2 },
-  { name: "Pforzheim", lat: 48.892, lon: 8.699, radius: 2 },
-  { name: "Reutlingen", lat: 48.493, lon: 9.214, radius: 2 },
-  { name: "Koblenz", lat: 50.357, lon: 7.589, radius: 2 },
-  { name: "Bremerhaven", lat: 53.54, lon: 8.581, radius: 2 },
-  { name: "Trier", lat: 49.75, lon: 6.637, radius: 2 },
-  { name: "Jena", lat: 50.928, lon: 11.586, radius: 2 },
-  { name: "Erlangen", lat: 49.598, lon: 11.005, radius: 2 },
-  { name: "Moers", lat: 51.451, lon: 6.626, radius: 2 },
-  { name: "Siegen", lat: 50.874, lon: 8.017, radius: 2 },
-  { name: "Hildesheim", lat: 52.151, lon: 9.951, radius: 2 },
-  { name: "Salzgitter", lat: 52.154, lon: 10.332, radius: 2 },
-  { name: "Cottbus", lat: 51.761, lon: 14.335, radius: 2 },
-  { name: "Schwerin", lat: 53.629, lon: 11.414, radius: 2 },
-  { name: "Konstanz", lat: 47.66, lon: 9.175, radius: 2 },
+// Major DACH cities with two radius values: original (default) and expanded (for --tier mode)
+// tier: 1 = 500k+ (top 5 DE + Wien/Zürich), 2 = 200k+, 3 = all 100k+
+const CITIES: Array<{
+  name: string;
+  lat: number;
+  lon: number;
+  radius: number;      // original radius (km) — used without --tier flag
+  expanded: number;     // expanded radius (km) — used with --tier flag
+  tier: 1 | 2 | 3;
+}> = [
+  // Tier 1: 500k+ population — full urban area coverage
+  { name: "Berlin", lat: 52.52, lon: 13.405, radius: 5, expanded: 12, tier: 1 },
+  { name: "Hamburg", lat: 53.551, lon: 9.994, radius: 4, expanded: 9, tier: 1 },
+  { name: "München", lat: 48.137, lon: 11.576, radius: 4, expanded: 8, tier: 1 },
+  { name: "Köln", lat: 50.938, lon: 6.96, radius: 4, expanded: 7, tier: 1 },
+  { name: "Frankfurt", lat: 50.11, lon: 8.682, radius: 4, expanded: 7, tier: 1 },
+  // Tier 2: 200k-500k — cover full city + close suburbs
+  { name: "Stuttgart", lat: 48.776, lon: 9.183, radius: 4, expanded: 6, tier: 2 },
+  { name: "Düsseldorf", lat: 51.228, lon: 6.774, radius: 3, expanded: 6, tier: 2 },
+  { name: "Leipzig", lat: 51.34, lon: 12.375, radius: 3, expanded: 6, tier: 2 },
+  { name: "Dresden", lat: 51.051, lon: 13.738, radius: 3, expanded: 6, tier: 2 },
+  { name: "Hannover", lat: 52.375, lon: 9.732, radius: 3, expanded: 6, tier: 2 },
+  { name: "Nürnberg", lat: 49.454, lon: 11.078, radius: 3, expanded: 5, tier: 2 },
+  { name: "Bremen", lat: 53.079, lon: 8.801, radius: 3, expanded: 5, tier: 2 },
+  { name: "Essen", lat: 51.457, lon: 7.012, radius: 3, expanded: 5, tier: 2 },
+  { name: "Duisburg", lat: 51.435, lon: 6.763, radius: 3, expanded: 5, tier: 2 },
+  { name: "Bochum", lat: 51.482, lon: 7.216, radius: 3, expanded: 5, tier: 2 },
+  { name: "Wuppertal", lat: 51.256, lon: 7.151, radius: 3, expanded: 5, tier: 2 },
+  { name: "Bielefeld", lat: 52.022, lon: 8.532, radius: 3, expanded: 5, tier: 2 },
+  { name: "Bonn", lat: 50.737, lon: 7.099, radius: 3, expanded: 5, tier: 2 },
+  { name: "Münster", lat: 51.961, lon: 7.628, radius: 3, expanded: 5, tier: 2 },
+  { name: "Mannheim", lat: 49.488, lon: 8.467, radius: 3, expanded: 5, tier: 2 },
+  { name: "Karlsruhe", lat: 49.007, lon: 8.404, radius: 3, expanded: 5, tier: 2 },
+  { name: "Augsburg", lat: 48.366, lon: 10.898, radius: 3, expanded: 5, tier: 2 },
+  { name: "Wiesbaden", lat: 50.083, lon: 8.24, radius: 3, expanded: 5, tier: 2 },
+  { name: "Mönchengladbach", lat: 51.186, lon: 6.443, radius: 3, expanded: 4, tier: 2 },
+  { name: "Gelsenkirchen", lat: 51.518, lon: 7.086, radius: 3, expanded: 4, tier: 2 },
+  { name: "Braunschweig", lat: 52.269, lon: 10.522, radius: 3, expanded: 5, tier: 2 },
+  { name: "Aachen", lat: 50.776, lon: 6.084, radius: 3, expanded: 5, tier: 2 },
+  { name: "Kiel", lat: 54.323, lon: 10.123, radius: 3, expanded: 5, tier: 2 },
+  { name: "Chemnitz", lat: 50.828, lon: 12.921, radius: 3, expanded: 5, tier: 2 },
+  { name: "Halle", lat: 51.483, lon: 11.97, radius: 3, expanded: 5, tier: 2 },
+  { name: "Magdeburg", lat: 52.131, lon: 11.632, radius: 3, expanded: 5, tier: 2 },
+  // Tier 3: 100k-200k — expanded city center
+  { name: "Freiburg", lat: 47.999, lon: 7.842, radius: 3, expanded: 4, tier: 3 },
+  { name: "Krefeld", lat: 51.339, lon: 6.586, radius: 2, expanded: 4, tier: 3 },
+  { name: "Mainz", lat: 50.0, lon: 8.271, radius: 3, expanded: 4, tier: 3 },
+  { name: "Lübeck", lat: 53.87, lon: 10.687, radius: 3, expanded: 4, tier: 3 },
+  { name: "Erfurt", lat: 50.985, lon: 11.03, radius: 3, expanded: 4, tier: 3 },
+  { name: "Oberhausen", lat: 51.47, lon: 6.851, radius: 2, expanded: 4, tier: 3 },
+  { name: "Rostock", lat: 54.088, lon: 12.14, radius: 3, expanded: 4, tier: 3 },
+  { name: "Kassel", lat: 51.316, lon: 9.497, radius: 3, expanded: 4, tier: 3 },
+  { name: "Hagen", lat: 51.361, lon: 7.475, radius: 2, expanded: 4, tier: 3 },
+  { name: "Potsdam", lat: 52.401, lon: 13.066, radius: 3, expanded: 4, tier: 3 },
+  { name: "Saarbrücken", lat: 49.234, lon: 6.997, radius: 3, expanded: 4, tier: 3 },
+  { name: "Hamm", lat: 51.674, lon: 7.815, radius: 2, expanded: 4, tier: 3 },
+  { name: "Ludwigshafen", lat: 49.481, lon: 8.432, radius: 2, expanded: 3, tier: 3 },
+  { name: "Oldenburg", lat: 53.143, lon: 8.214, radius: 2, expanded: 4, tier: 3 },
+  { name: "Osnabrück", lat: 52.28, lon: 8.043, radius: 3, expanded: 4, tier: 3 },
+  { name: "Leverkusen", lat: 51.049, lon: 7.019, radius: 2, expanded: 3, tier: 3 },
+  { name: "Heidelberg", lat: 49.398, lon: 8.672, radius: 2, expanded: 4, tier: 3 },
+  { name: "Solingen", lat: 51.165, lon: 7.084, radius: 2, expanded: 3, tier: 3 },
+  { name: "Darmstadt", lat: 49.872, lon: 8.651, radius: 2, expanded: 4, tier: 3 },
+  { name: "Regensburg", lat: 49.014, lon: 12.1, radius: 3, expanded: 4, tier: 3 },
+  { name: "Ingolstadt", lat: 48.764, lon: 11.425, radius: 2, expanded: 4, tier: 3 },
+  { name: "Würzburg", lat: 49.794, lon: 9.93, radius: 3, expanded: 4, tier: 3 },
+  { name: "Wolfsburg", lat: 52.424, lon: 10.787, radius: 2, expanded: 4, tier: 3 },
+  { name: "Ulm", lat: 48.401, lon: 9.988, radius: 2, expanded: 4, tier: 3 },
+  { name: "Heilbronn", lat: 49.142, lon: 9.219, radius: 2, expanded: 3, tier: 3 },
+  { name: "Göttingen", lat: 51.541, lon: 9.936, radius: 2, expanded: 4, tier: 3 },
+  { name: "Pforzheim", lat: 48.892, lon: 8.699, radius: 2, expanded: 3, tier: 3 },
+  { name: "Reutlingen", lat: 48.493, lon: 9.214, radius: 2, expanded: 3, tier: 3 },
+  { name: "Koblenz", lat: 50.357, lon: 7.589, radius: 2, expanded: 4, tier: 3 },
+  { name: "Bremerhaven", lat: 53.54, lon: 8.581, radius: 2, expanded: 3, tier: 3 },
+  { name: "Trier", lat: 49.75, lon: 6.637, radius: 2, expanded: 4, tier: 3 },
+  { name: "Jena", lat: 50.928, lon: 11.586, radius: 2, expanded: 3, tier: 3 },
+  { name: "Erlangen", lat: 49.598, lon: 11.005, radius: 2, expanded: 3, tier: 3 },
+  { name: "Moers", lat: 51.451, lon: 6.626, radius: 2, expanded: 3, tier: 3 },
+  { name: "Siegen", lat: 50.874, lon: 8.017, radius: 2, expanded: 3, tier: 3 },
+  { name: "Hildesheim", lat: 52.151, lon: 9.951, radius: 2, expanded: 3, tier: 3 },
+  { name: "Salzgitter", lat: 52.154, lon: 10.332, radius: 2, expanded: 3, tier: 3 },
+  { name: "Cottbus", lat: 51.761, lon: 14.335, radius: 2, expanded: 4, tier: 3 },
+  { name: "Schwerin", lat: 53.629, lon: 11.414, radius: 2, expanded: 3, tier: 3 },
+  { name: "Konstanz", lat: 47.66, lon: 9.175, radius: 2, expanded: 3, tier: 3 },
+  { name: "Dortmund", lat: 51.514, lon: 7.466, radius: 3, expanded: 6, tier: 2 },
   // Austria
-  { name: "Wien", lat: 48.209, lon: 16.372, radius: 5 },
-  { name: "Graz", lat: 47.071, lon: 15.439, radius: 3 },
-  { name: "Linz", lat: 48.306, lon: 14.286, radius: 3 },
-  { name: "Salzburg", lat: 47.81, lon: 13.055, radius: 3 },
-  { name: "Innsbruck", lat: 47.263, lon: 11.395, radius: 3 },
+  { name: "Wien", lat: 48.209, lon: 16.372, radius: 5, expanded: 9, tier: 1 },
+  { name: "Graz", lat: 47.071, lon: 15.439, radius: 3, expanded: 5, tier: 2 },
+  { name: "Linz", lat: 48.306, lon: 14.286, radius: 3, expanded: 5, tier: 2 },
+  { name: "Salzburg", lat: 47.81, lon: 13.055, radius: 3, expanded: 4, tier: 2 },
+  { name: "Innsbruck", lat: 47.263, lon: 11.395, radius: 3, expanded: 4, tier: 2 },
   // Switzerland
-  { name: "Zürich", lat: 47.377, lon: 8.541, radius: 4 },
-  { name: "Bern", lat: 46.948, lon: 7.448, radius: 3 },
-  { name: "Basel", lat: 47.558, lon: 7.589, radius: 3 },
-  { name: "Genf", lat: 46.205, lon: 6.144, radius: 3 },
-  { name: "Luzern", lat: 47.051, lon: 8.31, radius: 2 },
+  { name: "Zürich", lat: 47.377, lon: 8.541, radius: 4, expanded: 7, tier: 1 },
+  { name: "Bern", lat: 46.948, lon: 7.448, radius: 3, expanded: 5, tier: 2 },
+  { name: "Basel", lat: 47.558, lon: 7.589, radius: 3, expanded: 4, tier: 2 },
+  { name: "Genf", lat: 46.205, lon: 6.144, radius: 3, expanded: 5, tier: 2 },
+  { name: "Luzern", lat: 47.051, lon: 8.31, radius: 2, expanded: 3, tier: 3 },
 ];
 
 function generateGrid(
@@ -289,26 +303,43 @@ function sleep(ms: number) {
 
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
+  const tierIdx = process.argv.indexOf("--tier");
+  const tierLevel = tierIdx !== -1 ? parseInt(process.argv[tierIdx + 1]) : 0;
   const SPACING = 1500; // meters between grid points
 
-  console.log(`\n🇩🇪 Google Places Germany-Wide Fetcher`);
-  console.log(`=======================================\n`);
-  console.log(`Cities: ${CITIES.length}`);
+  // Filter and configure cities based on tier
+  const cities = (tierLevel > 0
+    ? CITIES.filter((c) => c.tier <= tierLevel)
+    : CITIES
+  ).map((c) => ({
+    ...c,
+    activeRadius: tierLevel > 0 ? c.expanded : c.radius,
+  }));
+
+  console.log(`\n🇩🇪 Google Places DACH Fetcher`);
+  console.log(`===============================\n`);
+  if (tierLevel > 0) {
+    console.log(`Tier: ${tierLevel} (expanded radii for ${tierLevel === 1 ? "500k+" : tierLevel === 2 ? "200k+" : "100k+"} cities)`);
+  } else {
+    console.log(`Mode: default (original radii). Use --tier 1|2|3 for expanded coverage.`);
+  }
+  console.log(`Cities: ${cities.length}`);
   console.log(`Grid spacing: ${SPACING}m`);
 
   // Calculate total API calls
   let totalCalls = 0;
-  for (const city of CITIES) {
-    totalCalls += generateGrid(city.lat, city.lon, city.radius, SPACING).length;
+  for (const city of cities) {
+    totalCalls += generateGrid(city.lat, city.lon, city.activeRadius, SPACING).length;
   }
   console.log(`Total API calls needed: ${totalCalls}`);
-  console.log(`Estimated cost: ${totalCalls <= 5000 ? "FREE (within free tier)" : `~$${((totalCalls / 1000) * 17).toFixed(0)}`}\n`);
+  console.log(`Estimated cost: ${totalCalls <= 5000 ? "FREE (within free tier)" : `~$${((totalCalls / 1000) * 17).toFixed(0)} (${totalCalls - 5000} calls above free tier)`}\n`);
 
   if (dryRun) {
     console.log("Dry run - showing per-city breakdown:\n");
-    for (const city of CITIES) {
-      const pts = generateGrid(city.lat, city.lon, city.radius, SPACING).length;
-      console.log(`  ${city.name.padEnd(20)} ${city.radius}km radius → ${pts} calls`);
+    for (const city of cities) {
+      const pts = generateGrid(city.lat, city.lon, city.activeRadius, SPACING).length;
+      const expanded = tierLevel > 0 && city.activeRadius > city.radius;
+      console.log(`  ${city.name.padEnd(20)} ${city.activeRadius}km radius → ${pts.toString().padStart(4)} calls${expanded ? ` (was ${city.radius}km)` : ""}`);
     }
     console.log(`\nTotal: ${totalCalls} API calls`);
     return;
@@ -327,12 +358,12 @@ async function main() {
   let totalApiCalls = 0;
   let totalFound = 0;
 
-  for (let ci = 0; ci < CITIES.length; ci++) {
-    const city = CITIES[ci];
-    const grid = generateGrid(city.lat, city.lon, city.radius, SPACING);
+  for (let ci = 0; ci < cities.length; ci++) {
+    const city = cities[ci];
+    const grid = generateGrid(city.lat, city.lon, city.activeRadius, SPACING);
 
     process.stdout.write(
-      `[${ci + 1}/${CITIES.length}] ${city.name.padEnd(20)} (${grid.length} pts) `,
+      `[${ci + 1}/${cities.length}] ${city.name.padEnd(20)} ${city.activeRadius}km (${grid.length} pts) `,
     );
 
     let cityFound = 0;
@@ -408,7 +439,7 @@ async function main() {
   // Save
   const output = {
     generated: new Date().toISOString().split("T")[0],
-    source: `Google Places API - ${CITIES.length} cities across DACH`,
+    source: `Google Places API - ${cities.length} cities across DACH${tierLevel > 0 ? ` (tier ${tierLevel})` : ""}`,
     count: merged.length,
     toilets: merged,
   };
