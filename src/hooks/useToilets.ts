@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { InteractionManager } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
 import { Toilet } from "../types/toilet";
 import { getNearbyToilets, getToiletsInBounds } from "../services/overpass";
+
+const LAST_LOCATION_KEY = "wc_last_location";
 
 interface UseToiletsResult {
   toilets: Toilet[];
@@ -51,6 +54,7 @@ export function useToilets(): UseToiletsResult {
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const exploreTaskRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
+  const initialLoadDone = useRef(false);
 
   // Calculate distances from a reference point while preserving toilet data
   const calculateDistances = useCallback(
@@ -80,17 +84,70 @@ export function useToilets(): UseToiletsResult {
     setLoading(false);
   }, []);
 
+  // Full load: sets location, clears explore, loads toilets. Used for first fix only.
+  const fullLocationLoad = useCallback(
+    (coords: { lat: number; lon: number }) => {
+      setUserLocation(coords);
+      setSearchLocation(null);
+      setExploreBounds(null);
+      loadToilets(coords.lat, coords.lon);
+      initialLoadDone.current = true;
+      AsyncStorage.setItem(LAST_LOCATION_KEY, JSON.stringify(coords)).catch(
+        () => {},
+      );
+    },
+    [loadToilets],
+  );
+
+  // Silent update: only updates userLocation (for distance calc). No map reset.
+  const silentLocationUpdate = useCallback(
+    (coords: { lat: number; lon: number }) => {
+      setUserLocation(coords);
+      AsyncStorage.setItem(LAST_LOCATION_KEY, JSON.stringify(coords)).catch(
+        () => {},
+      );
+    },
+    [],
+  );
+
   const initLocation = useCallback(async () => {
+    // 1. Try cached location first — show map instantly
+    try {
+      const cached = await AsyncStorage.getItem(LAST_LOCATION_KEY);
+      if (cached && !initialLoadDone.current) {
+        const coords = JSON.parse(cached);
+        fullLocationLoad(coords);
+      }
+    } catch {}
+
+    // 2. Request permission
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setError(
-          "Standortberechtigung wird benötigt, um die nächste Toilette zu finden.",
-        );
-        setLoading(false);
+        if (!initialLoadDone.current) {
+          setError(
+            "Standortberechtigung wird benötigt, um die nächste Toilette zu finden.",
+          );
+          setLoading(false);
+        }
         return;
       }
 
+      // 3. Try last known position — often instant
+      const lastKnown = await Location.getLastKnownPositionAsync();
+      if (lastKnown) {
+        const coords = {
+          lat: lastKnown.coords.latitude,
+          lon: lastKnown.coords.longitude,
+        };
+        if (!initialLoadDone.current) {
+          fullLocationLoad(coords);
+        } else {
+          silentLocationUpdate(coords);
+        }
+      }
+
+      // 4. Get accurate position in background
       const location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Balanced,
       });
@@ -99,16 +156,19 @@ export function useToilets(): UseToiletsResult {
         lat: location.coords.latitude,
         lon: location.coords.longitude,
       };
-      setUserLocation(coords);
-      setSearchLocation(null);
-      setExploreBounds(null);
-      loadToilets(coords.lat, coords.lon);
+      if (!initialLoadDone.current) {
+        fullLocationLoad(coords);
+      } else {
+        silentLocationUpdate(coords);
+      }
     } catch (err: any) {
-      setError("Standort konnte nicht ermittelt werden.");
-      setLoading(false);
+      if (!initialLoadDone.current) {
+        setError("Standort konnte nicht ermittelt werden.");
+        setLoading(false);
+      }
       console.error("Location error:", err);
     }
-  }, [loadToilets]);
+  }, [fullLocationLoad, silentLocationUpdate]);
 
   useEffect(() => {
     initLocation();
