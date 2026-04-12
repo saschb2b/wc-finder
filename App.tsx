@@ -100,6 +100,7 @@ function AppContent() {
     searchLocation,
     exploreBounds,
     loading,
+    updating,
     error,
     refresh,
     searchAt,
@@ -133,7 +134,6 @@ function AppContent() {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [requireEurokey, setRequireEurokey] = useState(false);
   const [wheelchairOnly, setWheelchairOnly] = useState(false);
-  const [mapMoved, setMapMoved] = useState(false);
   const [mapCenter, setMapCenter] = useState<{
     lat: number;
     lon: number;
@@ -150,6 +150,8 @@ function AppContent() {
   } | null>(null);
   // Track programmatic animation target to distinguish from user pans
   const animatingToRef = useRef<{ lat: number; lon: number } | null>(null);
+  // Debounce timer for auto-loading toilets on map pan
+  const exploreTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Onboarding state
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -221,7 +223,6 @@ function AppContent() {
     mediumImpact();
     backToMyLocation();
     setSelectedToilet(null);
-    setMapMoved(false);
     if (userLocation && !isWeb) {
       animatingToRef.current = { lat: userLocation.lat, lon: userLocation.lon };
       mapRef.current?.animateToRegion(
@@ -236,42 +237,43 @@ function AppContent() {
     }
   }, [userLocation, backToMyLocation]);
 
-  const handleSearchHere = useCallback(() => {
-    mediumImpact();
-    if (mapRegion) {
-      // exploreAt loads toilets in the visible bounds but keeps distance from userLocation
-      exploreAt(mapRegion.lat, mapRegion.lon, mapRegion.latD, mapRegion.lonD);
-      setMapMoved(false);
-    }
-  }, [mapRegion, exploreAt]);
+  const handleRegionChange = useCallback(
+    (region: any) => {
+      setMapCenter({ lat: region.latitude, lon: region.longitude });
+      setMapRegion({
+        lat: region.latitude,
+        lon: region.longitude,
+        latD: region.latitudeDelta,
+        lonD: region.longitudeDelta,
+      });
 
-  const handleRegionChange = useCallback((region: any) => {
-    setMapCenter({ lat: region.latitude, lon: region.longitude });
-    setMapRegion({
-      lat: region.latitude,
-      lon: region.longitude,
-      latD: region.latitudeDelta,
-      lonD: region.longitudeDelta,
-    });
-
-    // Check if this region change matches our animation target
-    const target = animatingToRef.current;
-    if (target) {
-      const latDiff = Math.abs(region.latitude - target.lat);
-      const lonDiff = Math.abs(region.longitude - target.lon);
-      // If we're close to the target (within ~100m), this is our animation completing
-      if (latDiff < 0.001 && lonDiff < 0.001) {
-        animatingToRef.current = null; // Reset target
-        return; // Don't clear selection - this was our programmatic animation
+      // Check if this region change matches our animation target
+      const target = animatingToRef.current;
+      if (target) {
+        const latDiff = Math.abs(region.latitude - target.lat);
+        const lonDiff = Math.abs(region.longitude - target.lon);
+        if (latDiff < 0.001 && lonDiff < 0.001) {
+          animatingToRef.current = null;
+          return;
+        }
+        animatingToRef.current = null;
       }
-      // If region doesn't match target, user panned during animation - clear target
-      animatingToRef.current = null;
-    }
 
-    // User-initiated pan - clear selection
-    setMapMoved(true);
-    setSelectedToilet(null);
-  }, []);
+      // User-initiated pan - clear selection and auto-load toilets after debounce
+      setSelectedToilet(null);
+
+      if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
+      exploreTimerRef.current = setTimeout(() => {
+        exploreAt(
+          region.latitude,
+          region.longitude,
+          region.latitudeDelta,
+          region.longitudeDelta,
+        );
+      }, 400);
+    },
+    [exploreAt],
+  );
 
   // --- Derived data (MUST be before any early returns) ---
 
@@ -331,7 +333,7 @@ function AppContent() {
       }
     }
 
-    return result.slice(0, 50);
+    return result.slice(0, 200);
   }, [
     toilets,
     mapRegion,
@@ -430,7 +432,9 @@ function AppContent() {
   }
 
   // --- Error ---
-  if (error && toilets.length === 0) {
+  // Only show full-screen error for initial load failures (no location, etc.)
+  // Don't block the map when panning to an empty area
+  if (error && toilets.length === 0 && !userLocation && !exploreBounds) {
     return (
       <>
         <StatusBar style="dark" />
@@ -926,27 +930,23 @@ function AppContent() {
           })}
         </MapView>
 
-        {/* Location pill - shows current context only */}
+        {/* Location pill - shows current context */}
         <View style={styles.locationPill}>
-          <Text style={styles.locationPillText}>
-            {exploreBounds
-              ? "🔍 Bereich erkunden"
-              : searchLocation
-                ? "📍 Standort"
-                : "📍 Mein Standort"}
-          </Text>
+          {updating ? (
+            <View style={styles.updatingRow}>
+              <ActivityIndicator size="small" color="#666" />
+              <Text style={styles.updatingText}>Aktualisiere…</Text>
+            </View>
+          ) : (
+            <Text style={styles.locationPillText}>
+              {exploreBounds
+                ? `🔍 ${visibleToilets.length} Toiletten`
+                : searchLocation
+                  ? "📍 Standort"
+                  : "📍 Mein Standort"}
+            </Text>
+          )}
         </View>
-
-        {/* "Hier suchen" pill - appears when map moves */}
-        {mapMoved && (
-          <TouchableOpacity
-            style={styles.searchHerePill}
-            onPress={handleSearchHere}
-            activeOpacity={0.9}
-          >
-            <Text style={styles.searchHereText}>Hier suchen</Text>
-          </TouchableOpacity>
-        )}
 
         {/* My location button */}
         <TouchableOpacity
@@ -1075,19 +1075,8 @@ const styles = StyleSheet.create({
     ...S.shadow,
   },
   locationPillText: { fontSize: 15, color: S.textPrimary, fontWeight: "500" },
-
-  // Search here
-  searchHerePill: {
-    position: "absolute",
-    top: 102,
-    alignSelf: "center",
-    backgroundColor: S.blue,
-    borderRadius: 20,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    ...S.shadow,
-  },
-  searchHereText: { fontSize: 13, color: "#fff", fontWeight: "700" },
+  updatingRow: { flexDirection: "row" as const, alignItems: "center" as const, gap: 8 },
+  updatingText: { fontSize: 13, color: "#888" },
 
   // Location button - positioned above bottom panel
   locBtn: {

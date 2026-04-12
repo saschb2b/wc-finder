@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { InteractionManager } from "react-native";
 import * as Location from "expo-location";
 import { Toilet } from "../types/toilet";
 import { getNearbyToilets, getToiletsInBounds } from "../services/overpass";
@@ -9,6 +10,7 @@ interface UseToiletsResult {
   userLocation: { lat: number; lon: number } | null;
   searchLocation: { lat: number; lon: number } | null;
   loading: boolean;
+  updating: boolean;
   error: string | null;
   refresh: () => void;
   searchAt: (lat: number, lon: number) => void;
@@ -46,7 +48,9 @@ export function useToilets(): UseToiletsResult {
     lonDelta: number;
   } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const exploreTaskRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
 
   // Calculate distances from a reference point while preserving toilet data
   const calculateDistances = useCallback(
@@ -132,38 +136,38 @@ export function useToilets(): UseToiletsResult {
   );
 
   // Explore at bounds - loads toilets in area but keeps distance from userLocation
-  // Used for: "Hier suchen" - user panned map and wants to see toilets there
+  // Deferred via InteractionManager so map animations finish first
   const exploreAt = useCallback(
     (lat: number, lon: number, latDelta: number, lonDelta: number) => {
-      setLoading(true);
+      // Cancel any pending explore task
+      if (exploreTaskRef.current) {
+        exploreTaskRef.current.cancel();
+      }
+
+      setUpdating(true);
       setError(null);
       setExploreBounds({ lat, lon, latDelta, lonDelta });
 
-      // Load toilets in the visible bounds
-      const results = getToiletsInBounds(
-        lat - latDelta / 2,
-        lat + latDelta / 2,
-        lon - lonDelta / 2,
-        lon + lonDelta / 2,
-      );
+      // Defer heavy work until after animations complete
+      exploreTaskRef.current = InteractionManager.runAfterInteractions(() => {
+        const results = getToiletsInBounds(
+          lat - latDelta / 2,
+          lat + latDelta / 2,
+          lon - lonDelta / 2,
+          lon + lonDelta / 2,
+        );
 
-      // Calculate distances from USER location (not from center of map)
-      // This is the key difference from searchAt
-      const referencePoint = userLocation || { lat, lon };
-      const withDistances = calculateDistances(
-        results,
-        referencePoint.lat,
-        referencePoint.lon,
-      );
+        const referencePoint = userLocation || { lat, lon };
+        const withDistances = calculateDistances(
+          results,
+          referencePoint.lat,
+          referencePoint.lon,
+        );
 
-      setToilets(withDistances);
-      setNearest(withDistances.length > 0 ? withDistances[0] : null);
-
-      if (results.length === 0) {
-        setError("Keine Toiletten in diesem Bereich gefunden.");
-      }
-
-      setLoading(false);
+        setToilets(withDistances);
+        setNearest(withDistances.length > 0 ? withDistances[0] : null);
+        setUpdating(false);
+      });
     },
     [userLocation, calculateDistances],
   );
@@ -192,6 +196,7 @@ export function useToilets(): UseToiletsResult {
     searchLocation,
     exploreBounds,
     loading,
+    updating,
     error,
     refresh,
     searchAt,
