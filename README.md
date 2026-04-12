@@ -5,7 +5,7 @@
 
 [Website](https://saschb2b.github.io/wc-finder/) • [Releases](https://github.com/saschb2b/wc-finder/releases)
 
-A free, offline-first toilet finder for wheelchair users in Germany.
+A free, offline-first toilet finder for wheelchair users in Germany, Austria, and Switzerland.
 
 Find the nearest accessible toilet with real-time opening hours, Eurokey access info, and one-tap navigation.
 
@@ -28,12 +28,14 @@ Find the nearest accessible toilet with real-time opening hours, Eurokey access 
 
 ## Features
 
-- **13,000+ toilets** — Largest database of wheelchair-accessible toilets in Germany
-- **91% with opening hours** — Know if it's open before you go
+- **30,000+ toilets** — Largest database of wheelchair-accessible toilets in DACH (Germany, Austria, Switzerland)
+- **5 categories** — Public 24/7, train stations, gas stations, restaurants, and more
 - **Real-time status** — "Geöffnet", "Geschlossen", or "Öffnet in 2h"
 - **Eurokey filter** — Find toilets with Eurokey access
 - **Barrierefrei filter** — Wheelchair accessible locations only
 - **Offline support** — All data bundled in the app, works without internet
+- **Instant launch** — Cached location shows map in under a second
+- **Auto-loading map** — Toilets load automatically as you pan
 - **One-tap navigation** — Open Google Maps, Apple Maps, or Waze
 - **Favorites** — Save trusted locations for quick access
 
@@ -45,16 +47,21 @@ Toilet locations are merged and deduplicated from:
 
 | Source | Count | Description |
 |--------|-------|-------------|
-| **OSM / toilettenhero** | 11,000+ | Wheelchair-accessible toilets from OpenStreetMap |
-| **Google Places** | 1,800+ | Enriched with opening hours and accessibility info |
+| **OSM / toilettenhero** | 13,000+ | Wheelchair-accessible toilets from OpenStreetMap |
+| **Google Places** | 18,000+ | Restaurants, cafés, gas stations across 251 DACH cities |
+| **Autobahn GmbH API** | 1,700+ | Official highway rest areas with toilets |
+| **Sanifair / DB stations** | 770+ | Train station toilets from OSM |
 | **Stadt Dortmund** | 150+ | Official open data |
-| **Hannover Biz** | 400+ | Local business partnerships |
+| **Hannover TFA** | 400+ | Toiletten für Alle + local businesses |
 | **Manual Curation** | 100+ | Verified locations at stations, malls, hospitals |
 
 **Coverage:**
-- 13,155 total toilets
-- 91% with opening hours
-- 2,687 open 24/7
+- 30,596 total toilets across Germany, Austria, and Switzerland
+- 3,552 open 24/7
+- 13,920 restaurants/cafés with accessible restrooms
+- 8,939 gas stations
+- 890 public 24/7 toilets (Euroschlüssel)
+- 570 train stations
 - All data bundled offline — no API calls at runtime
 
 ---
@@ -89,13 +96,17 @@ Scan the QR code with [Expo Go](https://expo.dev/go), or press `a` for Android e
 
 ```bash
 # Fetch all sources
-pnpm exec tsx scripts/fetch-toilets.ts          # toilettenhero.de
-pnpm exec tsx scripts/fetch-overpass-toilets.ts  # OpenStreetMap
-pnpm exec tsx scripts/fetch-tfa.ts               # Toiletten für Alle
-pnpm exec tsx scripts/fetch-dortmund.ts          # Stadt Dortmund
+pnpm exec tsx scripts/fetch-toilets.ts                    # toilettenhero.de
+pnpm exec tsx scripts/fetch-overpass-toilets.ts            # OpenStreetMap
+pnpm exec tsx scripts/fetch-tfa.ts                         # Toiletten für Alle
+pnpm exec tsx scripts/fetch-dortmund.ts                    # Stadt Dortmund
+pnpm exec tsx scripts/fetch-autobahn-rest.ts               # Autobahn rest areas (govt API)
+pnpm exec tsx scripts/fetch-station-toilets.ts             # Train stations / Sanifair
+pnpm exec tsx scripts/fetch-google-places-germany.ts       # Google Places (80 major cities)
+pnpm exec tsx scripts/fetch-google-places-small-cities.ts  # Google Places (171 smaller cities)
 
 # Merge and normalize
-pnpm exec tsx scripts/merge-sources.ts           # Deduplicate
+pnpm exec tsx scripts/merge-sources.ts           # Deduplicate + categorize
 pnpm exec tsx scripts/migrate-hours-format.ts    # Normalize opening hours
 
 # Generate tiles
@@ -159,4 +170,4 @@ GitHub Actions automatically builds and publishes the APK.
 
 MIT License — Free to use, modify, and distribute.
 
-Data sources: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), [Toilettenhero](https://www.toilettenhero.de/), [Stadt Dortmund](https://opendata.dortmund.de/)
+Data sources: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), [Toilettenhero](https://www.toilettenhero.de/), [Autobahn GmbH](https://autobahn.api.bund.dev/), [Google Places API](https://developers.google.com/maps/documentation/places), [Stadt Dortmund](https://opendata.dortmund.de/)
