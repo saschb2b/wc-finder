@@ -22,12 +22,12 @@ const slides = [
   {
     icon: '🚽',
     title: 'Willkommen bei WC Finder',
-    description: 'Finde schnell und einfach öffentliche Toiletten in deiner Nähe – mit über 13.000 Standorten in ganz Deutschland.',
+    description: 'Finde schnell und einfach öffentliche Toiletten in deiner Nähe – mit über 39.000 Standorten in Deutschland, Österreich und der Schweiz.',
   },
   {
     icon: '🕐',
     title: 'Öffnungszeiten in Echtzeit',
-    description: 'Sehe auf einen Blick, welche Toiletten gerade geöffnet haben. 91% unserer Standorte haben aktuelle Öffnungszeiten.',
+    description: 'Sehe auf einen Blick, welche Toiletten gerade geöffnet haben. Über 11.000 Standorte mit aktuellen Öffnungszeiten.',
   },
   {
     icon: '♿',
