@@ -21,7 +21,7 @@ import {
   Modal,
   Alert,
 } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
@@ -93,6 +93,7 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 }
 
 function AppContent() {
+  const insets = useSafeAreaInsets();
   const {
     toilets,
     nearest,
@@ -950,7 +951,7 @@ function AppContent() {
 
         {/* My location button */}
         <TouchableOpacity
-          style={styles.locBtn}
+          style={[styles.locBtn, { bottom: 140 + insets.bottom }]}
           onPress={focusUser}
           activeOpacity={0.8}
         >
@@ -959,7 +960,7 @@ function AppContent() {
       </View>
 
       {/* Bottom panel - Always shows nearest + list button */}
-      <View style={styles.panel}>
+      <View style={[styles.panel, { paddingBottom: insets.bottom }]}>
         {/* Nearest card */}
         {bottomCard}
 
