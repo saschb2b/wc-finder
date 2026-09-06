@@ -29,7 +29,12 @@ export default {
     permissions: ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
   },
   web: {
+    bundler: "metro",
+    output: "single",
     favicon: "./assets/favicon.png",
+  },
+  experiments: {
+    baseUrl: process.env.WEB_BASE_PATH || "",
   },
   plugins: [
     "expo-status-bar",

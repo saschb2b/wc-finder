@@ -7,7 +7,9 @@ import { parseMapEvent, type MapEvent, type MapPin } from "./types";
 const region = { latitude: 52.3759, longitude: 9.732, latitudeDelta: 0.04, longitudeDelta: 0.04 };
 const pin: MapPin = { id: "test", name: "Hannover WC", lat: region.latitude, lon: region.longitude, color: "#1a73e8", opacity: 1, selected: false };
 
-function openMap() {
+function openMap(initiallyHidden = false) {
+  let hidden = initiallyHidden;
+  let resize = () => {};
   const events: MapEvent[] = [];
   const errors: Error[] = [];
   const virtualConsole = new VirtualConsole();
@@ -17,10 +19,13 @@ function openMap() {
     // No external resources are loaded: this tests the actual embedded Leaflet code offline.
     beforeParse(window) {
       Object.defineProperties(window.HTMLElement.prototype, {
-        clientWidth: { get: () => 390 }, clientHeight: { get: () => 600 },
+        clientWidth: { get: () => hidden ? 0 : 390 }, clientHeight: { get: () => hidden ? 0 : 600 },
       });
       Object.defineProperty(window.SVGSVGElement.prototype, "createSVGRect", { value: () => ({}) });
-      window.ResizeObserver = class { observe() {} unobserve() {} disconnect() {} };
+      window.ResizeObserver = class {
+        constructor(callback: () => void) { resize = callback; }
+        observe() {} unobserve() {} disconnect() {}
+      };
       window.ReactNativeWebView = { postMessage: (raw: string) => {
         const event = parseMapEvent(raw);
         if (event) events.push(event);
@@ -28,8 +33,19 @@ function openMap() {
     },
   });
   assert.deepEqual(errors, []);
-  return { dom, events, errors, document: dom.window.document };
+  return { dom, events, errors, document: dom.window.document, show: () => { hidden = false; resize(); } };
 }
+
+test("map fits its initial region after an iframe receives its first layout", () => {
+  const { dom, events, show } = openMap(true);
+  try {
+    show();
+    const last = events.filter(event => event.type === "region").at(-1)!;
+    assert.ok(last.region.latitudeDelta < 0.2);
+    assert.ok(Math.abs(last.region.latitude - region.latitude) < 0.001);
+    assert.equal(last.isGesture, false);
+  } finally { dom.window.close(); }
+});
 
 test("map starts offline with attribution and requests only key-free HTTPS tiles", () => {
   const { dom, document, events } = openMap();

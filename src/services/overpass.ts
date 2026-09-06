@@ -5,12 +5,12 @@ import { loadNearbyTiles, loadTilesInBounds } from "../data/tileLoader";
  * Gets nearby accessible toilets by loading only relevant geo-tiles.
  * Each tile covers 1°x1° (~110x70km). We load the user's tile + 8 neighbors.
  */
-export function getNearbyToilets(
+export async function getNearbyToilets(
   lat: number,
   lon: number,
   maxResults: number = 100,
-): Toilet[] {
-  const raw = loadNearbyTiles(lat, lon);
+): Promise<Toilet[]> {
+  const raw = await loadNearbyTiles(lat, lon);
 
   return raw
     .map((t) => ({
@@ -26,15 +26,15 @@ export function getNearbyToilets(
  * Gets toilets within a specific bounding box.
  * Used for "Hier suchen" - exploring an area without changing distance reference.
  */
-export function getToiletsInBounds(
+export async function getToiletsInBounds(
   latMin: number,
   latMax: number,
   lonMin: number,
   lonMax: number,
-): Toilet[] {
+): Promise<Toilet[]> {
   // Load all tiles needed to cover the visible bounds
   // This ensures we don't miss toilets at the edges of the visible area
-  const raw = loadTilesInBounds(latMin, latMax, lonMin, lonMax);
+  const raw = await loadTilesInBounds(latMin, latMax, lonMin, lonMax);
 
   return raw
     .filter(

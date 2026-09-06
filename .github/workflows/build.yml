@@ -39,3 +39,6 @@ jobs:
 
       - name: Test data refresh
         run: pnpm test:data
+
+      - name: Test browser data loading
+        run: pnpm test:web

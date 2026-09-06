@@ -77,7 +77,10 @@ function stopForSelection() {
   map.stop();
 }
 
+let pendingLayoutRegion: MapRegion | null = null;
 function focus(region: MapRegion, duration: number) {
+  // A web iframe may execute before its first layout. Refit once it has a size.
+  pendingLayoutRegion = container.clientWidth && container.clientHeight ? null : region;
   stopForSelection();
   const bounds = L.latLngBounds(
     [region.latitude - region.latitudeDelta / 2, region.longitude - region.longitudeDelta / 2],
@@ -160,6 +163,11 @@ window.addEventListener("message", event => {
   if (event.source !== window.parent || typeof event.data !== "string") return;
   try { window.wcMapReceive(JSON.parse(event.data)); } catch { /* Ignore other frame messages. */ }
 });
-new ResizeObserver(() => map.invalidateSize({ pan: false })).observe(container);
+new ResizeObserver(() => {
+  map.invalidateSize({ pan: false });
+  if (pendingLayoutRegion && container.clientWidth && container.clientHeight) {
+    focus(pendingLayoutRegion, 0);
+  }
+}).observe(container);
 focus(window.wcMapInitial, 0);
 post({ type: "ready" });

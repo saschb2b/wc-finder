@@ -21,7 +21,17 @@ an Expo SDK upgrade. If Metro has stale cached code, use `pnpm start --go --clea
 ```bash
 pnpm quality       # Type checking, lint, app/data/map tests
 pnpm web           # Web development server
+pnpm build:web     # Production Pages site in dist/, browser app in dist/app/
 ```
+
+GitHub Pages builds the Expo web export on pushes to `main`, retaining the
+landing page at `/wc-finder/` and serving the app at `/wc-finder/app/`.
+The workflow supplies the Pages base path, so exported asset URLs also work
+with a custom domain. Locally, `PAGES_BASE_PATH` defaults to `/wc-finder`;
+set it to an empty string to host `dist` at a server root.
+`pnpm web` prepares ignored `public/data/tiles` files for local development.
+The browser fetches only the regional JSON files needed for the map; native
+builds continue to include the directory. Rebuild the web export after data changes.
 
 Dependency versions follow the project's Expo SDK. When upgrading, use
 `pnpm exec expo install --fix`, `pnpm dlx expo-doctor@latest`, and `pnpm audit`,

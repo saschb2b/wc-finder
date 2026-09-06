@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
+import { Platform } from "react-native";
 import { Toilet } from "../types/toilet";
 import { getDistanceMeters, getNearbyToilets, getToiletsInBounds } from "../services/overpass";
 import { scheduleIdleTask } from "../utils/idle-task";
@@ -43,7 +44,7 @@ export function useToilets(): UseToiletsResult {
   const [searchLocation, setSearchLocation] = useState<{
     lat: number;
     lon: number;
-  } | null>(null);
+  } | null>(Platform.OS === "web" ? { lat: 52.3759, lon: 9.732 } : null);
   const [exploreBounds, setExploreBounds] = useState<{
     lat: number;
     lon: number;
@@ -55,8 +56,10 @@ export function useToilets(): UseToiletsResult {
   const [error, setError] = useState<string | null>(null);
   const exploreTaskRef = useRef<(() => void) | null>(null);
   const initialLoadDone = useRef(false);
+  const requestId = useRef(0);
 
   const cancelPendingExplore = useCallback(() => {
+    requestId.current++;
     exploreTaskRef.current?.();
     exploreTaskRef.current = null;
   }, []);
@@ -76,21 +79,25 @@ export function useToilets(): UseToiletsResult {
     [],
   );
 
-  const loadToilets = useCallback((lat: number, lon: number) => {
+  const loadToilets = useCallback(async (lat: number, lon: number) => {
     cancelPendingExplore();
+    const currentRequest = requestId.current;
     setUpdating(false);
     setLoading(true);
     setError(null);
 
-    const results = getNearbyToilets(lat, lon);
-    setToilets(results);
-    setNearest(results.length > 0 ? results[0] : null);
-
-    if (results.length === 0) {
-      setError("Keine Toiletten in der Nähe gefunden.");
+    try {
+      const results = await getNearbyToilets(lat, lon);
+      if (currentRequest !== requestId.current) return;
+      setToilets(results);
+      setNearest(results.length > 0 ? results[0] : null);
+      if (results.length === 0) setError("Keine Toiletten in der Nähe gefunden.");
+    } catch {
+      if (currentRequest !== requestId.current) return;
+      setError("Toilettendaten konnten nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.");
+    } finally {
+      if (currentRequest === requestId.current) setLoading(false);
     }
-
-    setLoading(false);
   }, [cancelPendingExplore]);
 
   // Full load: sets location, clears explore, loads toilets. Used for first fix only.
@@ -165,7 +172,7 @@ export function useToilets(): UseToiletsResult {
         lat: location.coords.latitude,
         lon: location.coords.longitude,
       };
-      if (!initialLoadDone.current) {
+      if (!initialLoadDone.current || Platform.OS === "web") {
         fullLocationLoad(coords);
       } else {
         silentLocationUpdate(coords);
@@ -180,20 +187,14 @@ export function useToilets(): UseToiletsResult {
   }, [fullLocationLoad, silentLocationUpdate]);
 
   useEffect(() => {
+    // Browsers can explore immediately; request location only on explicit use.
+    if (Platform.OS === "web") {
+      return scheduleIdleTask(() => { void loadToilets(52.3759, 9.732); });
+    }
     // Location initialization awaits storage/permission APIs before updating state.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     initLocation();
-  }, [initLocation]);
-
-  const refresh = useCallback(() => {
-    if (searchLocation) {
-      loadToilets(searchLocation.lat, searchLocation.lon);
-    } else if (userLocation) {
-      loadToilets(userLocation.lat, userLocation.lon);
-    } else {
-      initLocation();
-    }
-  }, [userLocation, searchLocation, loadToilets, initLocation]);
+  }, [initLocation, loadToilets]);
 
   // Search at a new location - this CHANGES the distance reference point
   // Used for: City search, planning a trip TO this location
@@ -211,34 +212,54 @@ export function useToilets(): UseToiletsResult {
   const exploreAt = useCallback(
     (lat: number, lon: number, latDelta: number, lonDelta: number) => {
       cancelPendingExplore();
+      const currentRequest = requestId.current;
 
       setUpdating(true);
+      setLoading(false);
       setError(null);
       setExploreBounds({ lat, lon, latDelta, lonDelta });
 
-      exploreTaskRef.current = scheduleIdleTask(() => {
+      exploreTaskRef.current = scheduleIdleTask(async () => {
         exploreTaskRef.current = null;
-        const results = getToiletsInBounds(
-          lat - latDelta / 2,
-          lat + latDelta / 2,
-          lon - lonDelta / 2,
-          lon + lonDelta / 2,
-        );
+        try {
+          const results = await getToiletsInBounds(
+            lat - latDelta / 2,
+            lat + latDelta / 2,
+            lon - lonDelta / 2,
+            lon + lonDelta / 2,
+          );
+          if (currentRequest !== requestId.current) return;
 
-        const referencePoint = userLocation || { lat, lon };
-        const withDistances = calculateDistances(
-          results,
-          referencePoint.lat,
-          referencePoint.lon,
-        );
+          const referencePoint = userLocation || { lat, lon };
+          const withDistances = calculateDistances(
+            results,
+            referencePoint.lat,
+            referencePoint.lon,
+          );
 
-        setToilets(withDistances);
-        setNearest(withDistances.length > 0 ? withDistances[0] : null);
-        setUpdating(false);
+          setToilets(withDistances);
+          setNearest(withDistances.length > 0 ? withDistances[0] : null);
+        } catch {
+          if (currentRequest === requestId.current) setError("Toilettendaten konnten nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.");
+        } finally {
+          if (currentRequest === requestId.current) setUpdating(false);
+        }
       });
     },
     [userLocation, calculateDistances, cancelPendingExplore],
   );
+
+  const refresh = useCallback(() => {
+    if (exploreBounds) {
+      exploreAt(exploreBounds.lat, exploreBounds.lon, exploreBounds.latDelta, exploreBounds.lonDelta);
+    } else if (searchLocation) {
+      void loadToilets(searchLocation.lat, searchLocation.lon);
+    } else if (userLocation) {
+      void loadToilets(userLocation.lat, userLocation.lon);
+    } else {
+      void initLocation();
+    }
+  }, [userLocation, searchLocation, exploreBounds, loadToilets, initLocation, exploreAt]);
 
   const clearExplore = useCallback(() => {
     cancelPendingExplore();
@@ -258,8 +279,10 @@ export function useToilets(): UseToiletsResult {
     setExploreBounds(null);
     if (userLocation) {
       loadToilets(userLocation.lat, userLocation.lon);
+    } else {
+      void initLocation();
     }
-  }, [userLocation, loadToilets, cancelPendingExplore]);
+  }, [userLocation, loadToilets, cancelPendingExplore, initLocation]);
 
   return {
     toilets,

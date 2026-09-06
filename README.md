@@ -9,12 +9,19 @@ and Switzerland. Explore nearby places, check Eurokey access and care equipment,
 and save locations you want to find again. The app interface is in German.
 
 **[Download for Android](https://github.com/saschb2b/wc-finder/releases/latest/download/wc-finder.apk)**
+ · **[Open in your browser](https://saschb2b.github.io/wc-finder/app/)**
  · [Release notes](https://github.com/saschb2b/wc-finder/releases/latest)
  · [Website](https://saschb2b.github.io/wc-finder/)
 
 ## Get the app
 
-The app is free and distributed as an Android APK. It requires **Android 7.0 or later**.
+Use WC Finder directly in a desktop or mobile browser — no installation or
+account needed. The browser version starts around Hannover; move the map to
+explore elsewhere, or use the location button to find places near you.
+It loads regional directory files and map tiles online. Favourites stay in
+that browser's local storage and do not sync with the Android app.
+
+The Android version is free and distributed as an APK. It requires **Android 7.0 or later**.
 
 1. Download `wc-finder.apk` using the link above.
 2. Open it on your phone and allow installation from your browser or file manager if Android asks.
@@ -36,7 +43,10 @@ Those filters use separate equipment records.
 
 ## Using it without internet
 
-**The directory is stored on your phone; the street map is loaded online.**
+**In the installed Android app, the directory is stored on your phone; the street map is loaded online.**
+
+The browser version needs internet to load the app and regional data. It does
+not provide an offline download or service worker.
 
 | Part of the app | Without internet |
 | --- | --- |
@@ -48,8 +58,9 @@ Those filters use separate equipment records.
 | Reports and source links | Need a connection to open the linked websites. |
 
 Finding places near you also needs location permission and an available device
-location. A new app release is needed to receive updated toilet data; opening
-or refreshing the app does not fetch a live directory.
+location. On Android, a new app release is needed to receive updated toilet data;
+opening or refreshing the installed app does not fetch a live directory. The
+browser version receives data updates when the website is rebuilt and deployed.
 
 ## Understanding the listings
 

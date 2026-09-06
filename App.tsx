@@ -17,6 +17,7 @@ import {
   Modal,
   Alert,
   AppState,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -55,6 +56,12 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
   if (openStatus === false && showClosedWarning) {
     // Show warning before navigating
     const hoursText = availabilityLabel(toilet) || toilet.care?.hoursNote || toilet.hours?.original || "unbekannt";
+    if (isWeb) {
+      if (window.confirm(`„${toilet.name}“ ist laut hinterlegten Zeiten geschlossen (${hoursText}). Trotzdem Navigation starten?`)) {
+        openNavigation(toilet, false);
+      }
+      return;
+    }
     Alert.alert(
       "Toilette geschlossen",
       `\"${toilet.name}\" ist aktuell geschlossen (Öffnungszeiten: ${hoursText}).\n\nTrotzdem Navigation starten?`,
@@ -80,6 +87,8 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 
 function AppContent() {
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const desktopWeb = isWeb && width >= 900;
   const {
     toilets,
     userLocation,
@@ -648,7 +657,7 @@ function AppContent() {
         />
 
         {/* Location pill - shows current context */}
-        <View style={styles.locationPill}>
+        <View style={[styles.locationPill, desktopWeb && { right: "auto", width: 360, top: 24, left: 24 }]}>
           {updating ? (
             <View style={styles.updatingRow}>
               <ActivityIndicator size="small" color="#666" />
@@ -659,7 +668,7 @@ function AppContent() {
               {exploreBounds
                 ? `🔍 ${visibleToilets.length} Toiletten`
                 : searchLocation
-                  ? "📍 Standort"
+                  ? "📍 Kartenstandort"
                   : "📍 Mein Standort"}
             </Text>
           )}
@@ -667,7 +676,9 @@ function AppContent() {
 
         {/* My location button */}
         <TouchableOpacity
-          style={[styles.locBtn, { bottom: 140 + insets.bottom }]}
+          style={[styles.locBtn, { bottom: desktopWeb ? undefined : 140 + insets.bottom }, desktopWeb && { top: 90, right: 24 }]}
+          accessibilityRole="button"
+          accessibilityLabel="Meinen Standort verwenden"
           onPress={focusUser}
           activeOpacity={0.8}
         >
@@ -676,7 +687,12 @@ function AppContent() {
       </View>
 
       {/* Bottom panel - Always shows nearest + list button */}
-      <View style={[styles.panel, { paddingBottom: insets.bottom }]}>
+      <View style={[styles.panel, { paddingBottom: insets.bottom }, desktopWeb && { position: "absolute", right: 24, bottom: 24, width: 400, borderRadius: 16 }]}>
+        {error && (
+          <TouchableOpacity accessibilityRole="button" onPress={refresh} style={{ padding: 12 }}>
+            <Text accessibilityRole="alert" style={{ color: "#9b2c2c" }}>{error} Erneut versuchen</Text>
+          </TouchableOpacity>
+        )}
         {/* Nearest card */}
         {bottomCard}
 
