@@ -1,7 +1,24 @@
 {
   "generated": "2026-04-12",
   "source": "Merged: toilettenhero.de + OpenStreetMap + Manual curation + Major cities + Hannover businesses + Autobahn rest areas + Station/Sanifair + Google Places + Toiletten für alle + Stadt Hannover + Dortmund",
-  "totalCount": 39870,
+  "regionalUpdates": {
+    "hannover": {
+      "updated": "2026-09-06T01:51:26Z",
+      "source": "OpenStreetMap",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "bbox": "52.3,9.6,52.45,9.9",
+      "unresolvedBusinessIds": [
+        "hbiz_345379480",
+        "hbiz_388428407",
+        "hbiz_503560800",
+        "hbiz_938884500",
+        "hbiz_2482675209",
+        "hbiz_4836816663"
+      ],
+      "count": 1334
+    }
+  },
+  "totalCount": 39942,
   "tileCount": 92,
   "tiles": [
     {
@@ -578,7 +595,7 @@
       "latMax": 53,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 1915
+      "count": 1987
     },
     {
       "key": "53_10",

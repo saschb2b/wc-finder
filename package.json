@@ -15,6 +15,7 @@
     }
   },
   "scripts": {
+    "data:hannover": "tsx scripts/update-hannover.ts",
     "build:map": "tsx scripts/build-map-assets.ts",
     "start": "expo start",
     "android": "expo run:android",

@@ -139,6 +139,7 @@ function main() {
   const tfaToilets = loadIfExists("tfa-toilets.json"); // curated Hannover
   const dortmundToilets = loadIfExists("dortmund-toilets.json"); // curated Dortmund
   const hannoverBizToilets = loadIfExists("hannover-businesses.json"); // Hannover businesses
+  const hannoverOsmToilets = loadIfExists("hannover-osm-toilets.json");
   const googlePlacesToilets = loadIfExists("google-places.json"); // Google Places API data
   const autobahnToilets = loadIfExists("autobahn-rest.json"); // Autobahn rest areas
   const stationToilets = loadIfExists("station-toilets.json"); // Train station / Sanifair toilets
@@ -233,6 +234,7 @@ function main() {
   addWithDedup(manualToilets, "Manual curated");
   addWithDedup(majorCitiesToilets, "Major cities curated");
   addWithDedup(tfaToilets, "curated Hannover (TFA)");
+  addWithDedup(hannoverOsmToilets, "Hannover OSM toilets");
   addWithDedup(hannoverBizToilets, "Hannover businesses");
   addWithDedup(autobahnToilets, "Autobahn rest areas");
   addWithDedup(stationToilets, "Station/Sanifair toilets");

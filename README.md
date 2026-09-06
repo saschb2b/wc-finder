@@ -135,6 +135,12 @@ in `pnpm-workspace.yaml` patches its old dependency while preserving CommonJS su
 
 ### Data Pipeline
 
+For a Hannover-only OpenStreetMap refresh, run `pnpm data:hannover`.
+It updates existing business records, adds explicitly accessible toilets,
+normalizes hours, and rebuilds the offline tiles. Curated entries and data
+outside the Hannover bounding box are preserved. The source timestamp and
+unmatched business IDs are recorded under `regionalUpdates.hannover`.
+
 ```bash
 # Fetch all sources
 pnpm exec tsx scripts/fetch-toilets.ts                    # toilettenhero.de

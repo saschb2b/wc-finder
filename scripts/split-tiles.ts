@@ -60,6 +60,7 @@ fs.writeFileSync(
   JSON.stringify({
     generated: data.generated,
     source: data.source,
+    ...(data.regionalUpdates ? { regionalUpdates: data.regionalUpdates } : {}),
     totalCount: data.count,
     tileCount: index.length,
     tiles: index.sort((a, b) => a.key.localeCompare(b.key)),

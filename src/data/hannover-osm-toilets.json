@@ -1,0 +1,1546 @@
+{
+  "generated": "2026-09-06",
+  "source": "OpenStreetMap - Hannover accessible toilets",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "bbox": "52.3,9.6,52.45,9.9",
+  "count": 117,
+  "toilets": [
+    {
+      "id": "osm_node_88923436",
+      "lat": 52.3545975,
+      "lon": 9.7466654,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep Mo-Su 07:00-19:00; Oct-Mar Mo-Su 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_250763079",
+      "lat": 52.3773243,
+      "lon": 9.6846982,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_276927971",
+      "lat": 52.3874017,
+      "lon": 9.7543466,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_306489393",
+      "lat": 52.3429586,
+      "lon": 9.7132515,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep: 08:00-19:00; Oct-Mar: 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_308366615",
+      "lat": 52.3780517,
+      "lon": 9.7380084,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_313498684",
+      "lat": 52.391311,
+      "lon": 9.6958766,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_344900153",
+      "lat": 52.3813526,
+      "lon": 9.7203874,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_347456824",
+      "lat": 52.3822997,
+      "lon": 9.7698219,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_347456825",
+      "lat": 52.3824894,
+      "lon": 9.7703957,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_347456882",
+      "lat": 52.3803087,
+      "lon": 9.7736356,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_355606521",
+      "lat": 52.3542541,
+      "lon": 9.7248481,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Fr 06:00-21:00; Sa 07:00-14:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_355607091",
+      "lat": 52.3540791,
+      "lon": 9.7241412,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Fr 06:00-21:00; Sa 07:00-14:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_368367094",
+      "lat": 52.372048,
+      "lon": 9.7352689,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "opening_hours": "Mo-Su,PH 07:00-22:00",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_373820951",
+      "lat": 52.3936957,
+      "lon": 9.6847814,
+      "name": "Fa. Ströer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Su 06:00-22:00",
+      "operator": "Fa. Ströer",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_387220959",
+      "lat": 52.3720188,
+      "lon": 9.7854489,
+      "name": "Deutsche Städte-Medien GmbH",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "operator": "Deutsche Städte-Medien GmbH",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_388473856",
+      "lat": 52.3140737,
+      "lon": 9.8027687,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_419911701",
+      "lat": 52.38871,
+      "lon": 9.7458708,
+      "name": "Stadt Hannover",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep: 08:00-18:00; Oct-Mar: 09:00-16:00",
+      "operator": "Stadt Hannover",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_442952620",
+      "lat": 52.3731207,
+      "lon": 9.7717067,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_496497257",
+      "lat": 52.3899194,
+      "lon": 9.7888912,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_676937825",
+      "lat": 52.3826567,
+      "lon": 9.7722537,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_701433545",
+      "lat": 52.3758257,
+      "lon": 9.7958375,
+      "name": "Deutsche Städte-Medien GmbH",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "operator": "Deutsche Städte-Medien GmbH",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_886810509",
+      "lat": 52.3795763,
+      "lon": 9.7724557,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_1216658227",
+      "lat": 52.3913228,
+      "lon": 9.6967117,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_1240253062",
+      "lat": 52.43173,
+      "lon": 9.7578664,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_1391604495",
+      "lat": 52.3827059,
+      "lon": 9.7175214,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_1391604498",
+      "lat": 52.3827397,
+      "lon": 9.7169925,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_1607442875",
+      "lat": 52.3373876,
+      "lon": 9.7183988,
+      "name": "Deutsche Städte Medien",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:00-20:00",
+      "operator": "Deutsche Städte Medien",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_2348094338",
+      "lat": 52.3946598,
+      "lon": 9.7309041,
+      "name": "Jahnplatz",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_2492679165",
+      "lat": 52.333426,
+      "lon": 9.7164784,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep 08:00-19:00; Oct-Mar 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_2967924607",
+      "lat": 52.3790272,
+      "lon": 9.7439181,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Th 06:00-22:00; Fr,Sa 06:00-02:00, Su 08:00-22:00; \"mit cbf-Schlüssel 24/7\"",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_3023133745",
+      "lat": 52.3138452,
+      "lon": 9.6012207,
+      "name": "Öffentliche Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Stadt Gehrden",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_3216158075",
+      "lat": 52.3928296,
+      "lon": 9.7462899,
+      "name": "Stadt Hannover",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Su,PH 06:00-23:00",
+      "operator": "Stadt Hannover",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_3216165173",
+      "lat": 52.3820593,
+      "lon": 9.7455547,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "06:00-23:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_3413343823",
+      "lat": 52.3534683,
+      "lon": 9.7406619,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_3506849971",
+      "lat": 52.370732,
+      "lon": 9.7144857,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4034471794",
+      "lat": 52.3862488,
+      "lon": 9.7141362,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094253182",
+      "lat": 52.31927,
+      "lon": 9.800648,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094253183",
+      "lat": 52.3192952,
+      "lon": 9.8056507,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094253185",
+      "lat": 52.3204986,
+      "lon": 9.8087906,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094253188",
+      "lat": 52.3227922,
+      "lon": 9.8124352,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254089",
+      "lat": 52.3242546,
+      "lon": 9.8120508,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254090",
+      "lat": 52.324573,
+      "lon": 9.8099995,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254091",
+      "lat": 52.3247574,
+      "lon": 9.8099168,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254092",
+      "lat": 52.3248606,
+      "lon": 9.8122951,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254094",
+      "lat": 52.3258805,
+      "lon": 9.8118802,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254096",
+      "lat": 52.3268949,
+      "lon": 9.8117077,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4094254097",
+      "lat": 52.3273121,
+      "lon": 9.8106372,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4177675460",
+      "lat": 52.3883622,
+      "lon": 9.8134993,
+      "name": "E-center Wucherpfennig",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "E-center Wucherpfennig",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4185714960",
+      "lat": 52.3528803,
+      "lon": 9.7244399,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4226787289",
+      "lat": 52.4267697,
+      "lon": 9.8582185,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4388445678",
+      "lat": 52.3278874,
+      "lon": 9.8080502,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4388445681",
+      "lat": 52.327973,
+      "lon": 9.8104859,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4388445684",
+      "lat": 52.3282412,
+      "lon": 9.8062418,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4590673784",
+      "lat": 52.4468796,
+      "lon": 9.7133106,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "We-Su,PH 11:00-18:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_4738323526",
+      "lat": 52.3336318,
+      "lon": 9.8659361,
+      "name": "SANIFAIR",
+      "city": "Hannover",
+      "category": "station",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "SANIFAIR GmbH",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_4738325122",
+      "lat": 52.3376408,
+      "lon": 9.8635832,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_4738325223",
+      "lat": 52.3399246,
+      "lon": 9.8650873,
+      "name": "SANIFAIR",
+      "city": "Hannover",
+      "category": "station",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "24/7",
+      "operator": "SANIFAIR GmbH",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_5658326040",
+      "lat": 52.423688,
+      "lon": 9.8342702,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_5784495553",
+      "lat": 52.3705247,
+      "lon": 9.733497,
+      "name": "Toilette für alle",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_5902578644",
+      "lat": 52.3789934,
+      "lon": 9.7235116,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_5923937439",
+      "lat": 52.4096889,
+      "lon": 9.8007347,
+      "name": "Edeka Center",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Edeka Center",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_5932693511",
+      "lat": 52.3465745,
+      "lon": 9.7237708,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_6114989721",
+      "lat": 52.3684704,
+      "lon": 9.7435903,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Su 07:00-22:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_6504384737",
+      "lat": 52.3820084,
+      "lon": 9.7685112,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_6533945026",
+      "lat": 52.351076,
+      "lon": 9.6389881,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_8308679965",
+      "lat": 52.3916161,
+      "lon": 9.8528031,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_8739872603",
+      "lat": 52.3355216,
+      "lon": 9.7896139,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "opening_hours": "Apr-Sep 08:00-19:00; Oct-Mar 09:00-17:00"
+    },
+    {
+      "id": "osm_node_8978468752",
+      "lat": 52.3505114,
+      "lon": 9.7556072,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_8978468753",
+      "lat": 52.3505326,
+      "lon": 9.7556415,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_11293822558",
+      "lat": 52.4062821,
+      "lon": 9.8714896,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11293822561",
+      "lat": 52.4043602,
+      "lon": 9.870552,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11293903820",
+      "lat": 52.4080881,
+      "lon": 9.8723529,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11293910874",
+      "lat": 52.4076518,
+      "lon": 9.876643,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11293910881",
+      "lat": 52.4101939,
+      "lon": 9.8725669,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11854201626",
+      "lat": 52.3796763,
+      "lon": 9.7404584,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "09:00-21:00",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_node_11861786622",
+      "lat": 52.3851281,
+      "lon": 9.7318402,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_11985130228",
+      "lat": 52.4224403,
+      "lon": 9.835644,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_12401817056",
+      "lat": 52.3454931,
+      "lon": 9.7177899,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Sa 07:00-22:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_12589678987",
+      "lat": 52.3160189,
+      "lon": 9.7233813,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_12699172287",
+      "lat": 52.3928414,
+      "lon": 9.7461212,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Su 06:00-23:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_12878812619",
+      "lat": 52.3920422,
+      "lon": 9.6995308,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_12907506196",
+      "lat": 52.3338757,
+      "lon": 9.7895501,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_13464337862",
+      "lat": 52.3545786,
+      "lon": 9.7464995,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep Mo-Su 07:00-19:00; Oct-Mar Mo-Su 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_13602478554",
+      "lat": 52.3586184,
+      "lon": 9.7090278,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_node_14105373447",
+      "lat": 52.3743974,
+      "lon": 9.7687175,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_node_14106722373",
+      "lat": 52.3334435,
+      "lon": 9.7165274,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep 08:00-19:00; Oct-Mar 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_5121414",
+      "lat": 52.3903746,
+      "lon": 9.7014009,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_88264377",
+      "lat": 52.4264589,
+      "lon": 9.819818,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_95423693",
+      "lat": 52.4265785,
+      "lon": 9.8237443,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "24/7",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_97120930",
+      "lat": 52.4265139,
+      "lon": 9.7553827,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "public_24h",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "24/7",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_113080731",
+      "lat": 52.3909348,
+      "lon": 9.7024937,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "Apr-Sep: Mo-Su,PH 07:00-22:00; Oct-Mar: Mo-Su,PH 08:00-18:00",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_138457729",
+      "lat": 52.3820906,
+      "lon": 9.766722,
+      "name": "Hannover Zoo",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_140266836",
+      "lat": 52.3618349,
+      "lon": 9.7293512,
+      "name": "Ströer",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Ströer",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_141410473",
+      "lat": 52.4003469,
+      "lon": 9.670062,
+      "name": "Landeshauptstadt Hannover",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Landeshauptstadt Hannover",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_143459174",
+      "lat": 52.3958001,
+      "lon": 9.76434,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "opening_hours": "07:00-19:00",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_145445282",
+      "lat": 52.3665073,
+      "lon": 9.7199269,
+      "name": "Landeshauptstadt Hannover",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Landeshauptstadt Hannover",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_163205617",
+      "lat": 52.4308765,
+      "lon": 9.696267,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_175558007",
+      "lat": 52.3753037,
+      "lon": 9.7084865,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Th,PH 08:00-20:00, Fr,Sa 08:00-03:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_206084335",
+      "lat": 52.4102583,
+      "lon": 9.8979166,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_212302167",
+      "lat": 52.380134,
+      "lon": 9.7694207,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_229832033",
+      "lat": 52.3674761,
+      "lon": 9.7143059,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ],
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_346586334",
+      "lat": 52.3774444,
+      "lon": 9.7417095,
+      "name": "SANIFAIR",
+      "city": "Hannover",
+      "category": "station",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "opening_hours": "Mo-Sa 06:00-24:00; Su 07:00-23:00",
+      "operator": "SANIFAIR GmbH",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_362627882",
+      "lat": 52.3742339,
+      "lon": 9.7391728,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "opening_hours": "Su-Th 06:00-22:00; Fr-Sa 06:00-02:00",
+      "fee": "yes"
+    },
+    {
+      "id": "osm_way_377986765",
+      "lat": 52.3619373,
+      "lon": 9.7546217,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep: 06:00-23:00; Oct-May: 09:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_481811918",
+      "lat": 52.3173806,
+      "lon": 9.7931732,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_481811919",
+      "lat": 52.3175215,
+      "lon": 9.7931152,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_672308809",
+      "lat": 52.4059049,
+      "lon": 9.8002847,
+      "name": "Stadt Hannover",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "Stadt Hannover",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_750787870",
+      "lat": 52.3540488,
+      "lon": 9.7230626,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "opening_hours": "Mo-Fr 06:00-21:00; Sa 07:00-14:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_759440765",
+      "lat": 52.4390159,
+      "lon": 9.7385082,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_way_899195446",
+      "lat": 52.3530334,
+      "lon": 9.7229993,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_899195503",
+      "lat": 52.3530334,
+      "lon": 9.7229993,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_926234679",
+      "lat": 52.3679116,
+      "lon": 9.6966387,
+      "name": "PLATZprojekt e.V.",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "operator": "PLATZprojekt e.V.",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_1042399024",
+      "lat": 52.4119843,
+      "lon": 9.7489681,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_1070085370",
+      "lat": 52.3742531,
+      "lon": 9.7321557,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "kostenlos"
+      ],
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_1070400678",
+      "lat": 52.3811187,
+      "lon": 9.7576633,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey",
+        "kostenlos"
+      ],
+      "opening_hours": "Apr-Sep: 08:00-20:00; Oct-Mar: Mo-Su,PH 08:00-17:00",
+      "fee": "no"
+    },
+    {
+      "id": "osm_way_1216793376",
+      "lat": 52.384876,
+      "lon": 9.7316662,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei"
+      ]
+    },
+    {
+      "id": "osm_way_1491870096",
+      "lat": 52.3802105,
+      "lon": 9.728373,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey",
+        "kostenlos"
+      ],
+      "fee": "no"
+    }
+  ]
+}
