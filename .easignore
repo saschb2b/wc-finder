@@ -1,0 +1,32 @@
+# EAS replaces .gitignore when this file exists. Keep these base exclusions in sync.
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.metro-health-check*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+*.pem
+.env
+.env*.local
+!.env.example
+*.tsbuildinfo
+coverage/
+/ios
+/android
+
+# Runtime data comes from tileLoader.ts and tiles/, not pipeline source files.
+/src/data/*.json
+!/src/data/tile-index.json
+/scripts/
+/docs/

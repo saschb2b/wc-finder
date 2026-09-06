@@ -4,6 +4,7 @@
   },
   "build": {
     "preview": {
+      "credentialsSource": "remote",
       "android": {
         "buildType": "apk"
       },

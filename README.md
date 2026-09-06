@@ -163,13 +163,32 @@ pnpm exec tsx scripts/gen-tile-loader.ts         # Tile loader
 
 ### Building
 
-```bash
-# Local preview build
-eas build --platform android --profile preview
+For an installable APK, open **Actions → Build & Release APK → Run workflow**.
+After a successful run, download **wc-finder-apk** from **Artifacts**, unzip it,
+and install `wc-finder.apk` on your phone. Manual branch builds do not create a release.
 
-# Production build
-eas build --platform android --profile production
+The workflow compiles on GitHub's Ubuntu runner using EAS local build, with live
+logs and a 45-minute build timeout. It does not submit a build to the EAS cloud
+queue. The repo's `EXPO_TOKEN` must have access to this project's existing Android
+signing credentials. The preview profile explicitly uses remote credentials,
+and CI freezes them so a build cannot silently replace the signing key.
+The build archive excludes raw data-pipeline files via `.easignore`; the tile
+loader and all offline toilet tiles remain included.
+
+For the same build on a Linux/macOS machine with Java 17 and the Android SDK/NDK:
+
+```bash
+# Authenticate with Expo first, or provide EXPO_TOKEN
+pnpm dlx eas-cli@23.2.0 build --platform android --profile preview --local --output ./wc-finder.apk
+
+# Google Play app bundle (EAS cloud)
+pnpm dlx eas-cli@23.2.0 build --platform android --profile production
 ```
+
+EAS local builds require [Linux or macOS](https://docs.expo.dev/build-reference/local-builds/);
+use the GitHub workflow from Windows. If Android signing has not been configured
+yet, use `pnpm dlx eas-cli@23.2.0 credentials --platform android` to configure it once.
+Use the existing keystore when updating an already installed app.
 
 ### Releasing
 
@@ -179,7 +198,9 @@ git tag v1.2.0
 git push origin v1.2.0
 ```
 
-GitHub Actions automatically builds and publishes the APK.
+Version tags automatically build, verify the APK signature and package identity,
+and attach the APK to the GitHub release. Successful builds also keep a downloadable
+Actions artifact for 30 days, including when release publication fails.
 
 ---
 
