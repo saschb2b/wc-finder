@@ -4,6 +4,7 @@ import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from '../types/toilet';
 import { formatDistance } from '../services/overpass';
 import { ToiletHours } from './ToiletHours';
 import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
+import { ToiletSources } from './ToiletSources';
 import { isWithinAvailability } from '../utils/toilet-availability';
 
 interface ToiletDetailCardProps {
@@ -20,7 +21,7 @@ export function ToiletDetailCard({
   onReport
 }: ToiletDetailCardProps) {
   const hasEurokey = toilet.tags?.includes('eurokey');
-  const isWheelchairAccessible = toilet.tags?.includes('eurokey') || toilet.tags?.includes('barrierefrei');
+  const isWheelchairAccessible = toilet.tags?.includes('barrierefrei');
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
   const is24_7 = toilet.hours?.type === '24_7' && isWithinAvailability(toilet);
 
@@ -45,8 +46,8 @@ export function ToiletDetailCard({
       </Text>
 
       {/* Address/City */}
-      {toilet.city && (
-        <Text style={styles.address}>{toilet.city}</Text>
+      {(toilet.city || toilet.address) && (
+        <Text style={styles.address}>{[toilet.address, toilet.city].filter(Boolean).join(', ')}</Text>
       )}
 
       {/* Opening Hours */}
@@ -83,6 +84,12 @@ export function ToiletDetailCard({
       </View>
 
       <CareFacilitiesDisplay toilet={toilet} />
+      {toilet.accessNote && <Text style={styles.address}>{toilet.accessNote}</Text>}
+      {toilet.locationNote && <Text style={styles.address}>{toilet.locationNote}</Text>}
+      {toilet.fee && toilet.fee !== 'no' && <Text style={styles.address}>
+        {toilet.fee === 'yes' ? 'Kostenpflichtig' : `Gebühr: ${toilet.fee}`}
+      </Text>}
+      <ToiletSources toilet={toilet} />
 
       {/* Action Buttons */}
       <View style={styles.actions}>

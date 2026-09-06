@@ -17,7 +17,7 @@ jobs:
   update-osm-data:
     name: Update OSM Data
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 40
     permissions:
       contents: write
       pull-requests: write
@@ -36,11 +36,15 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Fetch fresh OSM data
-        timeout-minutes: 16
+        timeout-minutes: 25
         run: pnpm exec tsx scripts/fetch-overpass-toilets.ts
 
       - name: Refresh OSM records
         run: pnpm exec tsx scripts/update-osm-data.ts
+
+      - name: Refresh municipal open data
+        timeout-minutes: 4
+        run: pnpm data:municipal
 
       - name: Refresh Hannover and rebuild tiles
         timeout-minutes: 4
@@ -54,13 +58,13 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "data: refresh OSM and Hannover toilets"
-          title: "data: weekly OSM and Hannover update"
+          commit-message: "data: refresh OSM and municipal toilets"
+          title: "data: weekly OSM and municipal update"
           body: |
-            Refresh accessible OSM toilets and Hannover locations, then rebuild map tiles.
+            Refresh accessible OSM toilets, Berlin, Hamburg, Rostock, Oldenburg, Münster and Hannover, then rebuild map tiles.
             Existing location IDs and specialist care data are preserved.
 
-            All source requests completed without partial responses.
+            Published source snapshots contain complete, validated responses.
             Type checking, lint and automated tests passed before this PR was created.
 
             Please review coverage and location changes before merging.

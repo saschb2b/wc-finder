@@ -39,3 +39,10 @@ test("rejects empty, invalid and duplicate input without changing original data"
     assert.deepEqual(original, [entry("osm_1")]);
   }
 });
+
+test("node, way and relation numeric IDs are distinct; legacy node aliases are stable", () => {
+  const result = mergeOsm([entry("osm_1")], [entry("osm_node_1"), entry("osm_way_1", { name: "Library" }),
+    entry("osm_relation_1", { name: "Museum" })]);
+  assert.deepEqual(result.map(t => t.id), ["osm_1", "osm_way_1", "osm_relation_1"]);
+  assert.throws(() => mergeOsm([], [entry("osm_1"), entry("osm_node_1")]), /Duplicate/);
+});

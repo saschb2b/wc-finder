@@ -7,6 +7,7 @@ import {
   Modal,
 } from 'react-native';
 import { mediumImpact, successNotification } from '../utils/haptics';
+import { totalCount } from '../data/tile-index.json';
 
 interface OnboardingModalProps {
   visible: boolean;
@@ -18,12 +19,12 @@ const slides = [
   {
     icon: '🚽',
     title: 'Willkommen bei WC Finder',
-    description: 'Finde schnell und einfach öffentliche Toiletten in deiner Nähe – mit über 39.000 Standorten in Deutschland, Österreich und der Schweiz.',
+    description: `Finde Toiletten in deiner Nähe – mit ${totalCount.toLocaleString('de-DE')} Einträgen in Deutschland, Österreich, der Schweiz und angrenzenden Gebieten.`,
   },
   {
     icon: '🕐',
-    title: 'Öffnungszeiten in Echtzeit',
-    description: 'Sehe auf einen Blick, welche Toiletten gerade geöffnet haben. Über 11.000 Standorte mit aktuellen Öffnungszeiten.',
+    title: 'Öffnungszeiten im Blick',
+    description: 'Sieh anhand hinterlegter Öffnungszeiten, welche Toiletten voraussichtlich geöffnet haben. Die Angaben sind keine Live-Auskunft.',
   },
   {
     icon: '♿',

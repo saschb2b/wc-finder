@@ -15,6 +15,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'src', 'data');
 const tilesDir = path.join(dataDir, 'tiles');
 
+function writeJson(file: string, text: string) {
+  const temporary = file + '.tmp';
+  fs.writeFileSync(temporary, text);
+  // Windows scanners/watchers can briefly hold a generated tile open.
+  for (let attempt = 0; ; attempt++) {
+    try { fs.renameSync(temporary, file); return; }
+    catch (error) {
+      if (attempt >= 4 || !['EPERM', 'EACCES', 'EBUSY', 'UNKNOWN'].includes((error as NodeJS.ErrnoException).code || '')) throw error;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 100);
+    }
+  }
+}
+
 const data = JSON.parse(fs.readFileSync(path.join(dataDir, 'toilets.json'), 'utf-8'));
 
 // Group toilets by 1° grid cell
@@ -39,7 +52,7 @@ for (const [key, toilets] of Object.entries(tiles)) {
   const latMin = parseInt(latStr);
   const lonMin = parseInt(lonStr);
 
-  fs.writeFileSync(
+  writeJson(
     path.join(tilesDir, `tile_${key}.json`),
     JSON.stringify(toilets)
   );
@@ -55,12 +68,14 @@ for (const [key, toilets] of Object.entries(tiles)) {
 }
 
 // Write index
-fs.writeFileSync(
+writeJson(
   path.join(dataDir, 'tile-index.json'),
   JSON.stringify({
     generated: data.generated,
     source: data.source,
     ...(data.osmUpdate ? { osmUpdate: data.osmUpdate } : {}),
+    ...(data.municipalUpdate ? { municipalUpdate: data.municipalUpdate } : {}),
+    ...(data.partnerUpdates ? { partnerUpdates: data.partnerUpdates } : {}),
     ...(data.regionalUpdates ? { regionalUpdates: data.regionalUpdates } : {}),
     ...(data.specialistUpdate ? { specialistUpdate: data.specialistUpdate } : {}),
     totalCount: data.count,

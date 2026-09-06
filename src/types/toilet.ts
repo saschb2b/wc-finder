@@ -36,6 +36,17 @@ export interface Toilet {
   hours?: StandardizedHours;
   operator?: string;
   fee?: string;
+  address?: string;
+  accessNote?: string;
+  locationNote?: string;
+  sources?: {
+    id: string;
+    name: string;
+    url: string;
+    license: string;
+    retrievedAt: string;
+    updatedAt?: string;
+  }[];
   distance?: number;
   care?: CareFacilities;
   availability?: ToiletAvailability;

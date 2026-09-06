@@ -78,6 +78,7 @@ To run the same data steps as the weekly workflow:
 ```bash
 pnpm exec tsx scripts/fetch-overpass-toilets.ts
 pnpm exec tsx scripts/update-osm-data.ts
+pnpm data:municipal
 pnpm data:hannover
 pnpm quality
 ```
@@ -90,13 +91,16 @@ Review source files, changes to locations, and generated tiles together.
 The [Weekly Data Update workflow](../.github/workflows/update-data.yml) runs on
 Sundays at 02:00 UTC and can be started manually. After validation it creates or
 updates one PR on `data/weekly-update`; a maintainer reviews and merges it.
-It refreshes OSM and Hannover. Other sources, including specialist directories
+It refreshes OSM, Berlin, Hamburg, Rostock, Oldenburg, Münster and Hannover. Other sources, including specialist directories
 and historical Google Places imports, are not refreshed by that schedule.
 
 The repository must allow GitHub Actions to create pull requests under
 **Settings → Actions → General → Workflow permissions**. The job requests
 contents and pull-request write access; it does not approve or merge its own PR.
 No Discord webhook or additional API key is required for the weekly workflow.
+
+The [data import guide](data-imports.md) covers expanded venue coverage, source
+licences, resumable OSM queries and the review/import route for partner directories.
 
 Older source importers and `merge-sources.ts` remain available for broader data
 maintenance. They are not the weekly update path. Some importers require their

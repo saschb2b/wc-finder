@@ -32,6 +32,20 @@ test("network failures exit with an error instead of returning partial data", as
   }), /No complete Overpass response.*primary.example.*fallback.example/);
 });
 
+test("bounded empty regions are accepted only when explicitly enabled", async () => {
+  const data = await fetchOverpass("query", { endpoints: [endpoints[0]], allowEmpty: true,
+    fetchImpl: async () => Response.json({ ...complete, elements: [] }) });
+  assert.deepEqual(data.elements, []);
+});
+
+test("rate-limited servers are backed off before fallback", async () => {
+  let calls = 0;
+  const result = await fetchOverpass("query", { endpoints, retryDelayMs: 0,
+    fetchImpl: async () => ++calls === 1 ? new Response("Rate limited", { status: 429 }) : Response.json(complete) });
+  assert.equal(calls, 2);
+  assert.equal(result.elements.length, 1);
+});
+
 test("a hanging request is aborted before trying the fallback", async () => {
   let calls = 0;
   // Keep the event loop alive while the unreferenced AbortSignal timer runs.

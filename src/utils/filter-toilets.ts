@@ -17,7 +17,7 @@ export function filterToilets(toilets: Toilet[], filters: ToiletFilters, now = n
     if (filters.openNow && toiletOpenStatus(t, now) !== true) return false;
     if (filters.favoritesOnly && !filters.favoriteIds.has(t.id)) return false;
     if (filters.eurokey && !(t.care ? t.care.eurokey === true : t.tags?.includes("eurokey"))) return false;
-    if (filters.wheelchair && !t.tags?.some(tag => ["eurokey", "barrierefrei"].includes(tag))) return false;
+    if (filters.wheelchair && !t.tags?.includes("barrierefrei")) return false;
     if (filters.bed && t.care?.bed !== "available") return false;
     if (filters.hoist && t.care?.hoist !== "available") return false;
     return true;

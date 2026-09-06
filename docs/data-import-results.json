@@ -1,0 +1,17 @@
+{
+  "baseline": 40152,
+  "current": 87539,
+  "added": 47387,
+  "removedIds": 0,
+  "preservedCareRecords": 219,
+  "addedBySource": {
+    "Land Berlin – Öffentliche Toiletten": 358,
+    "Freie und Hansestadt Hamburg – WC-Anlagen mit Trinkbrunnen": 28,
+    "Hanse- und Universitätsstadt Rostock – Toiletten": 42,
+    "Stadt Oldenburg (Oldb) – Öffentliche Toiletten": 5,
+    "OpenStreetMap": 46942,
+    "Stadt Münster – Öffentliche Toiletten": 12
+  },
+  "additionsWithin50mOfExisting": 5073,
+  "note": "Nearby candidates can be separate venues or duplicates. No automatic identity match was inferred from distance alone."
+}

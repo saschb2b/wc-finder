@@ -125,6 +125,8 @@ export const ToiletListItem = memo(function ToiletListItem({
         {/* Row 3: hours - compact, never truncates */}
         <CareFacilitiesDisplay toilet={toilet} compact />
         <ToiletHours toilet={toilet} compact />
+        {toilet.accessNote && <Text style={styles.city}>{toilet.accessNote}</Text>}
+        {toilet.locationNote && <Text style={styles.city}>{toilet.locationNote}</Text>}
       </View>
 
       {/* Right: actions */}

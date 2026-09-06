@@ -69,8 +69,12 @@ availability are shown in the notes when known. See the [care and event data gui
 
 Sources include OpenStreetMap and toilettenhero, the national and Niedersachsen
 **Toiletten für alle** directories, Stadt Dortmund, Autobahn GmbH, Google Places,
-and manually curated records. These are combined during maintenance, not queried
+Berlin, Hamburg, Rostock, Oldenburg, Münster, and manually curated records. These are combined during maintenance, not queried
 when you browse the app.
+
+New imports distinguish confirmed accessible WCs from entrance-only information,
+show venue access notes and identify approximate building positions. See the
+[data import guide](docs/data-imports.md) for sources, licences and refresh commands.
 
 ## Help improve the directory
 
