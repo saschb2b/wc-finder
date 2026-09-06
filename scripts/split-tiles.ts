@@ -61,6 +61,7 @@ fs.writeFileSync(
     generated: data.generated,
     source: data.source,
     ...(data.regionalUpdates ? { regionalUpdates: data.regionalUpdates } : {}),
+    ...(data.specialistUpdate ? { specialistUpdate: data.specialistUpdate } : {}),
     totalCount: data.count,
     tileCount: index.length,
     tiles: index.sort((a, b) => a.key.localeCompare(b.key)),

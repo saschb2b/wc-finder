@@ -16,14 +16,15 @@ import {
   Linking,
   Modal,
   Alert,
+  AppState,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
 import { ToiletListItem } from "./src/components/ToiletListItem";
-import { isCurrentlyOpen } from "./src/utils/opening-hours";
-import { isOpenNow } from "./src/types/opening-hours";
+import { toiletOpenStatus, isWithinAvailability, availabilityLabel } from "./src/utils/toilet-availability";
+import { filterToilets } from "./src/utils/filter-toilets";
 import { ToiletDetailCard } from "./src/components/ToiletDetailCard";
 import { ToiletMap } from "./src/components/ToiletMap";
 import type { MapPin, MapRegion, ToiletMapHandle } from "./src/map/types";
@@ -49,11 +50,11 @@ function openNavigationWithHaptics(
 
 function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
   // Check if toilet is closed
-  const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
+  const openStatus = toiletOpenStatus(toilet);
 
   if (openStatus === false && showClosedWarning) {
     // Show warning before navigating
-    const hoursText = toilet.hours?.original || "unbekannt";
+    const hoursText = availabilityLabel(toilet) || toilet.care?.hoursNote || toilet.hours?.original || "unbekannt";
     Alert.alert(
       "Toilette geschlossen",
       `\"${toilet.name}\" ist aktuell geschlossen (Öffnungszeiten: ${hoursText}).\n\nTrotzdem Navigation starten?`,
@@ -81,7 +82,6 @@ function AppContent() {
   const insets = useSafeAreaInsets();
   const {
     toilets,
-    nearest,
     userLocation,
     searchLocation,
     exploreBounds,
@@ -118,6 +118,15 @@ function AppContent() {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [requireEurokey, setRequireEurokey] = useState(false);
   const [wheelchairOnly, setWheelchairOnly] = useState(false);
+  const [requireBed, setRequireBed] = useState(false);
+  const [requireHoist, setRequireHoist] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const update = () => setNow(new Date());
+    const timer = setInterval(update, 60000);
+    const subscription = AppState.addEventListener("change", state => { if (state === "active") update(); });
+    return () => { clearInterval(timer); subscription.remove(); };
+  }, []);
   const [reportToilet, setReportToilet] = useState<Toilet | undefined>(
     undefined,
   );
@@ -245,42 +254,14 @@ function AppContent() {
 
   // --- Derived data (MUST be before any early returns) ---
 
-  // Pins should reflect active filters - only show toilets matching current criteria
-  // BUT always include the selected toilet so it doesn't disappear
+  const filteredToilets = useMemo(() => filterToilets(toilets, {
+    openNow: filterMode === "now", favoritesOnly: showFavoritesOnly, favoriteIds,
+    eurokey: requireEurokey, wheelchair: wheelchairOnly, bed: requireBed, hoist: requireHoist,
+  }, now), [toilets, filterMode, showFavoritesOnly, favoriteIds, requireEurokey, wheelchairOnly, requireBed, requireHoist, now]);
+
+  // Preserve an explicit selection, including its availability warning.
   const visibleToilets = useMemo(() => {
-    let result = [...toilets];
-
-    // Apply same filters as list: Mode → Favorites → Eurokey
-    // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
-    if (filterMode === "now") {
-      result = result.filter((t) => t.hours && isOpenNow(t.hours));
-    }
-
-    // Sort by open status: confirmed open > unknown > closed (at bottom)
-    result = result.sort((a, b) => {
-      const statusA = a.hours ? isOpenNow(a.hours) : null;
-      const statusB = b.hours ? isOpenNow(b.hours) : null;
-      // true (open) > null (unknown) > false (closed)
-      if (statusA === statusB) return 0;
-      if (statusA === true) return -1;
-      if (statusB === true) return 1;
-      if (statusA === null) return -1;
-      if (statusB === null) return 1;
-      return 0;
-    });
-
-    if (showFavoritesOnly) {
-      result = result.filter((t) => isFavorite(t.id));
-    }
-    if (requireEurokey) {
-      result = result.filter((t) => t.tags?.includes("eurokey"));
-    }
-    if (wheelchairOnly) {
-      result = result.filter(
-        (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
-      );
-    }
-
+    let result = filteredToilets;
     // Then filter by map bounds for performance
     if (mapRegion) {
       const pad = 0.1;
@@ -299,84 +280,22 @@ function AppContent() {
     }
 
     return result.slice(0, 200);
-  }, [
-    toilets,
-    mapRegion,
-    filterMode,
-    showFavoritesOnly,
-    requireEurokey,
-    wheelchairOnly,
-    isFavorite,
-    selectedToilet,
-  ]);
+  }, [filteredToilets, mapRegion, selectedToilet]);
 
-  // filteredToilets is now the same as visibleToilets (no bounds limit)
-  const filteredToilets = useMemo(() => {
-    let result = [...toilets];
-
-    // Apply same filters: Mode → Favorites → Eurokey
-    // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
-    if (filterMode === "now") {
-      result = result.filter((t) => t.hours && isOpenNow(t.hours));
-    }
-    if (showFavoritesOnly) {
-      result = result.filter((t) => isFavorite(t.id));
-    }
-    if (requireEurokey) {
-      result = result.filter((t) => t.tags?.includes("eurokey"));
-    }
-    if (wheelchairOnly) {
-      result = result.filter(
-        (t) => t.tags?.includes("eurokey") || t.tags?.includes("barrierefrei"),
-      );
-    }
-
-    // Sort by open status: confirmed open > unknown > closed (at bottom)
-    result = result.sort((a, b) => {
-      const statusA = isCurrentlyOpen(a.opening_hours);
-      const statusB = isCurrentlyOpen(b.opening_hours);
-      // true (open) > null (unknown) > false (closed)
-      if (statusA === statusB) return 0;
-      if (statusA === true) return -1;
-      if (statusB === true) return 1;
-      if (statusA === null) return -1;
-      if (statusB === null) return 1;
-      return 0;
-    });
-
-    return result;
-  }, [
-    toilets,
-    filterMode,
-    showFavoritesOnly,
-    requireEurokey,
-    wheelchairOnly,
-    isFavorite,
-  ]);
-
-  // Show the best option based on current filters
-  const displayNearest = useMemo(() => {
-    if (filteredToilets.length > 0) {
-      return filteredToilets[0];
-    }
-    // Fallback: if filtered list is empty, try to find ANY open toilet
-    if (filterMode === "now") {
-      return toilets.find((t) => t.hours && isOpenNow(t.hours));
-    }
-    return nearest;
-  }, [filteredToilets, filterMode, toilets, nearest]);
+  // An empty filter result must never recommend an incompatible toilet.
+  const displayNearest = filteredToilets[0];
 
   const mapPins = useMemo<MapPin[]>(() => visibleToilets.map(toilet => {
     const selected = toilet.id === selectedToilet?.id;
     const favorite = favoriteIds.has(toilet.id);
-    const closed = toilet.hours ? isOpenNow(toilet.hours) === false : false;
+    const closed = toiletOpenStatus(toilet, now) === false;
     return {
       id: toilet.id, name: toilet.name, lat: toilet.lat, lon: toilet.lon,
       color: selected ? PIN_COLORS.selected : favorite ? PIN_COLORS.favorite : CATEGORY_COLORS[toilet.category],
       opacity: selected ? 1 : closed ? 0.5 : 0.9,
       selected,
     };
-  }), [visibleToilets, selectedToilet, favoriteIds]);
+  }), [visibleToilets, selectedToilet, favoriteIds, now]);
 
   useEffect(() => () => {
     if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
@@ -422,7 +341,7 @@ function AppContent() {
   // --- Filter chips ---
   // "Jetzt geöffnet" shows ONLY confirmed open toilets (strict)
   const openNowCount = toilets.filter(
-    (t) => t.hours && isOpenNow(t.hours),
+    (t) => toiletOpenStatus(t, now) === true,
   ).length;
   const filterBar = (
     <View style={styles.filterContainer}>
@@ -436,6 +355,7 @@ function AppContent() {
           onPress={() => {
             mediumImpact();
             setFilterMode("now");
+            setSelectedToilet(null);
           }}
         >
           <Text
@@ -468,6 +388,7 @@ function AppContent() {
           onPress={() => {
             mediumImpact();
             setFilterMode("all");
+            setSelectedToilet(null);
           }}
         >
           <Text
@@ -487,7 +408,7 @@ function AppContent() {
                 filterMode === "all" && styles.badgeTextActive,
               ]}
             >
-              {toilets.length}
+              {toilets.filter(t => isWithinAvailability(t, now)).length}
             </Text>
           </View>
         </TouchableOpacity>
@@ -499,6 +420,7 @@ function AppContent() {
           accessibilityRole="checkbox"
           accessibilityLabel="Nur Favoriten"
           accessibilityState={{ checked: showFavoritesOnly }}
+          aria-checked={showFavoritesOnly}
           style={[
             styles.secondaryBtn,
             showFavoritesOnly && styles.secondaryBtnActive,
@@ -506,6 +428,7 @@ function AppContent() {
           onPress={() => {
             mediumImpact();
             setShowFavoritesOnly(!showFavoritesOnly);
+            setSelectedToilet(null);
           }}
         >
           <Text style={[styles.secondaryIcon, showFavoritesOnly && styles.secondaryTextActive]}>
@@ -528,6 +451,7 @@ function AppContent() {
           accessibilityRole="checkbox"
           accessibilityLabel="Mit Eurokey"
           accessibilityState={{ checked: requireEurokey }}
+          aria-checked={requireEurokey}
           style={[
             styles.secondaryBtn,
             requireEurokey && styles.secondaryBtnActive,
@@ -535,6 +459,7 @@ function AppContent() {
           onPress={() => {
             mediumImpact();
             setRequireEurokey(!requireEurokey);
+            setSelectedToilet(null);
           }}
         >
           <Text style={styles.secondaryIcon}>🔑</Text>
@@ -555,6 +480,7 @@ function AppContent() {
           accessibilityRole="checkbox"
           accessibilityLabel="Rollstuhlgerecht"
           accessibilityState={{ checked: wheelchairOnly }}
+          aria-checked={wheelchairOnly}
           style={[
             styles.secondaryBtn,
             wheelchairOnly && styles.secondaryBtnActive,
@@ -562,6 +488,7 @@ function AppContent() {
           onPress={() => {
             mediumImpact();
             setWheelchairOnly(!wheelchairOnly);
+            setSelectedToilet(null);
           }}
         >
           <Text style={styles.secondaryIcon}>♿</Text>
@@ -577,6 +504,20 @@ function AppContent() {
             Rollstuhl
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.secondaryToggles}>
+        {([
+          ["Pflegeliege", requireBed, setRequireBed],
+          ["Lifter", requireHoist, setRequireHoist],
+        ] as const).map(([label, checked, setChecked]) => (
+          <TouchableOpacity key={label} accessibilityRole="checkbox"
+            accessibilityLabel={`Mit verfügbarer Ausstattung: ${label}`} accessibilityState={{ checked }}
+            aria-checked={checked}
+            style={[styles.secondaryBtn, checked && styles.secondaryBtnActive]}
+            onPress={() => { mediumImpact(); setChecked(!checked); setSelectedToilet(null); }}>
+            <Text style={[styles.secondaryText, checked && styles.secondaryTextActive]}>{label}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
@@ -630,7 +571,7 @@ function AppContent() {
           renderItem={({ item }) => (
             <ToiletListItem
               toilet={item}
-              isNearest={item.id === nearest?.id}
+              isNearest={item.id === displayNearest?.id}
               isFavorite={isFavorite(item.id)}
               isSelected={item.id === selectedToilet?.id}
               onNavigate={(t) => {
@@ -657,6 +598,9 @@ function AppContent() {
                 setShowFavoritesOnly(false);
                 setRequireEurokey(false);
                 setWheelchairOnly(false);
+                setRequireBed(false);
+                setRequireHoist(false);
+                setSelectedToilet(null);
               }}
             />
           }

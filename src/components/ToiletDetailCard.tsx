@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from '../types/toilet';
 import { formatDistance } from '../services/overpass';
-import { OpeningHoursDisplay } from './OpeningHoursDisplay';
+import { ToiletHours } from './ToiletHours';
+import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
+import { isWithinAvailability } from '../utils/toilet-availability';
 
 interface ToiletDetailCardProps {
   toilet: Toilet;
@@ -20,7 +22,7 @@ export function ToiletDetailCard({
   const hasEurokey = toilet.tags?.includes('eurokey');
   const isWheelchairAccessible = toilet.tags?.includes('eurokey') || toilet.tags?.includes('barrierefrei');
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
-  const is24_7 = toilet.hours?.type === '24_7';
+  const is24_7 = toilet.hours?.type === '24_7' && isWithinAvailability(toilet);
 
   const categoryColor = CATEGORY_COLORS[toilet.category];
   const categoryLabel = CATEGORY_LABELS[toilet.category];
@@ -49,11 +51,7 @@ export function ToiletDetailCard({
 
       {/* Opening Hours */}
       <View style={styles.hoursSection}>
-        {toilet.hours && toilet.hours.type !== 'unknown' ? (
-          <OpeningHoursDisplay hours={toilet.hours} compact />
-        ) : (
-          <Text style={styles.unknownHours}>Zeiten unbekannt</Text>
-        )}
+        <ToiletHours toilet={toilet} compact />
       </View>
 
       {/* Feature Tags */}
@@ -83,6 +81,8 @@ export function ToiletDetailCard({
           </View>
         )}
       </View>
+
+      <CareFacilitiesDisplay toilet={toilet} />
 
       {/* Action Buttons */}
       <View style={styles.actions}>

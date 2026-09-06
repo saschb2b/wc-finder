@@ -15,6 +15,7 @@
     }
   },
   "scripts": {
+    "data:care": "tsx scripts/update-care-toilets.ts",
     "data:hannover": "tsx scripts/update-hannover.ts",
     "build:map": "tsx scripts/build-map-assets.ts",
     "start": "expo start",
@@ -23,7 +24,8 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
-    "quality": "pnpm typecheck && pnpm lint && pnpm test --runInBand && pnpm test:map",
+    "quality": "pnpm typecheck && pnpm lint && pnpm test --runInBand && pnpm test:care && pnpm test:map",
+    "test:care": "tsx --test scripts/lib/care-directory.test.ts",
     "test:map": "pnpm build:map && tsx --test src/map/leaflet.test.ts",
     "test": "jest",
     "test:watch": "jest --watch",

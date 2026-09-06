@@ -145,11 +145,10 @@ export function formatStandardizedHours(hours: StandardizedHours): string {
 }
 
 /** Check if currently open based on standardized hours */
-export function isOpenNow(hours: StandardizedHours): boolean {
+export function isOpenNow(hours: StandardizedHours, now = new Date()): boolean {
   if (hours.type === '24_7') return true;
   if (hours.type === 'unknown' || !hours.weekly) return false;
 
-  const now = new Date();
   const dayIndex = now.getDay(); // 0 = Sunday
   const currentTime = now.getHours() * 60 + now.getMinutes();
 

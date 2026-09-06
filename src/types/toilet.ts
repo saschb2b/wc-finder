@@ -2,6 +2,26 @@ import { StandardizedHours } from "./opening-hours";
 
 export type ToiletCategory = "public_24h" | "station" | "tankstelle" | "gastro" | "other";
 
+export type EquipmentStatus = "available" | "absent" | "unavailable" | "unknown";
+export interface CareFacilities {
+  bed: EquipmentStatus;
+  hoist: EquipmentStatus;
+  eurokey: boolean | null;
+  access?: string;
+  hoursNote?: string;
+  sourceId: string;
+  sourceUrls: string[];
+  checkedAt: string;
+}
+export interface ToiletAvailability {
+  /** Inclusive calendar dates in the location's timezone. */
+  from?: string;
+  through?: string;
+  timeZone?: string;
+  status?: "unavailable";
+  note?: string;
+}
+
 export interface Toilet {
   id: string;
   lat: number;
@@ -17,6 +37,8 @@ export interface Toilet {
   operator?: string;
   fee?: string;
   distance?: number;
+  care?: CareFacilities;
+  availability?: ToiletAvailability;
 }
 
 export const CATEGORY_LABELS: Record<ToiletCategory, string> = {

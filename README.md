@@ -185,6 +185,9 @@ GitHub Actions automatically builds and publishes the APK.
 
 ## Architecture
 
+Specialist care toilets have separate **Pflegeliege** and **Lifter** filters, access notes, and
+source links. Refresh with `pnpm data:care`; see [data and event rules](docs/care-toilets.md).
+
 - **React Native + Expo SDK 57**
 - **Offline-first**: All toilet data in JSON geo-tiles (1° × 1°)
 - **Standardized hours format**: Structured data instead of parsing strings

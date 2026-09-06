@@ -16,6 +16,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { mergeCare } from "./lib/merge-care";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "..", "src", "data");
@@ -146,7 +147,7 @@ function main() {
 
   // Merge: add all, deduplicate by proximity
   // Higher-priority sources added later will replace lower-priority duplicates
-  const merged: ToiletEntry[] = [];
+  let merged: ToiletEntry[] = [];
   const DEDUP_RADIUS = 50; // meters
 
   function addWithDedup(toilets: ToiletEntry[], sourceName: string) {
@@ -155,6 +156,8 @@ function main() {
     let skipped = 0;
 
     for (const t of toilets) {
+      // A stale source position must not create a second pin with the same ID.
+      if (merged.some(existing => existing.id === t.id)) { skipped++; continue; }
       // Fix categorization first
       const toilet = fixCategory({ ...t });
 
@@ -240,6 +243,7 @@ function main() {
   addWithDedup(stationToilets, "Station/Sanifair toilets");
   addWithDedup(googlePlacesToilets, "Google Places API");
   addWithDedup(dortmundToilets, "curated Dortmund");
+  merged = mergeCare(merged, loadIfExists("care-toilets.json"));
 
   // Stats
   const cats: Record<string, number> = {};

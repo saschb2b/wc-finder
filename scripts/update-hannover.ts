@@ -119,7 +119,7 @@ async function main() {
     refreshedBusinesses.push(updated);
   }
   for (const old of original) {
-    if (!inArea(old) || !old.id.startsWith("osm_")) continue;
+    if (!inArea(old) || !old.id.startsWith("osm_") || old.care) continue;
     const id = old.id.slice(4);
     const e = byId.get(/^\d+$/.test(id) ? `node_${id}` : id);
     if (!e) continue;
@@ -127,8 +127,8 @@ async function main() {
     else updates.set(old.id, entryFrom(e, old));
   }
   let changed = 0;
-  const merged = original.filter(t => !removals.has(t.id)).map(t => {
-    if (!inArea(t)) return t;
+  const merged = original.filter(t => t.care || !removals.has(t.id)).map(t => {
+    if (!inArea(t) || t.care) return t;
     const update = updates.get(t.id);
     const updated = update ? { ...t, ...update } : undefined;
     if (updated && JSON.stringify(t) !== JSON.stringify(updated)) changed++;

@@ -2,7 +2,9 @@ import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from "../types/toilet";
 import { formatDistance } from "../services/overpass";
-import { OpeningHoursDisplay } from "./OpeningHoursDisplay";
+import { ToiletHours } from "./ToiletHours";
+import { CareFacilitiesDisplay } from "./CareFacilitiesDisplay";
+import { isWithinAvailability } from "../utils/toilet-availability";
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -108,7 +110,7 @@ export const ToiletListItem = memo(function ToiletListItem({
               <Text style={styles.tagText}>Eurokey</Text>
             </View>
           )}
-          {toilet.hours?.type === "24_7" && (
+          {toilet.hours?.type === "24_7" && isWithinAvailability(toilet) && (
             <View style={[styles.tag, styles.tag24h]}>
               <Text style={styles.tagText}>24/7</Text>
             </View>
@@ -121,15 +123,8 @@ export const ToiletListItem = memo(function ToiletListItem({
         </View>
 
         {/* Row 3: hours - compact, never truncates */}
-        {toilet.hours && toilet.hours.type !== "unknown" ? (
-          <View style={styles.hoursRow}>
-            <OpeningHoursDisplay hours={toilet.hours} compact />
-          </View>
-        ) : toilet.city ? (
-          <Text style={styles.city} numberOfLines={1}>
-            {toilet.city}
-          </Text>
-        ) : null}
+        <CareFacilitiesDisplay toilet={toilet} compact />
+        <ToiletHours toilet={toilet} compact />
       </View>
 
       {/* Right: actions */}
