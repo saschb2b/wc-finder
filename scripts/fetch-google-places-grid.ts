@@ -67,11 +67,10 @@ function generateGridPoints(
   centerLon: number,
   radiusKm: number,
   spacingM: number,
-): Array<{ lat: number; lon: number }> {
-  const points: Array<{ lat: number; lon: number }> = [];
+): { lat: number; lon: number }[] {
+  const points: { lat: number; lon: number }[] = [];
 
   // Convert radius to degrees (approximate)
-  const radiusDeg = radiusKm / 111; // 1 degree ≈ 111km
   const spacingDeg = spacingM / 111000; // meters to degrees
 
   const steps = Math.ceil(radiusKm * 1000 / spacingM);

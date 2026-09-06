@@ -5,12 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Modal,
-  Dimensions,
-  ScrollView,
 } from 'react-native';
 import { mediumImpact, successNotification } from '../utils/haptics';
-
-const { width, height } = Dimensions.get('window');
 
 interface OnboardingModalProps {
   visible: boolean;

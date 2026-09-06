@@ -41,10 +41,10 @@ interface GooglePlace {
   displayName: { text: string };
   location: { latitude: number; longitude: number };
   regularOpeningHours?: {
-    periods?: Array<{
+    periods?: {
       open: { day: number; hour: number; minute: number };
       close?: { day: number; hour: number; minute: number };
-    }>;
+    }[];
   };
   restroom?: boolean;
   accessibilityOptions?: {
@@ -109,7 +109,7 @@ function convertToOsmHours(place: GooglePlace): string | undefined {
   if (!hours?.periods || hours.periods.length === 0) return undefined;
 
   const dayMap = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  const byDay: Record<number, Array<{ open: string; close?: string }>> = {};
+  const byDay: Record<number, { open: string; close?: string }[]> = {};
 
   for (const period of hours.periods) {
     const day = period.open.day;

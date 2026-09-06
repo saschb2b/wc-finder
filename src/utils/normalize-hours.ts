@@ -8,7 +8,6 @@ import {
   WeeklyHours,
   DaySchedule,
   TimePeriod,
-  timeToMinutes,
 } from "../types/opening-hours";
 
 const DAY_MAP: Record<string, number> = {
@@ -288,7 +287,7 @@ export function normalizeOpeningHours(
 
 /** Batch normalize hours for all toilets (for migration script) */
 export function batchNormalizeHours(
-  toilets: Array<{ id: string; opening_hours?: string }>,
+  toilets: { id: string; opening_hours?: string }[],
 ): Map<string, StandardizedHours> {
   const results = new Map<string, StandardizedHours>();
 

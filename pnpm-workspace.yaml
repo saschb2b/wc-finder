@@ -1,0 +1,8 @@
+# xcode only uses uuid.v4; 11.1.1 keeps its CommonJS API and fixes GHSA-w5hq-g745-h8pq.
+overrides:
+  xcode>uuid: 11.1.1
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - unrs-resolver

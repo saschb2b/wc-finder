@@ -72,7 +72,6 @@ async function fetchQuery(
 
         let category: ToiletCategory = "other";
         const amenity = tags.amenity || "";
-        const shop = tags.shop || "";
 
         if (
           amenity === "restaurant" ||

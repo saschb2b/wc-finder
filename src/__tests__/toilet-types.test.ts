@@ -2,7 +2,6 @@ import {
   CATEGORY_LABELS,
   CATEGORY_COLORS,
   PIN_COLORS,
-  ToiletCategory
 } from '../types/toilet';
 
 describe('Toilet Types', () => {

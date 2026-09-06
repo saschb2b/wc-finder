@@ -2,7 +2,7 @@
 
 ## Project
 
-WC Finder — a React Native (Expo SDK 54) app that helps wheelchair users find the nearest accessible toilet with a Euroschlüssel (EU key) in Germany, Austria, and Switzerland. 11,000+ toilets bundled offline in geo-tiles.
+WC Finder — a React Native (Expo SDK 57) app that helps wheelchair users find the nearest accessible toilet with a Euroschlüssel (EU key) in Germany, Austria, and Switzerland. 11,000+ toilets bundled offline in geo-tiles.
 
 ## Commands
 
@@ -66,6 +66,8 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 ## Architecture
 
 - **App.tsx** — single-screen app: map + bottom panel with nearest card, list, filters
+- **src/components/ToiletMap.tsx / ToiletMap.web.tsx** — Leaflet WebView / iframe with a typed message bridge
+- **src/map/leaflet-runtime.ts** — embedded map; run `pnpm build:map` after edits and commit generated assets
 - **src/hooks/useToilets.ts** — location + tile loading + search-at-location
 - **src/hooks/useFavorites.ts** — AsyncStorage-backed favorites
 - **src/services/overpass.ts** — loads tiles, distance calc, formatting
@@ -75,10 +77,10 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 
 ## Key decisions
 
-- **Offline-first**: all toilet data is bundled as JSON tiles, no API calls at runtime
+- **Offline-first data**: toilet data and Leaflet are bundled; background map tiles load from OpenStreetMap with HTTP caching, no offline prefetch
 - **No reanimated/bottom-sheet**: removed due to TurboModule crashes in Expo Go — using simple toggle panel instead
-- **Native map pins**: custom marker views (`ToiletMarker.tsx`) were too slow with 50+ markers — using `pinColor` + `tracksViewChanges={false}`
-- **Viewport filtering**: only renders markers visible on the map (max 50) for performance
+- **Key-free map**: Leaflet markers update in place; keep attribution visible and follow the OSM tile usage policy
+- **Viewport filtering**: only renders markers visible on the map (max 200), keeping the selected toilet included
 - **Categories matter**: `public_24h` (EU key, 24/7) vs `station` (train/bus) vs `tankstelle` (fuel stations) vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
 - **German UI**: all user-facing text is in German
 

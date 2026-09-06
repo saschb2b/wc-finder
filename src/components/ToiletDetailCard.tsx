@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from '../types/toilet';
 import { formatDistance } from '../services/overpass';
 import { OpeningHoursDisplay } from './OpeningHoursDisplay';
-import { isOpenNow } from '../types/opening-hours';
 
 interface ToiletDetailCardProps {
   toilet: Toilet;
@@ -22,7 +21,6 @@ export function ToiletDetailCard({
   const isWheelchairAccessible = toilet.tags?.includes('eurokey') || toilet.tags?.includes('barrierefrei');
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
   const is24_7 = toilet.hours?.type === '24_7';
-  const isOpen = toilet.hours ? isOpenNow(toilet.hours) : null;
 
   const categoryColor = CATEGORY_COLORS[toilet.category];
   const categoryLabel = CATEGORY_LABELS[toilet.category];

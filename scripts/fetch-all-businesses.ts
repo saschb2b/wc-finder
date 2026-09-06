@@ -75,7 +75,6 @@ async function fetchHannoverBusinesses(): Promise<ToiletEntry[]> {
     // Categorize
     let category: ToiletCategory = "other";
     const amenity = t.amenity || "";
-    const shop = t.shop || "";
 
     if (
       amenity === "restaurant" ||

@@ -66,14 +66,14 @@ interface GooglePlace {
 
 // Major DACH cities with two radius values: original (default) and expanded (for --tier mode)
 // tier: 1 = 500k+ (top 5 DE + Wien/Zürich), 2 = 200k+, 3 = all 100k+
-const CITIES: Array<{
+const CITIES: {
   name: string;
   lat: number;
   lon: number;
   radius: number;      // original radius (km) — used without --tier flag
   expanded: number;     // expanded radius (km) — used with --tier flag
   tier: 1 | 2 | 3;
-}> = [
+}[] = [
   // Tier 1: 500k+ population — full urban area coverage
   { name: "Berlin", lat: 52.52, lon: 13.405, radius: 5, expanded: 12, tier: 1 },
   { name: "Hamburg", lat: 53.551, lon: 9.994, radius: 4, expanded: 9, tier: 1 },
@@ -168,8 +168,8 @@ function generateGrid(
   lon: number,
   radiusKm: number,
   spacingM: number,
-): Array<{ lat: number; lon: number }> {
-  const points: Array<{ lat: number; lon: number }> = [];
+): { lat: number; lon: number }[] {
+  const points: { lat: number; lon: number }[] = [];
   const spacingDeg = spacingM / 111000;
   const steps = Math.ceil((radiusKm * 1000) / spacingM);
 

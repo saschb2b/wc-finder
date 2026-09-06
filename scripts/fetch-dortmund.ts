@@ -480,7 +480,7 @@ async function fetchDortmundOpenData(): Promise<ToiletEntry[]> {
         }
         console.log(`    Added ${results.length} Nette Toilette locations`);
       }
-    } catch (err) {
+    } catch {
       console.log("    Failed to fetch Nette Toilette data");
     }
 
@@ -516,7 +516,7 @@ async function fetchDortmundOpenData(): Promise<ToiletEntry[]> {
           `    Added ${results.length - beforeCount} accessible toilets`,
         );
       }
-    } catch (err) {
+    } catch {
       console.log("    Failed to fetch accessible toilet data");
     }
   } catch (error) {

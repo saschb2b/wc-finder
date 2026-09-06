@@ -41,13 +41,6 @@ function getDistanceMeters(lat1: number, lon1: number, lat2: number, lon2: numbe
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-function normalizeName(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g, '')
-    .replace(/toilette|wc|restroom|bathroom/g, '');
-}
-
 async function main() {
   console.log('🔗 Merging Google Places data into existing OSM toilets\n');
 

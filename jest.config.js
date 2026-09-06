@@ -1,16 +1,17 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: "ts-jest",
   testEnvironment: "node",
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-  setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
     "!src/data/**/*",
+    "!src/map/leaflet-assets.generated.ts",
+    "!src/map/leaflet-runtime.ts", // Runs inside the map's browser document.
+    "!src/map/*.test.ts",
     "!src/components/**/*", // JSX components need different coverage setup
   ],
   coverageThreshold: {
@@ -22,7 +23,4 @@ module.exports = {
     },
   },
   testMatch: ["**/__tests__/**/*.test.{ts,tsx}"],
-  moduleNameMapper: {
-    "^react-native$": "react-native-web",
-  },
 };

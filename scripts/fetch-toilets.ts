@@ -154,7 +154,7 @@ async function fetchOverpassToilets(): Promise<Map<string, OverpassElement>> {
         console.log(`    ${count} toilets`);
         fetched = true;
         break;
-      } catch (err) {
+      } catch {
         console.warn(`    fetch failed, trying next...`);
       }
     }
@@ -251,7 +251,7 @@ async function main() {
     if (!data?.d) continue;
 
     for (const entry of data.d) {
-      const [lat, lon, name, type, _street, tagsStr] = entry;
+      const [lat, lon, name, type, , tagsStr] = entry;
 
       if (type !== 't') continue;
 

@@ -16,7 +16,7 @@ Find the nearest accessible toilet with real-time opening hours, Eurokey access 
 ### [⬇️ Download Latest APK](https://github.com/saschb2b/wc-finder/releases/latest)
 
 **Requirements:**
-- Android 6.0+ (API level 23)
+- Android 7.0+ (API level 24)
 - Location permission (for finding nearest toilets)
 
 **Installation:**
@@ -33,7 +33,7 @@ Find the nearest accessible toilet with real-time opening hours, Eurokey access 
 - **Real-time status** — "Geöffnet", "Geschlossen", or "Öffnet in 2h"
 - **Eurokey filter** — Find toilets with Eurokey access
 - **Barrierefrei filter** — Wheelchair accessible locations only
-- **Offline support** — All data bundled in the app, works without internet
+- **Offline support** — Toilet data and map controls are bundled; background maps need an internet connection
 - **Instant launch** — Cached location shows map in under a second
 - **Auto-loading map** — Toilets load automatically as you pan
 - **One-tap navigation** — Open Google Maps, Apple Maps, or Waze
@@ -62,7 +62,7 @@ Toilet locations are merged and deduplicated from:
 - 9,216 gas stations
 - 890 public 24/7 toilets (Euroschlüssel)
 - 570 train stations
-- All data bundled offline — no API calls at runtime
+- All toilet data bundled offline — background map tiles are fetched separately
 
 ---
 
@@ -82,15 +82,56 @@ Toilet locations are merged and deduplicated from:
 
 ## Development
 
+Use Node.js 24 LTS (minimum 22.13) and pnpm 10.34.5, pinned in `package.json`.
+The repository uses `pnpm-lock.yaml` as its only dependency lockfile.
+
 ```bash
 # Install dependencies
-pnpm install
+corepack enable
+pnpm install --frozen-lockfile
+
+# Typecheck, lint, and run unit tests
+pnpm quality
 
 # Start development server
 pnpm start
 ```
 
-Scan the QR code with [Expo Go](https://expo.dev/go), or press `a` for Android emulator.
+Use an SDK 57-compatible [Expo Go](https://expo.dev/go), or press `a` for an Android emulator.
+Rebuild native development clients after upgrading the Expo SDK.
+
+The map uses **Leaflet + OpenStreetMap**, with a WebView on Android/iOS and an
+iframe on web. It works in Expo Go without a Google Maps API key or a custom
+development client. After installing this update, restart with `pnpm start --go --clear`.
+
+Leaflet's JavaScript, CSS, and icons are bundled in the app, so a CDN connection
+is not needed to initialize the map. Existing toilet data, pins, and the list
+remain available when background tiles cannot load. Navigation opens an external app.
+
+OpenStreetMap tiles are requested only for the visible map area, with visible
+attribution and normal HTTP caching. The native WebView identifies WC Finder in
+its User-Agent and uses the project website as its document base URL. Do not add
+bulk tile downloads or offline prefetching: the public tile service is best-effort
+and has a [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
+For larger deployments, replace the tile source in `src/map/leaflet-runtime.ts`
+with a suitable provider or self-hosted service.
+
+After changing Leaflet or the map runtime, run `pnpm build:map` and commit
+`src/map/leaflet-assets.generated.ts`. `pnpm test:map` regenerates and exercises
+the actual bundled map in a DOM simulator: startup, safe labels, marker updates,
+selection/navigation events, focus versus user gestures, and tile failures.
+It does not replace testing tile loading and gestures on a physical phone.
+
+Dependencies follow Expo SDK 57's supported versions, including React Native 0.86.3
+and matching React/React DOM versions. TypeScript stays on 6.x because `ts-jest`
+does not support 7.x; ESLint stays on 9.x because Expo's React/import plugins do
+not support 10.x. pnpm stays on the latest 10.x patch for Corepack compatibility.
+The unit tests use Node and `ts-jest`, so Jest 30 is intentionally excluded from
+Expo's Jest 29 recommendation for `jest-expo`.
+
+For dependency maintenance, run `pnpm exec expo install --fix`,
+`pnpm dlx expo-doctor@latest`, and `pnpm audit`. The scoped `xcode>uuid` override
+in `pnpm-workspace.yaml` patches its old dependency while preserving CommonJS support.
 
 ### Data Pipeline
 
@@ -138,17 +179,17 @@ GitHub Actions automatically builds and publishes the APK.
 
 ## Architecture
 
-- **React Native + Expo SDK 54**
+- **React Native + Expo SDK 57**
 - **Offline-first**: All toilet data in JSON geo-tiles (1° × 1°)
 - **Standardized hours format**: Structured data instead of parsing strings
-- **No external APIs at runtime**: All data bundled at build time
+- **No toilet-data APIs at runtime**: All toilet data bundled at build time; map tiles load from OpenStreetMap
 
 ### Tech Stack
 
 | Component | Technology |
 |-----------|------------|
 | Framework | React Native + Expo |
-| Maps | react-native-maps (Google Maps) |
+| Maps | Leaflet + OpenStreetMap, via WebView / iframe (no API key) |
 | Storage | AsyncStorage (favorites) |
 | State | React hooks |
 | Data | Static JSON tiles |

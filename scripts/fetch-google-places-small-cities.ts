@@ -59,7 +59,7 @@ interface GooglePlace {
 
 // German cities 20k-100k + smaller AT/CH cities
 // r = radius in km (1-2km for smaller towns)
-const CITIES: Array<{ name: string; lat: number; lon: number; r: number }> = [
+const CITIES: { name: string; lat: number; lon: number; r: number }[] = [
   // Niedersachsen
   { name: "Wennigsen", lat: 52.271, lon: 9.573, r: 1.5 },
   { name: "Barsinghausen", lat: 52.304, lon: 9.459, r: 1.5 },
@@ -253,8 +253,8 @@ function generateGrid(
   lon: number,
   radiusKm: number,
   spacingM: number,
-): Array<{ lat: number; lon: number }> {
-  const points: Array<{ lat: number; lon: number }> = [];
+): { lat: number; lon: number }[] {
+  const points: { lat: number; lon: number }[] = [];
   const spacingDeg = spacingM / 111000;
   const steps = Math.ceil((radiusKm * 1000) / spacingM);
   for (let x = -steps; x <= steps; x++) {

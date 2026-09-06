@@ -17,36 +17,34 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
 
       - name: Fetch fresh OSM data
-        run: npx tsx scripts/fetch-overpass-toilets.ts
+        run: pnpm exec tsx scripts/fetch-overpass-toilets.ts
         continue-on-error: true
 
       - name: Fetch fuel stations
-        run: npx tsx scripts/fetch-fuel-germany.ts
+        run: pnpm exec tsx scripts/fetch-fuel-germany.ts
         continue-on-error: true
 
       - name: Fetch Hannover businesses
-        run: npx tsx scripts/fetch-hannover-businesses.ts
+        run: pnpm exec tsx scripts/fetch-hannover-businesses.ts
         continue-on-error: true
 
       - name: Merge all sources
-        run: npx tsx scripts/merge-sources.ts
+        run: pnpm exec tsx scripts/merge-sources.ts
 
       - name: Split into tiles
-        run: npx tsx scripts/split-tiles.ts
+        run: pnpm exec tsx scripts/split-tiles.ts
 
       - name: Generate tile loader
-        run: npx tsx scripts/gen-tile-loader.ts
+        run: pnpm exec tsx scripts/gen-tile-loader.ts
 
       - name: Check for changes
         id: check-changes

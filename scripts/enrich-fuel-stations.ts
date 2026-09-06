@@ -46,10 +46,10 @@ interface GooglePlace {
   displayName: { text: string };
   location: { latitude: number; longitude: number };
   regularOpeningHours?: {
-    periods?: Array<{
+    periods?: {
       open: { day: number; hour: number; minute: number };
       close?: { day: number; hour: number; minute: number };
-    }>;
+    }[];
   };
   types?: string[];
 }
@@ -112,7 +112,7 @@ function convertToOsmHours(place: GooglePlace): string | undefined {
   if (is24_7) return '24/7';
 
   const dayMap = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  const byDay: Record<number, Array<{ open: string; close?: string }>> = {};
+  const byDay: Record<number, { open: string; close?: string }[]> = {};
 
   for (const period of hours.periods) {
     const day = period.open.day;

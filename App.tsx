@@ -5,9 +5,6 @@ import React, {
   useMemo,
   useEffect,
 } from "react";
-
-// Filter type must be defined outside component
-type FilterMode = "now" | "all";
 import {
   View,
   Text,
@@ -17,7 +14,6 @@ import {
   Platform,
   FlatList,
   Linking,
-  ScrollView,
   Modal,
   Alert,
 } from "react-native";
@@ -27,32 +23,21 @@ import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
 import { ToiletListItem } from "./src/components/ToiletListItem";
 import { isCurrentlyOpen } from "./src/utils/opening-hours";
-import { OpeningHoursDisplay } from "./src/components/OpeningHoursDisplay";
 import { isOpenNow } from "./src/types/opening-hours";
 import { ToiletDetailCard } from "./src/components/ToiletDetailCard";
-import { ToiletCallout } from "./src/components/ToiletCallout";
+import { ToiletMap } from "./src/components/ToiletMap";
+import type { MapPin, MapRegion, ToiletMapHandle } from "./src/map/types";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
-import { formatDistance } from "./src/services/overpass";
 import { ReportSheet } from "./src/components/ReportSheet";
 import { OnboardingModal } from "./src/components/OnboardingModal";
 import { EmptyState } from "./src/components/EmptyState";
 import { mediumImpact, successNotification } from "./src/utils/haptics";
-
-const isWeb = Platform.OS === "web";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let MapView: any = null;
-let Marker: any = null;
-let Callout: any = null;
-let PROVIDER_GOOGLE: any = null;
+// Filter type must be defined outside component
+type FilterMode = "now" | "all";
 
-if (!isWeb) {
-  const maps = require("react-native-maps");
-  MapView = maps.default;
-  Marker = maps.Marker;
-  Callout = maps.Callout;
-  PROVIDER_GOOGLE = maps.PROVIDER_GOOGLE;
-}
+const isWeb = Platform.OS === "web";
 
 function openNavigationWithHaptics(
   toilet: Toilet,
@@ -104,10 +89,8 @@ function AppContent() {
     updating,
     error,
     refresh,
-    searchAt,
     backToMyLocation,
     exploreAt,
-    clearExplore,
   } = useToilets();
   const {
     favoriteIds,
@@ -128,17 +111,13 @@ function AppContent() {
     },
     [favoriteIds, rawToggleFavorite],
   );
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<ToiletMapHandle>(null);
   const [selectedToilet, setSelectedToilet] = useState<Toilet | null>(null);
   const [listExpanded, setListExpanded] = useState(false);
   const [filterMode, setFilterMode] = useState<FilterMode>("now");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [requireEurokey, setRequireEurokey] = useState(false);
   const [wheelchairOnly, setWheelchairOnly] = useState(false);
-  const [mapCenter, setMapCenter] = useState<{
-    lat: number;
-    lon: number;
-  } | null>(null);
   const [reportToilet, setReportToilet] = useState<Toilet | undefined>(
     undefined,
   );
@@ -149,8 +128,6 @@ function AppContent() {
     latD: number;
     lonD: number;
   } | null>(null);
-  // Track programmatic animation target to distinguish from user pans
-  const animatingToRef = useRef<{ lat: number; lon: number } | null>(null);
   // Debounce timer for auto-loading toilets on map pan
   const exploreTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -177,7 +154,7 @@ function AppContent() {
 
   // Animate to user location once it becomes available
   useEffect(() => {
-    if (userLocation && !isWeb && mapRef.current) {
+    if (userLocation && mapRef.current) {
       mapRef.current.animateToRegion(
         {
           latitude: userLocation.lat,
@@ -205,9 +182,7 @@ function AppContent() {
     mediumImpact();
     setSelectedToilet(toilet);
     setListExpanded(false);
-    if (!isWeb) {
-      // Set target so we know this is a programmatic animation
-      animatingToRef.current = { lat: toilet.lat, lon: toilet.lon };
+    if (mapRef.current) {
       mapRef.current?.animateToRegion(
         {
           latitude: toilet.lat,
@@ -224,8 +199,7 @@ function AppContent() {
     mediumImpact();
     backToMyLocation();
     setSelectedToilet(null);
-    if (userLocation && !isWeb) {
-      animatingToRef.current = { lat: userLocation.lat, lon: userLocation.lon };
+    if (userLocation) {
       mapRef.current?.animateToRegion(
         {
           latitude: userLocation.lat,
@@ -239,8 +213,7 @@ function AppContent() {
   }, [userLocation, backToMyLocation]);
 
   const handleRegionChange = useCallback(
-    (region: any) => {
-      setMapCenter({ lat: region.latitude, lon: region.longitude });
+    (region: MapRegion, isGesture: boolean) => {
       setMapRegion({
         lat: region.latitude,
         lon: region.longitude,
@@ -248,17 +221,7 @@ function AppContent() {
         lonD: region.longitudeDelta,
       });
 
-      // Check if this region change matches our animation target
-      const target = animatingToRef.current;
-      if (target) {
-        const latDiff = Math.abs(region.latitude - target.lat);
-        const lonDiff = Math.abs(region.longitude - target.lon);
-        if (latDiff < 0.001 && lonDiff < 0.001) {
-          animatingToRef.current = null;
-          return;
-        }
-        animatingToRef.current = null;
-      }
+      if (!isGesture) return;
 
       // User-initiated pan - clear selection and auto-load toilets after debounce
       setSelectedToilet(null);
@@ -281,7 +244,7 @@ function AppContent() {
   // Pins should reflect active filters - only show toilets matching current criteria
   // BUT always include the selected toilet so it doesn't disappear
   const visibleToilets = useMemo(() => {
-    let result = toilets;
+    let result = [...toilets];
 
     // Apply same filters as list: Mode → Favorites → Eurokey
     // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
@@ -328,10 +291,7 @@ function AppContent() {
 
     // Ensure selected toilet is always visible even if it doesn't match filters
     if (selectedToilet) {
-      const alreadyIncluded = result.some((t) => t.id === selectedToilet.id);
-      if (!alreadyIncluded) {
-        result = [selectedToilet, ...result];
-      }
+      result = [selectedToilet, ...result.filter(t => t.id !== selectedToilet.id)];
     }
 
     return result.slice(0, 200);
@@ -348,7 +308,7 @@ function AppContent() {
 
   // filteredToilets is now the same as visibleToilets (no bounds limit)
   const filteredToilets = useMemo(() => {
-    let result = toilets;
+    let result = [...toilets];
 
     // Apply same filters: Mode → Favorites → Eurokey
     // STRICT: "Jetzt geöffnet" shows ONLY confirmed open toilets
@@ -402,25 +362,21 @@ function AppContent() {
     return nearest;
   }, [filteredToilets, filterMode, toilets, nearest]);
 
-  // Helper to check if toilet is currently open
-  const getOpenStatus = (t: Toilet): boolean => {
-    if (!t.hours || t.hours.type === "unknown") return true; // Treat unknown as open
-    return isOpenNow(t.hours);
-  };
+  const mapPins = useMemo<MapPin[]>(() => visibleToilets.map(toilet => {
+    const selected = toilet.id === selectedToilet?.id;
+    const favorite = favoriteIds.has(toilet.id);
+    const closed = toilet.hours ? isOpenNow(toilet.hours) === false : false;
+    return {
+      id: toilet.id, name: toilet.name, lat: toilet.lat, lon: toilet.lon,
+      color: selected ? PIN_COLORS.selected : favorite ? PIN_COLORS.favorite : CATEGORY_COLORS[toilet.category],
+      opacity: selected ? 1 : closed ? 0.5 : 0.9,
+      selected,
+    };
+  }), [visibleToilets, selectedToilet, favoriteIds]);
 
-  // Prefer open toilets for "nearest" suggestions
-  const reliableToilets = toilets.filter(
-    (t) => t.category === "public_24h" || t.category === "station" || t.category === "tankstelle",
-  );
-
-  // First try to find an open reliable toilet, then any reliable, then any open, then just nearest
-  const reliableNearest =
-    reliableToilets.find(getOpenStatus) ||
-    reliableToilets[0] ||
-    toilets.find(getOpenStatus) ||
-    nearest;
-
-  const reliableCount = reliableToilets.length;
+  useEffect(() => () => {
+    if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
+  }, []);
 
   // --- Loading ---
   if (loading && !userLocation) {
@@ -464,12 +420,6 @@ function AppContent() {
   const openNowCount = toilets.filter(
     (t) => t.hours && isOpenNow(t.hours),
   ).length;
-  // "Alle" shows all except definitely closed
-  const allAvailableCount = toilets.filter(
-    (t) =>
-      !t.hours || t.hours.type === "unknown" || isOpenNow(t.hours) !== false,
-  ).length;
-
   const filterBar = (
     <View style={styles.filterContainer}>
       {/* Primary toggle: Now / All */}
@@ -604,63 +554,8 @@ function AppContent() {
     </View>
   );
 
-  // --- List ---
-  const renderList = () => (
-    <>
-      {filterBar}
-      <FlatList
-        data={filteredToilets}
-        keyExtractor={(item) => item.id}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={5}
-        renderItem={({ item }) => (
-          <ToiletListItem
-            toilet={item}
-            isNearest={item.id === nearest?.id}
-            isFavorite={isFavorite(item.id)}
-            isSelected={item.id === selectedToilet?.id}
-            onNavigate={openNavigationWithHaptics}
-            onSelect={focusToilet}
-            onToggleFavorite={toggleFavorite}
-            onReport={(t) => {
-              setReportToilet(t);
-              setShowReport(true);
-            }}
-          />
-        )}
-        contentContainerStyle={styles.listContent}
-        ListEmptyComponent={
-          <EmptyState
-            type="no-results"
-            onAction={() => {
-              setFilterMode("all");
-              setShowFavoritesOnly(false);
-              setRequireEurokey(false);
-              setWheelchairOnly(false);
-            }}
-          />
-        }
-      />
-    </>
-  );
-
-  // --- WEB (debug only) ---
-  if (isWeb) {
-    return (
-      <SafeAreaView style={styles.flex}>
-        <StatusBar style="dark" />
-        <View style={styles.webHeader}>
-          <Text style={styles.webTitle}>WC Finder</Text>
-        </View>
-        {bottomCard}
-        {renderList()}
-      </SafeAreaView>
-    );
-  }
-
   // --- List Modal for Native ---
-  const ListModal = () => (
+  const listModal = (
     <Modal
       visible={listExpanded}
       animationType="slide"
@@ -698,110 +593,7 @@ function AppContent() {
           </View>
         </View>
 
-        {/* Filter in modal */}
-        <View style={styles.filterContainer}>
-          <View style={styles.primaryToggle}>
-            <TouchableOpacity
-              style={[
-                styles.toggleBtn,
-                filterMode === "now" && styles.toggleBtnActive,
-              ]}
-              onPress={() => setFilterMode("now")}
-            >
-              <Text
-                style={[
-                  styles.toggleText,
-                  filterMode === "now" && styles.toggleTextActive,
-                ]}
-              >
-                Jetzt geöffnet
-              </Text>
-              <View
-                style={[
-                  styles.badge,
-                  filterMode === "now" && styles.badgeActive,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.badgeText,
-                    filterMode === "now" && styles.badgeTextActive,
-                  ]}
-                >
-                  {openNowCount}
-                </Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.toggleBtn,
-                filterMode === "all" && styles.toggleBtnActive,
-              ]}
-              onPress={() => setFilterMode("all")}
-            >
-              <Text
-                style={[
-                  styles.toggleText,
-                  filterMode === "all" && styles.toggleTextActive,
-                ]}
-              >
-                Alle
-              </Text>
-              <View
-                style={[
-                  styles.badge,
-                  filterMode === "all" && styles.badgeActive,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.badgeText,
-                    filterMode === "all" && styles.badgeTextActive,
-                  ]}
-                >
-                  {toilets.length}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.secondaryToggles}>
-            <TouchableOpacity
-              style={[
-                styles.secondaryBtn,
-                showFavoritesOnly && styles.secondaryBtnActive,
-              ]}
-              onPress={() => setShowFavoritesOnly(!showFavoritesOnly)}
-            >
-              <Text
-                style={[
-                  styles.secondaryText,
-                  showFavoritesOnly && styles.secondaryTextActive,
-                ]}
-              >
-                {showFavoritesOnly ? "★ Favoriten" : "☆ Favoriten"}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.secondaryBtn,
-                requireEurokey && styles.secondaryBtnActive,
-              ]}
-              onPress={() => setRequireEurokey(!requireEurokey)}
-            >
-              <Text
-                style={[
-                  styles.secondaryText,
-                  requireEurokey && styles.secondaryTextActive,
-                ]}
-              >
-                {requireEurokey ? "🔑 Eurokey" : "🔑 Eurokey"}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        {filterBar}
 
         <FlatList
           data={filteredToilets}
@@ -859,77 +651,30 @@ function AppContent() {
       />
 
       {/* List Modal */}
-      <ListModal />
+      {listModal}
 
       {/* Map - Always Full Screen */}
       <View style={styles.mapFull}>
-        <MapView
+        <ToiletMap
           ref={mapRef}
-          style={styles.map}
-          provider={Platform.OS === "android" ? PROVIDER_GOOGLE : undefined}
-          initialRegion={
-            userLocation
-              ? {
-                  latitude: userLocation.lat,
-                  longitude: userLocation.lon,
-                  latitudeDelta: 0.04,
-                  longitudeDelta: 0.04,
-                }
-              : {
-                  latitude: 52.3759,
-                  longitude: 9.732,
-                  latitudeDelta: 0.1,
-                  longitudeDelta: 0.1,
-                }
-          }
-          showsUserLocation
-          showsMyLocationButton={false}
-          showsCompass={false}
-          onRegionChangeComplete={handleRegionChange}
-        >
-          {visibleToilets.map((toilet) => {
-            const isSelected = toilet.id === selectedToilet?.id;
-            const isFavorite = toilet.id ? favoriteIds.has(toilet.id) : false;
-            const openStatus = toilet.hours ? isOpenNow(toilet.hours) : null;
-            const isClosed = openStatus === false;
-
-            // Pin color priority: selected > favorite > category-based
-            let pinColor = CATEGORY_COLORS[toilet.category];
-            if (isSelected) {
-              pinColor = PIN_COLORS.selected;
-            } else if (isFavorite) {
-              pinColor = PIN_COLORS.favorite;
-            }
-
-            // Closed toilets fade into background
-            const opacity = isSelected ? 1 : isClosed ? 0.5 : 0.9;
-
-            // Selected pin on top
-            const zIndex = isSelected ? 1000 : isFavorite ? 100 : 1;
-
-            return (
-              <Marker
-                key={toilet.id}
-                coordinate={{ latitude: toilet.lat, longitude: toilet.lon }}
-                onPress={() => focusToilet(toilet)}
-                pinColor={pinColor}
-                opacity={opacity}
-                zIndex={zIndex}
-                tracksViewChanges={false}
-              >
-                <Callout
-                  tooltip
-                  onPress={() => openNavigationWithHaptics(toilet)}
-                >
-                  <ToiletCallout
-                    toilet={toilet}
-                    onNavigate={() => openNavigationWithHaptics(toilet)}
-                  />
-                </Callout>
-              </Marker>
-            );
-          })}
-        </MapView>
+          pins={mapPins}
+          userLocation={userLocation}
+          initialRegion={{
+            latitude: userLocation?.lat ?? 52.3759,
+            longitude: userLocation?.lon ?? 9.732,
+            latitudeDelta: userLocation ? 0.04 : 0.1,
+            longitudeDelta: userLocation ? 0.04 : 0.1,
+          }}
+          onSelect={id => {
+            const toilet = visibleToilets.find(t => t.id === id);
+            if (toilet) focusToilet(toilet);
+          }}
+          onNavigate={id => {
+            const toilet = visibleToilets.find(t => t.id === id);
+            if (toilet) openNavigationWithHaptics(toilet);
+          }}
+          onRegionChange={handleRegionChange}
+        />
 
         {/* Location pill - shows current context */}
         <View style={styles.locationPill}>
@@ -1399,133 +1144,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   emptyText: { fontSize: 15, color: S.textMuted, textAlign: "center" },
-});
-
-// --- Loading Screen Component ---
-function LoadingScreen({ onSkip }: { onSkip: () => void }) {
-  const [dots, setDots] = useState("");
-  const [showSkip, setShowSkip] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDots((d) => (d.length >= 3 ? "" : d + "."));
-    }, 500);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setShowSkip(true), 5000);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  return (
-    <SafeAreaView style={loadingStyles.container}>
-      <StatusBar style="dark" />
-
-      {/* Icon */}
-      <View style={loadingStyles.iconContainer}>
-        <Text style={loadingStyles.icon}>🚻</Text>
-      </View>
-
-      {/* Title */}
-      <Text style={loadingStyles.title}>WC Finder</Text>
-      <Text style={loadingStyles.subtitle}>
-        Toiletten in deiner Nähe finden
-      </Text>
-
-      {/* Loading indicator */}
-      <View style={loadingStyles.loadingBox}>
-        <ActivityIndicator size="small" color="#1a73e8" />
-        <Text style={loadingStyles.loadingText}>
-          Standort wird ermittelt{dots}
-        </Text>
-      </View>
-
-      {/* Info text */}
-      <Text style={loadingStyles.infoText}>
-        Dein Standort hilft uns, die nächste erreichbare Toilette zu finden.
-      </Text>
-
-      {/* Skip button (appears after 5s) */}
-      {showSkip && (
-        <TouchableOpacity
-          style={loadingStyles.skipButton}
-          onPress={onSkip}
-          activeOpacity={0.8}
-        >
-          <Text style={loadingStyles.skipText}>
-            🗺️ Karte stattdessen anzeigen
-          </Text>
-        </TouchableOpacity>
-      )}
-    </SafeAreaView>
-  );
-}
-
-const loadingStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 32,
-  },
-  iconContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 20,
-    backgroundColor: "#e8f4fd",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 24,
-  },
-  icon: {
-    fontSize: 40,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#1a1a1a",
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#666",
-    marginBottom: 40,
-  },
-  loadingBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 12,
-    gap: 10,
-    marginBottom: 20,
-  },
-  loadingText: {
-    fontSize: 15,
-    color: "#1a73e8",
-    fontWeight: "600",
-    minWidth: 200,
-  },
-  infoText: {
-    fontSize: 13,
-    color: "#888",
-    textAlign: "center",
-    maxWidth: 280,
-    lineHeight: 18,
-  },
-  skipButton: {
-    marginTop: 32,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-  },
-  skipText: {
-    fontSize: 14,
-    color: "#1a73e8",
-    fontWeight: "600",
-  },
 });
 
 export default function App() {

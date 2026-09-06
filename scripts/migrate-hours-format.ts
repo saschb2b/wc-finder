@@ -40,7 +40,7 @@ async function main() {
   let migrated = 0;
   let alreadyMigrated = 0;
   let failed = 0;
-  const failures: Array<{ id: string; name: string; hours: string; error: string }> = [];
+  const failures: { id: string; name: string; hours: string; error: string }[] = [];
 
   for (const toilet of toilets) {
     // Skip if already has new format

@@ -38,17 +38,17 @@ interface PlaceDetails {
   };
   currentOpeningHours?: {
     openNow?: boolean;
-    periods?: Array<{
+    periods?: {
       open: { day: number; hour: number; minute: number };
       close?: { day: number; hour: number; minute: number };
-    }>;
+    }[];
     weekdayDescriptions?: string[];
   };
   regularOpeningHours?: {
-    periods?: Array<{
+    periods?: {
       open: { day: number; hour: number; minute: number };
       close?: { day: number; hour: number; minute: number };
-    }>;
+    }[];
     weekdayDescriptions?: string[];
   };
 }
@@ -77,7 +77,7 @@ function convertToOsmHours(details: PlaceDetails): string | undefined {
   const dayMap = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
   // Group periods by day
-  const byDay: Record<number, Array<{ open: string; close?: string }>> = {};
+  const byDay: Record<number, { open: string; close?: string }[]> = {};
 
   for (const period of hours.periods) {
     const day = period.open.day;
