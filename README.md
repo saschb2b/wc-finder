@@ -1,260 +1,106 @@
+<img src="assets/icon.png" width="88" alt="WC Finder app icon" align="right" />
+
 # WC Finder
 
-[![Download APK](https://img.shields.io/github/v/release/saschb2b/wc-finder?label=Download%20APK&style=for-the-badge&color=0066cc)](https://github.com/saschb2b/wc-finder/releases/latest)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/saschb2b/wc-finder/build.yml?branch=main&style=for-the-badge)](https://github.com/saschb2b/wc-finder/actions)
+**Find a toilet that fits your access needs.**
 
-[Website](https://saschb2b.github.io/wc-finder/) • [Releases](https://github.com/saschb2b/wc-finder/releases)
+WC Finder helps you look for wheelchair-accessible toilets in Germany, Austria,
+and Switzerland. Explore nearby places, check Eurokey access and care equipment,
+and save locations you want to find again. The app interface is in German.
 
-A free, offline-first toilet finder for wheelchair users in Germany, Austria, and Switzerland.
+**[Download for Android](https://github.com/saschb2b/wc-finder/releases/latest/download/wc-finder.apk)**
+ · [Release notes](https://github.com/saschb2b/wc-finder/releases/latest)
+ · [Website](https://saschb2b.github.io/wc-finder/)
 
-Find the nearest accessible toilet with real-time opening hours, Eurokey access info, and one-tap navigation.
+## Get the app
 
----
+The app is free and distributed as an Android APK. It requires **Android 7.0 or later**.
 
-## 📱 Download
+1. Download `wc-finder.apk` using the link above.
+2. Open it on your phone and allow installation from your browser or file manager if Android asks.
+3. Allow location access to find places near you.
 
-### [⬇️ Download Latest APK](https://github.com/saschb2b/wc-finder/releases/latest)
+An internet connection loads the street map. The toilet directory is included in
+the app; see [using it without internet](#using-it-without-internet) below.
 
-**Requirements:**
-- Android 7.0+ (API level 24)
-- Location permission (for finding nearest toilets)
+## Find what you need
 
-**Installation:**
-1. Download `wc-finder.apk` from the latest release
-2. Open the file on your Android device
-3. Allow installation from unknown sources if prompted
+- **Map and list views:** explore an area, compare nearby locations, and open their details.
+- **Access filters:** narrow results by Eurokey, wheelchair access, or saved favourites.
+- **Care equipment:** filter separately for a **Pflegeliege** (care bed) and **Lifter** (hoist), with access notes and source links where available.
+- **Opening hours:** view the recorded schedule or filter for places calculated to be open now.
+- **Directions:** open Google Maps on Android for walking directions to a selected location.
 
----
+A wheelchair-accessible toilet does not necessarily have a care bed or hoist.
+Those filters use separate equipment records.
 
-## Features
+## Using it without internet
 
-- **39,000+ toilets** — Largest database of wheelchair-accessible toilets in DACH (Germany, Austria, Switzerland)
-- **5 categories** — Public 24/7, train stations, gas stations, restaurants, and more
-- **Real-time status** — "Geöffnet", "Geschlossen", or "Öffnet in 2h"
-- **Eurokey filter** — Find toilets with Eurokey access
-- **Barrierefrei filter** — Wheelchair accessible locations only
-- **Offline support** — Toilet data and map controls are bundled; background maps need an internet connection
-- **Instant launch** — Cached location shows map in under a second
-- **Auto-loading map** — Toilets load automatically as you pan
-- **One-tap navigation** — Open Google Maps, Apple Maps, or Waze
-- **Favorites** — Save trusted locations for quick access
+**The directory is stored on your phone; the street map is loaded online.**
 
----
+| Part of the app | Without internet |
+| --- | --- |
+| Toilet listings, details, and filters | Use the data included in the installed app. |
+| Favourites | Saved on your device. |
+| Open/closed status | Calculated from stored opening hours and the device clock. |
+| Street map | Previously cached areas may appear, but offline maps are not included or downloadable. |
+| Directions | Handed to Google Maps. WC Finder does not include an offline route planner. |
+| Reports and source links | Need a connection to open the linked websites. |
 
-## Data Sources
+Finding places near you also needs location permission and an available device
+location. A new app release is needed to receive updated toilet data; opening
+or refreshing the app does not fetch a live directory.
 
-Toilet locations are merged and deduplicated from:
+## Understanding the listings
 
-| Source | Count | Description |
-|--------|-------|-------------|
-| **OSM / toilettenhero** | 13,000+ | Wheelchair-accessible toilets from OpenStreetMap |
-| **Google Places** | 29,000+ | Restaurants, cafés, gas stations across 82 major + 171 smaller DACH cities |
-| **Autobahn GmbH API** | 1,700+ | Official highway rest areas with toilets |
-| **Sanifair / DB stations** | 770+ | Train station toilets from OSM |
-| **Stadt Dortmund** | 150+ | Official open data |
-| **Hannover TFA** | 400+ | Toiletten für Alle + local businesses |
-| **Manual Curation** | 100+ | Verified locations at stations, malls, hospitals |
+The directory combines public toilets, specialist care facilities, and locations
+at stations, rest areas, restaurants, shops, and other businesses. Coverage and
+level of detail vary by source.
 
-**Coverage:**
-- 39,870 total toilets across Germany, Austria, and Switzerland
-- 3,552 open 24/7
-- 21,321 restaurants/cafés with accessible restrooms
-- 9,216 gas stations
-- 890 public 24/7 toilets (Euroschlüssel)
-- 570 train stations
-- All toilet data bundled offline — background map tiles are fetched separately
+Some business records describe an accessible entrance rather than a verified
+accessible toilet. The **Rollstuhl** filter follows the imported accessibility
+labels, so it is not proof that every listed restroom meets your needs. Opening
+status is an estimate from recorded hours, with no live confirmation of closures,
+occupancy, or equipment condition.
 
----
+Specialist entries include separate equipment details, source links, and the date
+the directory was checked. Entry fees, key collection, venue access, and event-only
+availability are shown in the notes when known. See the [care and event data guide](docs/care-toilets.md).
 
-## Screenshots
+Sources include OpenStreetMap and toilettenhero, the national and Niedersachsen
+**Toiletten für alle** directories, Stadt Dortmund, Autobahn GmbH, Google Places,
+and manually curated records. These are combined during maintenance, not queried
+when you browse the app.
 
-<p align="center">
-  <img src="assets/images/map_hannover_sanifair_tran_Station.png" width="280" alt="Map view with detail card" />
-  <img src="assets/images/list_now_open.png" width="280" alt="List view with open status" />
-  <img src="assets/images/euro_key.png" width="280" alt="Eurokey filter" />
-</p>
+## Help improve the directory
 
-| Map View | List View | Filters |
-|----------|-----------|---------|
-| Interactive map with toilet markers and detail cards | Sortable list with real-time open/closed status | Filter by Eurokey, wheelchair access, free entry |
+Use **Melden** in the app or [open an issue](https://github.com/saschb2b/wc-finder/issues/new)
+to report a missing place, incorrect hours, or an access problem. Include the
+location and what you observed; details about keys, steps, care beds, and hoists
+are especially useful. Submitting a GitHub issue requires a GitHub account.
 
----
+## Work on the app
 
-## Development
+Built with React Native and Expo. Maps use Leaflet and OpenStreetMap, with no map
+API key required. Android is the release target; the project also includes iOS
+and web support for development.
 
-Use Node.js 24 LTS (minimum 22.13) and pnpm 10.34.5, pinned in `package.json`.
-The repository uses `pnpm-lock.yaml` as its only dependency lockfile.
+Use Node.js 24 and the pnpm version pinned in [package.json](package.json):
 
 ```bash
-# Install dependencies
 corepack enable
 pnpm install --frozen-lockfile
-
-# Typecheck, lint, and run unit tests
-pnpm quality
-
-# Start development server
 pnpm start
 ```
 
-Use an SDK 57-compatible [Expo Go](https://expo.dev/go), or press `a` for an Android emulator.
-Rebuild native development clients after upgrading the Expo SDK.
+Open the project in an Expo Go version compatible with the project's Expo SDK.
+Run `pnpm quality` for type checking, lint, and tests.
 
-The map uses **Leaflet + OpenStreetMap**, with a WebView on Android/iOS and an
-iframe on web. It works in Expo Go without a Google Maps API key or a custom
-development client. After installing this update, restart with `pnpm start --go --clear`.
+The [development guide](docs/development.md) covers map changes, data refreshes,
+signed APK builds, and releases.
 
-Leaflet's JavaScript, CSS, and icons are bundled in the app, so a CDN connection
-is not needed to initialize the map. Existing toilet data, pins, and the list
-remain available when background tiles cannot load. Navigation opens an external app.
+## Licence and attribution
 
-OpenStreetMap tiles are requested only for the visible map area, with visible
-attribution and normal HTTP caching. The native WebView identifies WC Finder in
-its User-Agent and uses the project website as its document base URL. Do not add
-bulk tile downloads or offline prefetching: the public tile service is best-effort
-and has a [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
-For larger deployments, replace the tile source in `src/map/leaflet-runtime.ts`
-with a suitable provider or self-hosted service.
-
-After changing Leaflet or the map runtime, run `pnpm build:map` and commit
-`src/map/leaflet-assets.generated.ts`. `pnpm test:map` regenerates and exercises
-the actual bundled map in a DOM simulator: startup, safe labels, marker updates,
-selection/navigation events, focus versus user gestures, and tile failures.
-It does not replace testing tile loading and gestures on a physical phone.
-
-Dependencies follow Expo SDK 57's supported versions, including React Native 0.86.3
-and matching React/React DOM versions. TypeScript stays on 6.x because `ts-jest`
-does not support 7.x; ESLint stays on 9.x because Expo's React/import plugins do
-not support 10.x. pnpm stays on the latest 10.x patch for Corepack compatibility.
-The unit tests use Node and `ts-jest`, so Jest 30 is intentionally excluded from
-Expo's Jest 29 recommendation for `jest-expo`.
-
-For dependency maintenance, run `pnpm exec expo install --fix`,
-`pnpm dlx expo-doctor@latest`, and `pnpm audit`. The scoped `xcode>uuid` override
-in `pnpm-workspace.yaml` patches its old dependency while preserving CommonJS support.
-
-### Data Pipeline
-
-For a Hannover-only OpenStreetMap refresh, run `pnpm data:hannover`.
-It updates existing business records, adds explicitly accessible toilets,
-normalizes hours, and rebuilds the offline tiles. Curated entries and data
-outside the Hannover bounding box are preserved. The source timestamp and
-unmatched business IDs are recorded under `regionalUpdates.hannover`.
-
-```bash
-# Fetch all sources
-pnpm exec tsx scripts/fetch-toilets.ts                    # toilettenhero.de
-pnpm exec tsx scripts/fetch-overpass-toilets.ts            # OpenStreetMap
-pnpm exec tsx scripts/fetch-tfa.ts                         # Toiletten für Alle
-pnpm exec tsx scripts/fetch-dortmund.ts                    # Stadt Dortmund
-pnpm exec tsx scripts/fetch-autobahn-rest.ts               # Autobahn rest areas (govt API)
-pnpm exec tsx scripts/fetch-station-toilets.ts             # Train stations / Sanifair
-pnpm exec tsx scripts/fetch-google-places-germany.ts       # Google Places (82 major cities, use --tier 1|2|3 for expanded radii)
-pnpm exec tsx scripts/fetch-google-places-small-cities.ts  # Google Places (171 smaller cities)
-
-# Merge and normalize
-pnpm exec tsx scripts/merge-sources.ts           # Deduplicate + categorize
-pnpm exec tsx scripts/migrate-hours-format.ts    # Normalize opening hours
-
-# Generate tiles
-pnpm exec tsx scripts/split-tiles.ts             # Geo-tiles
-pnpm exec tsx scripts/gen-tile-loader.ts         # Tile loader
-```
-
-### Weekly data updates
-
-**Actions → Weekly Data Update → Run workflow** runs the same refresh as the
-Sunday 02:00 UTC schedule. It fetches all four OSM regions with bounded requests
-and a fallback server, refreshes matching records, updates Hannover and rebuilds
-tiles. Failed or partial source responses stop the job before a PR is created.
-Curated IDs and specialist care details are preserved.
-
-Successful updates pass `pnpm quality` and create or update one PR on
-`data/weekly-update`. Review and merge it to include the data in the next APK.
-No Discord webhook or additional API key is required.
-
-The repository must enable **Settings → Actions → General → Workflow permissions
-→ Allow GitHub Actions to create and approve pull requests**. The workflow requests
-write access only for its update job; it does not approve or merge PRs.
-
-### Building
-
-For an installable APK, open **Actions → Build & Release APK → Run workflow**.
-After a successful run, download **wc-finder-apk** from **Artifacts**, unzip it,
-and install `wc-finder.apk` on your phone. Manual branch builds do not create a release.
-
-The workflow compiles on GitHub's Ubuntu runner using EAS local build, with live
-logs and a 45-minute build timeout. It does not submit a build to the EAS cloud
-queue. The repo's `EXPO_TOKEN` must have access to this project's existing Android
-signing credentials. The preview profile explicitly uses remote credentials,
-and CI freezes them so a build cannot silently replace the signing key.
-The build archive excludes raw data-pipeline files via `.easignore`; the tile
-loader and all offline toilet tiles remain included.
-
-For the same build on a Linux/macOS machine with Java 17 and the Android SDK/NDK:
-
-```bash
-# Authenticate with Expo first, or provide EXPO_TOKEN
-pnpm dlx eas-cli@23.2.0 build --platform android --profile preview --local --output ./wc-finder.apk
-
-# Google Play app bundle (EAS cloud)
-pnpm dlx eas-cli@23.2.0 build --platform android --profile production
-```
-
-EAS local builds require [Linux or macOS](https://docs.expo.dev/build-reference/local-builds/);
-use the GitHub workflow from Windows. If Android signing has not been configured
-yet, use `pnpm dlx eas-cli@23.2.0 credentials --platform android` to configure it once.
-Use the existing keystore when updating an already installed app.
-
-### Releasing
-
-```bash
-# Tag triggers release workflow
-git tag v1.2.0
-git push origin v1.2.0
-```
-
-Version tags automatically build, verify the APK signature and package identity,
-and attach the APK to the GitHub release. Successful builds also keep a downloadable
-Actions artifact for 30 days, including when release publication fails.
-
----
-
-## Architecture
-
-Specialist care toilets have separate **Pflegeliege** and **Lifter** filters, access notes, and
-source links. Refresh with `pnpm data:care`; see [data and event rules](docs/care-toilets.md).
-
-- **React Native + Expo SDK 57**
-- **Offline-first**: All toilet data in JSON geo-tiles (1° × 1°)
-- **Standardized hours format**: Structured data instead of parsing strings
-- **No toilet-data APIs at runtime**: All toilet data bundled at build time; map tiles load from OpenStreetMap
-
-### Tech Stack
-
-| Component | Technology |
-|-----------|------------|
-| Framework | React Native + Expo |
-| Maps | Leaflet + OpenStreetMap, via WebView / iframe (no API key) |
-| Storage | AsyncStorage (favorites) |
-| State | React hooks |
-| Data | Static JSON tiles |
-
----
-
-## Contributing
-
-**Report missing or incorrect toilets:**
-1. Tap **"Melden"** in the app
-2. [Open an issue](https://github.com/saschb2b/wc-finder/issues)
-3. Edit directly on [OpenStreetMap](https://www.openstreetmap.org) (tags: `amenity=toilets`, `wheelchair=yes`)
-
-**Code contributions welcome.** Check [issues](https://github.com/saschb2b/wc-finder/issues) for good first issues.
-
----
-
-## License
-
-MIT License — Free to use, modify, and distribute.
-
-Data sources: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), [Toilettenhero](https://www.toilettenhero.de/), [Autobahn GmbH](https://autobahn.api.bund.dev/), [Google Places API](https://developers.google.com/maps/documentation/places), [Stadt Dortmund](https://opendata.dortmund.de/)
+App code: [MIT](LICENSE). Map data: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright).
+Location data comes from the sources listed above; the app's code licence does
+not replace their respective data terms.
