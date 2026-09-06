@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WC Finder · Directory API</title>
+  <meta name="description" content="Download WC Finder's complete directory through a public read-only JSON API, with source metadata, pagination and gzip downloads.">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:#1c2635;font:16px/1.65 system-ui,sans-serif}
+    main{max-width:900px;margin:auto;padding:36px 22px 80px}a{color:#175cc4}nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:42px}
+    h1{font-size:clamp(30px,6vw,46px);line-height:1.15;margin:0 0 18px}h2{margin-top:36px;font-size:24px}
+    .lead{font-size:19px;max-width:740px}.card{background:white;border:1px solid #dce3ec;border-radius:16px;padding:22px;margin:22px 0}
+    .links{display:flex;gap:14px;flex-wrap:wrap}.links a{padding:10px 16px;background:#eaf1ff;border-radius:8px;text-decoration:none;font-weight:600}
+    pre{overflow:auto;padding:18px;background:#142136;color:#e8f1ff;border-radius:10px;font-size:13px;line-height:1.7}code{overflow-wrap:anywhere}
+    dt{font-weight:700;margin-top:18px}dd{margin:4px 0 16px}.muted{color:#526174}li{margin:8px 0}
+  </style>
+</head>
+<body><main>
+  <nav><a href="../">WC Finder</a><a href="../app/">Open the app</a><a href="https://github.com/saschb2b/wc-finder">GitHub</a></nav>
+  <h1>The directory, ready to use.</h1>
+  <p class="lead">A public, read-only JSON API for the same records used by WC Finder. No account, API key or installation required.</p>
+  <div class="card">
+    <p id="summary">Download the manifest for the current record count, snapshot and file sizes.</p>
+    <div class="links"><a href="v1/index.json">Manifest</a><a href="v1/toilets.json.gz">Full export · gzip</a><a href="v1/toilets.json">Full export · JSON</a><a href="v1/openapi.json">OpenAPI 3.1</a></div>
+  </div>
+  <h2>Endpoints</h2>
+  <p>All paths below are relative to <code id="base">/wc-finder/api/v1/</code>.</p>
+  <dl>
+    <dt><code>GET index.json</code></dt><dd>Current snapshot identifier, record count, source update metadata, page links, download sizes and SHA-256 checksums.</dd>
+    <dt><code>GET toilets.json</code></dt><dd>Every bundled record in a <code>toilets</code> array, plus original directory metadata, <code>apiVersion</code> and <code>snapshot</code>. This is a large download.</dd>
+    <dt><code>GET toilets.json.gz</code></dt><dd>The same JSON as a gzip file. Download and decompress explicitly; this endpoint does not return parsed JSON.</dd>
+    <dt><code>GET snapshots/{snapshot}/pages/{page}.json</code></dt><dd>Up to 1,000 records per page. Start with the manifest's <code>links.firstPage</code> and follow <code>next</code> until it is <code>null</code>. Resolve each relative link against the URL of the document containing it.</dd>
+  </dl>
+  <h2>Read pages in JavaScript</h2>
+  <pre><code>const base = 'https://saschb2b.github.io/wc-finder/api/v1/';
+async function json(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
+const manifestURL = new URL('index.json', base);
+const manifest = await json(manifestURL);
+let url = new URL(manifest.links.firstPage, manifestURL);
+while (url) {
+  const page = await json(url);
+  if (page.snapshot !== manifest.snapshot) throw new Error('Snapshot changed');
+  // Use page.toilets here; filter by coordinates, tags or equipment locally.
+  console.log(page.toilets);
+  url = page.next ? new URL(page.next, url) : null;
+}</code></pre>
+  <h2>Download everything</h2>
+  <pre><code>curl --fail --location \
+  https://saschb2b.github.io/wc-finder/api/v1/toilets.json.gz \
+  --output toilets.json.gz
+gzip --decompress toilets.json.gz</code></pre>
+  <h2>Data and updates</h2>
+  <ul>
+    <li>All existing fields are preserved, including accessibility tags, opening hours, care equipment, availability dates, access notes and source attribution where present. Optional fields can be absent.</li>
+    <li>Coordinates use WGS84 latitude and longitude. Opening-hour schedules use Sunday = 0 through Saturday = 6, with periods in minutes from midnight. Stored <code>isOpenNow</code> values are historical; calculate status using the schedule and availability dates.</li>
+    <li>Counts describe records, not verified distinct accessible public facilities. Legacy duplicate IDs and uncertain accessibility labels remain in the directory. Eurokey access alone does not establish wheelchair accessibility.</li>
+    <li>Updates appear after website deployments. <code>builtAt</code> is the export time; original source dates stay in the data. This is not live opening or closure information.</li>
+    <li>Check the manifest's <code>snapshot</code> before downloading again. Page URLs identify a snapshot so separate releases cannot silently mix. Old snapshots are not archived: if a page returns 404 after a deployment, reload the manifest and restart.</li>
+  </ul>
+  <h2>Hosting and reuse</h2>
+  <p>The API consists of static HTTPS resources on GitHub Pages. GET and HEAD work without authentication; browser fetches from other origins are allowed. There are no write operations or server-side queries. Parameters such as <code>?bbox=</code>, <code>?limit=</code> or <code>?page=</code> are ignored. Missing resources return GitHub's HTML 404 page.</p>
+  <p>Cache downloads and use pages or the gzip export for larger imports. Hosting limits and HTTP cache headers are controlled by GitHub Pages; this API has no availability guarantee or per-client rate-limit controls.</p>
+  <p>Source-specific data terms apply. Preserve <code>sources</code>, <code>care.sourceUrls</code> and available attribution. The project's MIT licence covers app code and does not replace the original data terms; older records may lack per-record licence metadata. See the <a href="https://github.com/saschb2b/wc-finder/blob/main/docs/data-imports.md">source and licence guide</a>.</p>
+  <p class="muted">Found incorrect data? <a href="https://github.com/saschb2b/wc-finder/issues/new">Report it on GitHub</a>.</p>
+</main>
+<script>
+  const base = new URL('v1/', location.href);
+  document.getElementById('base').textContent = base.href;
+  fetch(new URL('index.json', base)).then(response => {
+    if (!response.ok) throw new Error('Manifest unavailable');
+    return response.json();
+  }).then(data => {
+    document.getElementById('summary').textContent = `${data.count.toLocaleString('en-GB')} records · ${data.pageCount} pages · ${(data.downloads.compressed.bytes / 1024 / 1024).toFixed(1)} MiB compressed. Exported ${data.builtAt.slice(0, 10)}.`;
+  }).catch(() => {});
+</script>
+</body></html>

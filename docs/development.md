@@ -22,6 +22,7 @@ an Expo SDK upgrade. If Metro has stale cached code, use `pnpm start --go --clea
 pnpm quality       # Type checking, lint, app/data/map tests
 pnpm web           # Web development server
 pnpm build:web     # Production Pages site in dist/, browser app in dist/app/
+pnpm build:api     # Generate only the directory API and docs in dist/api/
 ```
 
 GitHub Pages builds the Expo web export on pushes to `main`, retaining the
@@ -32,6 +33,13 @@ set it to an empty string to host `dist` at a server root.
 `pnpm web` prepares ignored `public/data/tiles` files for local development.
 The browser fetches only the regional JSON files needed for the map; native
 builds continue to include the directory. Rebuild the web export after data changes.
+
+The same web build generates `/api/` documentation and `/api/v1/` JSON endpoints
+from `src/data/toilets.json`. Full and gzip exports preserve the original records
+and metadata. The manifest includes a content-derived snapshot identifier,
+checksums and links to pages of 1,000 records. Snapshot paths prevent mixing
+pages from different releases; old snapshots are not retained on the host.
+`pnpm test:web` also checks export completeness, pagination and gzip integrity.
 
 Dependency versions follow the project's Expo SDK. When upgrading, use
 `pnpm exec expo install --fix`, `pnpm dlx expo-doctor@latest`, and `pnpm audit`,

@@ -1,0 +1,115 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "WC Finder Directory API",
+    "version": "1.0.0",
+    "description": "Public read-only snapshots of the bundled directory. No authentication. Static GitHub Pages resources: query parameters are ignored; no server-side filtering, mutations or live availability. Source-specific data terms apply. Record IDs are preserved and may contain legacy duplicates."
+  },
+  "servers": [{ "url": ".", "description": "Same directory as this OpenAPI document" }],
+  "security": [],
+  "paths": {
+    "/index.json": {
+      "get": {
+        "operationId": "getDirectoryManifest",
+        "summary": "Discover current snapshot, counts, download checksums and page links",
+        "responses": { "200": { "description": "Current manifest; builtAt is export time, not a verification date for all records.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Manifest" } } } } }
+      }
+    },
+    "/toilets.json": {
+      "get": {
+        "operationId": "getAllToilets",
+        "summary": "Download all records and original source metadata",
+        "responses": { "200": { "description": "Complete directory snapshot. Large response; prefer paginated or gzip downloads.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Directory" } } } } }
+      }
+    },
+    "/toilets.json.gz": {
+      "get": {
+        "operationId": "downloadCompressedDirectory",
+        "summary": "Download a gzip file containing the same full JSON export",
+        "responses": { "200": { "description": "Gzip file; decompress explicitly. This is a download, not a JSON response with Content-Encoding negotiation.", "content": { "application/gzip": { "schema": { "type": "string", "format": "binary" } } } } }
+      }
+    },
+    "/snapshots/{snapshot}/pages/{page}.json": {
+      "get": {
+        "operationId": "getToiletPage",
+        "summary": "Read a page of a specific snapshot",
+        "parameters": [
+          { "name": "snapshot", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[a-f0-9]{64}$" } },
+          { "name": "page", "in": "path", "required": true, "schema": { "type": "integer", "minimum": 1 } }
+        ],
+        "responses": {
+          "200": { "description": "Records in source order. Resolve next against this page's URL; null means the end.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Page" } } } },
+          "404": { "description": "Unknown page or retired snapshot. GitHub Pages returns an HTML error page. Reload index.json and restart if the snapshot changed." }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Toilet": {
+        "type": "object",
+        "required": ["id", "lat", "lon", "name", "category"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "description": "Published source/legacy identifier. Existing duplicate IDs are retained; do not assume rows are unique facilities." },
+          "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+          "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+          "name": { "type": "string" },
+          "city": { "type": "string" },
+          "address": { "type": "string" },
+          "category": { "type": "string", "enum": ["public_24h", "station", "tankstelle", "gastro", "other"] },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "hours": { "type": "object", "additionalProperties": true, "description": "Recorded opening hours: type, optional weekly schedules and original text. weekly keys 0–6 mean Sunday–Saturday; periods use minutes from midnight. Any stored isOpenNow is historical, not live availability." },
+          "care": { "type": "object", "additionalProperties": true, "description": "Bed/hoist status, Eurokey access, sourceUrls and checkedAt. Missing equipment information does not mean equipment is available." },
+          "availability": { "type": "object", "additionalProperties": true, "description": "Optional inclusive from/through dates, timeZone, status and note. Account for these before presenting a facility as available." },
+          "sources": { "type": "array", "items": { "type": "object", "additionalProperties": true }, "description": "Per-record provenance and original licence labels, where supplied." },
+          "accessNote": { "type": "string" },
+          "locationNote": { "type": "string" },
+          "fee": { "type": "string" },
+          "operator": { "type": ["string", "null"] }
+        }
+      },
+      "Directory": {
+        "type": "object", "additionalProperties": true,
+        "required": ["apiVersion", "snapshot", "count", "toilets"],
+        "properties": {
+          "apiVersion": { "const": "1" },
+          "snapshot": { "type": "string" },
+          "count": { "type": "integer" },
+          "toilets": { "type": "array", "items": { "$ref": "#/components/schemas/Toilet" } }
+        }
+      },
+      "Page": {
+        "type": "object",
+        "required": ["apiVersion", "snapshot", "page", "pageSize", "pageCount", "count", "totalCount", "next", "toilets"],
+        "properties": {
+          "apiVersion": { "const": "1" },
+          "snapshot": { "type": "string" },
+          "page": { "type": "integer", "minimum": 1 },
+          "pageSize": { "type": "integer" },
+          "pageCount": { "type": "integer" },
+          "count": { "type": "integer" },
+          "totalCount": { "type": "integer" },
+          "next": { "type": ["string", "null"] },
+          "toilets": { "type": "array", "items": { "$ref": "#/components/schemas/Toilet" } }
+        }
+      },
+      "Manifest": {
+        "type": "object", "additionalProperties": true,
+        "required": ["apiVersion", "snapshot", "builtAt", "count", "pageSize", "pageCount", "sourceMetadata", "links", "downloads", "usage"],
+        "properties": {
+          "apiVersion": { "const": "1" },
+          "snapshot": { "type": "string" },
+          "builtAt": { "type": "string", "format": "date-time" },
+          "count": { "type": "integer" },
+          "pageSize": { "type": "integer" },
+          "pageCount": { "type": "integer" },
+          "sourceMetadata": { "type": "object", "additionalProperties": true },
+          "links": { "type": "object", "additionalProperties": { "type": "string" } },
+          "downloads": { "type": "object", "additionalProperties": true },
+          "usage": { "type": "object", "additionalProperties": true }
+        }
+      }
+    }
+  }
+}

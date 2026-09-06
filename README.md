@@ -87,6 +87,21 @@ New imports distinguish confirmed accessible WCs from entrance-only information,
 show venue access notes and identify approximate building positions. See the
 [data import guide](docs/data-imports.md) for sources, licences and refresh commands.
 
+## Directory API
+
+The complete bundled directory is available through a public read-only JSON API:
+
+- [Full JSON export](https://saschb2b.github.io/wc-finder/api/v1/toilets.json)
+- [Compressed download](https://saschb2b.github.io/wc-finder/api/v1/toilets.json.gz)
+- [Manifest and pagination](https://saschb2b.github.io/wc-finder/api/v1/index.json)
+- [API documentation](https://saschb2b.github.io/wc-finder/api/) · [OpenAPI specification](https://saschb2b.github.io/wc-finder/api/v1/openapi.json)
+
+No API key is needed. Each website deployment exports all records with their
+original fields and available source attribution. Use the manifest to detect
+updates and follow snapshot page links for smaller downloads. Filtering happens
+in your client; these static endpoints ignore query parameters. Source-specific
+data terms apply, and recorded opening times are not live availability.
+
 ## Help improve the directory
 
 Use **Melden** in the app or [open an issue](https://github.com/saschb2b/wc-finder/issues/new)
@@ -97,8 +112,8 @@ are especially useful. Submitting a GitHub issue requires a GitHub account.
 ## Work on the app
 
 Built with React Native and Expo. Maps use Leaflet and OpenStreetMap, with no map
-API key required. Android is the release target; the project also includes iOS
-and web support for development.
+API key required. Android and web builds are published; iOS is also supported
+for development.
 
 Use Node.js 24 and the pnpm version pinned in [package.json](package.json):
 

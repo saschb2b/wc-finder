@@ -3,6 +3,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import './prepare-web-data';
+import './build-api';
 
 const require = createRequire(import.meta.url);
 // PAGES_BASE_PATH comes from configure-pages, supporting custom domains too.
@@ -19,7 +20,7 @@ const appHtml = fs.readFileSync('dist/app/index.html', 'utf8')
 fs.writeFileSync('dist/app/index.html', appHtml);
 // Retain the landing page and its assets beside the runnable Expo app.
 for (const entry of fs.readdirSync('docs', { withFileTypes: true })) {
-  if (entry.isFile() && /\.(html|png|jpg|jpeg|svg|ico|webp)$/.test(entry.name)) {
+  if (entry.isFile() && entry.name !== 'api.html' && /\.(html|png|jpg|jpeg|svg|ico|webp)$/.test(entry.name)) {
     fs.copyFileSync(path.join('docs', entry.name), path.join('dist', entry.name));
   }
 }
