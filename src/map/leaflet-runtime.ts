@@ -44,8 +44,20 @@ window.addEventListener("online", () => { failedTiles.clear(); tiles.redraw(); }
 let gesture = false;
 const container = map.getContainer();
 for (const event of ["pointerdown", "touchstart", "wheel", "keydown"]) {
-  container.addEventListener(event, () => { gesture = true; }, { passive: true });
+  container.addEventListener(event, input => {
+    // Marker taps and popup actions must not turn an in-flight camera move
+    // into a user pan, which would clear the app's explicit selection.
+    if (input.target instanceof Element && input.target.closest(".wc-marker, .leaflet-popup, .leaflet-control-attribution")) return;
+    if (input instanceof KeyboardEvent && !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "+", "=", "-"].includes(input.key)) return;
+    gesture = true;
+  }, { passive: true });
 }
+// A drag that starts over a marker still counts once the map actually moves.
+map.on("dragstart boxzoomstart", () => { gesture = true; });
+// Capture before Leaflet handles the click, including keyboard activation.
+container.addEventListener("click", input => {
+  if (input.target instanceof Element && input.target.closest(".leaflet-control-zoom")) gesture = true;
+}, { capture: true });
 function sendRegion() {
   const center = map.getCenter();
   const bounds = map.getBounds();
@@ -59,9 +71,14 @@ function sendRegion() {
 }
 map.on("moveend", sendRegion);
 
-function focus(region: MapRegion, duration: number) {
-  map.stop();
+function stopForSelection() {
+  // stop() can synchronously emit moveend for the previous animation.
   gesture = false;
+  map.stop();
+}
+
+function focus(region: MapRegion, duration: number) {
+  stopForSelection();
   const bounds = L.latLngBounds(
     [region.latitude - region.latitudeDelta / 2, region.longitude - region.longitudeDelta / 2],
     [region.latitude + region.latitudeDelta / 2, region.longitude + region.longitudeDelta / 2],
@@ -104,7 +121,12 @@ function updateData(data: MapData) {
       const marker = L.marker([pin.lat, pin.lon], { icon: makeIcon(pin), title: pin.name, alt: pin.name, keyboard: true })
         .bindPopup(popup(pin), { autoPan: false, maxWidth: 240 })
         .addTo(map);
-      marker.on("click", () => post({ type: "select", id: pin.id }));
+      marker.on("click", () => {
+        // Stop before crossing the async WebView bridge so no late movement
+        // from the previous selection can override this tap.
+        stopForSelection();
+        post({ type: "select", id: pin.id });
+      });
       entry = { marker, pin };
       markers.set(pin.id, entry);
     } else {

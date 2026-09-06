@@ -496,6 +496,9 @@ function AppContent() {
       {/* Secondary toggles */}
       <View style={styles.secondaryToggles}>
         <TouchableOpacity
+          accessibilityRole="checkbox"
+          accessibilityLabel="Nur Favoriten"
+          accessibilityState={{ checked: showFavoritesOnly }}
           style={[
             styles.secondaryBtn,
             showFavoritesOnly && styles.secondaryBtnActive,
@@ -505,17 +508,26 @@ function AppContent() {
             setShowFavoritesOnly(!showFavoritesOnly);
           }}
         >
+          <Text style={[styles.secondaryIcon, showFavoritesOnly && styles.secondaryTextActive]}>
+            {showFavoritesOnly ? "★" : "☆"}
+          </Text>
           <Text
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
             style={[
               styles.secondaryText,
               showFavoritesOnly && styles.secondaryTextActive,
             ]}
           >
-            {showFavoritesOnly ? "★ Nur Favoriten" : "☆ Favoriten"}
+            Favoriten
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
+          accessibilityRole="checkbox"
+          accessibilityLabel="Mit Eurokey"
+          accessibilityState={{ checked: requireEurokey }}
           style={[
             styles.secondaryBtn,
             requireEurokey && styles.secondaryBtnActive,
@@ -525,17 +537,24 @@ function AppContent() {
             setRequireEurokey(!requireEurokey);
           }}
         >
+          <Text style={styles.secondaryIcon}>🔑</Text>
           <Text
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
             style={[
               styles.secondaryText,
               requireEurokey && styles.secondaryTextActive,
             ]}
           >
-            {requireEurokey ? "🔑 Mit Eurokey" : "🔑 Eurokey"}
+            Eurokey
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
+          accessibilityRole="checkbox"
+          accessibilityLabel="Rollstuhlgerecht"
+          accessibilityState={{ checked: wheelchairOnly }}
           style={[
             styles.secondaryBtn,
             wheelchairOnly && styles.secondaryBtnActive,
@@ -545,13 +564,17 @@ function AppContent() {
             setWheelchairOnly(!wheelchairOnly);
           }}
         >
+          <Text style={styles.secondaryIcon}>♿</Text>
           <Text
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
             style={[
               styles.secondaryText,
               wheelchairOnly && styles.secondaryTextActive,
             ]}
           >
-            {wheelchairOnly ? "♿ Barrierefrei" : "♿ Rollstuhl"}
+            Rollstuhl
           </Text>
         </TouchableOpacity>
       </View>
@@ -1116,28 +1139,39 @@ const styles = StyleSheet.create({
   },
   secondaryBtn: {
     flex: 1,
+    minWidth: 0,
+    minHeight: 44,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    gap: 4,
     paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingHorizontal: 6,
     borderRadius: 10,
     backgroundColor: "#f5f5f5",
     borderWidth: 1,
     borderColor: "#e0e0e0",
   },
   secondaryBtnActive: {
-    backgroundColor: "#e8f4fd",
+    backgroundColor: "#e8f0fe",
     borderColor: "#1a73e8",
   },
+  secondaryIcon: {
+    width: 20,
+    textAlign: "center",
+    fontSize: 16,
+    lineHeight: 20,
+    color: "#666",
+  },
   secondaryText: {
+    flexShrink: 1,
     fontSize: 14,
-    fontWeight: "500",
+    lineHeight: 20,
+    fontWeight: "600",
     color: "#666",
   },
   secondaryTextActive: {
-    color: "#1a73e8",
-    fontWeight: "600",
+    color: "#185abc",
   },
 
   // List

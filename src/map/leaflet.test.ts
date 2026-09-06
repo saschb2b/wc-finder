@@ -79,6 +79,9 @@ test("programmatic focus and user zoom are distinguished; tile failure leaves pi
     zoom.dispatchEvent(new dom.window.Event("pointerdown", { bubbles: true }));
     zoom.click();
     assert.equal(events.filter(event => event.type === "region").at(-1)?.isGesture, true);
+    // Zoom controls also work without a preceding pointer event (keyboard).
+    document.querySelector<HTMLElement>(".leaflet-control-zoom-out")!.click();
+    assert.equal(events.filter(event => event.type === "region").at(-1)?.isGesture, true);
     const tile = document.querySelector<HTMLImageElement>(".leaflet-tile")!;
     tile.dispatchEvent(new dom.window.Event("error"));
     assert.equal(document.getElementById("tile-status")!.hidden, false);
@@ -97,4 +100,43 @@ test("bridge rejects malformed events and safely serializes script delimiters", 
   const encoded = serializeForScript(value);
   assert.ok(!encoded.includes("<"));
   assert.equal(JSON.parse(encoded), value);
+});
+
+test("tapping a pin during camera movement keeps the tapped selection", async () => {
+  const { dom, document, events } = openMap();
+  try {
+    const otherPin = { ...pin, id: "other", name: "Other WC", lat: pin.lat + 0.001 };
+    dom.window.eval(mapCommandScript({ type: "data", data: { pins: [pin, otherPin], userLocation: null } }));
+    // Start a same-zoom animated pan, then tap before it finishes. The app
+    // clears its selection whenever it receives a region marked as a gesture.
+    dom.window.eval(mapCommandScript({ type: "focus", region: { ...region, latitude: pin.lat + 0.002 }, duration: 100 }));
+    const marker = document.querySelector<HTMLElement>('[title="Other WC"]')!;
+    marker.dispatchEvent(new dom.window.Event("pointerdown", { bubbles: true }));
+    marker.dispatchEvent(new dom.window.Event("touchstart", { bubbles: true }));
+    marker.click();
+    const selectedIndex = events.findLastIndex(event => event.type === "select");
+    assert.deepEqual(events[selectedIndex], { type: "select", id: otherPin.id });
+    // Include the bridge delay and any late animation completion.
+    await new Promise(resolve => setTimeout(resolve, 180));
+    dom.window.eval(mapCommandScript({ type: "data", data: {
+      pins: [pin, { ...otherPin, selected: true }], userLocation: null,
+    } }));
+    assert.equal(events.slice(selectedIndex + 1).some(event => event.type === "region" && event.isGesture), false);
+    assert.equal(document.querySelector(".leaflet-popup strong")?.textContent, otherPin.name);
+  } finally { dom.window.close(); }
+});
+
+test("a second pin tap can interrupt focus without triggering automatic selection", () => {
+  const { dom, document, events } = openMap();
+  try {
+    dom.window.eval(mapCommandScript({ type: "data", data: { pins: [pin], userLocation: null } }));
+    dom.window.eval(mapCommandScript({ type: "focus", region: { ...region, latitude: pin.lat + 0.002 }, duration: 500 }));
+    const marker = document.querySelector<HTMLElement>(".wc-marker")!;
+    marker.dispatchEvent(new dom.window.Event("pointerdown", { bubbles: true }));
+    marker.click();
+    const selectedIndex = events.findLastIndex(event => event.type === "select");
+    dom.window.eval(mapCommandScript({ type: "focus", region, duration: 0 }));
+    assert.equal(events.slice(selectedIndex + 1).some(event => event.type === "region" && event.isGesture), false);
+    assert.ok(events.slice(selectedIndex + 1).some(event => event.type === "region"));
+  } finally { dom.window.close(); }
 });
