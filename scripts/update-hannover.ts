@@ -7,6 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Toilet } from "../src/types/toilet";
 import { normalizeOpeningHours } from "../src/utils/normalize-hours";
+import { fetchOverpass } from "./lib/overpass";
 
 type Entry = Toilet & { city: string; tags: string[] };
 interface Element {
@@ -18,6 +19,7 @@ interface Element {
   tags: Record<string, string>;
 }
 interface Response {
+  endpoint?: string;
   elements: Element[];
   osm3s: { timestamp_osm_base: string };
   remark?: string;
@@ -86,12 +88,7 @@ async function main() {
     response = JSON.parse(fs.readFileSync(process.argv[inputIndex + 1], "utf8"));
   } else {
     console.log("Fetching Hannover from OpenStreetMap...");
-    const result = await fetch(`${endpoint}?data=${encodeURIComponent(query)}`, {
-      headers: { "User-Agent": "WC-Finder data refresh (+https://github.com/saschb2b/wc-finder)" },
-      signal: AbortSignal.timeout(55000),
-    });
-    assert(result.ok, `Overpass HTTP ${result.status}; existing data was kept`);
-    response = await result.json();
+    response = await fetchOverpass<Element>(query, { timeoutMs: 55000 });
   }
   // Overpass can return HTTP 200 with partial data after a timeout.
   assert(!response.remark, response.remark);
@@ -161,7 +158,7 @@ async function main() {
   }
   const stamp = response.osm3s.timestamp_osm_base;
   const summary = {
-    updated: stamp, source: "OpenStreetMap", endpoint, bbox,
+    updated: stamp, source: "OpenStreetMap", endpoint: response.endpoint || endpoint, bbox,
     unresolvedBusinessIds: unresolved,
     count: merged.filter(inArea).length,
   };
@@ -177,7 +174,7 @@ async function main() {
   });
   save("hannover-osm-toilets.json", {
     generated: stamp.slice(0, 10), source: "OpenStreetMap - Hannover accessible toilets",
-    endpoint, bbox, count: sourceToilets.length, toilets: sourceToilets.map(sourceEntry),
+    endpoint: response.endpoint || endpoint, bbox, count: sourceToilets.length, toilets: sourceToilets.map(sourceEntry),
   });
   console.log(JSON.stringify({ ...summary, refreshed: changed, added: added.length,
     removed: original.filter(t => removals.has(t.id)).length, nearbySkipped }, null, 2));

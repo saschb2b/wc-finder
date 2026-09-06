@@ -161,6 +161,22 @@ pnpm exec tsx scripts/split-tiles.ts             # Geo-tiles
 pnpm exec tsx scripts/gen-tile-loader.ts         # Tile loader
 ```
 
+### Weekly data updates
+
+**Actions → Weekly Data Update → Run workflow** runs the same refresh as the
+Sunday 02:00 UTC schedule. It fetches all four OSM regions with bounded requests
+and a fallback server, refreshes matching records, updates Hannover and rebuilds
+tiles. Failed or partial source responses stop the job before a PR is created.
+Curated IDs and specialist care details are preserved.
+
+Successful updates pass `pnpm quality` and create or update one PR on
+`data/weekly-update`. Review and merge it to include the data in the next APK.
+No Discord webhook or additional API key is required.
+
+The repository must enable **Settings → Actions → General → Workflow permissions
+→ Allow GitHub Actions to create and approve pull requests**. The workflow requests
+write access only for its update job; it does not approve or merge PRs.
+
 ### Building
 
 For an installable APK, open **Actions → Build & Release APK → Run workflow**.

@@ -9,6 +9,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import assert from 'node:assert/strict';
+import { fetchOverpass } from './lib/overpass';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,10 +29,7 @@ interface ToiletEntry {
   fee?: string;
 }
 
-const OVERPASS_URLS = [
-  'https://overpass.kumi.systems/api/interpreter',
-  'https://overpass-api.de/api/interpreter',
-];
+interface OsmNode { id: number; lat: number; lon: number; tags?: Record<string, string> }
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -52,19 +51,11 @@ function classifyFromOsm(tags: Record<string, string>): ToiletCategory {
 
   // Public 24/7 indicators
   if (tags.opening_hours === '24/7') return 'public_24h';
-  if (tags.access === 'yes' || tags.access === 'public') return 'public_24h';
-  if (tags.eurokey === 'yes' || tags.centralkey === 'yes') return 'public_24h';
-  if (/öffentliche|public|city.?toilette|city.?wc/.test(name)) return 'public_24h';
-
-  // If no name and wheelchair accessible, likely a public toilet
-  if (!tags.name && (tags.wheelchair === 'yes' || tags['toilets:wheelchair'] === 'yes')) {
-    return 'public_24h';
-  }
 
   return 'other';
 }
 
-async function fetchBand(bbox: string, label: string): Promise<ToiletEntry[]> {
+async function fetchBand(bbox: string, label: string): Promise<{ toilets: ToiletEntry[]; timestamp: string }> {
   const query = `
     [out:json][timeout:90];
     (
@@ -74,53 +65,37 @@ async function fetchBand(bbox: string, label: string): Promise<ToiletEntry[]> {
     out body;
   `;
 
-  for (const url of OVERPASS_URLS) {
-    try {
-      console.log(`  ${label} via ${new URL(url).host}...`);
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `data=${encodeURIComponent(query)}`,
-      });
+  console.log(`  ${label}...`);
+  const data = await fetchOverpass<OsmNode>(query);
+  const results: ToiletEntry[] = [];
 
-      if (!res.ok) {
-        console.warn(`    ${res.status}, trying next...`);
-        continue;
-      }
+  for (const el of data.elements) {
+    const tags = el.tags || {};
+    assert(Number.isFinite(el.lat) && Number.isFinite(el.lon) && Number.isSafeInteger(el.id), 'Invalid OSM node');
+    if ([tags.access, tags['toilets:access']].some(access => ['no', 'private', 'employees'].includes(access || ''))
+      || tags.toilets === 'no' || tags['toilets:wheelchair'] === 'no') continue;
+    const entryTags: string[] = ['barrierefrei'];
 
-      const data = await res.json();
-      const results: ToiletEntry[] = [];
+    if (tags.eurokey === 'yes' || tags.centralkey === 'eurokey' || tags['toilets:centralkey'] === 'eurokey') entryTags.push('eurokey');
+    const fee = tags['toilets:fee'] || tags.fee;
+    if (fee === 'no') entryTags.push('kostenlos');
 
-      for (const el of data.elements) {
-        const tags = el.tags || {};
-        const entryTags: string[] = ['barrierefrei'];
-
-        if (tags.eurokey === 'yes' || tags.centralkey === 'yes') entryTags.push('eurokey');
-        if (tags.fee === 'no') entryTags.push('kostenlos');
-
-        results.push({
-          id: `osm_${el.id}`,
-          lat: el.lat,
-          lon: el.lon,
-          name: tags.name || tags.description || 'Barrierefreie Toilette',
-          city: tags['addr:city'] || '',
-          category: classifyFromOsm(tags),
-          tags: entryTags,
-          opening_hours: tags.opening_hours,
-          operator: tags.operator,
-          fee: tags.fee,
-        });
-      }
-
-      console.log(`    ${results.length} toilets`);
-      return results;
-    } catch {
-      console.warn(`    fetch failed, trying next...`);
-    }
+    results.push({
+      id: `osm_${el.id}`,
+      lat: el.lat,
+      lon: el.lon,
+      name: tags.name || tags.description || 'Barrierefreie Toilette',
+      city: tags['addr:city'] || '',
+      category: classifyFromOsm(tags),
+      tags: entryTags,
+      opening_hours: tags['toilets:opening_hours'] || tags.opening_hours,
+      operator: tags.operator,
+      fee,
+    });
   }
 
-  console.warn(`  ${label}: all endpoints failed`);
-  return [];
+  console.log(`    ${results.length} toilets`);
+  return { toilets: results, timestamp: data.osm3s.timestamp_osm_base };
 }
 
 async function main() {
@@ -135,10 +110,12 @@ async function main() {
   ];
 
   const all: ToiletEntry[] = [];
+  const sourceTimestamps: Record<string, string> = {};
 
   for (const { label, bbox } of bands) {
     const results = await fetchBand(bbox, label);
-    all.push(...results);
+    all.push(...results.toilets);
+    sourceTimestamps[label] = results.timestamp;
     await sleep(5000);
   }
 
@@ -149,6 +126,7 @@ async function main() {
   const output = {
     generated: new Date().toISOString().split('T')[0],
     source: 'OpenStreetMap Overpass API (direct)',
+    sourceTimestamps,
     count: unique.size,
     toilets: [...unique.values()],
   };
@@ -173,4 +151,4 @@ async function main() {
   console.log(`\nHannover area: ${hannover.length} toilets`);
 }
 
-main().catch(console.error);
+main().catch(error => { console.error(error); process.exitCode = 1; });

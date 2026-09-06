@@ -36,3 +36,6 @@ jobs:
 
       - name: Test embedded map
         run: pnpm test:map
+
+      - name: Test data refresh
+        run: pnpm test:data

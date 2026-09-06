@@ -60,6 +60,7 @@ fs.writeFileSync(
   JSON.stringify({
     generated: data.generated,
     source: data.source,
+    ...(data.osmUpdate ? { osmUpdate: data.osmUpdate } : {}),
     ...(data.regionalUpdates ? { regionalUpdates: data.regionalUpdates } : {}),
     ...(data.specialistUpdate ? { specialistUpdate: data.specialistUpdate } : {}),
     totalCount: data.count,
