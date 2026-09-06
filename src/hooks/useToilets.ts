@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { InteractionManager } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
 import { Toilet } from "../types/toilet";
 import { getDistanceMeters, getNearbyToilets, getToiletsInBounds } from "../services/overpass";
+import { scheduleIdleTask } from "../utils/idle-task";
 
 const LAST_LOCATION_KEY = "wc_last_location";
 
@@ -53,8 +53,15 @@ export function useToilets(): UseToiletsResult {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const exploreTaskRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
+  const exploreTaskRef = useRef<(() => void) | null>(null);
   const initialLoadDone = useRef(false);
+
+  const cancelPendingExplore = useCallback(() => {
+    exploreTaskRef.current?.();
+    exploreTaskRef.current = null;
+  }, []);
+
+  useEffect(() => cancelPendingExplore, [cancelPendingExplore]);
 
   // Calculate distances from a reference point while preserving toilet data
   const calculateDistances = useCallback(
@@ -70,6 +77,8 @@ export function useToilets(): UseToiletsResult {
   );
 
   const loadToilets = useCallback((lat: number, lon: number) => {
+    cancelPendingExplore();
+    setUpdating(false);
     setLoading(true);
     setError(null);
 
@@ -82,7 +91,7 @@ export function useToilets(): UseToiletsResult {
     }
 
     setLoading(false);
-  }, []);
+  }, [cancelPendingExplore]);
 
   // Full load: sets location, clears explore, loads toilets. Used for first fix only.
   const fullLocationLoad = useCallback(
@@ -198,20 +207,17 @@ export function useToilets(): UseToiletsResult {
   );
 
   // Explore at bounds - loads toilets in area but keeps distance from userLocation
-  // Deferred via InteractionManager so map animations finish first
+  // Map movement is already debounced; defer tile processing until JS is idle.
   const exploreAt = useCallback(
     (lat: number, lon: number, latDelta: number, lonDelta: number) => {
-      // Cancel any pending explore task
-      if (exploreTaskRef.current) {
-        exploreTaskRef.current.cancel();
-      }
+      cancelPendingExplore();
 
       setUpdating(true);
       setError(null);
       setExploreBounds({ lat, lon, latDelta, lonDelta });
 
-      // Defer heavy work until after animations complete
-      exploreTaskRef.current = InteractionManager.runAfterInteractions(() => {
+      exploreTaskRef.current = scheduleIdleTask(() => {
+        exploreTaskRef.current = null;
         const results = getToiletsInBounds(
           lat - latDelta / 2,
           lat + latDelta / 2,
@@ -231,25 +237,29 @@ export function useToilets(): UseToiletsResult {
         setUpdating(false);
       });
     },
-    [userLocation, calculateDistances],
+    [userLocation, calculateDistances, cancelPendingExplore],
   );
 
   const clearExplore = useCallback(() => {
+    cancelPendingExplore();
+    setUpdating(false);
     setExploreBounds(null);
     if (searchLocation) {
       loadToilets(searchLocation.lat, searchLocation.lon);
     } else if (userLocation) {
       loadToilets(userLocation.lat, userLocation.lon);
     }
-  }, [searchLocation, userLocation, loadToilets]);
+  }, [searchLocation, userLocation, loadToilets, cancelPendingExplore]);
 
   const backToMyLocation = useCallback(() => {
+    cancelPendingExplore();
+    setUpdating(false);
     setSearchLocation(null);
     setExploreBounds(null);
     if (userLocation) {
       loadToilets(userLocation.lat, userLocation.lon);
     }
-  }, [userLocation, loadToilets]);
+  }, [userLocation, loadToilets, cancelPendingExplore]);
 
   return {
     toilets,

@@ -179,6 +179,8 @@ function AppContent() {
   // --- Callbacks ---
 
   const focusToilet = useCallback((toilet: Toilet) => {
+    if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
+    exploreTimerRef.current = null;
     mediumImpact();
     setSelectedToilet(toilet);
     setListExpanded(false);
@@ -196,6 +198,8 @@ function AppContent() {
   }, []);
 
   const focusUser = useCallback(() => {
+    if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
+    exploreTimerRef.current = null;
     mediumImpact();
     backToMyLocation();
     setSelectedToilet(null);
