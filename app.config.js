@@ -1,7 +1,7 @@
 export default {
   name: "WC Finder",
   slug: "wc-finder",
-  version: "1.0.0",
+  version: "0.2.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
   // Follow the system appearance; expo-system-ui makes Android honour this.
@@ -23,6 +23,8 @@ export default {
   },
   android: {
     package: "com.saschb2b.wcfinder",
+    // Must rise with every release so Android installs the APK as an update.
+    versionCode: 5,
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
       backgroundColor: "#0643a7",
