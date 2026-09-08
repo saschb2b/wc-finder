@@ -8,6 +8,8 @@ export interface OsmElement {
   lon?: number;
   center?: { lat: number; lon: number };
   tags?: Record<string, string>;
+  /** Last edit of the element; present with `out meta`. */
+  timestamp?: string;
 }
 
 export function accessibleToiletQuery(bbox: string): string {
@@ -17,7 +19,7 @@ export function accessibleToiletQuery(bbox: string): string {
     nwr["amenity"="toilets"]["centralkey"="eurokey"](${bbox});
     nwr["amenity"="toilets"]["toilets:centralkey"="eurokey"](${bbox});
     nwr["amenity"="toilets"]["eurokey"="yes"](${bbox});
-  );out center qt;`;
+  );out center meta qt;`;
 }
 
 export function osmToilet(el: OsmElement, retrievedAt: string, updatedAt: string): Toilet | undefined {
@@ -62,6 +64,7 @@ export function osmToilet(el: OsmElement, retrievedAt: string, updatedAt: string
     accessNote: notes.join(" ") || undefined,
     locationNote: el.type !== "node" ? "Position des Gebäudes/Areals; genauer WC-Eingang unbekannt." : undefined,
     sources: [{ id: `osm/${el.type}/${el.id}`, name: "OpenStreetMap", url: `https://www.openstreetmap.org/${el.type}/${el.id}`,
-      license: "ODbL-1.0", retrievedAt, updatedAt }],
+      license: "ODbL-1.0", retrievedAt, updatedAt,
+      ...(el.timestamp && Number.isFinite(Date.parse(el.timestamp)) ? { editedAt: el.timestamp } : {}) }],
   };
 }

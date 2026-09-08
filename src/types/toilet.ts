@@ -44,9 +44,15 @@ export interface Toilet {
     name: string;
     url: string;
     license: string;
+    /** When the maintainer downloaded this record. */
     retrievedAt: string;
+    /** Snapshot time of the source database, not the record's edit. */
     updatedAt?: string;
+    /** When the record itself was last edited in the source (OSM element timestamp). */
+    editedAt?: string;
   }[];
+  /** Calendar date a person confirmed the entry on site (community report, moderator-set). */
+  verifiedAt?: string;
   distance?: number;
   care?: CareFacilities;
   availability?: ToiletAvailability;

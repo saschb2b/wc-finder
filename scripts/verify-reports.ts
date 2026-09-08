@@ -108,6 +108,14 @@ function main() {
     console.log(`URL: ${report.url}`);
     console.log(`Created: ${report.created_at}`);
 
+    const confirmedId = report.title.includes('Confirmed On Site') && report.body.match(/\*\*ID:\*\*\s*(\S+)/)?.[1];
+    if (confirmedId) {
+      console.log(`\n✅ On-site confirmation for ${confirmedId}.`);
+      console.log(`   To approve, set "verifiedAt": "${report.created_at.slice(0, 10)}" on that entry in toilets.json and rebuild tiles.`);
+      console.log('\n---\n');
+      continue;
+    }
+
     const toilet = parseNewToiletReport(report.body);
     if (toilet) {
       console.log('\n📍 Parsed data:');

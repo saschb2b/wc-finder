@@ -149,6 +149,20 @@ Example structure (illustrative; replace with actual data and reuse evidence):
 The permission reference documents the maintainer's reuse evidence; writing a
 licence string does not itself grant permission. Keep credentials out of exports.
 
+## Freshness dates
+
+The app shows one "last checked" date per entry, chosen in this order:
+
+1. `verifiedAt` (calendar date) — a visitor confirmed the entry via the **Stimmt so**
+   report; moderators set it from the `verified` issue and it survives OSM refreshes.
+2. `care.checkedAt` — the specialist directory check.
+3. `sources[].editedAt` — the OSM element's own last edit (`out meta`), filled on
+   the next `fetch-overpass-toilets.ts` run.
+4. `sources[].updatedAt` / `retrievedAt` — database snapshot or download time. This is
+   labelled "Datenstand", never as a check.
+
+Entries without any of these show "Prüfdatum unbekannt".
+
 | Provider | Remaining external requirement |
 | --- | --- |
 | [Die nette Toilette](https://die-nette-toilette.de/) | Current export, reuse permission, country and freshness metadata |

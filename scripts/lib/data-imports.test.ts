@@ -21,6 +21,11 @@ test("fetches typed geometry and venue WCs without inferring restroom access fro
   assert.equal(toilet.id, "osm_way_42");
   assert.equal(toilet.lat, 52.1);
   assert(toilet.locationNote && toilet.accessNote && toilet.sources?.[0].license);
+  assert.equal(toilet.sources[0].editedAt, undefined);
+  assert.match(accessibleToiletQuery("50,9,51,10"), /out center meta qt;/);
+  const edited = osmToilet(element({ amenity: "toilets", wheelchair: "yes" }, { timestamp: "2024-11-20T08:00:00Z" }), date, date)!;
+  assert.equal(edited.sources?.[0].editedAt, "2024-11-20T08:00:00Z");
+  assert.equal(edited.sources?.[0].updatedAt, date);
   assert.equal(osmToilet(element({ "toilets:wheelchair": "yes" },
     { type: "way", center: { lat: 44.999, lon: 10 } }), date, date), undefined);
 });

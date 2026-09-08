@@ -11,6 +11,12 @@ interface ReportSheetProps {
 
 const OPTIONS = [
   {
+    type: "confirm" as const,
+    icon: "✅",
+    label: "Stimmt so",
+    sub: "Ich war hier, die Angaben sind aktuell",
+  },
+  {
     type: "wrong" as const,
     icon: "✏️",
     label: "Daten stimmen nicht",
@@ -84,7 +90,7 @@ export const ReportSheet = memo(function ReportSheet({
           ) : (
             <>
               <Text style={styles.title}>
-                {toilet ? "Problem melden" : "Toilette melden"}
+                {toilet ? "Melden oder bestätigen" : "Toilette melden"}
               </Text>
               {toilet && (
                 <Text style={styles.subtitle} numberOfLines={1}>

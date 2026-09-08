@@ -6,6 +6,7 @@ import { ToiletHours } from './ToiletHours';
 import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
 import { ToiletSources } from './ToiletSources';
 import { isWithinAvailability } from '../utils/toilet-availability';
+import { lastChecked, lastCheckedLabel, freshnessTone } from '../utils/data-freshness';
 
 interface ToiletDetailCardProps {
   toilet: Toilet;
@@ -25,6 +26,8 @@ export function ToiletDetailCard({
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
   const is24_7 = toilet.hours?.type === '24_7' && isWithinAvailability(toilet);
 
+  const checked = lastChecked(toilet);
+  const tone = freshnessTone(checked);
   const categoryColor = CATEGORY_COLORS[toilet.category];
   const categoryLabel = CATEGORY_LABELS[toilet.category];
 
@@ -49,6 +52,15 @@ export function ToiletDetailCard({
       {(toilet.city || toilet.address) && (
         <Text style={styles.address}>{[toilet.address, toilet.city].filter(Boolean).join(', ')}</Text>
       )}
+
+      {/* Last checked: as prominent as the address, never hidden behind the sources toggle */}
+      <View style={styles.checkedRow} accessibilityRole="text">
+        <View style={[styles.checkedDot, tone === 'fresh' ? styles.dotFresh : tone === 'aging' ? styles.dotAging : styles.dotStale]} />
+        <Text style={[styles.address, styles.checkedText, !checked && styles.checkedUnknown]}>
+          {lastCheckedLabel(toilet)}
+          {tone === 'stale' && checked ? ' · evtl. veraltet' : ''}
+        </Text>
+      </View>
 
       {/* Opening Hours */}
       <View style={styles.hoursSection}>
@@ -169,6 +181,28 @@ const styles = StyleSheet.create({
   hoursSection: {
     marginBottom: 12,
   },
+  checkedRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 8,
+  },
+  checkedText: {
+    marginBottom: 0,
+    flexShrink: 1,
+  },
+  checkedUnknown: {
+    fontStyle: 'italic',
+    color: '#9aa0a6',
+  },
+  checkedDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  dotFresh: { backgroundColor: '#34a853' },
+  dotAging: { backgroundColor: '#f5a623' },
+  dotStale: { backgroundColor: '#9aa0a6' },
   unknownHours: {
     fontSize: 13,
     color: '#9aa0a6',

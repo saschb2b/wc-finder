@@ -2,8 +2,10 @@
  * Community reporting service
  * Creates structured GitHub issues for toilet data contributions
  */
+import type { Toilet } from "../types/toilet";
+import { lastCheckedLabel } from "../utils/data-freshness";
 
-export type ReportType = "wrong" | "closed" | "info" | "new" | "missing";
+export type ReportType = "confirm" | "wrong" | "closed" | "info" | "new" | "missing";
 
 interface ReportData {
   type: ReportType;
@@ -15,11 +17,17 @@ interface ReportData {
     city?: string;
   };
   details: string;
+  /** What the app currently shows as the entry's last check, for the moderator. */
+  lastChecked?: string;
   userName?: string;
   userEmail?: string;
 }
 
 const REPORT_TEMPLATES: Record<ReportType, { title: string; label: string }> = {
+  confirm: {
+    title: "✅ Confirmed On Site",
+    label: "verified",
+  },
   wrong: {
     title: "📝 Data Correction",
     label: "data-correction",
@@ -59,7 +67,9 @@ export function generateReportUrl(data: ReportData): string {
     if (data.toilet.city) {
       body += `- **City:** ${data.toilet.city}\n`;
     }
-    body += `- **Google Maps:** https://www.google.com/maps?q=${data.toilet.lat},${data.toilet.lon}\n\n`;
+    body += `- **Google Maps:** https://www.google.com/maps?q=${data.toilet.lat},${data.toilet.lon}\n`;
+    if (data.lastChecked) body += `- **Data last checked:** ${data.lastChecked}\n`;
+    body += "\n";
   }
 
   body += `### Details\n${data.details || "No details provided"}\n\n`;
@@ -85,9 +95,10 @@ export function generateReportUrl(data: ReportData): string {
 /**
  * Open report in browser or GitHub app
  */
-export function openReport(type: ReportType, toilet?: any, details?: string) {
+export function openReport(type: ReportType, toilet?: Toilet, details?: string) {
   const url = generateReportUrl({
     type,
+    lastChecked: toilet ? lastCheckedLabel(toilet) : undefined,
     toilet: toilet
       ? {
           id: toilet.id,
@@ -97,7 +108,9 @@ export function openReport(type: ReportType, toilet?: any, details?: string) {
           city: toilet.city,
         }
       : undefined,
-    details: details || "",
+    details: details || (type === "confirm" && toilet
+      ? `Reporter was on site and confirms the entry is correct. Set verifiedAt: ${new Date().toISOString().slice(0, 10)} on ${toilet.id}.`
+      : ""),
   });
 
   window.open(url, "_blank");

@@ -74,6 +74,11 @@ labels, so it is not proof that every listed restroom meets your needs. Opening
 status is an estimate from recorded hours, with no live confirmation of closures,
 occupancy, or equipment condition.
 
+Every entry shows when its data was last checked, right under the address: an
+on-site confirmation from a visitor, a directory check, the last edit in
+OpenStreetMap, or only the date the record was downloaded. Entries older than
+18 months or without any date are flagged so you can judge how far to trust them.
+Use **Stimmt so** in the report sheet after a visit to move that date forward.
 Specialist entries include separate equipment details, source links, and the date
 the directory was checked. Entry fees, key collection, venue access, and event-only
 availability are shown in the notes when known. See the [care and event data guide](docs/care-toilets.md).

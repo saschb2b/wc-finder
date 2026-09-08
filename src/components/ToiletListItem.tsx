@@ -5,6 +5,7 @@ import { formatDistance } from "../services/overpass";
 import { ToiletHours } from "./ToiletHours";
 import { CareFacilitiesDisplay } from "./CareFacilitiesDisplay";
 import { isWithinAvailability } from "../utils/toilet-availability";
+import { lastChecked, lastCheckedShort } from "../utils/data-freshness";
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -30,6 +31,7 @@ export const ToiletListItem = memo(function ToiletListItem({
   const displayName = toilet.name || "Barrierefreie Toilette";
   const catColor = CATEGORY_COLORS[toilet.category];
   const hasEurokey = toilet.tags?.includes("eurokey");
+  const checked = lastChecked(toilet);
 
   const handleFavoritePress = useCallback(
     (e: any) => {
@@ -127,6 +129,7 @@ export const ToiletListItem = memo(function ToiletListItem({
         <ToiletHours toilet={toilet} compact />
         {toilet.accessNote && <Text style={styles.city}>{toilet.accessNote}</Text>}
         {toilet.locationNote && <Text style={styles.city}>{toilet.locationNote}</Text>}
+        <Text style={[styles.checked, !checked && styles.checkedUnknown]}>{lastCheckedShort(toilet)}</Text>
       </View>
 
       {/* Right: actions */}
@@ -231,6 +234,15 @@ const styles = StyleSheet.create({
   },
   hoursRow: {
     marginTop: 3,
+  },
+  checked: {
+    fontSize: 12,
+    color: "#666",
+    marginTop: 2,
+  },
+  checkedUnknown: {
+    color: "#9aa0a6",
+    fontStyle: "italic",
   },
   actions: {
     alignItems: "center",
