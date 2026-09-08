@@ -18,7 +18,7 @@ export function mapCommandScript(command: MapCommand): string {
 }
 
 export function createMapDocument(region: MapRegion, strings: MapStrings = DEFAULT_MAP_STRINGS): string {
-  return `<!doctype html><html lang="${strings.lang}"><head><meta charset="utf-8">
+  return `<!doctype html><html lang="${strings.lang}"${strings.colorScheme === "dark" ? ' class="dark"' : ""}><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <style>${leafletCss}
@@ -30,6 +30,11 @@ html,body,#map{height:100%;width:100%;margin:0}body{font-family:system-ui,sans-s
 .route-button{display:block;margin-top:10px;width:100%;border:0;border-radius:8px;padding:10px 14px;background:#1a73e8;color:white;font-weight:600;font-size:14px;cursor:pointer}
 .leaflet-popup-content{font-size:14px;line-height:1.4}.leaflet-control-zoom a{width:38px!important;height:38px!important;line-height:38px!important}
 #tile-status{position:absolute;top:60px;left:12px;right:12px;z-index:1000;padding:10px;border-radius:8px;background:#fff3cd;color:#594500;font-size:13px;box-shadow:0 1px 5px #0002;pointer-events:none}
+html.dark #map{background:#161616}
+html.dark .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6)}
+html.dark .leaflet-control-zoom a{background:#2a2a2a;color:#e8eaed;border-color:#3c4043}
+html.dark .leaflet-control-attribution{background:rgba(30,30,30,.85);color:#bdc1c6}html.dark .leaflet-control-attribution a{color:#8ab4f8}
+html.dark #tile-status{background:#3a3000;color:#fdd663}
 </style></head><body><div id="map" aria-label="${escapeHtml(strings.title)}"></div>
 <div id="tile-status" role="status" hidden>${escapeHtml(strings.tilesUnavailable)}</div>
 <script>window.wcMapInitial=${serializeForScript(region)};window.wcMapStrings=${serializeForScript(strings)};</script>

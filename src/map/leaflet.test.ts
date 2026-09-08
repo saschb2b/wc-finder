@@ -108,6 +108,11 @@ test("programmatic focus and user zoom are distinguished; tile failure leaves pi
     assert.equal(document.querySelectorAll(".wc-marker").length, 1);
     tile.dispatchEvent(new dom.window.Event("load"));
     assert.equal(document.getElementById("tile-status")!.hidden, true);
+    // Appearance follows the app without reloading the document.
+    dom.window.eval(mapCommandScript({ type: "theme", colorScheme: "dark" }));
+    assert.equal(document.documentElement.classList.contains("dark"), true);
+    dom.window.eval(mapCommandScript({ type: "theme", colorScheme: "light" }));
+    assert.equal(document.documentElement.classList.contains("dark"), false);
   } finally { dom.window.close(); }
 });
 

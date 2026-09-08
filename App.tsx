@@ -40,6 +40,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { t, getLocale, setLocale } from "./src/i18n";
 import { detectLocale } from "./src/i18n/detect";
 import { useLocale } from "./src/i18n/useLocale";
+import { useTheme, useColorSchemeName, useThemedStyles, shadow, type Colors } from "./src/theme";
+import * as SystemUI from "expo-system-ui";
 
 type FilterMode = "now" | "all";
 
@@ -96,6 +98,13 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 function AppContent() {
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
+  const colors = useTheme();
+  const colorScheme = useColorSchemeName();
+  const styles = useThemedStyles(makeStyles);
+  // Keep the native root view (visible behind modals and during rotation) in the current scheme.
+  useEffect(() => {
+    if (!isWeb) void SystemUI.setBackgroundColorAsync(colors.background);
+  }, [colors.background]);
   const desktopWeb = isWeb && width >= 900;
   // Remount the tree on a locale change so memoized children and the map document pick it up.
   const locale = useLocale();
@@ -356,7 +365,7 @@ function AppContent() {
   if (loading && !userLocation) {
     return (
       <>
-        <StatusBar style="dark" />
+        <StatusBar style="auto" />
         <EmptyState type="loading" />
       </>
     );
@@ -368,7 +377,7 @@ function AppContent() {
   if (error && toilets.length === 0 && !userLocation) {
     return (
       <>
-        <StatusBar style="dark" />
+        <StatusBar style="auto" />
         <EmptyState type="error" onAction={refresh} message={error} />
       </>
     );
@@ -480,7 +489,7 @@ function AppContent() {
     <View style={[styles.statusPill, { top: insets.top + 8 }]} pointerEvents="none">
       {updating ? (
         <View style={styles.updatingRow}>
-          <ActivityIndicator size="small" color="#666" />
+          <ActivityIndicator size="small" color={colors.textSecondary} />
           <Text style={styles.statusText}>{t("map.updating")}</Text>
         </View>
       ) : (
@@ -500,6 +509,7 @@ function AppContent() {
       ref={mapRef}
       pins={mapPins}
       userLocation={userLocation}
+      colorScheme={colorScheme}
       initialRegion={{
         latitude: userLocation?.lat ?? 52.3759,
         longitude: userLocation?.lon ?? 9.732,
@@ -523,7 +533,7 @@ function AppContent() {
   if (desktopWeb) {
     return (
       <View style={styles.flex} key={locale}>
-        <StatusBar style="dark" />
+        <StatusBar style="auto" />
         <View style={styles.desktopRow}>
           <View style={styles.flex}>
             {map}
@@ -551,7 +561,7 @@ function AppContent() {
 
   return (
     <View style={styles.flex} key={locale}>
-      <StatusBar style="dark" />
+      <StatusBar style="auto" />
 
       {/* Onboarding Modal */}
       <OnboardingModal
@@ -614,25 +624,8 @@ function AppContent() {
   );
 }
 
-const S = {
-  blue: "#1a73e8",
-  green: "#34a853",
-  bg: "#fff",
-  textPrimary: "#1a1a1a",
-  textSecondary: "#666",
-  textMuted: "#999",
-  border: "#e8e8e8",
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
-    elevation: 3,
-  } as const,
-};
-
-const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: S.bg },
+const makeStyles = (c: Colors) => StyleSheet.create({
+  flex: { flex: 1, backgroundColor: c.surface },
   mapFull: { flex: 1 },
 
   // Status pill: small, top-left, never in the way of pins
@@ -642,10 +635,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: "#fff",
-    ...S.shadow,
+    backgroundColor: c.surface,
+    ...shadow(c),
   },
-  statusText: { fontSize: 13, color: S.textPrimary, fontWeight: "500" },
+  statusText: { fontSize: 13, color: c.text, fontWeight: "500" },
   updatingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
 
   // Location button
@@ -653,19 +646,19 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: "#fff",
+    backgroundColor: c.surface,
     alignItems: "center",
     justifyContent: "center",
-    ...S.shadow,
+    ...shadow(c),
   },
-  locBtnIcon: { fontSize: 20, color: S.blue },
+  locBtnIcon: { fontSize: 20, color: c.primary },
   desktopLocBtn: { position: "absolute", top: 90, right: 24 },
 
   // Overlay above the sheet surface (moves with the sheet)
   overlay: { height: OVERLAY_HEIGHT, justifyContent: "flex-end" },
   overlayLocRow: { alignItems: "flex-end", paddingRight: 16, paddingBottom: 8 },
   filterRow: { paddingHorizontal: 12, gap: 8, paddingBottom: 8 },
-  sideFilters: { flexDirection: "row", flexWrap: "wrap", gap: 8, padding: 12, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: S.border },
+  sideFilters: { flexDirection: "row", flexWrap: "wrap", gap: 8, padding: 12, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: c.border },
 
   // Filter chips
   chip: {
@@ -675,30 +668,30 @@ const styles = StyleSheet.create({
     minHeight: 40,
     paddingHorizontal: 14,
     borderRadius: 20,
-    backgroundColor: "#fff",
-    ...S.shadow,
+    backgroundColor: c.surface,
+    ...shadow(c),
   },
-  chipActive: { backgroundColor: S.blue },
-  chipIcon: { fontSize: 14, color: S.textSecondary },
-  chipText: { fontSize: 14, fontWeight: "600", color: S.textPrimary },
-  chipCount: { fontSize: 12, fontWeight: "700", color: S.textMuted },
-  chipTextActive: { color: "#fff" },
+  chipActive: { backgroundColor: c.primary },
+  chipIcon: { fontSize: 14, color: c.textSecondary },
+  chipText: { fontSize: 14, fontWeight: "600", color: c.text },
+  chipCount: { fontSize: 12, fontWeight: "700", color: c.textMuted },
+  chipTextActive: { color: c.onPrimary },
 
   // Sheet header states
   peekEmpty: { paddingHorizontal: 16, paddingBottom: 16, gap: 4 },
-  peekEmptyTitle: { fontSize: 16, fontWeight: "700", color: S.textPrimary },
-  peekEmptyAction: { fontSize: 14, color: S.blue, fontWeight: "600" },
+  peekEmptyTitle: { fontSize: 16, fontWeight: "700", color: c.text },
+  peekEmptyAction: { fontSize: 14, color: c.primary, fontWeight: "600" },
   errorBanner: { paddingHorizontal: 16, paddingBottom: 8 },
-  errorText: { color: "#9b2c2c", fontSize: 13 },
+  errorText: { color: c.dangerText, fontSize: 13 },
 
   // List
   listContent: { paddingTop: 4 },
   reportMissing: { alignItems: "center", paddingVertical: 16, minHeight: 44 },
-  reportMissingText: { color: S.blue, fontSize: 14, fontWeight: "600" },
+  reportMissingText: { color: c.primary, fontSize: 14, fontWeight: "600" },
 
   // Desktop web
   desktopRow: { flex: 1, flexDirection: "row" },
-  sidePanel: { width: 420, borderLeftWidth: StyleSheet.hairlineWidth, borderLeftColor: S.border, backgroundColor: S.bg },
+  sidePanel: { width: 420, borderLeftWidth: StyleSheet.hairlineWidth, borderLeftColor: c.border, backgroundColor: c.surface },
 });
 
 export default function App() {

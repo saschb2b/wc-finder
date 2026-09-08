@@ -82,6 +82,7 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 - **Key-free map**: Leaflet markers update in place; keep attribution visible and follow the OSM tile usage policy
 - **Viewport filtering**: only renders markers visible on the map (max 200), keeping the selected toilet included
 - **Categories matter**: `public_24h` (EU key, 24/7) vs `station` (train/bus) vs `tankstelle` (fuel stations) vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
+- **Theming**: colours come from `src/theme` (`useTheme`, `useThemedStyles`), never hard-coded in components. The scheme follows the system (`userInterfaceStyle: "automatic"`); the embedded map gets a `theme` command and darkens OSM tiles with a CSS filter. The splash screen (`expo-splash-screen` plugin in `app.config.js`) uses the same light/dark backgrounds as the loading screen; keep them in sync with `src/theme/colors.ts`.
 - **i18n**: all user-facing text goes through `t()` from `src/i18n` (German is the source dictionary, English the translation; keys are typed and a test enforces parity). The system language picks the locale at startup in `index.ts`; non-German devices get English. Strings inside the embedded map are passed via `MapStrings`.
 
 ## Style

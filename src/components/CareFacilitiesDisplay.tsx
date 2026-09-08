@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Linking } from "r
 import type { Toilet, EquipmentStatus } from "../types/toilet";
 import { t, formatDay } from "../i18n";
 import { Chip } from "./Chip";
+import { useThemedStyles, type Colors } from "../theme";
 
 function label(kind: "bed" | "hoist", status: EquipmentStatus) {
   const name = t(`care.${kind}`);
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export function CareFacilitiesDisplay({ toilet, inline = false, detailsOnly = false, compact = false }: Props) {
+  const styles = useThemedStyles(makeStyles);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const care = toilet.care;
   if (!care) return null;
@@ -52,11 +54,11 @@ export function CareFacilitiesDisplay({ toilet, inline = false, detailsOnly = fa
     {details}
   </View>;
 }
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: { marginTop: 4, marginBottom: 8 },
   badges: { flexDirection: "row", flexWrap: "wrap", gap: 4 },
   toggle: { paddingVertical: 12, minHeight: 44, justifyContent: "center" },
-  link: { color: "#1765bf", fontSize: 13 },
+  link: { color: c.link, fontSize: 13 },
   details: { maxHeight: 120 },
-  note: { fontSize: 13, color: "#555", lineHeight: 19, marginBottom: 4 },
+  note: { fontSize: 13, color: c.textSecondary, lineHeight: 19, marginBottom: 4 },
 });

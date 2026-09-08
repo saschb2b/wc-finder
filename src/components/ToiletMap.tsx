@@ -6,10 +6,12 @@ import { useMapBridge } from "../map/useMapBridge";
 import type { MapCommand, ToiletMapHandle, ToiletMapProps } from "../map/types";
 import { t } from "../i18n";
 import { mapStrings } from "../map/strings";
+import { useThemedStyles, type Colors } from "../theme";
 
 export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function ToiletMap(props, ref) {
+  const styles = useThemedStyles(makeStyles);
   const webView = useRef<WebView>(null);
-  const [source] = useState(() => ({ html: createMapDocument(props.initialRegion, mapStrings()), baseUrl: MAP_BASE_URL }));
+  const [source] = useState(() => ({ html: createMapDocument(props.initialRegion, mapStrings(props.colorScheme)), baseUrl: MAP_BASE_URL }));
   const send = useCallback((command: MapCommand) => webView.current?.injectJavaScript(mapCommandScript(command)), []);
   const { receive, reset } = useMapBridge(props, ref, send);
 
@@ -45,8 +47,8 @@ export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function To
   />;
 });
 
-const styles = StyleSheet.create({
-  map: { flex: 1, backgroundColor: "#e9eee7" },
+const makeStyles = (c: Colors) => StyleSheet.create({
+  map: { flex: 1, backgroundColor: c.mapBackground },
   error: { flex: 1, alignItems: "center", justifyContent: "center", padding: 20, gap: 12 },
-  retry: { color: "#1a73e8", padding: 12 },
+  retry: { color: c.link, padding: 12 },
 });

@@ -13,6 +13,7 @@ export function useMapBridge(props: ToiletMapProps, ref: Ref<ToiletMapHandle>, s
   }, [send]);
 
   useEffect(() => { if (ready.current) sendData(); }, [props.pins, props.userLocation, sendData]);
+  useEffect(() => { if (ready.current) send({ type: "theme", colorScheme: props.colorScheme }); }, [props.colorScheme, send]);
 
   useImperativeHandle(ref, () => ({
     animateToRegion(region, duration = 500) {
@@ -28,6 +29,7 @@ export function useMapBridge(props: ToiletMapProps, ref: Ref<ToiletMapHandle>, s
     if (event.type === "ready") {
       ready.current = true;
       sendData();
+      send({ type: "theme", colorScheme: latest.current.colorScheme });
       if (pendingFocus.current) { send(pendingFocus.current); pendingFocus.current = null; }
     } else if (event.type === "region") latest.current.onRegionChange(event.region, event.isGesture);
     else if (event.type === "select") latest.current.onSelect(event.id);

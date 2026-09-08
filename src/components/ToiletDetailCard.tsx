@@ -8,6 +8,7 @@ import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
 import { ToiletSources } from './ToiletSources';
 import { Chip } from './Chip';
 import { lastChecked, lastCheckedLabel, freshnessTone } from '../utils/data-freshness';
+import { useThemedStyles, type Colors } from "../theme";
 
 interface ToiletDetailCardProps {
   toilet: Toilet;
@@ -22,6 +23,7 @@ export function ToiletDetailCard({
   onNavigate,
   onReport
 }: ToiletDetailCardProps) {
+  const styles = useThemedStyles(makeStyles);
   const hasEurokey = toilet.tags?.includes('eurokey');
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
 
@@ -102,14 +104,14 @@ export function ToiletDetailCard({
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: c.surface,
     borderRadius: 16,
     padding: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: c.shadowOpacity,
     shadowRadius: 8,
     elevation: 4,
     margin: 16,
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     borderWidth: 2,
-    borderColor: '#1a73e8',
+    borderColor: c.primary,
   },
   header: {
     flexDirection: 'row',
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   categoryText: {
-    color: '#fff',
+    color: c.onPrimary,
     fontSize: 11,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -140,18 +142,18 @@ const styles = StyleSheet.create({
   distance: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: c.text,
   },
   name: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: c.text,
     marginBottom: 4,
     lineHeight: 24,
   },
   address: {
     fontSize: 14,
-    color: '#666',
+    color: c.textSecondary,
     marginBottom: 8,
   },
   hoursSection: {
@@ -161,15 +163,15 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   checkedStale: {
-    color: '#b06000',
+    color: c.warningText,
   },
   checkedUnknown: {
     fontStyle: 'italic',
-    color: '#9aa0a6',
+    color: c.textMuted,
   },
   unknownHours: {
     fontSize: 13,
-    color: '#9aa0a6',
+    color: c.textMuted,
     fontStyle: 'italic',
   },
   tagsRow: {
@@ -192,22 +194,22 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   primaryButton: {
-    backgroundColor: '#1a73e8',
+    backgroundColor: c.primary,
     flex: 1,
   },
   secondaryButton: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: c.surfaceAlt,
   },
   buttonIcon: {
     fontSize: 16,
   },
   primaryButtonText: {
-    color: '#fff',
+    color: c.onPrimary,
     fontSize: 15,
     fontWeight: '700',
   },
   secondaryButtonText: {
-    color: '#666',
+    color: c.textSecondary,
     fontSize: 14,
     fontWeight: '600',
   },

@@ -13,8 +13,12 @@ execFileSync(process.execPath, [require.resolve('expo/bin/cli'), 'export',
   '--platform', 'web', '--output-dir', 'dist/app', '--max-workers', '2'], {
   stdio: 'inherit', env: { ...process.env, WEB_BASE_PATH: appBase },
 });
+// Paint the theme background before the bundle runs so dark-mode users see no white flash.
+const preloadStyle = '<style>html{background:#f8f9fa;color-scheme:light dark}'
+  + '@media (prefers-color-scheme:dark){html{background:#121212}}</style>';
 const appHtml = fs.readFileSync('dist/app/index.html', 'utf8')
   .replace('<html lang="en">', '<html lang="de">')
+  .replace('</head>', `${preloadStyle}</head>`)
   .replace('You need to enable JavaScript to run this app.',
     'Bitte aktiviere JavaScript, um WC Finder im Browser zu verwenden.');
 fs.writeFileSync('dist/app/index.html', appHtml);

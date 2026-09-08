@@ -4,12 +4,8 @@ export default {
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
-  userInterfaceStyle: "light",
-  splash: {
-    image: "./assets/splash-icon.png",
-    resizeMode: "contain",
-    backgroundColor: "#1a73e8",
-  },
+  // Follow the system appearance; expo-system-ui makes Android honour this.
+  userInterfaceStyle: "automatic",
   ios: {
     supportsTablet: true,
     bundleIdentifier: "com.saschb2b.wcfinder",
@@ -42,6 +38,22 @@ export default {
     baseUrl: process.env.WEB_BASE_PATH || "",
   },
   plugins: [
+    // Splash matches the app's loading screen in both appearances (see src/theme/colors.ts),
+    // so launch -> loading -> map is one continuous surface. Icon width follows the
+    // Android 12 system splash convention of a centred icon on a plain background.
+    [
+      "expo-splash-screen",
+      {
+        image: "./assets/splash-icon.png",
+        imageWidth: 200,
+        resizeMode: "contain",
+        backgroundColor: "#f8f9fa",
+        dark: {
+          image: "./assets/splash-icon-dark.png",
+          backgroundColor: "#121212",
+        },
+      },
+    ],
     "expo-status-bar",
     [
       "expo-location",

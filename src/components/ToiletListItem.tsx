@@ -6,6 +6,7 @@ import { formatDistance } from "../services/overpass";
 import { ToiletHours } from "./ToiletHours";
 import { CareFacilitiesDisplay } from "./CareFacilitiesDisplay";
 import { lastChecked, lastCheckedShort } from "../utils/data-freshness";
+import { useThemedStyles, type Colors } from "../theme";
 
 interface ToiletListItemProps {
   toilet: Toilet;
@@ -28,6 +29,7 @@ export const ToiletListItem = memo(function ToiletListItem({
   onToggleFavorite,
   onReport,
 }: ToiletListItemProps) {
+  const styles = useThemedStyles(makeStyles);
   const displayName = toilet.name || t("toilet.fallbackName");
   const catColor = CATEGORY_COLORS[toilet.category];
   const hasEurokey = toilet.tags?.includes("eurokey");
@@ -155,21 +157,21 @@ export const ToiletListItem = memo(function ToiletListItem({
   );
 });
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#e8e8e8",
-    backgroundColor: "#fff",
+    borderBottomColor: c.border,
+    backgroundColor: c.surface,
   },
   nearestContainer: {
-    backgroundColor: "#f4fbf5",
+    backgroundColor: c.successSoft,
   },
   selectedContainer: {
-    backgroundColor: "#e8f4fd",
+    backgroundColor: c.primarySoft,
   },
   favButton: {
     width: 44,
@@ -178,8 +180,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 4,
   },
-  favIcon: { fontSize: 22, color: "#d0d0d0" },
-  favIconActive: { color: "#f5a623" },
+  favIcon: { fontSize: 22, color: c.handle },
+  favIconActive: { color: c.favorite },
   info: {
     flex: 1,
     marginRight: 10,
@@ -193,14 +195,14 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 15,
     fontWeight: "600",
-    color: "#1a1a1a",
+    color: c.text,
     flex: 1,
     marginRight: 8,
   },
   distance: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#555",
+    color: c.textSecondary,
   },
   tagRow: {
     flexDirection: "row",
@@ -212,18 +214,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 6,
-    backgroundColor: "#e0e0e0",
+    backgroundColor: c.border,
   },
   tagText: {
     fontSize: 10,
     fontWeight: "700",
-    color: "#fff",
+    color: c.onPrimary,
   },
-  tagEurokey: { backgroundColor: "#1a73e8" },
-  tagNearest: { backgroundColor: "#34a853" },
+  tagEurokey: { backgroundColor: c.primary },
+  tagNearest: { backgroundColor: c.success },
   city: {
     fontSize: 12,
-    color: "#666",
+    color: c.textSecondary,
     marginTop: 2,
   },
   hoursRow: {
@@ -231,11 +233,11 @@ const styles = StyleSheet.create({
   },
   checked: {
     fontSize: 12,
-    color: "#666",
+    color: c.textSecondary,
     marginTop: 2,
   },
   checkedUnknown: {
-    color: "#9aa0a6",
+    color: c.textMuted,
     fontStyle: "italic",
   },
   actions: {
@@ -243,13 +245,13 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   navButton: {
-    backgroundColor: "#1a73e8",
+    backgroundColor: c.primary,
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 22,
   },
   navButtonText: {
-    color: "#fff",
+    color: c.onPrimary,
     fontSize: 14,
     fontWeight: "700",
   },
@@ -259,7 +261,7 @@ const styles = StyleSheet.create({
   },
   reportText: {
     fontSize: 11,
-    color: "#1a73e8",
+    color: c.link,
     fontWeight: "500",
   },
 });

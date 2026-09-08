@@ -5,6 +5,7 @@ import { CATEGORY_COLORS } from "../types/toilet";
 import { formatDistance } from "../services/overpass";
 import { ToiletHours } from "./ToiletHours";
 import { t, categoryLabel } from "../i18n";
+import { useThemedStyles, type Colors } from "../theme";
 
 interface Props {
   toilet: Toilet;
@@ -15,6 +16,7 @@ interface Props {
 
 /** The always-visible sheet summary: what it is, how far, whether it is open, and the way there. */
 export function ToiletPeekCard({ toilet, isSelected, onNavigate, onList }: Props) {
+  const styles = useThemedStyles(makeStyles);
   return (
     <View style={styles.container}>
       <View style={styles.info}>
@@ -40,18 +42,18 @@ export function ToiletPeekCard({ toilet, isSelected, onNavigate, onList }: Props
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: { paddingHorizontal: 16, paddingBottom: 12, gap: 10 },
   info: { gap: 4 },
   row: { flexDirection: "row", alignItems: "center", gap: 8 },
   badge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 10 },
-  badgeText: { color: "#fff", fontSize: 10, fontWeight: "700", textTransform: "uppercase", letterSpacing: 0.5 },
-  nearest: { fontSize: 12, color: "#34a853", fontWeight: "600" },
-  distance: { marginLeft: "auto", fontSize: 15, fontWeight: "700", color: "#1a1a1a" },
-  name: { fontSize: 17, fontWeight: "700", color: "#1a1a1a" },
+  badgeText: { color: c.onPrimary, fontSize: 10, fontWeight: "700", textTransform: "uppercase", letterSpacing: 0.5 },
+  nearest: { fontSize: 12, color: c.success, fontWeight: "600" },
+  distance: { marginLeft: "auto", fontSize: 15, fontWeight: "700", color: c.text },
+  name: { fontSize: 17, fontWeight: "700", color: c.text },
   actions: { flexDirection: "row", gap: 10 },
-  route: { flex: 1, backgroundColor: "#1a73e8", borderRadius: 12, paddingVertical: 12, alignItems: "center", minHeight: 44 },
-  routeText: { color: "#fff", fontSize: 15, fontWeight: "700" },
-  list: { backgroundColor: "#f0f0f0", borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, alignItems: "center", minHeight: 44 },
-  listText: { color: "#333", fontSize: 15, fontWeight: "600" },
+  route: { flex: 1, backgroundColor: c.primary, borderRadius: 12, paddingVertical: 12, alignItems: "center", minHeight: 44 },
+  routeText: { color: c.onPrimary, fontSize: 15, fontWeight: "700" },
+  list: { backgroundColor: c.surfaceAlt, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, alignItems: "center", minHeight: 44 },
+  listText: { color: c.text, fontSize: 15, fontWeight: "600" },
 });

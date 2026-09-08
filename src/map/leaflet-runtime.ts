@@ -147,6 +147,7 @@ function updateData(data: MapData) {
 window.wcMapReceive = command => {
   if (command.type === "sync") { post({ type: "ready" }); sendRegion(); }
   else if (command.type === "data") updateData(command.data);
+  else if (command.type === "theme") document.documentElement.classList.toggle("dark", command.colorScheme === "dark");
   else if (command.type === "focus" && isMapRegion(command.region)) focus(command.region, command.duration);
 };
 window.addEventListener("message", event => {

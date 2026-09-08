@@ -8,6 +8,7 @@ export interface MapRegion {
 /** Text shown inside the embedded map document. */
 export interface MapStrings {
   lang: string;
+  colorScheme: "light" | "dark";
   title: string;
   zoomIn: string;
   zoomOut: string;
@@ -18,6 +19,7 @@ export interface MapStrings {
 
 export const DEFAULT_MAP_STRINGS: MapStrings = {
   lang: "de",
+  colorScheme: "light",
   title: "Karte mit öffentlichen Toiletten",
   zoomIn: "Vergrößern",
   zoomOut: "Verkleinern",
@@ -43,6 +45,7 @@ export interface MapData {
 
 export type MapCommand =
   | { type: "sync" }
+  | { type: "theme"; colorScheme: "light" | "dark" }
   | { type: "data"; data: MapData }
   | { type: "focus"; region: MapRegion; duration: number };
 
@@ -58,6 +61,7 @@ export interface ToiletMapHandle {
 
 export interface ToiletMapProps extends MapData {
   initialRegion: MapRegion;
+  colorScheme: "light" | "dark";
   onSelect: (id: string) => void;
   onDeselect?: () => void;
   onNavigate: (id: string) => void;

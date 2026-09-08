@@ -4,8 +4,10 @@ import type { Toilet } from "../types/toilet";
 import { availabilityLabel, isWithinAvailability } from "../utils/toilet-availability";
 import { OpeningHoursDisplay } from "./OpeningHoursDisplay";
 import { t } from "../i18n";
+import { useThemedStyles, type Colors } from "../theme";
 
 export function ToiletHours({ toilet, compact = false }: { toilet: Toilet; compact?: boolean }) {
+  const styles = useThemedStyles(makeStyles);
   const availability = availabilityLabel(toilet);
   const available = isWithinAvailability(toilet);
   return <View>
@@ -17,7 +19,7 @@ export function ToiletHours({ toilet, compact = false }: { toilet: Toilet; compa
         </Text>)}
   </View>;
 }
-const styles = StyleSheet.create({
-  note: { color: "#666", fontSize: 12, lineHeight: 17 },
-  closed: { color: "#a33b25" },
+const makeStyles = (c: Colors) => StyleSheet.create({
+  note: { color: c.textSecondary, fontSize: 12, lineHeight: 17 },
+  closed: { color: c.dangerText },
 });

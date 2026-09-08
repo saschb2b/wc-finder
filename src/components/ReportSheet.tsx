@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import { Toilet } from "../types/toilet";
 import { openReport } from "../services/report";
 import { t } from "../i18n";
+import { useThemedStyles, type Colors } from "../theme";
 
 interface ReportSheetProps {
   toilet?: Toilet;
@@ -23,6 +24,7 @@ export const ReportSheet = memo(function ReportSheet({
   visible,
   onClose,
 }: ReportSheetProps) {
+  const styles = useThemedStyles(makeStyles);
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleOptionPress = (type: (typeof OPTIONS)[0]["type"]) => {
@@ -108,14 +110,14 @@ export const ReportSheet = memo(function ReportSheet({
   );
 });
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   backdrop: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.4)",
     justifyContent: "flex-end",
   },
   sheet: {
-    backgroundColor: "#fff",
+    backgroundColor: c.surface,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 12,
@@ -126,18 +128,18 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: 2,
-    backgroundColor: "#d0d0d0",
+    backgroundColor: c.handle,
     alignSelf: "center",
     marginBottom: 16,
   },
   title: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#1a1a1a",
+    color: c.text,
   },
   subtitle: {
     fontSize: 14,
-    color: "#888",
+    color: c.textMuted,
     marginTop: 2,
   },
   options: {
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 4,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#eee",
+    borderBottomColor: c.border,
   },
   optionIcon: {
     fontSize: 24,
@@ -162,24 +164,24 @@ const styles = StyleSheet.create({
   optionLabel: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#1a1a1a",
+    color: c.text,
   },
   optionSub: {
     fontSize: 13,
-    color: "#888",
+    color: c.textMuted,
     marginTop: 1,
   },
   cancelBtn: {
     marginTop: 16,
     alignItems: "center",
     paddingVertical: 14,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: c.surfaceAlt,
     borderRadius: 24,
   },
   cancelText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#666",
+    color: c.textSecondary,
   },
   confirmContainer: {
     alignItems: "center",
@@ -188,17 +190,17 @@ const styles = StyleSheet.create({
   },
   confirmIcon: {
     fontSize: 48,
-    color: "#34a853",
+    color: c.success,
     fontWeight: "700",
   },
   confirmTitle: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#1a1a1a",
+    color: c.text,
   },
   confirmSub: {
     fontSize: 14,
-    color: "#888",
+    color: c.textMuted,
     textAlign: "center",
   },
 });

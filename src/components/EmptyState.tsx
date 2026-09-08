@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { lightImpact } from '../utils/haptics';
 import { t } from '../i18n';
+import { useThemedStyles, type Colors } from "../theme";
 
 interface EmptyStateProps {
   type: 'no-results' | 'no-location' | 'error' | 'loading';
@@ -17,6 +18,7 @@ const configs = {
 } as const;
 
 export function EmptyState({ type, onAction, message }: EmptyStateProps) {
+  const styles = useThemedStyles(makeStyles);
   const config = configs[type];
   const title = t(`empty.${config.key}.title`);
   const description = t(`empty.${config.key}.description`);
@@ -43,13 +45,13 @@ export function EmptyState({ type, onAction, message }: EmptyStateProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 32,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: c.background,
   },
   icon: {
     fontSize: 48,
@@ -58,25 +60,25 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1a1a1a',
+    color: c.text,
     textAlign: 'center',
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: '#666',
+    color: c.textSecondary,
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: 24,
   },
   button: {
-    backgroundColor: '#1a73e8',
+    backgroundColor: c.primary,
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 22,
   },
   buttonText: {
-    color: '#fff',
+    color: c.onPrimary,
     fontSize: 14,
     fontWeight: '600',
   },

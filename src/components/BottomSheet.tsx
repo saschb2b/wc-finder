@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState, type ReactNode } from "react";
 import { Animated, PanResponder, StyleSheet, View, TouchableOpacity } from "react-native";
 import { t } from "../i18n";
+import { useThemedStyles, type Colors } from "../theme";
 
 export interface BottomSheetHandle { snapTo: (index: number) => void }
 
@@ -23,6 +24,7 @@ interface BottomSheetProps {
 export const BottomSheet = forwardRef<BottomSheetHandle, BottomSheetProps>(function BottomSheet(
   { snapPoints, overlay, header, children, onIndexChange }, ref,
 ) {
+  const styles = useThemedStyles(makeStyles);
   const maxHeight = snapPoints[snapPoints.length - 1];
   const minHeight = snapPoints[0];
   const [index, setIndex] = useState(0);
@@ -89,20 +91,20 @@ export const BottomSheet = forwardRef<BottomSheetHandle, BottomSheetProps>(funct
   );
 });
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: { position: "absolute", left: 0, right: 0, bottom: 0 },
   surface: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: c.surface,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.08,
+    shadowOpacity: c.shadowOpacity,
     shadowRadius: 6,
     elevation: 8,
   },
   handleArea: { alignItems: "center", paddingVertical: 10 },
-  handle: { width: 40, height: 5, borderRadius: 3, backgroundColor: "#d0d0d0" },
+  handle: { width: 40, height: 5, borderRadius: 3, backgroundColor: c.handle },
   body: { flex: 1 },
 });

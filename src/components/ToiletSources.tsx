@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import type { Toilet } from "../types/toilet";
 import { t, formatDay } from "../i18n";
+import { useThemedStyles, type Colors } from "../theme";
 
 export function ToiletSources({ toilet }: { toilet: Toilet }) {
+  const styles = useThemedStyles(makeStyles);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   if (!toilet.sources?.length) return null;
   const expanded = expandedId === toilet.id;
@@ -20,8 +22,8 @@ export function ToiletSources({ toilet }: { toilet: Toilet }) {
     </View>)}
   </View>;
 }
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   toggle: { paddingVertical: 10 },
-  link: { color: "#1765bf", fontSize: 13 },
-  note: { color: "#666", fontSize: 12, marginBottom: 8 },
+  link: { color: c.link, fontSize: 13 },
+  note: { color: c.textSecondary, fontSize: 12, marginBottom: 8 },
 });

@@ -7,7 +7,7 @@ import { mapStrings } from "../map/strings";
 
 export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function ToiletMap(props, ref) {
   const iframe = useRef<HTMLIFrameElement>(null);
-  const [html] = useState(() => createMapDocument(props.initialRegion, mapStrings()));
+  const [html] = useState(() => createMapDocument(props.initialRegion, mapStrings(props.colorScheme)));
   const send = useCallback((command: MapCommand) => iframe.current?.contentWindow?.postMessage(JSON.stringify(command), "*"), []);
   const { receive } = useMapBridge(props, ref, send);
   useEffect(() => {

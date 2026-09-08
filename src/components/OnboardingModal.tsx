@@ -9,6 +9,7 @@ import {
 import { mediumImpact, successNotification } from '../utils/haptics';
 import { totalCount } from '../data/tile-index.json';
 import { t, formatNumber } from '../i18n';
+import { useThemedStyles, type Colors } from "../theme";
 
 interface OnboardingModalProps {
   visible: boolean;
@@ -29,6 +30,7 @@ export function OnboardingModal({
   onComplete,
   onRequestLocation,
 }: OnboardingModalProps) {
+  const styles = useThemedStyles(makeStyles);
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = buildSlides();
 
@@ -95,10 +97,10 @@ export function OnboardingModal({
   );
 }
 
-const styles = StyleSheet.create({
+const makeStyles = (c: Colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: c.surface,
     paddingHorizontal: 32,
     paddingTop: 60,
     paddingBottom: 40,
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
   },
   skipText: {
     fontSize: 14,
-    color: '#666',
+    color: c.textSecondary,
     fontWeight: '500',
   },
   content: {
@@ -124,13 +126,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: c.text,
     textAlign: 'center',
     marginBottom: 16,
   },
   description: {
     fontSize: 16,
-    color: '#666',
+    color: c.textSecondary,
     textAlign: 'center',
     lineHeight: 24,
   },
@@ -144,21 +146,21 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#ddd',
+    backgroundColor: c.border,
   },
   dotActive: {
-    backgroundColor: '#1a73e8',
+    backgroundColor: c.primary,
     width: 24,
   },
   button: {
-    backgroundColor: '#1a73e8',
+    backgroundColor: c.primary,
     paddingVertical: 16,
     paddingHorizontal: 32,
     borderRadius: 28,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: c.onPrimary,
     fontSize: 16,
     fontWeight: '700',
   },

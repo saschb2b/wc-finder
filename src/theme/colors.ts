@@ -1,0 +1,61 @@
+/**
+ * Colour tokens for both appearances. Dark follows the usual guidance: a dark
+ * grey base instead of pure black, lighter surfaces for raised elements,
+ * desaturated accents, and off-white text to limit glare.
+ */
+export const light = {
+  background: "#f8f9fa",
+  surface: "#ffffff",
+  surfaceAlt: "#f0f1f3",
+  surfaceMuted: "#f7f7f7",
+  mapBackground: "#e9eee7",
+  text: "#1a1a1a",
+  textSecondary: "#5f6368",
+  textMuted: "#9aa0a6",
+  border: "#e8e8e8",
+  handle: "#d0d0d0",
+  primary: "#1a73e8",
+  onPrimary: "#ffffff",
+  primarySoft: "#e8f4fd",
+  link: "#1765bf",
+  success: "#34a853",
+  successSoft: "#e6f4ea",
+  successText: "#236738",
+  danger: "#ea4335",
+  dangerSoft: "#fce8e8",
+  dangerText: "#9b2c2c",
+  warningText: "#b06000",
+  favorite: "#f5a623",
+  backdrop: "rgba(0,0,0,0.5)",
+  shadowOpacity: 0.12,
+};
+
+export type Colors = typeof light;
+
+export const dark: Colors = {
+  background: "#121212",
+  surface: "#1e1e1e",
+  surfaceAlt: "#2a2a2a",
+  surfaceMuted: "#242424",
+  mapBackground: "#161616",
+  text: "#e8eaed",
+  textSecondary: "#bdc1c6",
+  textMuted: "#9aa0a6",
+  border: "#3c4043",
+  handle: "#5f6368",
+  primary: "#8ab4f8",
+  onPrimary: "#0b1a33",
+  primarySoft: "#1f2d40",
+  link: "#8ab4f8",
+  success: "#81c995",
+  successSoft: "#1e3326",
+  successText: "#a8dab5",
+  danger: "#f28b82",
+  dangerSoft: "#3b2220",
+  dangerText: "#f6aea9",
+  warningText: "#fdd663",
+  favorite: "#fdd663",
+  backdrop: "rgba(0,0,0,0.7)",
+  shadowOpacity: 0.4,
+};
+
