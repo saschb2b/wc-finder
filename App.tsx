@@ -35,6 +35,9 @@ import { OnboardingModal } from "./src/components/OnboardingModal";
 import { EmptyState } from "./src/components/EmptyState";
 import { mediumImpact, successNotification } from "./src/utils/haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { t, getLocale, setLocale } from "./src/i18n";
+import { detectLocale } from "./src/i18n/detect";
+import { useLocale } from "./src/i18n/useLocale";
 
 // Filter type must be defined outside component
 type FilterMode = "now" | "all";
@@ -55,20 +58,20 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 
   if (openStatus === false && showClosedWarning) {
     // Show warning before navigating
-    const hoursText = availabilityLabel(toilet) || toilet.care?.hoursNote || toilet.hours?.original || "unbekannt";
+    const hoursText = availabilityLabel(toilet) || toilet.care?.hoursNote || toilet.hours?.original || t("unknown");
     if (isWeb) {
-      if (window.confirm(`„${toilet.name}“ ist laut hinterlegten Zeiten geschlossen (${hoursText}). Trotzdem Navigation starten?`)) {
+      if (window.confirm(t("nav.closedMessage", { name: toilet.name, hours: hoursText }))) {
         openNavigation(toilet, false);
       }
       return;
     }
     Alert.alert(
-      "Toilette geschlossen",
-      `\"${toilet.name}\" ist aktuell geschlossen (Öffnungszeiten: ${hoursText}).\n\nTrotzdem Navigation starten?`,
+      t("nav.closedTitle"),
+      t("nav.closedMessageNative", { name: toilet.name, hours: hoursText }),
       [
-        { text: "Abbrechen", style: "cancel" },
+        { text: t("action.cancel"), style: "cancel" },
         {
-          text: "Trotzdem navigieren",
+          text: t("nav.anyway"),
           style: "default",
           onPress: () => openNavigation(toilet, false), // Skip warning on retry
         },
@@ -88,6 +91,8 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 function AppContent() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
+  // Remount the tree on a locale change so memoized children and the map document pick it up.
+  const locale = useLocale();
   const desktopWeb = isWeb && width >= 900;
   const {
     toilets,
@@ -133,7 +138,13 @@ function AppContent() {
   useEffect(() => {
     const update = () => setNow(new Date());
     const timer = setInterval(update, 60000);
-    const subscription = AppState.addEventListener("change", state => { if (state === "active") update(); });
+    const subscription = AppState.addEventListener("change", state => {
+      if (state !== "active") return;
+      update();
+      // Android keeps the app alive across a system language change; iOS restarts it.
+      const locale = detectLocale();
+      if (locale !== getLocale()) setLocale(locale);
+    });
     return () => { clearInterval(timer); subscription.remove(); };
   }, []);
   const [reportToilet, setReportToilet] = useState<Toilet | undefined>(
@@ -373,7 +384,7 @@ function AppContent() {
               filterMode === "now" && styles.toggleTextActive,
             ]}
           >
-            Jetzt geöffnet
+            {t("filter.openNow")}
           </Text>
           <View
             style={[styles.badge, filterMode === "now" && styles.badgeActive]}
@@ -406,7 +417,7 @@ function AppContent() {
               filterMode === "all" && styles.toggleTextActive,
             ]}
           >
-            Alle
+            {t("filter.all")}
           </Text>
           <View
             style={[styles.badge, filterMode === "all" && styles.badgeActive]}
@@ -427,7 +438,7 @@ function AppContent() {
       <View style={styles.secondaryToggles}>
         <TouchableOpacity
           accessibilityRole="checkbox"
-          accessibilityLabel="Nur Favoriten"
+          accessibilityLabel={t("filter.favoritesOnly")}
           accessibilityState={{ checked: showFavoritesOnly }}
           aria-checked={showFavoritesOnly}
           style={[
@@ -452,13 +463,13 @@ function AppContent() {
               showFavoritesOnly && styles.secondaryTextActive,
             ]}
           >
-            Favoriten
+            {t("filter.favorites")}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           accessibilityRole="checkbox"
-          accessibilityLabel="Mit Eurokey"
+          accessibilityLabel={t("filter.withEurokey")}
           accessibilityState={{ checked: requireEurokey }}
           aria-checked={requireEurokey}
           style={[
@@ -481,13 +492,13 @@ function AppContent() {
               requireEurokey && styles.secondaryTextActive,
             ]}
           >
-            Eurokey
+            {t("toilet.eurokey")}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           accessibilityRole="checkbox"
-          accessibilityLabel="Rollstuhlgerecht"
+          accessibilityLabel={t("filter.wheelchairA11y")}
           accessibilityState={{ checked: wheelchairOnly }}
           aria-checked={wheelchairOnly}
           style={[
@@ -510,17 +521,17 @@ function AppContent() {
               wheelchairOnly && styles.secondaryTextActive,
             ]}
           >
-            Rollstuhl
+            {t("filter.wheelchair")}
           </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.secondaryToggles}>
         {([
-          ["Pflegeliege", requireBed, setRequireBed],
-          ["Lifter", requireHoist, setRequireHoist],
+          [t("care.bed"), requireBed, setRequireBed],
+          [t("care.hoist"), requireHoist, setRequireHoist],
         ] as const).map(([label, checked, setChecked]) => (
           <TouchableOpacity key={label} accessibilityRole="checkbox"
-            accessibilityLabel={`Mit verfügbarer Ausstattung: ${label}`} accessibilityState={{ checked }}
+            accessibilityLabel={t("filter.withEquipment", { label })} accessibilityState={{ checked }}
             aria-checked={checked}
             style={[styles.secondaryBtn, checked && styles.secondaryBtnActive]}
             onPress={() => { mediumImpact(); setChecked(!checked); setSelectedToilet(null); }}>
@@ -542,12 +553,12 @@ function AppContent() {
         <View style={styles.modalHeader}>
           <Text style={styles.modalTitle}>
             {showFavoritesOnly
-              ? "Favoriten"
+              ? t("list.favorites")
               : wheelchairOnly
-                ? "Barrierefreie Toiletten"
+                ? t("list.accessible")
                 : filterMode === "now"
-                  ? "Geöffnete Toiletten"
-                  : "Alle Toiletten"}
+                  ? t("list.open")
+                  : t("list.all")}
           </Text>
           <View style={styles.modalHeaderActions}>
             <TouchableOpacity
@@ -558,7 +569,7 @@ function AppContent() {
               style={styles.modalReportBtn}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <Text style={styles.modalReportText}>+ Melden</Text>
+              <Text style={styles.modalReportText}>{t("list.report")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setListExpanded(false)}
@@ -620,7 +631,7 @@ function AppContent() {
 
   // --- NATIVE ---
   return (
-    <View style={styles.flex}>
+    <View style={styles.flex} key={locale}>
       <StatusBar style="dark" />
 
       {/* Onboarding Modal */}
@@ -661,15 +672,15 @@ function AppContent() {
           {updating ? (
             <View style={styles.updatingRow}>
               <ActivityIndicator size="small" color="#666" />
-              <Text style={styles.updatingText}>Aktualisiere…</Text>
+              <Text style={styles.updatingText}>{t("map.updating")}</Text>
             </View>
           ) : (
             <Text style={styles.locationPillText}>
               {exploreBounds
-                ? `🔍 ${visibleToilets.length} Toiletten`
+                ? `🔍 ${t("list.toiletsCount", { n: visibleToilets.length })}`
                 : searchLocation
-                  ? "📍 Kartenstandort"
-                  : "📍 Mein Standort"}
+                  ? t("map.mapLocation")
+                  : t("map.myLocation")}
             </Text>
           )}
         </View>
@@ -678,7 +689,7 @@ function AppContent() {
         <TouchableOpacity
           style={[styles.locBtn, { bottom: desktopWeb ? undefined : 140 + insets.bottom }, desktopWeb && { top: 90, right: 24 }]}
           accessibilityRole="button"
-          accessibilityLabel="Meinen Standort verwenden"
+          accessibilityLabel={t("map.useMyLocation")}
           onPress={focusUser}
           activeOpacity={0.8}
         >
@@ -690,7 +701,7 @@ function AppContent() {
       <View style={[styles.panel, { paddingBottom: insets.bottom }, desktopWeb && { position: "absolute", right: 24, bottom: 24, width: 400, borderRadius: 16 }]}>
         {error && (
           <TouchableOpacity accessibilityRole="button" onPress={refresh} style={{ padding: 12 }}>
-            <Text accessibilityRole="alert" style={{ color: "#9b2c2c" }}>{error} Erneut versuchen</Text>
+            <Text accessibilityRole="alert" style={{ color: "#9b2c2c" }}>{error} {t("action.retry")}</Text>
           </TouchableOpacity>
         )}
         {/* Nearest card */}
@@ -704,7 +715,7 @@ function AppContent() {
             activeOpacity={0.8}
           >
             <Text style={styles.listButtonText}>
-              {filteredToilets.length} Toiletten anzeigen
+              {t("list.show", { n: filteredToilets.length })}
             </Text>
             <Text style={styles.listButtonIcon}>⌄</Text>
           </TouchableOpacity>

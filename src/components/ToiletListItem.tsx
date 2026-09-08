@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from "../types/toilet";
+import { Toilet, CATEGORY_COLORS } from "../types/toilet";
+import { t, categoryLabel } from "../i18n";
 import { formatDistance } from "../services/overpass";
 import { ToiletHours } from "./ToiletHours";
 import { CareFacilitiesDisplay } from "./CareFacilitiesDisplay";
@@ -28,7 +29,7 @@ export const ToiletListItem = memo(function ToiletListItem({
   onToggleFavorite,
   onReport,
 }: ToiletListItemProps) {
-  const displayName = toilet.name || "Barrierefreie Toilette";
+  const displayName = toilet.name || t("toilet.fallbackName");
   const catColor = CATEGORY_COLORS[toilet.category];
   const hasEurokey = toilet.tags?.includes("eurokey");
   const checked = lastChecked(toilet);
@@ -77,7 +78,7 @@ export const ToiletListItem = memo(function ToiletListItem({
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           accessibilityRole="button"
           accessibilityLabel={
-            isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"
+            isFavorite ? t("action.removeFromFavorites") : t("action.addToFavorites")
           }
         >
           <Text style={[styles.favIcon, isFavorite && styles.favIconActive]}>
@@ -104,22 +105,22 @@ export const ToiletListItem = memo(function ToiletListItem({
         <View style={styles.tagRow}>
           <View style={[styles.tag, { backgroundColor: catColor }]}>
             <Text style={styles.tagText}>
-              {CATEGORY_LABELS[toilet.category]}
+              {categoryLabel(toilet.category)}
             </Text>
           </View>
           {hasEurokey && (
             <View style={[styles.tag, styles.tagEurokey]}>
-              <Text style={styles.tagText}>Eurokey</Text>
+              <Text style={styles.tagText}>{t("toilet.eurokey")}</Text>
             </View>
           )}
           {toilet.hours?.type === "24_7" && isWithinAvailability(toilet) && (
             <View style={[styles.tag, styles.tag24h]}>
-              <Text style={styles.tagText}>24/7</Text>
+              <Text style={styles.tagText}>{t("toilet.247")}</Text>
             </View>
           )}
           {isNearest && (
             <View style={[styles.tag, styles.tagNearest]}>
-              <Text style={styles.tagText}>Nächste</Text>
+              <Text style={styles.tagText}>{t("toilet.nearest")}</Text>
             </View>
           )}
         </View>
@@ -140,9 +141,9 @@ export const ToiletListItem = memo(function ToiletListItem({
           activeOpacity={0.8}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           accessibilityRole="button"
-          accessibilityLabel="Route berechnen"
+          accessibilityLabel={t("action.routeA11y")}
         >
-          <Text style={styles.navButtonText}>Route</Text>
+          <Text style={styles.navButtonText}>{t("action.route")}</Text>
         </TouchableOpacity>
         {onReport && (
           <TouchableOpacity
@@ -150,9 +151,9 @@ export const ToiletListItem = memo(function ToiletListItem({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={styles.reportBtn}
             accessibilityRole="button"
-            accessibilityLabel="Problem melden"
+            accessibilityLabel={t("action.reportProblem")}
           >
-            <Text style={styles.reportText}>Melden</Text>
+            <Text style={styles.reportText}>{t("action.report")}</Text>
           </TouchableOpacity>
         )}
       </View>

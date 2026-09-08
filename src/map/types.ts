@@ -5,6 +5,29 @@ export interface MapRegion {
   longitudeDelta: number;
 }
 
+/** Text shown inside the embedded map document. */
+export interface MapStrings {
+  lang: string;
+  title: string;
+  zoomIn: string;
+  zoomOut: string;
+  contributors: string;
+  tilesUnavailable: string;
+  publicToilet: string;
+  startRoute: string;
+}
+
+export const DEFAULT_MAP_STRINGS: MapStrings = {
+  lang: "de",
+  title: "Karte mit öffentlichen Toiletten",
+  zoomIn: "Vergrößern",
+  zoomOut: "Verkleinern",
+  contributors: "OpenStreetMap-Mitwirkende",
+  tilesUnavailable: "Kartenhintergrund nicht verfügbar. Toiletten und Liste bleiben nutzbar.",
+  publicToilet: "Öffentliche Toilette",
+  startRoute: "Route starten",
+};
+
 export interface MapPin {
   id: string;
   name: string;

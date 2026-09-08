@@ -1,17 +1,10 @@
 import type { Toilet } from "../types/toilet";
+import { t, formatDay } from "../i18n";
 
 /** Strongest evidence first: a person on site beats a directory check beats a source edit beats a download. */
 export type CheckKind = "verified" | "checked" | "edited" | "retrieved";
 export interface LastChecked { date: string; kind: CheckKind }
 export type FreshnessTone = "fresh" | "aging" | "stale";
-
-const KIND_LABELS: Record<CheckKind, string> = {
-  verified: "Vor Ort bestätigt",
-  checked: "Verzeichnis geprüft",
-  edited: "In OpenStreetMap bearbeitet",
-  retrieved: "Datenstand",
-};
-export const UNKNOWN_LABEL = "Prüfdatum unbekannt";
 
 const validDay = (value?: string) => value && Number.isFinite(Date.parse(value)) ? value.slice(0, 10) : undefined;
 const latest = (values: (string | undefined)[]) => values.map(validDay).filter((v): v is string => !!v).sort().at(-1);
@@ -42,29 +35,26 @@ export function freshnessTone(info: LastChecked | null, now = new Date()): Fresh
 
 export function relativeAge(date: string, now = new Date()): string {
   const days = Math.floor((now.getTime() - new Date(date + "T00:00:00Z").getTime()) / 86_400_000);
-  if (days <= 0) return "heute";
-  if (days === 1) return "gestern";
-  if (days < 30) return `vor ${days} Tagen`;
+  if (days <= 0) return t("age.today");
+  if (days === 1) return t("age.yesterday");
+  if (days < 30) return t("age.days", { n: days });
   const months = monthsSince(date, now);
-  if (months < 1) return "vor 4 Wochen";
-  if (months < 12) return months === 1 ? "vor 1 Monat" : `vor ${months} Monaten`;
+  if (months < 1) return t("age.fourWeeks");
+  if (months < 12) return months === 1 ? t("age.month") : t("age.months", { n: months });
   const years = Math.floor(months / 12);
-  return years === 1 ? "vor 1 Jahr" : `vor ${years} Jahren`;
+  return years === 1 ? t("age.year") : t("age.years", { n: years });
 }
-
-const formatDay = (date: string) => date.split("-").reverse().join(".");
 
 /** Full sentence for the detail card, e.g. "Verzeichnis geprüft: 12.03.2026 (vor 6 Monaten)". */
 export function lastCheckedLabel(toilet: Toilet, now = new Date()): string {
   const info = lastChecked(toilet);
-  if (!info) return UNKNOWN_LABEL;
-  return `${KIND_LABELS[info.kind]}: ${formatDay(info.date)} (${relativeAge(info.date, now)})`;
+  if (!info) return t("freshness.unknown");
+  return `${t(`freshness.${info.kind}`)}: ${formatDay(info.date)} (${relativeAge(info.date, now)})`;
 }
 
 /** Short form for list rows, e.g. "Geprüft vor 6 Monaten" or "Stand vor 2 Tagen". */
 export function lastCheckedShort(toilet: Toilet, now = new Date()): string {
   const info = lastChecked(toilet);
-  if (!info) return UNKNOWN_LABEL;
-  const word = info.kind === "verified" ? "Bestätigt" : info.kind === "checked" ? "Geprüft" : info.kind === "edited" ? "Bearbeitet" : "Stand";
-  return `${word} ${relativeAge(info.date, now)}`;
+  if (!info) return t("freshness.unknown");
+  return t(`freshness.short.${info.kind}`, { age: relativeAge(info.date, now) });
 }

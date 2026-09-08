@@ -1,5 +1,6 @@
 import type { Toilet } from "../types/toilet";
 import { isOpenNow } from "../types/opening-hours";
+import { t, formatDay } from "../i18n";
 
 export function isWithinAvailability(toilet: Toilet, now = new Date()): boolean {
   const availability = toilet.availability;
@@ -26,10 +27,10 @@ export function toiletOpenStatus(toilet: Toilet, now = new Date()): boolean | nu
 export function availabilityLabel(toilet: Toilet, now = new Date()): string | null {
   const a = toilet.availability;
   if (!a) return null;
-  if (a.status === "unavailable") return a.note || "Derzeit nicht nutzbar";
-  const format = (date: string) => date.split("-").reverse().join(".");
+  if (a.status === "unavailable") return a.note || t("availability.unavailable");
   if (a.from && a.through) {
-    return `${isWithinAvailability(toilet, now) ? "Nur" : "Nicht verfügbar ·"} ${format(a.from)}–${format(a.through)}`;
+    const range = { from: formatDay(a.from), through: formatDay(a.through) };
+    return t(isWithinAvailability(toilet, now) ? "availability.only" : "availability.notAvailable", range);
   }
   return a.note || null;
 }

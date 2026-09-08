@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { mediumImpact, successNotification } from '../utils/haptics';
 import { totalCount } from '../data/tile-index.json';
+import { t, formatNumber } from '../i18n';
 
 interface OnboardingModalProps {
   visible: boolean;
@@ -15,28 +16,13 @@ interface OnboardingModalProps {
   onRequestLocation: () => void;
 }
 
-const slides = [
-  {
-    icon: '🚽',
-    title: 'Willkommen bei WC Finder',
-    description: `Finde Toiletten in deiner Nähe – mit ${totalCount.toLocaleString('de-DE')} Einträgen in Deutschland, Österreich, der Schweiz und angrenzenden Gebieten.`,
-  },
-  {
-    icon: '🕐',
-    title: 'Öffnungszeiten im Blick',
-    description: 'Sieh anhand hinterlegter Öffnungszeiten, welche Toiletten voraussichtlich geöffnet haben. Die Angaben sind keine Live-Auskunft.',
-  },
-  {
-    icon: '♿',
-    title: 'Barrierefrei & Kostenlos',
-    description: 'Filtere nach Eurokey-Zugang, barrierefreien Einrichtungen und kostenlosen Toiletten.',
-  },
-  {
-    icon: '📍',
-    title: 'Navigation eingebaut',
-    description: 'Mit einem Tipp zur Toilette navigieren – kompatibel mit Google Maps, Apple Maps und mehr.',
-  },
-];
+const SLIDE_ICONS = ['🚽', '🕐', '♿', '📍'] as const;
+// Built per render: the locale is resolved after module evaluation and can change on Android.
+const SLIDE_COUNT = SLIDE_ICONS.length;
+const buildSlides = () => SLIDE_ICONS.map((icon, i) => {
+  const n = (i + 1) as 1 | 2 | 3 | 4;
+  return { icon, title: t(`onboarding.${n}.title`), description: t(`onboarding.${n}.description`, { count: formatNumber(totalCount) }) };
+});
 
 export function OnboardingModal({
   visible,
@@ -44,10 +30,11 @@ export function OnboardingModal({
   onRequestLocation,
 }: OnboardingModalProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = buildSlides();
 
   const handleNext = useCallback(() => {
     mediumImpact();
-    if (currentSlide < slides.length - 1) {
+    if (currentSlide < SLIDE_COUNT - 1) {
       setCurrentSlide(currentSlide + 1);
     } else {
       successNotification();
@@ -74,7 +61,7 @@ export function OnboardingModal({
       <View style={styles.container}>
         {/* Skip button */}
         <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.skipText}>Überspringen</Text>
+          <Text style={styles.skipText}>{t('onboarding.skip')}</Text>
         </TouchableOpacity>
 
         {/* Content */}
@@ -100,7 +87,7 @@ export function OnboardingModal({
         {/* Next button */}
         <TouchableOpacity style={styles.button} onPress={handleNext}>
           <Text style={styles.buttonText}>
-            {isLastSlide ? 'Los geht\'s!' : 'Weiter'}
+            {isLastSlide ? t('onboarding.start') : t('onboarding.next')}
           </Text>
         </TouchableOpacity>
       </View>

@@ -58,13 +58,7 @@ export interface Toilet {
   availability?: ToiletAvailability;
 }
 
-export const CATEGORY_LABELS: Record<ToiletCategory, string> = {
-  public_24h: "24/7 Öffentlich",
-  station: "Bahnhof",
-  tankstelle: "Tankstelle",
-  gastro: "Gastronomie",
-  other: "Sonstige",
-};
+// Category labels live in src/i18n (categoryLabel) so they follow the UI language.
 
 // Colors optimized for map pins (high contrast, colorblind-friendly)
 export const CATEGORY_COLORS: Record<ToiletCategory, string> = {

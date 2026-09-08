@@ -2,10 +2,14 @@ import React, { forwardRef, useCallback, useEffect, useRef, useState } from "rea
 import { createMapDocument } from "../map/document";
 import { useMapBridge } from "../map/useMapBridge";
 import type { MapCommand, ToiletMapHandle, ToiletMapProps } from "../map/types";
+import { t, getLocale } from "../i18n";
 
 export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function ToiletMap(props, ref) {
   const iframe = useRef<HTMLIFrameElement>(null);
-  const [html] = useState(() => createMapDocument(props.initialRegion));
+  const [html] = useState(() => createMapDocument(props.initialRegion, {
+    lang: getLocale(), title: t("map.title"), zoomIn: t("map.zoomIn"), zoomOut: t("map.zoomOut"),
+    contributors: t("map.contributors"), tilesUnavailable: t("map.tilesUnavailable"),
+    publicToilet: t("toilet.publicName"), startRoute: t("action.startRoute") }));
   const send = useCallback((command: MapCommand) => iframe.current?.contentWindow?.postMessage(JSON.stringify(command), "*"), []);
   const { receive } = useMapBridge(props, ref, send);
   useEffect(() => {
@@ -18,7 +22,7 @@ export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function To
 
   return <iframe
     ref={iframe}
-    title="Karte mit öffentlichen Toiletten"
+    title={t("map.title")}
     srcDoc={html}
     onLoad={() => receive('{"type":"ready"}')}
     sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"

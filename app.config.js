@@ -15,10 +15,15 @@ export default {
     bundleIdentifier: "com.saschb2b.wcfinder",
     infoPlist: {
       NSLocationWhenInUseUsageDescription:
-        "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
+        "WC Finder needs your location to find the nearest public toilet.",
       NSLocationAlwaysAndWhenInUseUsageDescription:
-        "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
+        "WC Finder needs your location to find the nearest public toilet.",
     },
+  },
+  // Localized Info.plist strings; the system language picks the file.
+  locales: {
+    de: "./locales/de.json",
+    en: "./locales/en.json",
   },
   android: {
     package: "com.saschb2b.wcfinder",
@@ -42,7 +47,7 @@ export default {
       "expo-location",
       {
         locationWhenInUsePermission:
-          "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
+          "WC Finder needs your location to find the nearest public toilet.",
       },
     ],
   ],

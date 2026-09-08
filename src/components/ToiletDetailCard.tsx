@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Toilet, CATEGORY_LABELS, CATEGORY_COLORS } from '../types/toilet';
+import { Toilet, CATEGORY_COLORS } from '../types/toilet';
+import { t, categoryLabel as categoryLabelFor } from '../i18n';
 import { formatDistance } from '../services/overpass';
 import { ToiletHours } from './ToiletHours';
 import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
@@ -29,7 +30,7 @@ export function ToiletDetailCard({
   const checked = lastChecked(toilet);
   const tone = freshnessTone(checked);
   const categoryColor = CATEGORY_COLORS[toilet.category];
-  const categoryLabel = CATEGORY_LABELS[toilet.category];
+  const categoryLabel = categoryLabelFor(toilet.category);
 
   return (
     <View style={[styles.container, isSelected && styles.selected]}>
@@ -45,7 +46,7 @@ export function ToiletDetailCard({
 
       {/* Name */}
       <Text style={styles.name} numberOfLines={2}>
-        {toilet.name || "Barrierefreie Toilette"}
+        {toilet.name || t('toilet.fallbackName')}
       </Text>
 
       {/* Address/City */}
@@ -58,7 +59,7 @@ export function ToiletDetailCard({
         <View style={[styles.checkedDot, tone === 'fresh' ? styles.dotFresh : tone === 'aging' ? styles.dotAging : styles.dotStale]} />
         <Text style={[styles.address, styles.checkedText, !checked && styles.checkedUnknown]}>
           {lastCheckedLabel(toilet)}
-          {tone === 'stale' && checked ? ' · evtl. veraltet' : ''}
+          {tone === 'stale' && checked ? ` · ${t('toilet.mightBeOutdated')}` : ''}
         </Text>
       </View>
 
@@ -72,25 +73,25 @@ export function ToiletDetailCard({
         {hasEurokey && (
           <View style={styles.featureTag}>
             <Text style={styles.featureIcon}>🔑</Text>
-            <Text style={styles.featureText}>Eurokey</Text>
+            <Text style={styles.featureText}>{t('toilet.eurokey')}</Text>
           </View>
         )}
         {isWheelchairAccessible && (
           <View style={styles.featureTag}>
             <Text style={styles.featureIcon}>♿</Text>
-            <Text style={styles.featureText}>Barrierefrei</Text>
+            <Text style={styles.featureText}>{t('toilet.wheelchair')}</Text>
           </View>
         )}
         {isFree && (
           <View style={styles.featureTag}>
             <Text style={styles.featureIcon}>🆓</Text>
-            <Text style={styles.featureText}>Kostenlos</Text>
+            <Text style={styles.featureText}>{t('toilet.free')}</Text>
           </View>
         )}
         {is24_7 && (
           <View style={styles.featureTag}>
             <Text style={styles.featureIcon}>🕐</Text>
-            <Text style={styles.featureText}>24/7</Text>
+            <Text style={styles.featureText}>{t('toilet.247')}</Text>
           </View>
         )}
       </View>
@@ -99,7 +100,7 @@ export function ToiletDetailCard({
       {toilet.accessNote && <Text style={styles.address}>{toilet.accessNote}</Text>}
       {toilet.locationNote && <Text style={styles.address}>{toilet.locationNote}</Text>}
       {toilet.fee && toilet.fee !== 'no' && <Text style={styles.address}>
-        {toilet.fee === 'yes' ? 'Kostenpflichtig' : `Gebühr: ${toilet.fee}`}
+        {toilet.fee === 'yes' ? t('toilet.paid') : t('toilet.fee', { fee: toilet.fee })}
       </Text>}
       <ToiletSources toilet={toilet} />
 
@@ -111,7 +112,7 @@ export function ToiletDetailCard({
           activeOpacity={0.8}
         >
           <Text style={styles.buttonIcon}>🧭</Text>
-          <Text style={styles.primaryButtonText}>Route</Text>
+          <Text style={styles.primaryButtonText}>{t('action.route')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -119,7 +120,7 @@ export function ToiletDetailCard({
           onPress={onReport}
           activeOpacity={0.8}
         >
-          <Text style={styles.secondaryButtonText}>Problem melden</Text>
+          <Text style={styles.secondaryButtonText}>{t('action.reportProblem')}</Text>
         </TouchableOpacity>
       </View>
     </View>

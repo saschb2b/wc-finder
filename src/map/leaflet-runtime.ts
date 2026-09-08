@@ -1,14 +1,17 @@
 import * as L from "leaflet";
-import { isMapRegion } from "./types";
-import type { MapCommand, MapData, MapEvent, MapPin, MapRegion } from "./types";
+import { DEFAULT_MAP_STRINGS, isMapRegion } from "./types";
+import type { MapCommand, MapData, MapEvent, MapPin, MapRegion, MapStrings } from "./types";
 
 declare global {
   interface Window {
     ReactNativeWebView?: { postMessage: (message: string) => void };
     wcMapReceive: (command: MapCommand) => void;
     wcMapInitial: MapRegion;
+    wcMapStrings?: MapStrings;
   }
 }
+
+const strings: MapStrings = { ...DEFAULT_MAP_STRINGS, ...window.wcMapStrings };
 
 const post = (event: MapEvent) => {
   const message = JSON.stringify(event);
@@ -23,10 +26,10 @@ const map = L.map("map", {
   maxBounds: [[-85, -180], [85, 180]],
   maxBoundsViscosity: 1,
 });
-L.control.zoom({ position: "bottomleft", zoomInTitle: "Vergrößern", zoomOutTitle: "Verkleinern" }).addTo(map);
+L.control.zoom({ position: "bottomleft", zoomInTitle: strings.zoomIn, zoomOutTitle: strings.zoomOut }).addTo(map);
 map.attributionControl.setPrefix(false);
 const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-Mitwirkende</a>',
+  attribution: `&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${strings.contributors.replace(/</g, "&lt;")}</a>`,
   maxZoom: 19,
   noWrap: true,
   // Request only the visible area when movement ends; never prefetch offline regions.
@@ -103,11 +106,11 @@ function makeIcon(pin: MapPin) {
 function popup(pin: MapPin) {
   const content = document.createElement("div");
   const title = document.createElement("strong");
-  title.textContent = pin.name || "Öffentliche Toilette";
+  title.textContent = pin.name || strings.publicToilet;
   const button = document.createElement("button");
   button.type = "button";
   button.className = "route-button";
-  button.textContent = "Route starten";
+  button.textContent = strings.startRoute;
   button.addEventListener("click", () => post({ type: "navigate", id: pin.id }));
   content.append(title, button);
   return content;

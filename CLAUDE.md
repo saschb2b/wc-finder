@@ -82,11 +82,11 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 - **Key-free map**: Leaflet markers update in place; keep attribution visible and follow the OSM tile usage policy
 - **Viewport filtering**: only renders markers visible on the map (max 200), keeping the selected toilet included
 - **Categories matter**: `public_24h` (EU key, 24/7) vs `station` (train/bus) vs `tankstelle` (fuel stations) vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
-- **German UI**: all user-facing text is in German
+- **i18n**: all user-facing text goes through `t()` from `src/i18n` (German is the source dictionary, English the translation; keys are typed and a test enforces parity). The system language picks the locale at startup in `index.ts`; non-German devices get English. Strings inside the embedded map are passed via `MapStrings`.
 
 ## Style
 
 - pnpm, not npm
 - TypeScript strict mode
 - No unnecessary abstractions — it's a single-screen app
-- Commit messages in English, UI in German
+- Commit messages in English, UI strings in `src/i18n/translations.ts` (German + English)

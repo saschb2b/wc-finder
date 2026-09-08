@@ -1,3 +1,5 @@
+import { t, dayName } from '../i18n';
+
 /**
  * Standardized opening hours format for WC Finder
  *
@@ -68,12 +70,9 @@ export function formatPeriod(period: TimePeriod): string {
   return `${openStr}-${displayClose}`;
 }
 
-/** Get day name from day index */
+/** Get day name from day index in the current UI language */
 export function getDayName(dayIndex: number, short = false): string {
-  const days = short
-    ? ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
-    : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-  return days[dayIndex];
+  return dayName(dayIndex, short);
 }
 
 /** Check if a weekly schedule is the same every day */
@@ -102,8 +101,8 @@ export function hasWeekdayWeekendPattern(weekly: WeeklyHours): boolean {
 
 /** Generate human-readable display string from standardized format */
 export function formatStandardizedHours(hours: StandardizedHours): string {
-  if (hours.type === '24_7') return '24/7 geöffnet';
-  if (hours.type === 'unknown') return 'Öffnungszeiten unbekannt';
+  if (hours.type === '24_7') return t('hours.open247');
+  if (hours.type === 'unknown') return t('hours.unknownLong');
   if (!hours.weekly) return hours.original || '';
 
   const weekly = hours.weekly;
@@ -111,15 +110,15 @@ export function formatStandardizedHours(hours: StandardizedHours): string {
   // Check for simple patterns
   if (isSameEveryDay(weekly)) {
     const day = weekly[0];
-    if (!day.isOpen) return 'Geschlossen';
-    return `Täglich ${day.periods.map(formatPeriod).join(', ')}`;
+    if (!day.isOpen) return t('hours.closed');
+    return t('hours.daily', { periods: day.periods.map(formatPeriod).join(', ') });
   }
 
   if (hasWeekdayWeekendPattern(weekly)) {
     const weekday = weekly[1];
     const weekend = weekly[0];
     if (weekday.isOpen && weekend.isOpen) {
-      return `Mo-Fr ${weekday.periods.map(formatPeriod).join(', ')}, Sa-So ${weekend.periods.map(formatPeriod).join(', ')}`;
+      return t('hours.weekdayWeekend', { weekday: weekday.periods.map(formatPeriod).join(', '), weekend: weekend.periods.map(formatPeriod).join(', ') });
     }
   }
 
@@ -135,10 +134,10 @@ export function formatStandardizedHours(hours: StandardizedHours): string {
   const sat = weekly[6];
   const sun = weekly[0];
   if (sat.isOpen && sun.isOpen && JSON.stringify(sat) === JSON.stringify(sun)) {
-    parts.push(`Sa-So ${sat.periods.map(formatPeriod).join(', ')}`);
+    parts.push(t('hours.weekend', { periods: sat.periods.map(formatPeriod).join(', ') }));
   } else {
-    if (sat.isOpen) parts.push(`Sa ${sat.periods.map(formatPeriod).join(', ')}`);
-    if (sun.isOpen) parts.push(`So ${sun.periods.map(formatPeriod).join(', ')}`);
+    if (sat.isOpen) parts.push(`${getDayName(6, true)} ${sat.periods.map(formatPeriod).join(', ')}`);
+    if (sun.isOpen) parts.push(`${getDayName(0, true)} ${sun.periods.map(formatPeriod).join(', ')}`);
   }
 
   return parts.join('; ');

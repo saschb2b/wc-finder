@@ -2,6 +2,7 @@ import React, { memo, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import { Toilet } from "../types/toilet";
 import { openReport } from "../services/report";
+import { t } from "../i18n";
 
 interface ReportSheetProps {
   toilet?: Toilet;
@@ -10,36 +11,11 @@ interface ReportSheetProps {
 }
 
 const OPTIONS = [
-  {
-    type: "confirm" as const,
-    icon: "✅",
-    label: "Stimmt so",
-    sub: "Ich war hier, die Angaben sind aktuell",
-  },
-  {
-    type: "wrong" as const,
-    icon: "✏️",
-    label: "Daten stimmen nicht",
-    sub: "Position, Öffnungszeiten, Barrierefreiheit",
-  },
-  {
-    type: "closed" as const,
-    icon: "🚫",
-    label: "Existiert nicht mehr",
-    sub: "Toilette ist dauerhaft geschlossen",
-  },
-  {
-    type: "info" as const,
-    icon: "💡",
-    label: "Info hinzufügen",
-    sub: "Hinweis, Tipp, Öffnungszeiten",
-  },
-  {
-    type: "new" as const,
-    icon: "📍",
-    label: "Neue Toilette melden",
-    sub: "Fehlt auf der Karte",
-  },
+  { type: "confirm" as const, icon: "✅" },
+  { type: "wrong" as const, icon: "✏️" },
+  { type: "closed" as const, icon: "🚫" },
+  { type: "info" as const, icon: "💡" },
+  { type: "new" as const, icon: "📍" },
 ];
 
 export const ReportSheet = memo(function ReportSheet({
@@ -82,15 +58,15 @@ export const ReportSheet = memo(function ReportSheet({
           {showConfirm ? (
             <View style={styles.confirmContainer}>
               <Text style={styles.confirmIcon}>✓</Text>
-              <Text style={styles.confirmTitle}>GitHub wird geöffnet</Text>
+              <Text style={styles.confirmTitle}>{t("report.openingGithub")}</Text>
               <Text style={styles.confirmSub}>
-                Erstelle dort einen Issue mit den Details
+                {t("report.openingGithubSub")}
               </Text>
             </View>
           ) : (
             <>
               <Text style={styles.title}>
-                {toilet ? "Melden oder bestätigen" : "Toilette melden"}
+                {toilet ? t("report.title") : t("report.titleNew")}
               </Text>
               {toilet && (
                 <Text style={styles.subtitle} numberOfLines={1}>
@@ -110,8 +86,8 @@ export const ReportSheet = memo(function ReportSheet({
                   >
                     <Text style={styles.optionIcon}>{o.icon}</Text>
                     <View style={styles.optionText}>
-                      <Text style={styles.optionLabel}>{o.label}</Text>
-                      <Text style={styles.optionSub}>{o.sub}</Text>
+                      <Text style={styles.optionLabel}>{t(`report.${o.type}.label`)}</Text>
+                      <Text style={styles.optionSub}>{t(`report.${o.type}.sub`)}</Text>
                     </View>
                   </TouchableOpacity>
                 ))}
@@ -122,7 +98,7 @@ export const ReportSheet = memo(function ReportSheet({
                 onPress={handleClose}
                 activeOpacity={0.8}
               >
-                <Text style={styles.cancelText}>Abbrechen</Text>
+                <Text style={styles.cancelText}>{t("action.cancel")}</Text>
               </TouchableOpacity>
             </>
           )}

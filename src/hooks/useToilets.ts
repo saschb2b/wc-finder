@@ -5,6 +5,7 @@ import { Platform } from "react-native";
 import { Toilet } from "../types/toilet";
 import { getDistanceMeters, getNearbyToilets, getToiletsInBounds } from "../services/overpass";
 import { scheduleIdleTask } from "../utils/idle-task";
+import { t } from "../i18n";
 
 const LAST_LOCATION_KEY = "wc_last_location";
 
@@ -91,10 +92,10 @@ export function useToilets(): UseToiletsResult {
       if (currentRequest !== requestId.current) return;
       setToilets(results);
       setNearest(results.length > 0 ? results[0] : null);
-      if (results.length === 0) setError("Keine Toiletten in der Nähe gefunden.");
+      if (results.length === 0) setError(t("error.noneNearby"));
     } catch {
       if (currentRequest !== requestId.current) return;
-      setError("Toilettendaten konnten nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.");
+      setError(t("error.loadFailed"));
     } finally {
       if (currentRequest === requestId.current) setLoading(false);
     }
@@ -141,9 +142,7 @@ export function useToilets(): UseToiletsResult {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         if (!initialLoadDone.current) {
-          setError(
-            "Standortberechtigung wird benötigt, um die nächste Toilette zu finden.",
-          );
+          setError(t("error.locationPermission"));
           setLoading(false);
         }
         return;
@@ -179,7 +178,7 @@ export function useToilets(): UseToiletsResult {
       }
     } catch (err: any) {
       if (!initialLoadDone.current) {
-        setError("Standort konnte nicht ermittelt werden.");
+        setError(t("error.locationUnavailable"));
         setLoading(false);
       }
       console.error("Location error:", err);
@@ -240,7 +239,7 @@ export function useToilets(): UseToiletsResult {
           setToilets(withDistances);
           setNearest(withDistances.length > 0 ? withDistances[0] : null);
         } catch {
-          if (currentRequest === requestId.current) setError("Toilettendaten konnten nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.");
+          if (currentRequest === requestId.current) setError(t("error.loadFailed"));
         } finally {
           if (currentRequest === requestId.current) setUpdating(false);
         }

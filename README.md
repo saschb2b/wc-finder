@@ -62,6 +62,9 @@ location. On Android, a new app release is needed to receive updated toilet data
 opening or refreshing the installed app does not fetch a live directory. The
 browser version receives data updates when the website is rebuilt and deployed.
 
+The app follows your device language: German on German devices, English
+everywhere else.
+
 ## Understanding the listings
 
 The directory combines public toilets, specialist care facilities, and locations

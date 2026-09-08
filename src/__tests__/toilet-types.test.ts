@@ -1,17 +1,19 @@
-import {
-  CATEGORY_LABELS,
-  CATEGORY_COLORS,
-  PIN_COLORS,
-} from '../types/toilet';
+import { CATEGORY_COLORS, PIN_COLORS } from '../types/toilet';
+import { categoryLabel, setLocale } from '../i18n';
 
 describe('Toilet Types', () => {
-  describe('CATEGORY_LABELS', () => {
-    it('has labels for all categories', () => {
-      expect(CATEGORY_LABELS.public_24h).toBe('24/7 Öffentlich');
-      expect(CATEGORY_LABELS.station).toBe('Bahnhof');
-      expect(CATEGORY_LABELS.tankstelle).toBe('Tankstelle');
-      expect(CATEGORY_LABELS.gastro).toBe('Gastronomie');
-      expect(CATEGORY_LABELS.other).toBe('Sonstige');
+  describe('categoryLabel', () => {
+    afterEach(() => setLocale('de'));
+    it('has German labels for all categories by default', () => {
+      expect(categoryLabel('public_24h')).toBe('24/7 Öffentlich');
+      expect(categoryLabel('station')).toBe('Bahnhof');
+      expect(categoryLabel('tankstelle')).toBe('Tankstelle');
+      expect(categoryLabel('gastro')).toBe('Gastronomie');
+      expect(categoryLabel('other')).toBe('Sonstige');
+    });
+    it('switches to English', () => {
+      setLocale('en');
+      expect(categoryLabel('station')).toBe('Station');
     });
   });
 

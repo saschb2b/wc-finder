@@ -7,6 +7,7 @@ import {
   getDayName,
   formatPeriod,
 } from "../types/opening-hours";
+import { t } from "../i18n";
 
 interface OpeningHoursDisplayProps {
   hours: StandardizedHours | undefined;
@@ -20,7 +21,7 @@ export function OpeningHoursDisplay({
   if (!hours || hours.type === "unknown") {
     return (
       <View style={styles.container}>
-        <Text style={styles.unknown}>Zeiten unbekannt</Text>
+        <Text style={styles.unknown}>{t("hours.unknown")}</Text>
       </View>
     );
   }
@@ -34,7 +35,7 @@ export function OpeningHoursDisplay({
       return (
         <View style={styles.compactRow}>
           <View style={[styles.dot, styles.openDot]} />
-          <Text style={styles.compactText}>24/7 geöffnet</Text>
+          <Text style={styles.compactText}>{t("hours.open247")}</Text>
         </View>
       );
     }
@@ -44,7 +45,7 @@ export function OpeningHoursDisplay({
         <View style={styles.compactRow}>
           <View style={[styles.dot, styles.closedDot]} />
           <Text style={styles.compactText}>
-            Öffnet {getDayName(nextOpening.day, true)} {nextOpening.time}
+            {t("hours.opensShort", { day: getDayName(nextOpening.day, true), time: nextOpening.time })}
           </Text>
         </View>
       );
@@ -59,7 +60,7 @@ export function OpeningHoursDisplay({
           ]}
         />
         <Text style={styles.compactText}>
-          {currentlyOpen ? "Geöffnet" : "Geschlossen"}
+          {currentlyOpen ? t("hours.open") : t("hours.closed")}
         </Text>
       </View>
     );
@@ -82,19 +83,19 @@ export function OpeningHoursDisplay({
               currentlyOpen ? styles.openText : styles.closedText,
             ]}
           >
-            {currentlyOpen ? "Jetzt geöffnet" : "Geschlossen"}
+            {currentlyOpen ? t("hours.openNow") : t("hours.closed")}
           </Text>
         </View>
         {nextOpening && !currentlyOpen && (
           <Text style={styles.nextOpening}>
-            Öffnet {getDayName(nextOpening.day)} um {nextOpening.time}
+            {t("hours.opensLong", { day: getDayName(nextOpening.day), time: nextOpening.time })}
           </Text>
         )}
       </View>
 
       {/* Weekly schedule */}
       {hours.type === "24_7" ? (
-        <Text style={styles.allDayText}>🕐 Rund um die Uhr geöffnet</Text>
+        <Text style={styles.allDayText}>{t("hours.aroundTheClock")}</Text>
       ) : hours.weekly ? (
         <View style={styles.schedule}>
           {[1, 2, 3, 4, 5, 6, 0].map((dayIndex) => {
@@ -112,7 +113,7 @@ export function OpeningHoursDisplay({
                 <Text style={[styles.dayHours, isToday && styles.todayText]}>
                   {day.isOpen
                     ? day.periods.map(formatPeriod).join(", ")
-                    : "Geschlossen"}
+                    : t("hours.closed")}
                 </Text>
               </View>
             );

@@ -1,5 +1,7 @@
 import type { Toilet } from "../types/toilet";
-import { lastChecked, lastCheckedLabel, lastCheckedShort, freshnessTone, relativeAge, UNKNOWN_LABEL } from "../utils/data-freshness";
+import { lastChecked, lastCheckedLabel, lastCheckedShort, freshnessTone, relativeAge } from "../utils/data-freshness";
+
+const UNKNOWN_LABEL = "Prüfdatum unbekannt";
 
 const now = new Date("2026-09-08T10:00:00Z");
 const base: Toilet = { id: "t", name: "WC", lat: 52, lon: 9, category: "other" };

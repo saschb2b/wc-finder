@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { lightImpact } from '../utils/haptics';
+import { t } from '../i18n';
 
 interface EmptyStateProps {
   type: 'no-results' | 'no-location' | 'error' | 'loading';
@@ -9,34 +10,17 @@ interface EmptyStateProps {
 }
 
 const configs = {
-  'no-results': {
-    icon: '🔍',
-    title: 'Keine Toiletten gefunden',
-    description: 'Versuche es in einem anderen Gebiet oder ändere deine Filter.',
-    actionLabel: 'Filter zurücksetzen',
-  },
-  'no-location': {
-    icon: '📍',
-    title: 'Standort nicht verfügbar',
-    description: 'Erlaube den Zugriff auf deinen Standort, um Toiletten in deiner Nähe zu finden.',
-    actionLabel: 'Standort aktivieren',
-  },
-  'error': {
-    icon: '⚠️',
-    title: 'Etwas ist schiefgelaufen',
-    description: 'Die Toiletten-Daten konnten nicht geladen werden. Bitte versuche es erneut.',
-    actionLabel: 'Erneut versuchen',
-  },
-  'loading': {
-    icon: '⏳',
-    title: 'Lade Toiletten...',
-    description: 'Sammle die neuesten Daten für dich.',
-    actionLabel: undefined,
-  },
-};
+  'no-results': { icon: '🔍', key: 'noResults', hasAction: true },
+  'no-location': { icon: '📍', key: 'noLocation', hasAction: true },
+  'error': { icon: '⚠️', key: 'error', hasAction: true },
+  'loading': { icon: '⏳', key: 'loading', hasAction: false },
+} as const;
 
 export function EmptyState({ type, onAction, message }: EmptyStateProps) {
   const config = configs[type];
+  const title = t(`empty.${config.key}.title`);
+  const description = t(`empty.${config.key}.description`);
+  const actionLabel = config.hasAction ? t(`empty.${config.key}.action`) : undefined;
 
   const handleAction = () => {
     lightImpact();
@@ -46,13 +30,13 @@ export function EmptyState({ type, onAction, message }: EmptyStateProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.icon}>{config.icon}</Text>
-      <Text style={styles.title}>{config.title}</Text>
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>
-        {message || config.description}
+        {message || description}
       </Text>
-      {config.actionLabel && onAction && (
+      {actionLabel && onAction && (
         <TouchableOpacity style={styles.button} onPress={handleAction}>
-          <Text style={styles.buttonText}>{config.actionLabel}</Text>
+          <Text style={styles.buttonText}>{actionLabel}</Text>
         </TouchableOpacity>
       )}
     </View>
