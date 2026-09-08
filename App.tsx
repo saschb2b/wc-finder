@@ -197,20 +197,21 @@ function AppContent() {
     }
   }, []);
 
-  // Animate to user location once it becomes available
+  // Frame the reference point plus the nearest results once per location, so the
+  // first view shows distinguishable pins instead of a fixed city-wide zoom.
+  const fittedFor = useRef<string | null>(null);
+  const reference = userLocation ?? searchLocation;
   useEffect(() => {
-    if (userLocation && mapRef.current) {
-      mapRef.current.animateToRegion(
-        {
-          latitude: userLocation.lat,
-          longitude: userLocation.lon,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02,
-        },
-        1000,
-      );
-    }
-  }, [userLocation]);
+    if (!reference || toilets.length === 0 || exploreBounds) return;
+    const key = `${reference.lat.toFixed(4)},${reference.lon.toFixed(4)}`;
+    if (fittedFor.current === key) return;
+    fittedFor.current = key;
+    const nearest = toilets.slice(0, 8).map(t => ({ lat: t.lat, lon: t.lon }));
+    mapRef.current?.fitToPoints([reference, ...nearest], {
+      top: insets.top + 90, left: 32, right: 32,
+      bottom: desktopWeb ? 40 : OVERLAY_HEIGHT + peekHeight + insets.bottom + 16,
+    }, 17, 800);
+  }, [reference, toilets, exploreBounds, insets.top, insets.bottom, desktopWeb, peekHeight]);
 
   const handleOnboardingComplete = useCallback(async () => {
     setShowOnboarding(false);
@@ -346,8 +347,9 @@ function AppContent() {
       color: selected ? PIN_COLORS.selected : favorite ? PIN_COLORS.favorite : CATEGORY_COLORS[toilet.category],
       opacity: selected ? 1 : closed ? 0.5 : 0.9,
       selected,
+      featured: toilet.id === displayNearest?.id,
     };
-  }), [visibleToilets, selectedToilet, favoriteIds, now]);
+  }), [visibleToilets, selectedToilet, displayNearest?.id, favoriteIds, now]);
 
   const openNowCount = useMemo(
     () => toilets.filter((t) => toiletOpenStatus(t, now) === true).length,
@@ -455,12 +457,13 @@ function AppContent() {
       maxToRenderPerBatch={12}
       keyboardShouldPersistTaps="handled"
       ListHeaderComponent={
-        toiletToShow ? (
+        // Details only for an explicit selection; the peek card already summarises the nearest one.
+        selectedToilet ? (
           <ToiletDetailCard
-            toilet={toiletToShow}
-            isSelected={!!selectedToilet}
-            onNavigate={() => openNavigationWithHaptics(toiletToShow)}
-            onReport={() => openReportFor(toiletToShow)}
+            toilet={selectedToilet}
+            isSelected
+            onNavigate={() => openNavigationWithHaptics(selectedToilet)}
+            onReport={() => openReportFor(selectedToilet)}
           />
         ) : null
       }

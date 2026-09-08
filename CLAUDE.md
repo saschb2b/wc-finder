@@ -11,6 +11,8 @@ pnpm install              # install dependencies
 pnpm start                # start Expo dev server
 pnpm start --clear        # start with cache cleared
 pnpm typecheck            # run TypeScript type checking
+pnpm site                 # preview the landing page (docs/) at http://localhost:8100
+pnpm site:full            # build the web export and serve landing page + app at http://localhost:8099
 ```
 
 ### Data pipeline (run in order)
@@ -81,6 +83,7 @@ Cost: Free tier 5,000 places/month, then $17 per 1,000.
 - **No reanimated/bottom-sheet**: removed due to TurboModule crashes in Expo Go — using simple toggle panel instead
 - **Key-free map**: Leaflet markers update in place; keep attribution visible and follow the OSM tile usage policy
 - **Viewport filtering**: only renders markers visible on the map (max 200), keeping the selected toilet included
+- **Clustering**: overlapping pins collapse into counted clusters (leaflet.markercluster, bundled by `pnpm build:map`); the selected pin is always placed directly on the map. On first load the map fits the reference point plus the nearest eight results (`fitToPoints`) instead of a fixed zoom
 - **Categories matter**: `public_24h` (EU key, 24/7) vs `station` (train/bus) vs `tankstelle` (fuel stations) vs `gastro` vs `other` — the default filter hides unreliable gastro/other toilets
 - **Theming**: colours come from `src/theme` (`useTheme`, `useThemedStyles`), never hard-coded in components. The scheme follows the system (`userInterfaceStyle: "automatic"`); the embedded map gets a `theme` command and darkens OSM tiles with a CSS filter. The splash screen (`expo-splash-screen` plugin in `app.config.js`) uses the same light/dark backgrounds as the loading screen; keep them in sync with `src/theme/colors.ts`.
 - **i18n**: all user-facing text goes through `t()` from `src/i18n` (German is the source dictionary, English the translation; keys are typed and a test enforces parity). The system language picks the locale at startup in `index.ts`; non-German devices get English. Strings inside the embedded map are passed via `MapStrings`.

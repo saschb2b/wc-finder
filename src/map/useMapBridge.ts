@@ -21,6 +21,12 @@ export function useMapBridge(props: ToiletMapProps, ref: Ref<ToiletMapHandle>, s
       if (ready.current) send(command);
       else pendingFocus.current = command;
     },
+    fitToPoints(points, padding, maxZoom = 17, duration = 500) {
+      if (!points.length) return;
+      const command: MapCommand = { type: "fit", points, padding, maxZoom, duration };
+      if (ready.current) send(command);
+      else pendingFocus.current = command;
+    },
   }), [send]);
 
   const receive = useCallback((raw: string) => {

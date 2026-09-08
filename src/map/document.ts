@@ -27,6 +27,8 @@ html,body,#map{height:100%;width:100%;margin:0}body{font-family:system-ui,sans-s
 .wc-marker{background:none;border:0}.wc-pin{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px #0005;color:transparent;font-weight:800}
 .wc-pin:after{content:'WC';color:white;transform:rotate(45deg);position:absolute;font-size:11px}
 .wc-pin-selected{outline:3px solid #1a73e8;outline-offset:3px}
+.wc-cluster-marker{background:none;border:0}.wc-cluster{display:flex;align-items:center;justify-content:center;border-radius:50%;background:#1554b7;color:#fff;font-weight:700;font-size:13px;border:3px solid #fff;box-shadow:0 2px 6px #0005}
+html.dark .wc-cluster{background:#94bcff;color:#0b1a33;border-color:#1e1e1e}
 .route-button{display:block;margin-top:10px;width:100%;border:0;border-radius:8px;padding:10px 14px;background:#1a73e8;color:white;font-weight:600;font-size:14px;cursor:pointer}
 .leaflet-popup-content{font-size:14px;line-height:1.4}.leaflet-control-zoom a{width:38px!important;height:38px!important;line-height:38px!important}
 #tile-status{position:absolute;top:60px;left:12px;right:12px;z-index:1000;padding:10px;border-radius:8px;background:#fff3cd;color:#594500;font-size:13px;box-shadow:0 1px 5px #0002;pointer-events:none}

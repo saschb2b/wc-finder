@@ -36,6 +36,8 @@ export interface MapPin {
   color: string;
   opacity: number;
   selected: boolean;
+  /** Shown in the sheet right now (e.g. the nearest); kept out of clusters like the selection. */
+  featured?: boolean;
 }
 
 export interface MapData {
@@ -47,7 +49,11 @@ export type MapCommand =
   | { type: "sync" }
   | { type: "theme"; colorScheme: "light" | "dark" }
   | { type: "data"; data: MapData }
-  | { type: "focus"; region: MapRegion; duration: number };
+  | { type: "focus"; region: MapRegion; duration: number }
+  /** Frame a set of points (nearest results + user) with UI insets, never closer than maxZoom. */
+  | { type: "fit"; points: { lat: number; lon: number }[]; padding: MapPadding; maxZoom: number; duration: number };
+
+export interface MapPadding { top: number; right: number; bottom: number; left: number }
 
 export type MapEvent =
   | { type: "ready" }
@@ -57,6 +63,7 @@ export type MapEvent =
 
 export interface ToiletMapHandle {
   animateToRegion: (region: MapRegion, duration?: number) => void;
+  fitToPoints: (points: { lat: number; lon: number }[], padding: MapPadding, maxZoom?: number, duration?: number) => void;
 }
 
 export interface ToiletMapProps extends MapData {

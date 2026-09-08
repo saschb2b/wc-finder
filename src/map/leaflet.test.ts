@@ -116,6 +116,34 @@ test("programmatic focus and user zoom are distinguished; tile failure leaves pi
   } finally { dom.window.close(); }
 });
 
+test("overlapping pins cluster with a count, the selected pin stays visible, and fit frames points", () => {
+  const { dom, document, events } = openMap();
+  try {
+    const twins = [pin, { ...pin, id: "twin", name: "Twin WC" }, { ...pin, id: "far", name: "Far WC", lat: pin.lat + 0.05 }];
+    dom.window.eval(mapCommandScript({ type: "data", data: { pins: twins, userLocation: null } }));
+    assert.equal(document.querySelector(".wc-cluster")?.textContent, "2");
+    assert.equal(document.querySelectorAll(".wc-marker").length, 1);
+    // Selecting one of the stacked pins lifts it out of the cluster.
+    dom.window.eval(mapCommandScript({ type: "data", data: { pins: twins.map(p => p.id === "twin" ? { ...p, selected: true } : p), userLocation: null } }));
+    assert.ok(document.querySelector('[title="Twin WC"] .wc-pin-selected'));
+    assert.equal(document.querySelectorAll(".wc-cluster").length, 0);
+    // Removing pins also clears them from the cluster layer.
+    dom.window.eval(mapCommandScript({ type: "data", data: { pins: [], userLocation: null } }));
+    assert.equal(document.querySelectorAll(".wc-marker, .wc-cluster").length, 0);
+    const before = events.length;
+    dom.window.eval(mapCommandScript({ type: "fit", points: [{ lat: 52.37, lon: 9.73 }, { lat: 52.38, lon: 9.74 }],
+      padding: { top: 90, right: 32, bottom: 300, left: 32 }, maxZoom: 17, duration: 0 }));
+    const fitted = events.slice(before).filter(event => event.type === "region").at(-1)!;
+    assert.equal(fitted.isGesture, false);
+    // Both points lie inside the framed region, which stays tight (insets shift the centre).
+    const r = fitted.region;
+    for (const p of [{ lat: 52.37, lon: 9.73 }, { lat: 52.38, lon: 9.74 }]) {
+      assert.ok(Math.abs(p.lat - r.latitude) <= r.latitudeDelta / 2 && Math.abs(p.lon - r.longitude) <= r.longitudeDelta / 2);
+    }
+    assert.ok(r.latitudeDelta < 0.08);
+  } finally { dom.window.close(); }
+});
+
 test("bridge rejects malformed events and safely serializes script delimiters", () => {
   for (const raw of ["broken", "null", '{"type":"navigate","id":1}', '{"type":"region","region":{}}']) {
     assert.equal(parseMapEvent(raw), null);
@@ -130,7 +158,7 @@ test("bridge rejects malformed events and safely serializes script delimiters", 
 test("tapping a pin during camera movement keeps the tapped selection", async () => {
   const { dom, document, events } = openMap();
   try {
-    const otherPin = { ...pin, id: "other", name: "Other WC", lat: pin.lat + 0.001 };
+    const otherPin = { ...pin, id: "other", name: "Other WC", lat: pin.lat + 0.02 };
     dom.window.eval(mapCommandScript({ type: "data", data: { pins: [pin, otherPin], userLocation: null } }));
     // Start a same-zoom animated pan, then tap before it finishes. The app
     // clears its selection whenever it receives a region marked as a gesture.

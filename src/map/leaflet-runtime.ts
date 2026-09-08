@@ -1,6 +1,7 @@
 import * as L from "leaflet";
+import "leaflet.markercluster";
 import { DEFAULT_MAP_STRINGS, isMapRegion } from "./types";
-import type { MapCommand, MapData, MapEvent, MapPin, MapRegion, MapStrings } from "./types";
+import type { MapCommand, MapData, MapEvent, MapPadding, MapPin, MapRegion, MapStrings } from "./types";
 
 declare global {
   interface Window {
@@ -84,10 +85,10 @@ function stopForSelection() {
   map.stop();
 }
 
-let pendingLayoutRegion: MapRegion | null = null;
+let pendingLayout: (() => void) | null = null;
 function focus(region: MapRegion, duration: number) {
   // A web iframe may execute before its first layout. Refit once it has a size.
-  pendingLayoutRegion = container.clientWidth && container.clientHeight ? null : region;
+  pendingLayout = container.clientWidth && container.clientHeight ? null : () => focus(region, 0);
   stopForSelection();
   const bounds = L.latLngBounds(
     [region.latitude - region.latitudeDelta / 2, region.longitude - region.longitudeDelta / 2],
@@ -96,7 +97,43 @@ function focus(region: MapRegion, duration: number) {
   map.fitBounds(bounds, { animate: duration > 0, duration: duration / 1000 });
 }
 
+function fit(points: { lat: number; lon: number }[], padding: MapPadding, maxZoom: number, duration: number) {
+  pendingLayout = container.clientWidth && container.clientHeight ? null : () => fit(points, padding, maxZoom, 0);
+  stopForSelection();
+  const bounds = L.latLngBounds(points.map(p => [p.lat, p.lon] as L.LatLngTuple));
+  map.fitBounds(bounds, {
+    paddingTopLeft: [padding.left, padding.top], paddingBottomRight: [padding.right, padding.bottom],
+    maxZoom, animate: duration > 0, duration: duration / 1000,
+  });
+}
+
+// Overlapping pins collapse into counted clusters; a tap zooms in, and at the
+// closest zoom exact duplicates fan out so each stays reachable.
+// The plugin patches the global Leaflet object; the bundled module namespace is a frozen copy.
+const markerClusterGroup: typeof L.markerClusterGroup = (globalThis as unknown as { L: typeof L }).L.markerClusterGroup;
+const clusters = markerClusterGroup({
+  maxClusterRadius: 44,
+  disableClusteringAtZoom: 18,
+  spiderfyOnMaxZoom: true,
+  showCoverageOnHover: false,
+  zoomToBoundsOnClick: true,
+  animate: false,
+  iconCreateFunction: cluster => {
+    const count = cluster.getChildCount();
+    const size = count >= 100 ? 48 : count >= 10 ? 42 : 36;
+    return L.divIcon({
+      html: `<span class="wc-cluster" style="width:${size}px;height:${size}px">${count}</span>`,
+      className: "wc-cluster-marker", iconSize: [size, size], iconAnchor: [size / 2, size / 2],
+    });
+  },
+}).addTo(map);
+
 const markers = new Map<string, { marker: L.Marker; pin: MapPin }>();
+/** The selected pin sits directly on the map so a cluster can never hide it. */
+function place(marker: L.Marker, selected: boolean) {
+  if (selected) { clusters.removeLayer(marker); marker.addTo(map); }
+  else { marker.remove(); clusters.addLayer(marker); }
+}
 let locationMarker: L.CircleMarker | null = null;
 
 function makeIcon(pin: MapPin) {
@@ -110,13 +147,14 @@ function makeIcon(pin: MapPin) {
 function updateData(data: MapData) {
   const ids = new Set(data.pins.map(pin => pin.id));
   for (const [id, entry] of markers) {
-    if (!ids.has(id)) { entry.marker.remove(); markers.delete(id); }
+    if (!ids.has(id)) { clusters.removeLayer(entry.marker); entry.marker.remove(); markers.delete(id); }
   }
   for (const pin of data.pins) {
     let entry = markers.get(pin.id);
     if (!entry) {
       // Selection is shown by the sheet, not a popup, so the map stays uncluttered.
-      const marker = L.marker([pin.lat, pin.lon], { icon: makeIcon(pin), title: pin.name, alt: pin.name, keyboard: true }).addTo(map);
+      const marker = L.marker([pin.lat, pin.lon], { icon: makeIcon(pin), title: pin.name, alt: pin.name, keyboard: true });
+      place(marker, pin.selected || !!pin.featured);
       marker.on("click", () => {
         // Stop before crossing the async WebView bridge so no late movement
         // from the previous selection can override this tap.
@@ -127,6 +165,7 @@ function updateData(data: MapData) {
       markers.set(pin.id, entry);
     } else {
       if (entry.pin.color !== pin.color || entry.pin.selected !== pin.selected) entry.marker.setIcon(makeIcon(pin));
+      if (entry.pin.selected !== pin.selected || !!entry.pin.featured !== !!pin.featured) place(entry.marker, pin.selected || !!pin.featured);
       if (entry.pin.lat !== pin.lat || entry.pin.lon !== pin.lon) entry.marker.setLatLng([pin.lat, pin.lon]);
       entry.pin = pin;
     }
@@ -149,6 +188,7 @@ window.wcMapReceive = command => {
   else if (command.type === "data") updateData(command.data);
   else if (command.type === "theme") document.documentElement.classList.toggle("dark", command.colorScheme === "dark");
   else if (command.type === "focus" && isMapRegion(command.region)) focus(command.region, command.duration);
+  else if (command.type === "fit" && Array.isArray(command.points) && command.points.length) fit(command.points, command.padding, command.maxZoom, command.duration);
 };
 window.addEventListener("message", event => {
   if (event.source !== window.parent || typeof event.data !== "string") return;
@@ -156,9 +196,7 @@ window.addEventListener("message", event => {
 });
 new ResizeObserver(() => {
   map.invalidateSize({ pan: false });
-  if (pendingLayoutRegion && container.clientWidth && container.clientHeight) {
-    focus(pendingLayoutRegion, 0);
-  }
+  if (pendingLayout && container.clientWidth && container.clientHeight) pendingLayout();
 }).observe(container);
 focus(window.wcMapInitial, 0);
 post({ type: "ready" });

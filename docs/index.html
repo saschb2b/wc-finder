@@ -8,8 +8,10 @@
         <link rel="apple-touch-icon" href="icon-192.png" />
         <meta
             name="description"
-            content="Finde passende Toiletten in deiner Nähe. 87.539 Verzeichniseinträge in Deutschland, Österreich, der Schweiz und angrenzenden Gebieten. Filter für Rollstuhl- und Eurokey-Zugang."
+            content="Die nächste barrierefreie Toilette, sofort. 87.539 Einträge in Deutschland, Österreich und der Schweiz mit Eurokey, Öffnungszeiten und Prüfdatum. Kostenlos, offline, Open Source."
         />
+        <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -17,739 +19,435 @@
             rel="stylesheet"
         />
         <style>
+            /* Tokens mirror src/theme/colors.ts so site and app read as one product. */
             :root {
-                --color-primary: #1554b7;
-                --color-primary-dark: #103f8b;
-                --color-text: #1a1a2e;
-                --color-text-secondary: #4a4a5a;
-                --color-text-muted: #6a6a7a;
-                --color-bg: #fafafa;
-                --color-surface: #ffffff;
-                --color-border: #e8e8ec;
-                --color-success: #0d8a4f;
-                --radius: 8px;
-                --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-                --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                color-scheme: light dark;
+                --bg: #f6f7fb;
+                --surface: #ffffff;
+                --surface-alt: #eef1f7;
+                --tint: #e6edfb;
+                --ink: #101318;
+                --ink-2: #5b6270;
+                --ink-3: #8a909c;
+                --line: #e5e8ef;
+                --primary: #1554b7;
+                --primary-ink: #ffffff;
+                --success: #1f8a4c;
+                --dark-card: #14181f;
+                --dark-card-ink: #f2f4f8;
+                --shadow: 0 18px 40px rgba(16, 19, 24, 0.1);
+                --shadow-sm: 0 6px 16px rgba(16, 19, 24, 0.06);
+                --glow-a: rgba(21, 84, 183, 0.16);
+                --glow-b: rgba(255, 191, 105, 0.18);
+                --radius: 24px;
+                --radius-sm: 14px;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bg: #121212;
+                    --surface: #1e1e1e;
+                    --surface-alt: #262626;
+                    --tint: #1d2c46;
+                    --ink: #e8eaed;
+                    --ink-2: #bdc1c6;
+                    --ink-3: #8a909c;
+                    --line: #33363c;
+                    --primary: #94bcff;
+                    --primary-ink: #0b1a33;
+                    --success: #81c995;
+                    --dark-card: #0c0e12;
+                    --shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+                    --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.35);
+                    --glow-a: rgba(148, 188, 255, 0.14);
+                    --glow-b: rgba(255, 191, 105, 0.08);
+                }
             }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            html {
-                scroll-behavior: smooth;
-            }
-
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            html { scroll-behavior: smooth; }
             body {
-                font-family:
-                    "Inter",
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    sans-serif;
+                font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
                 line-height: 1.6;
-                color: var(--color-text);
-                background: var(--color-bg);
+                color: var(--ink);
+                background: var(--bg);
                 -webkit-font-smoothing: antialiased;
             }
+            img { display: block; max-width: 100%; }
+            a { color: inherit; text-decoration: none; }
+            .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+            .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-            /* Container */
-            .container {
-                max-width: 1100px;
-                margin: 0 auto;
-                padding: 0 24px;
+            /* Type scale: light-weight display headlines, generous whitespace (reference). */
+            h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+            h1 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); }
+            h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+            h3 { font-size: 1.25rem; }
+            .lead { color: var(--ink-2); font-size: 1.05rem; max-width: 52ch; }
+            .eyebrow {
+                display: inline-flex; align-items: center; gap: 8px;
+                font-size: 0.8rem; font-weight: 600; color: var(--ink-2);
+                background: var(--surface); border: 1px solid var(--line);
+                padding: 6px 14px; border-radius: 999px; box-shadow: var(--shadow-sm);
             }
+
+            /* Buttons: one filled primary, one quiet secondary, store-style badges. */
+            .btn {
+                display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+                min-height: 44px; padding: 10px 20px; border-radius: 999px;
+                font-weight: 600; font-size: 0.95rem; transition: transform 0.15s, box-shadow 0.15s;
+            }
+            .btn:hover { transform: translateY(-1px); }
+            .btn-primary { background: var(--primary); color: var(--primary-ink); box-shadow: var(--shadow-sm); }
+            .btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+            .badge {
+                display: inline-flex; align-items: center; gap: 10px;
+                background: var(--ink); color: var(--bg);
+                padding: 8px 16px 8px 12px; border-radius: 12px; min-height: 48px;
+                text-align: left; line-height: 1.15;
+            }
+            .badge small { display: block; font-size: 0.65rem; font-weight: 500; opacity: 0.75; }
+            .badge strong { display: block; font-size: 0.95rem; font-weight: 600; }
+            .badge svg { width: 22px; height: 22px; flex: none; }
+            .badge.alt { background: var(--primary); color: var(--primary-ink); }
 
             /* Header */
-            header {
-                background: var(--color-surface);
-                border-bottom: 1px solid var(--color-border);
-                padding: 16px 0;
-                position: sticky;
-                top: 0;
-                z-index: 100;
-            }
+            header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--bg) 82%, transparent); }
+            .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+            .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+            .logo img { width: 34px; height: 34px; border-radius: 9px; box-shadow: var(--shadow-sm); }
+            .links { display: flex; gap: 26px; font-size: 0.9rem; color: var(--ink-2); font-weight: 500; }
+            .links a:hover { color: var(--ink); }
+            @media (max-width: 800px) { .links { display: none; } }
 
-            .header-content {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+            /* Hero: centred copy, phone in the middle, floating fact chips on faint guide rings. */
+            .hero { position: relative; overflow: hidden; padding: 56px 0 0; text-align: center; }
+            .hero::before {
+                content: ""; position: absolute; inset: 0; z-index: -1;
+                background:
+                    radial-gradient(60% 50% at 50% 42%, var(--glow-a), transparent 70%),
+                    radial-gradient(40% 40% at 78% 70%, var(--glow-b), transparent 70%);
             }
-
-            .logo {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-weight: 700;
-                font-size: 18px;
-                color: var(--color-text);
-                text-decoration: none;
+            .hero .rings {
+                position: absolute; left: 50%; top: 58%; width: 1400px; height: 1400px; z-index: -1;
+                transform: translate(-50%, -50%); pointer-events: none; opacity: 0.55;
+                background: repeating-radial-gradient(circle, transparent 0 150px, var(--line) 150px 151px);
+                mask-image: radial-gradient(circle, #000 0%, transparent 62%);
+                -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 62%);
             }
-
-            .logo-icon {
-                width: 32px;
-                height: 32px;
-                background: var(--color-primary);
-                border-radius: var(--radius);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-size: 16px;
+            .hero h1 { margin: 18px auto 14px; max-width: 16ch; }
+            .hero .lead { margin: 0 auto 26px; }
+            .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+            .hero-stage { position: relative; margin: 44px auto 0; max-width: 760px; height: 600px; }
+            .device {
+                position: relative; width: 300px; aspect-ratio: 390 / 844; margin: 0 auto;
+                border-radius: 46px; background: #0b0d12; padding: 10px; box-shadow: var(--shadow);
             }
-
-            .nav-links {
-                display: flex;
-                gap: 32px;
+            .device::after {
+                content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+                width: 96px; height: 28px; border-radius: 14px; background: #0b0d12;
             }
-
-            .nav-links a {
-                color: var(--color-text-secondary);
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 500;
-                transition: color 0.2s;
+            .device img { width: 100%; height: 100%; object-fit: cover; border-radius: 36px; background: var(--surface-alt); }
+            .hero-stage .device { position: absolute; left: 50%; top: 0; transform: translateX(-50%); }
+            .hero-stage::after {
+                content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 2;
+                background: linear-gradient(to bottom, transparent, var(--bg));
             }
-
-            .nav-links a:hover {
-                color: var(--color-primary);
+            .chip {
+                position: absolute; display: inline-flex; align-items: center; gap: 8px; z-index: 1;
+                background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+                padding: 8px 14px; font-size: 0.85rem; font-weight: 600; box-shadow: var(--shadow-sm);
+                animation: float 6s ease-in-out infinite;
             }
-
-            /* Hero */
-            .hero {
-                padding: 80px 0 60px;
-                text-align: center;
-                background: var(--color-surface);
+            .chip .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); font-size: 15px; }
+            .chip.c1 { left: 6%; top: 8%; animation-delay: -1s; }
+            .chip.c2 { right: 4%; top: 16%; animation-delay: -3s; }
+            .chip.c3 { left: 3%; top: 54%; animation-delay: -2s; }
+            .chip.c4 { right: 6%; top: 60%; animation-delay: -4s; }
+            @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+            @media (max-width: 700px) {
+                .hero-stage { height: 420px; }
+                .device { width: 240px; border-radius: 38px; padding: 8px; }
+                .device img { border-radius: 30px; }
+                .chip { display: none; }
             }
+            @media (prefers-reduced-motion: reduce) { .chip { animation: none; } }
 
-            .hero-brand {
-                display: block;
-                width: 112px;
-                height: 112px;
-                margin: 0 auto 28px;
-                border-radius: 25px;
-                box-shadow: 0 10px 24px rgba(15, 55, 116, 0.16);
+            /* Section rhythm */
+            section { padding: 72px 0; }
+            .split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end; }
+            .split .note { color: var(--ink-2); font-size: 0.95rem; max-width: 34ch; }
+            .split h2 { display: flex; gap: 14px; align-items: flex-start; }
+            .icon-dot {
+                flex: none; width: 34px; height: 34px; border-radius: 50%; margin-top: 6px;
+                background: var(--ink); color: var(--bg); display: grid; place-items: center; font-size: 15px;
             }
+            @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
 
-            .hero h1 {
-                font-size: 48px;
-                font-weight: 700;
-                line-height: 1.15;
-                margin-bottom: 20px;
-                letter-spacing: -0.02em;
+            /* Three feature cards with screenshots (reference: tinted, dark, image-led). */
+            .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+            .card {
+                position: relative; overflow: hidden; border-radius: var(--radius); min-height: 480px;
+                background: var(--surface-alt); padding: 26px; display: flex; flex-direction: column;
             }
-
-            .hero h1 span {
-                color: var(--color-primary);
+            .card.tint { background: var(--tint); }
+            .card.dark { background: var(--dark-card); color: var(--dark-card-ink); }
+            .card .badge-icon {
+                position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%;
+                background: var(--ink); color: var(--bg); display: grid; place-items: center; font-size: 16px;
             }
-
-            .hero p {
-                font-size: 20px;
-                color: var(--color-text-secondary);
-                max-width: 560px;
-                margin: 0 auto 32px;
-                line-height: 1.5;
+            .card.dark .badge-icon { background: var(--dark-card-ink); color: var(--dark-card); }
+            .card h3 { margin-bottom: 8px; max-width: 12ch; }
+            .card p { color: inherit; opacity: 0.72; font-size: 0.92rem; max-width: 28ch; }
+            .card .shot {
+                position: absolute; left: 50%; bottom: -40px; transform: translateX(-50%); width: 230px;
+                border-radius: 30px 30px 0 0; padding: 8px 8px 0; background: #0b0d12; box-shadow: var(--shadow);
             }
+            .card .shot img { border-radius: 24px 24px 0 0; aspect-ratio: 390 / 560; object-fit: cover; object-position: top; }
+            .card.tint .shot img { object-position: bottom; }
+            @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } .card { min-height: 440px; } }
 
-            .hero-actions {
-                display: flex;
-                gap: 12px;
-                justify-content: center;
-                flex-wrap: wrap;
+            /* Steps: staggered numbered cards around a centred phone. */
+            .steps { display: grid; grid-template-columns: 1fr 1fr 300px; gap: 20px; margin-top: 40px; align-items: start; }
+            .step {
+                background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+                padding: 20px 22px; box-shadow: var(--shadow-sm);
             }
-
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 12px 24px;
-                border-radius: var(--radius);
-                font-size: 15px;
-                font-weight: 600;
-                text-decoration: none;
-                transition: all 0.2s;
-                border: none;
-                cursor: pointer;
+            .step .num {
+                float: right; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+                background: var(--tint); color: var(--primary); font-size: 0.75rem; font-weight: 700;
             }
-
-            .btn-primary {
-                background: var(--color-primary);
-                color: white;
+            @media (prefers-color-scheme: dark) { .step .num { color: var(--ink); } }
+            .step h3 { font-size: 1.02rem; margin-bottom: 6px; }
+            .step p { color: var(--ink-2); font-size: 0.9rem; }
+            .step.s2 { margin-top: 44px; }
+            .step.s3 { margin-top: -10px; }
+            .step.s4 { margin-top: 34px; }
+            .steps .device { width: 260px; }
+            .steps-cta { margin-top: 16px; text-align: center; }
+            @media (max-width: 900px) {
+                .steps { grid-template-columns: 1fr 1fr; }
+                .steps .stage { grid-column: 1 / -1; order: -1; }
+                .step { margin-top: 0 !important; }
             }
+            @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 
-            .btn-primary:hover {
-                background: var(--color-primary-dark);
+            /* Trust band (replaces testimonials with verifiable facts). */
+            .band { background: var(--surface-alt); border-radius: var(--radius); padding: 56px 40px; }
+            .band-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: start; }
+            .trust { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+            .trust article { background: var(--surface); border-radius: var(--radius-sm); padding: 20px; border: 1px solid var(--line); }
+            .trust .who { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; }
+            .trust .who span { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); font-size: 15px; }
+            .trust p { color: var(--ink-2); font-size: 0.9rem; }
+            .stats { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 24px; font-size: 0.85rem; color: var(--ink-2); }
+            .stats b { color: var(--ink); font-weight: 600; }
+            @media (max-width: 800px) { .band { padding: 36px 24px; } .band-grid, .trust { grid-template-columns: 1fr; } }
+
+            /* Download card */
+            .dl {
+                position: relative; overflow: hidden; border-radius: var(--radius); background: var(--surface-alt);
+                padding: 56px 48px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; min-height: 400px;
             }
-
-            .btn-secondary {
-                background: var(--color-surface);
-                color: var(--color-text);
-                border: 1px solid var(--color-border);
-            }
-
-            .btn-secondary:hover {
-                background: var(--color-bg);
-                border-color: var(--color-text-muted);
-            }
-
-            /* Stats */
-            .stats {
-                padding: 40px 0;
-                background: var(--color-surface);
-                border-bottom: 1px solid var(--color-border);
-            }
-
-            .stats-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 24px;
-            }
-
-            .stat-item {
-                text-align: center;
-                padding: 16px;
-            }
-
-            .stat-value {
-                font-size: 32px;
-                font-weight: 700;
-                color: var(--color-text);
-                line-height: 1;
-                margin-bottom: 6px;
-            }
-
-            .stat-label {
-                font-size: 14px;
-                color: var(--color-text-muted);
-            }
-
-            /* Features */
-            .features {
-                padding: 80px 0;
-            }
-
-            .section-title {
-                font-size: 32px;
-                font-weight: 700;
-                text-align: center;
-                margin-bottom: 48px;
-                letter-spacing: -0.01em;
-            }
-
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
-            }
-
-            .feature {
-                background: var(--color-surface);
-                border: 1px solid var(--color-border);
-                border-radius: var(--radius);
-                padding: 28px;
-                transition:
-                    box-shadow 0.2s,
-                    border-color 0.2s;
-            }
-
-            .feature:hover {
-                box-shadow: var(--shadow);
-                border-color: #d0d0d8;
-            }
-
-            .feature-icon {
-                width: 44px;
-                height: 44px;
-                background: rgba(0, 102, 204, 0.08);
-                border-radius: var(--radius);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 16px;
-                font-size: 20px;
-            }
-
-            .feature h3 {
-                font-size: 17px;
-                font-weight: 600;
-                margin-bottom: 8px;
-            }
-
-            .feature p {
-                font-size: 15px;
-                color: var(--color-text-secondary);
-                line-height: 1.6;
-            }
-
-            /* Categories */
-            .categories {
-                padding: 80px 0;
-                background: var(--color-surface);
-                border-top: 1px solid var(--color-border);
-            }
-
-            .categories-grid {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                gap: 20px;
-            }
-
-            .category {
-                background: var(--color-bg);
-                border-radius: var(--radius);
-                padding: 24px;
-                text-align: center;
-                border: 1px solid transparent;
-                transition: border-color 0.2s;
-            }
-
-            .category:hover {
-                border-color: var(--color-border);
-            }
-
-            .category-icon {
-                font-size: 28px;
-                margin-bottom: 12px;
-            }
-
-            .category h4 {
-                font-size: 15px;
-                font-weight: 600;
-                margin-bottom: 4px;
-            }
-
-            .category p {
-                font-size: 13px;
-                color: var(--color-text-muted);
-            }
-
-            /* Screenshots */
-            .screenshots {
-                padding: 80px 0;
-                background: var(--color-bg);
-            }
-
-            .screenshots-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
-            }
-
-            .screenshot {
-                text-align: center;
-            }
-
-            .screenshot img {
-                width: 100%;
-                max-width: 280px;
-                height: auto;
-                border-radius: 16px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                border: 1px solid var(--color-border);
-            }
-
-            .screenshot p {
-                margin-top: 12px;
-                font-size: 14px;
-                color: var(--color-text-secondary);
-            }
-
-            /* Download */
-            .download {
-                padding: 100px 0;
-                text-align: center;
-                background: var(--color-bg);
-            }
-
-            .download-box {
-                background: var(--color-surface);
-                border: 1px solid var(--color-border);
-                border-radius: 16px;
-                padding: 48px;
-                max-width: 520px;
-                margin: 0 auto;
-            }
-
-            .download-box h2 {
-                font-size: 28px;
-                font-weight: 700;
-                margin-bottom: 12px;
-            }
-
-            .download-box p {
-                color: var(--color-text-secondary);
-                margin-bottom: 24px;
-            }
-
-            .store-badges {
-                display: flex;
-                gap: 12px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .store-badge {
-                height: 44px;
-                padding: 0 20px;
-                background: var(--color-text);
-                color: white;
-                border-radius: var(--radius);
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                font-size: 14px;
-                font-weight: 500;
-                text-decoration: none;
-                transition: opacity 0.2s;
-            }
-
-            .store-badge:hover {
-                opacity: 0.9;
-            }
-
-            .store-badge.secondary {
-                background: transparent;
-                color: var(--color-text);
-                border: 1px solid var(--color-border);
-            }
-
-            .store-badge.secondary:hover {
-                background: var(--color-bg);
+            .dl .eyebrow { margin-bottom: 18px; }
+            .dl h2 { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+            .dl .badges { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+            .dl .hint { font-size: 0.85rem; color: var(--ink-2); max-width: 30ch; }
+            .dl .device { position: absolute; right: 40px; bottom: -160px; width: 280px; transform: rotate(-8deg); }
+            @media (max-width: 800px) {
+                .dl { grid-template-columns: 1fr; padding: 36px 24px 300px; }
+                .dl .device { right: 50%; transform: translateX(50%) rotate(-6deg); width: 240px; bottom: -200px; }
             }
 
             /* Footer */
-            footer {
-                background: var(--color-surface);
-                border-top: 1px solid var(--color-border);
-                padding: 40px 0;
-            }
-
-            .footer-content {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-
-            .footer-left {
-                color: var(--color-text-muted);
-                font-size: 14px;
-            }
-
-            .footer-links {
-                display: flex;
-                gap: 24px;
-            }
-
-            .footer-links a {
-                color: var(--color-text-secondary);
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            .footer-links a:hover {
-                color: var(--color-primary);
-            }
-
-            /* Responsive */
-            @media (max-width: 900px) {
-                .features-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                .categories-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-                .screenshots-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-
-            @media (max-width: 640px) {
-                .hero h1 {
-                    font-size: 36px;
-                }
-                .hero p {
-                    font-size: 17px;
-                }
-                .stats-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                .features-grid {
-                    grid-template-columns: 1fr;
-                }
-                .categories-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                .screenshots-grid {
-                    grid-template-columns: 1fr;
-                    gap: 32px;
-                }
-                .screenshot img {
-                    max-width: 240px;
-                }
-                .nav-links {
-                    display: none;
-                }
-                .download-box {
-                    padding: 32px 24px;
-                }
-            }
+            footer { padding: 40px 0 28px; border-top: 1px solid var(--line); margin-top: 24px; }
+            .foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+            .foot-links { display: flex; gap: 22px; font-size: 0.9rem; color: var(--ink-2); flex-wrap: wrap; }
+            .foot-links a:hover { color: var(--ink); }
+            .legal { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 28px; font-size: 0.8rem; color: var(--ink-3); }
+            .legal a { color: var(--ink-2); }
         </style>
     </head>
     <body>
         <header>
-            <div class="container">
-                <div class="header-content">
-                    <a href="#" class="logo">
-                        <img src="icon-192.png" alt="WC Finder" style="width:32px;height:32px;border-radius:var(--radius)" />
-                        WC Finder
-                    </a>
-                    <nav class="nav-links">
-                        <a href="./app/">App öffnen</a>
-                        <a href="./api/">API</a>
-                        <a href="#features">Funktionen</a>
-                        <a href="#kategorien">Kategorien</a>
-                        <a
-                            href="https://github.com/saschb2b/wc-finder/releases/latest"
-                            >Download</a
-                        >
-                        <a href="https://github.com/saschb2b/wc-finder"
-                            >GitHub</a
-                        >
-                    </nav>
-                </div>
+            <div class="container nav">
+                <a href="#" class="logo"><img src="icon-192.png" alt="" width="34" height="34" />WC Finder</a>
+                <nav class="links" aria-label="Seitennavigation">
+                    <a href="#funktionen">Funktionen</a>
+                    <a href="#so-gehts">So geht's</a>
+                    <a href="#daten">Daten</a>
+                    <a href="#download">Download</a>
+                    <a href="./api/">API</a>
+                </nav>
+                <a href="./app/" class="btn btn-primary">App öffnen</a>
             </div>
         </header>
 
         <section class="hero">
+            <div class="rings" aria-hidden="true"></div>
             <div class="container">
-                <img class="hero-brand" src="icon.png" width="112" height="112" alt="WC Finder" />
-                <h1>
-                    Barrierefreie Toiletten<br /><span>schnell finden</span>
-                </h1>
-                <p>
-                    87.539 Verzeichniseinträge in Deutschland, Österreich, der
-                    Schweiz und angrenzenden Gebieten. Mit Filtern für Rollstuhl-
-                    und Eurokey-Zugang sowie hinterlegten Öffnungszeiten.
-                    Direkt im Browser oder als Android-App mit lokalem Verzeichnis.
-                    Im Browser werden Karte und Verzeichnis online geladen.
+                <span class="eyebrow">Kostenlos · Offline · Open Source</span>
+                <h1>Die nächste barrierefreie Toilette. Sofort.</h1>
+                <p class="lead">
+                    87.539 Einträge in Deutschland, Österreich und der Schweiz – mit Eurokey,
+                    Öffnungszeiten und dem Datum der letzten Prüfung. Im Browser oder als Android-App.
                 </p>
-                <div class="hero-actions">
-                    <a href="./app/" class="btn btn-primary">Im Browser öffnen</a>
-                    <a
-                        href="https://github.com/saschb2b/wc-finder/releases/latest"
-                        class="btn btn-secondary"
-                        >APK herunterladen</a
-                    >
-                    <a
-                        href="https://github.com/saschb2b/wc-finder"
-                        class="btn btn-secondary"
-                        >Auf GitHub ansehen</a
-                    >
+                <div class="cta-row">
+                    <a href="./app/" class="badge alt">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+                        <span><small>Direkt starten</small><strong>Im Browser öffnen</strong></span>
+                    </a>
+                    <a href="https://github.com/saschb2b/wc-finder/releases/latest/download/wc-finder.apk" class="badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.9-3.3a.4.4 0 0 0-.7-.4l-1.9 3.3A11 11 0 0 0 12 8a11 11 0 0 0-4.9 1.1L5.2 5.8a.4.4 0 0 0-.7.4l1.9 3.3A9.6 9.6 0 0 0 2 17h20a9.6 9.6 0 0 0-4.4-7.5zM7.5 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                        <span><small>Kostenlos für</small><strong>Android (APK)</strong></span>
+                    </a>
+                </div>
+                <div class="hero-stage">
+                    <div class="chip c1"><span class="dot">🔑</span>Eurokey-Zugang</div>
+                    <div class="chip c2"><span class="dot">🕐</span>Jetzt geöffnet</div>
+                    <div class="chip c3"><span class="dot">🛏️</span>Pflegeliege &amp; Lifter</div>
+                    <div class="chip c4"><span class="dot">✓</span>Zuletzt geprüft</div>
+                    <div class="device"><picture>
+                        <source srcset="screens/phone-dark.webp" media="(prefers-color-scheme: dark)" />
+                        <img src="screens/phone-light.webp" width="390" height="844" alt="WC Finder auf dem Smartphone: Karte von Hannover mit Toiletten-Pins und der nächsten Toilette in 90 m" />
+                    </picture></div>
                 </div>
             </div>
         </section>
 
-        <section class="stats">
+        <section id="funktionen">
             <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-value">87.539</div>
-                        <div class="stat-label">Verzeichniseinträge</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">22.102</div>
-                        <div class="stat-label">Mit auswertbaren Öffnungszeiten</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">219</div>
-                        <div class="stat-label">Mit Angaben zur Pflegeausstattung</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">0€</div>
-                        <div class="stat-label">Kostenlos</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="features" id="features">
-            <div class="container">
-                <h2 class="section-title">Funktionen</h2>
-                <div class="features-grid">
-                    <div class="feature">
-                        <div class="feature-icon">🗺️</div>
-                        <h3>Interaktive Karte</h3>
-                        <p>
-                            Alle Standorte auf einer übersichtlichen Karte.
-                            Farbcodierte Kategorien für schnelle Orientierung.
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">♿</div>
-                        <h3>Barrierefreiheit</h3>
-                        <p>
-                            Filter nach Eurokey-Zugang und rollstuhlgerechten
-                            Einrichtungen. Inklusive WC-Türöffner-Info.
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🕐</div>
-                        <h3>Öffnungszeiten</h3>
-                        <p>
-                            Sieh anhand hinterlegter Zeiten, welche Toiletten
-                            voraussichtlich geöffnet haben. Keine Live-Auskunft.
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🧭</div>
-                        <h3>Navigation</h3>
-                        <p>
-                            Ein Tipp zur Navigation mit Google Maps, Apple Maps
-                            oder Waze. Inklusive Fußgänger-Routing.
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">📴</div>
-                        <h3>Android-Verzeichnis offline</h3>
-                        <p>
-                            Die Android-App enthält das Verzeichnis für unterwegs.
-                            Im Browser werden Verzeichnis und Karte online geladen.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="categories" id="kategorien">
-            <div class="container">
-                <h2 class="section-title">Kategorien</h2>
-                <div class="categories-grid">
-                    <div class="category">
-                        <div class="category-icon">🚻</div>
-                        <h4>24/7 Öffentlich</h4>
-                        <p>2.854 Einträge in der Kategorie „24/7 Öffentlich“</p>
-                    </div>
-                    <div class="category">
-                        <div class="category-icon">🚉</div>
-                        <h4>Bahnhöfe</h4>
-                        <p>93 Einträge in der Kategorie „Bahnhöfe“</p>
-                    </div>
-                    <div class="category">
-                        <div class="category-icon">⛽</div>
-                        <h4>Tankstellen</h4>
-                        <p>9.377 Einträge bei Tankstellen und Raststätten</p>
-                    </div>
-                    <div class="category">
-                        <div class="category-icon">🍽️</div>
-                        <h4>Gastronomie</h4>
-                        <p>30.598 Einträge bei Restaurants, Cafés und Bars</p>
-                    </div>
-                    <div class="category">
-                        <div class="category-icon">📍</div>
-                        <h4>Sonstige</h4>
-                        <p>44.617 weitere Einträge, etwa in öffentlichen Gebäuden und Einkaufszentren</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="screenshots" id="screenshots">
-            <div class="container">
-                <h2 class="section-title">Screenshots</h2>
-                <div class="screenshots-grid">
-                    <div class="screenshot">
-                        <img
-                            src="map_hannover_sanifair_tran_Station.png"
-                            alt="Kartenansicht mit Details"
-                        />
-                        <p>Kartenansicht mit Detail-Informationen</p>
-                    </div>
-                    <div class="screenshot">
-                        <img
-                            src="list_now_open.png"
-                            alt="Liste der geöffneten Toiletten"
-                        />
-                        <p>Liste mit Öffnungszeiten-Status</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="euro_key.png" alt="Eurokey-Filter" />
-                        <p>Filter für Eurokey-Zugang</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="download" id="download">
-            <div class="container">
-                <div class="download-box">
-                    <h2>Download</h2>
-                    <p>
-                        Verfügbar für Android 7.0+. Lade die APK herunter und
-                        installiere sie direkt.
+                <div class="split">
+                    <p class="note">
+                        WC Finder bündelt öffentliche Toiletten, Bahnhöfe, Tankstellen, Gastronomie und
+                        spezielle Pflege-Toiletten in einer Karte – auf Android komplett ohne Netz.
                     </p>
-                    <div class="store-badges">
-                        <a
-                            href="https://github.com/saschb2b/wc-finder/releases/latest"
-                            class="store-badge"
-                        >
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-                                />
-                            </svg>
-                            APK herunterladen
-                        </a>
-                        <a
-                            href="https://github.com/saschb2b/wc-finder"
-                            class="store-badge secondary"
-                        >
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                />
-                            </svg>
-                            GitHub
-                        </a>
+                    <h2><span class="icon-dot" aria-hidden="true">♿</span>Barrierefrei finden, ehrlich informiert</h2>
+                </div>
+                <div class="cards">
+                    <article class="card">
+                        <span class="badge-icon" aria-hidden="true">🗺️</span>
+                        <h3>Alles auf einer Karte</h3>
+                        <p>Farbcodierte Pins, die nächste Toilette immer im Blick, Route mit einem Tipp.</p>
+                        <div class="shot"><img src="screens/phone-light.webp" alt="Kartenansicht mit farbigen Pins und der Karte des Stadtzentrums" /></div>
+                    </article>
+                    <article class="card tint">
+                        <span class="badge-icon" aria-hidden="true">🔑</span>
+                        <h3>Filter, die zählen</h3>
+                        <p>Jetzt geöffnet, Eurokey, Rollstuhl, Pflegeliege, Lifter – direkt über der Liste.</p>
+                        <div class="shot"><img src="screens/phone-list.webp" alt="Geöffnete Liste mit Filterchips und Einträgen samt Entfernung" /></div>
+                    </article>
+                    <article class="card dark">
+                        <span class="badge-icon" aria-hidden="true">🌙</span>
+                        <h3>Auch nachts lesbar</h3>
+                        <p>Dunkelmodus folgt dem System – inklusive abgedunkelter Karte.</p>
+                        <div class="shot"><img src="screens/phone-dark.webp" alt="Dunkelmodus der App mit dunkler Karte" /></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="so-gehts">
+            <div class="container">
+                <div class="split" style="align-items: start">
+                    <h2 style="display: block">Vier Schritte<br />zur nächsten<br />Toilette</h2>
+                    <p class="note" style="max-width: 44ch; justify-self: end">
+                        Keine Anmeldung, keine Werbung. Standort freigeben, Filter setzen, antippen,
+                        losgehen – die Navigation übernimmt Google Maps oder Apple Karten.
+                    </p>
+                </div>
+                <div class="steps">
+                    <div>
+                        <article class="step s2"><span class="num">01</span><h3>Standort freigeben</h3><p>Die Karte springt zu dir. Ohne Standort kannst du sie frei erkunden.</p></article>
+                        <article class="step s3" style="margin-top: 20px"><span class="num">03</span><h3>Toilette antippen</h3><p>Details, Öffnungszeiten, Ausstattung und Prüfdatum in der Karte darunter.</p></article>
                     </div>
+                    <div>
+                        <article class="step"><span class="num">02</span><h3>Filter wählen</h3><p>„Jetzt geöffnet“ ist vorausgewählt. Eurokey oder Pflegeliege ein Tipp entfernt.</p></article>
+                        <article class="step s4" style="margin-top: 20px"><span class="num">04</span><h3>Route starten</h3><p>Fußgängerrouting in deiner Karten-App. Bei geschlossenen Toiletten warnt die App.</p></article>
+                    </div>
+                    <div class="stage">
+                        <div class="device"><img src="screens/phone-selected.webp" width="390" height="844" alt="Ausgewählte Toilette auf der Karte mit Route-Button" /></div>
+                        <div class="steps-cta"><a href="./app/" class="btn btn-ghost">Jetzt ausprobieren</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="daten">
+            <div class="container">
+                <div class="band">
+                    <div class="band-grid">
+                        <div>
+                            <h2>Daten, denen du trauen kannst.</h2>
+                            <p class="note" style="margin-top: 14px">
+                                Jeder Eintrag zeigt, wann er zuletzt geprüft wurde – und ob das eine Person vor
+                                Ort war, ein Verzeichnis oder nur ein Datenabruf.
+                            </p>
+                            <div class="stats">
+                                <span><b>2.854</b> 24/7 öffentlich</span>
+                                <span><b>9.377</b> Tankstellen</span>
+                                <span><b>30.598</b> Gastronomie</span>
+                                <span><b>219</b> Pflege-Toiletten</span>
+                            </div>
+                        </div>
+                        <div class="trust">
+                            <article>
+                                <div class="who"><span aria-hidden="true">✓</span>Prüfdatum sichtbar</div>
+                                <p>Steht so prominent wie die Adresse. Einträge ohne Datum oder älter als 18 Monate sind markiert.</p>
+                            </article>
+                            <article>
+                                <div class="who"><span aria-hidden="true">🌐</span>Offene Quellen</div>
+                                <p>OpenStreetMap, Toiletten für alle, Stadtdaten aus Berlin, Hamburg, Rostock, Münster und mehr – mit Link zur Quelle.</p>
+                            </article>
+                            <article>
+                                <div class="who"><span aria-hidden="true">🙋</span>Du bestätigst</div>
+                                <p>„Stimmt so“ nach dem Besuch schiebt das Prüfdatum nach vorn. Fehler meldest du in zwei Tipps.</p>
+                            </article>
+                            <article>
+                                <div class="who"><span aria-hidden="true">🔌</span>Offene API</div>
+                                <p>Das komplette Verzeichnis als JSON, ohne Schlüssel. <a href="./api/" style="color: var(--primary); font-weight: 600">Dokumentation</a></p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download">
+            <div class="container">
+                <div class="dl">
+                    <div>
+                        <span class="eyebrow">Bereit für unterwegs?</span>
+                        <h2><span class="icon-dot" style="margin-top: 0" aria-hidden="true">⬇</span>WC Finder herunterladen</h2>
+                        <div class="badges">
+                            <a href="https://github.com/saschb2b/wc-finder/releases/latest/download/wc-finder.apk" class="badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5l1.9-3.3a.4.4 0 0 0-.7-.4l-1.9 3.3A11 11 0 0 0 12 8a11 11 0 0 0-4.9 1.1L5.2 5.8a.4.4 0 0 0-.7.4l1.9 3.3A9.6 9.6 0 0 0 2 17h20a9.6 9.6 0 0 0-4.4-7.5zM7.5 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                                <span><small>Android 7.0+</small><strong>APK herunterladen</strong></span>
+                            </a>
+                            <a href="./app/" class="btn btn-ghost">Im Browser öffnen</a>
+                            <p class="hint">Die Android-App enthält das Verzeichnis offline. Nur die Straßenkarte lädt online.</p>
+                        </div>
+                    </div>
+                    <div class="device"><img src="screens/phone-dark.webp" width="390" height="844" alt="" /></div>
                 </div>
             </div>
         </section>
 
         <footer>
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-left">
-                        WC Finder — Ein Community-Projekt für barrierefreie
-                        Toiletten
-                    </div>
-                    <div class="footer-links">
-                        <a href="https://github.com/saschb2b/wc-finder/issues"
-                            >Problem melden</a
-                        >
-                        <a href="https://github.com/saschb2b/wc-finder"
-                            >GitHub</a
-                        >
-                        <a href="https://www.toilettenhero.de/"
-                            >Toilettenhero</a
-                        >
-                        <a href="https://www.openstreetmap.org/"
-                            >OpenStreetMap</a
-                        >
-                    </div>
+                <div class="foot">
+                    <a href="#" class="logo"><img src="icon-192.png" alt="" width="34" height="34" />WC Finder</a>
+                    <nav class="foot-links" aria-label="Fußzeile">
+                        <a href="#funktionen">Funktionen</a>
+                        <a href="#so-gehts">So geht's</a>
+                        <a href="#daten">Daten</a>
+                        <a href="#download">Download</a>
+                        <a href="./api/">API</a>
+                        <a href="https://github.com/saschb2b/wc-finder">GitHub</a>
+                    </nav>
+                </div>
+                <div class="legal">
+                    <span>Ein Community-Projekt für barrierefreie Toiletten · Kartendaten © OpenStreetMap-Mitwirkende</span>
+                    <span><a href="https://github.com/saschb2b/wc-finder/issues">Problem melden</a> · <a href="https://github.com/saschb2b/wc-finder/blob/main/README.md">Hinweise zur Nutzung</a></span>
                 </div>
             </div>
         </footer>

@@ -28,5 +28,10 @@ for (const entry of fs.readdirSync('docs', { withFileTypes: true })) {
     fs.copyFileSync(path.join('docs', entry.name), path.join('dist', entry.name));
   }
 }
+// Landing page screenshots live in a subfolder so they can be regenerated as a set.
+if (fs.existsSync('docs/screens')) {
+  fs.mkdirSync('dist/screens', { recursive: true });
+  for (const name of fs.readdirSync('docs/screens')) fs.copyFileSync(path.join('docs/screens', name), path.join('dist/screens', name));
+}
 fs.writeFileSync('dist/.nojekyll', '');
 console.log(`Pages site ready: ${siteBase}/ (website), ${appBase}/ (app).`);
