@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { lightImpact } from '../utils/haptics';
 import { t } from '../i18n';
-import { useThemedStyles, type Colors } from "../theme";
+import { useTheme, useThemedStyles, type Colors } from "../theme";
+import { BrandIcon } from './BrandIcon';
 
 interface EmptyStateProps {
   type: 'no-results' | 'no-location' | 'error' | 'loading';
@@ -19,6 +20,7 @@ const configs = {
 
 export function EmptyState({ type, onAction, message }: EmptyStateProps) {
   const styles = useThemedStyles(makeStyles);
+  const colors = useTheme();
   const config = configs[type];
   const title = t(`empty.${config.key}.title`);
   const description = t(`empty.${config.key}.description`);
@@ -31,7 +33,12 @@ export function EmptyState({ type, onAction, message }: EmptyStateProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>{config.icon}</Text>
+      {type === 'loading' ? (
+        <View style={styles.brand}>
+          <BrandIcon size={160} />
+          <ActivityIndicator style={styles.spinner} color={colors.primary} />
+        </View>
+      ) : <Text style={styles.icon}>{config.icon}</Text>}
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>
         {message || description}
@@ -57,6 +64,8 @@ const makeStyles = (c: Colors) => StyleSheet.create({
     fontSize: 48,
     marginBottom: 16,
   },
+  brand: { alignItems: 'center', marginBottom: 20 },
+  spinner: { marginTop: 24 },
   title: {
     fontSize: 18,
     fontWeight: '600',

@@ -22,6 +22,7 @@
     "data:partner": "tsx scripts/import-partner-toilets.ts",
     "data:review": "tsx scripts/review-data-imports.ts",
     "build:map": "tsx scripts/build-map-assets.ts",
+    "build:brand": "node scripts/build-brand-assets.mjs",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",

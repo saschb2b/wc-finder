@@ -1,4 +1,4 @@
-<img src="assets/icon.png" width="88" alt="WC Finder app icon" align="right" />
+<img src="assets/splash-icon.png" width="88" alt="WC Finder app icon" align="right" />
 
 # WC Finder
 

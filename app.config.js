@@ -25,7 +25,7 @@ export default {
     package: "com.saschb2b.wcfinder",
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
-      backgroundColor: "#1a73e8",
+      backgroundColor: "#0643a7",
     },
     permissions: ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
   },

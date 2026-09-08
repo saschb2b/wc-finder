@@ -10,6 +10,7 @@ import { mediumImpact, successNotification } from '../utils/haptics';
 import { totalCount } from '../data/tile-index.json';
 import { t, formatNumber } from '../i18n';
 import { useThemedStyles, type Colors } from "../theme";
+import { BrandIcon } from './BrandIcon';
 
 interface OnboardingModalProps {
   visible: boolean;
@@ -61,14 +62,21 @@ export function OnboardingModal({
       statusBarTranslucent
     >
       <View style={styles.container}>
-        {/* Skip button */}
-        <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.skipText}>{t('onboarding.skip')}</Text>
-        </TouchableOpacity>
+        <View style={styles.header}>
+          <View style={styles.wordmark}>
+            <BrandIcon size={28} />
+            <Text style={styles.brandName}>{t('app.name')}</Text>
+          </View>
+          <TouchableOpacity style={styles.skipButton} onPress={handleSkip} accessibilityRole="button">
+            <Text style={styles.skipText}>{t('onboarding.skip')}</Text>
+          </TouchableOpacity>
+        </View>
 
         {/* Content */}
         <View style={styles.content}>
-          <Text style={styles.icon}>{slide.icon}</Text>
+          {currentSlide === 0 ? (
+            <View style={styles.brandHero}><BrandIcon size={160} /></View>
+          ) : <Text style={styles.icon}>{slide.icon}</Text>}
           <Text style={styles.title}>{slide.title}</Text>
           <Text style={styles.description}>{slide.description}</Text>
         </View>
@@ -87,7 +95,7 @@ export function OnboardingModal({
         </View>
 
         {/* Next button */}
-        <TouchableOpacity style={styles.button} onPress={handleNext}>
+        <TouchableOpacity style={styles.button} onPress={handleNext} accessibilityRole="button">
           <Text style={styles.buttonText}>
             {isLastSlide ? t('onboarding.start') : t('onboarding.next')}
           </Text>
@@ -100,7 +108,7 @@ export function OnboardingModal({
 const makeStyles = (c: Colors) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: c.surface,
+    backgroundColor: c.background,
     paddingHorizontal: 32,
     paddingTop: 60,
     paddingBottom: 40,
@@ -108,7 +116,13 @@ const makeStyles = (c: Colors) => StyleSheet.create({
   skipButton: {
     alignSelf: 'flex-end',
     padding: 8,
+    minHeight: 44,
+    justifyContent: 'center',
   },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  wordmark: { flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 1 },
+  brandName: { fontSize: 16, fontWeight: '700', color: c.text, flexShrink: 1 },
+  brandHero: { marginBottom: 32 },
   skipText: {
     fontSize: 14,
     color: c.textSecondary,

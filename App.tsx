@@ -35,6 +35,7 @@ import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
 import { ReportSheet } from "./src/components/ReportSheet";
 import { OnboardingModal } from "./src/components/OnboardingModal";
 import { EmptyState } from "./src/components/EmptyState";
+import { BrandIcon } from "./src/components/BrandIcon";
 import { mediumImpact, successNotification } from "./src/utils/haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { t, getLocale, setLocale } from "./src/i18n";
@@ -487,20 +488,24 @@ function AppContent() {
 
   const statusPill = (
     <View style={[styles.statusPill, { top: insets.top + 8 }]} pointerEvents="none">
-      {updating ? (
-        <View style={styles.updatingRow}>
-          <ActivityIndicator size="small" color={colors.textSecondary} />
-          <Text style={styles.statusText}>{t("map.updating")}</Text>
-        </View>
-      ) : (
-        <Text style={styles.statusText}>
-          {exploreBounds
-            ? t("list.toiletsCount", { n: visibleToilets.length })
-            : searchLocation
-              ? t("map.mapLocation")
-              : t("map.myLocation")}
-        </Text>
-      )}
+      <BrandIcon size={32} />
+      <View style={styles.statusCopy}>
+        <Text style={styles.brandName}>{t("app.name")}</Text>
+        {updating ? (
+          <View style={styles.updatingRow}>
+            <ActivityIndicator size="small" color={colors.textSecondary} />
+            <Text style={styles.statusText}>{t("map.updating")}</Text>
+          </View>
+        ) : (
+          <Text style={styles.statusText}>
+            {exploreBounds
+              ? t("list.toiletsCount", { n: visibleToilets.length })
+              : searchLocation
+                ? t("map.mapLocation")
+                : t("map.myLocation")}
+          </Text>
+        )}
+      </View>
     </View>
   );
 
@@ -632,13 +637,18 @@ const makeStyles = (c: Colors) => StyleSheet.create({
   statusPill: {
     position: "absolute",
     left: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 16,
     backgroundColor: c.surface,
     ...shadow(c),
   },
-  statusText: { fontSize: 13, color: c.text, fontWeight: "500" },
+  statusCopy: { gap: 2 },
+  brandName: { fontSize: 14, color: c.text, fontWeight: "700" },
+  statusText: { fontSize: 12, color: c.textSecondary, fontWeight: "500" },
   updatingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
 
   // Location button

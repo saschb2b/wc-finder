@@ -1,5 +1,6 @@
 /** Every user-facing string. German is the source of truth; English must define the same keys. */
 export const de = {
+  "app.name": "WC Finder",
   // Categories
   "category.public_24h": "24/7 Öffentlich",
   "category.station": "Bahnhof",
@@ -178,6 +179,7 @@ export const de = {
 export type TranslationKey = keyof typeof de;
 
 export const en: Record<TranslationKey, string> = {
+  "app.name": "WC Finder",
   "category.public_24h": "24/7 Public",
   "category.station": "Station",
   "category.tankstelle": "Fuel station",
