@@ -26,7 +26,11 @@ const map = L.map("map", {
   maxBounds: [[-85, -180], [85, 180]],
   maxBoundsViscosity: 1,
 });
-L.control.zoom({ position: "bottomleft", zoomInTitle: strings.zoomIn, zoomOutTitle: strings.zoomOut }).addTo(map);
+// Pinch and double-tap cover zoom on touch screens; buttons only help pointer devices.
+if (!window.matchMedia?.("(pointer: coarse)").matches) {
+  L.control.zoom({ position: "bottomleft", zoomInTitle: strings.zoomIn, zoomOutTitle: strings.zoomOut }).addTo(map);
+}
+map.on("click", () => post({ type: "deselect" }));
 map.attributionControl.setPrefix(false);
 const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: `&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${strings.contributors.replace(/</g, "&lt;")}</a>`,
@@ -103,19 +107,6 @@ function makeIcon(pin: MapPin) {
   return L.divIcon({ html: element, className: "wc-marker", iconSize: [36, 44], iconAnchor: [18, 42], popupAnchor: [0, -38] });
 }
 
-function popup(pin: MapPin) {
-  const content = document.createElement("div");
-  const title = document.createElement("strong");
-  title.textContent = pin.name || strings.publicToilet;
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "route-button";
-  button.textContent = strings.startRoute;
-  button.addEventListener("click", () => post({ type: "navigate", id: pin.id }));
-  content.append(title, button);
-  return content;
-}
-
 function updateData(data: MapData) {
   const ids = new Set(data.pins.map(pin => pin.id));
   for (const [id, entry] of markers) {
@@ -124,9 +115,8 @@ function updateData(data: MapData) {
   for (const pin of data.pins) {
     let entry = markers.get(pin.id);
     if (!entry) {
-      const marker = L.marker([pin.lat, pin.lon], { icon: makeIcon(pin), title: pin.name, alt: pin.name, keyboard: true })
-        .bindPopup(popup(pin), { autoPan: false, maxWidth: 240 })
-        .addTo(map);
+      // Selection is shown by the sheet, not a popup, so the map stays uncluttered.
+      const marker = L.marker([pin.lat, pin.lon], { icon: makeIcon(pin), title: pin.name, alt: pin.name, keyboard: true }).addTo(map);
       marker.on("click", () => {
         // Stop before crossing the async WebView bridge so no late movement
         // from the previous selection can override this tap.
@@ -138,18 +128,15 @@ function updateData(data: MapData) {
     } else {
       if (entry.pin.color !== pin.color || entry.pin.selected !== pin.selected) entry.marker.setIcon(makeIcon(pin));
       if (entry.pin.lat !== pin.lat || entry.pin.lon !== pin.lon) entry.marker.setLatLng([pin.lat, pin.lon]);
-      if (entry.pin.name !== pin.name) entry.marker.setPopupContent(popup(pin));
       entry.pin = pin;
     }
     entry.marker.setOpacity(pin.opacity).setZIndexOffset(pin.selected ? 1000 : 0);
-    if (pin.selected) entry.marker.openPopup();
-    else entry.marker.closePopup();
   }
   if (data.userLocation) {
     const latlng: L.LatLngTuple = [data.userLocation.lat, data.userLocation.lon];
     if (!locationMarker) {
       locationMarker = L.circleMarker(latlng, { radius: 8, color: "white", weight: 3, fillColor: "#1a73e8", fillOpacity: 1 })
-        .bindTooltip("Mein Standort").addTo(map);
+        .bindTooltip(strings.myLocation).addTo(map);
     } else locationMarker.setLatLng(latlng);
   } else if (locationMarker) {
     locationMarker.remove();

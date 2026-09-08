@@ -5,7 +5,6 @@ import { t, categoryLabel } from "../i18n";
 import { formatDistance } from "../services/overpass";
 import { ToiletHours } from "./ToiletHours";
 import { CareFacilitiesDisplay } from "./CareFacilitiesDisplay";
-import { isWithinAvailability } from "../utils/toilet-availability";
 import { lastChecked, lastCheckedShort } from "../utils/data-freshness";
 
 interface ToiletListItemProps {
@@ -111,11 +110,6 @@ export const ToiletListItem = memo(function ToiletListItem({
           {hasEurokey && (
             <View style={[styles.tag, styles.tagEurokey]}>
               <Text style={styles.tagText}>{t("toilet.eurokey")}</Text>
-            </View>
-          )}
-          {toilet.hours?.type === "24_7" && isWithinAvailability(toilet) && (
-            <View style={[styles.tag, styles.tag24h]}>
-              <Text style={styles.tagText}>{t("toilet.247")}</Text>
             </View>
           )}
           {isNearest && (
@@ -226,7 +220,6 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   tagEurokey: { backgroundColor: "#1a73e8" },
-  tag24h: { backgroundColor: "#34a853" },
   tagNearest: { backgroundColor: "#34a853" },
   city: {
     fontSize: 12,

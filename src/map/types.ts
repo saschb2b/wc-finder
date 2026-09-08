@@ -13,8 +13,7 @@ export interface MapStrings {
   zoomOut: string;
   contributors: string;
   tilesUnavailable: string;
-  publicToilet: string;
-  startRoute: string;
+  myLocation: string;
 }
 
 export const DEFAULT_MAP_STRINGS: MapStrings = {
@@ -24,8 +23,7 @@ export const DEFAULT_MAP_STRINGS: MapStrings = {
   zoomOut: "Verkleinern",
   contributors: "OpenStreetMap-Mitwirkende",
   tilesUnavailable: "Kartenhintergrund nicht verfügbar. Toiletten und Liste bleiben nutzbar.",
-  publicToilet: "Öffentliche Toilette",
-  startRoute: "Route starten",
+  myLocation: "Mein Standort",
 };
 
 export interface MapPin {
@@ -50,6 +48,7 @@ export type MapCommand =
 
 export type MapEvent =
   | { type: "ready" }
+  | { type: "deselect" }
   | { type: "select" | "navigate"; id: string }
   | { type: "region"; region: MapRegion; isGesture: boolean };
 
@@ -60,6 +59,7 @@ export interface ToiletMapHandle {
 export interface ToiletMapProps extends MapData {
   initialRegion: MapRegion;
   onSelect: (id: string) => void;
+  onDeselect?: () => void;
   onNavigate: (id: string) => void;
   onRegionChange: (region: MapRegion, isGesture: boolean) => void;
 }
@@ -78,6 +78,7 @@ export function parseMapEvent(raw: string): MapEvent | null {
     const event = JSON.parse(raw);
     if (!event || typeof event !== "object") return null;
     if (event.type === "ready") return { type: "ready" };
+    if (event.type === "deselect") return { type: "deselect" };
     if ((event.type === "select" || event.type === "navigate") && typeof event.id === "string") {
       return { type: event.type, id: event.id };
     }

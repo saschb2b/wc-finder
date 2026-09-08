@@ -6,7 +6,7 @@ import { formatDistance } from '../services/overpass';
 import { ToiletHours } from './ToiletHours';
 import { CareFacilitiesDisplay } from './CareFacilitiesDisplay';
 import { ToiletSources } from './ToiletSources';
-import { isWithinAvailability } from '../utils/toilet-availability';
+import { Chip } from './Chip';
 import { lastChecked, lastCheckedLabel, freshnessTone } from '../utils/data-freshness';
 
 interface ToiletDetailCardProps {
@@ -23,9 +23,7 @@ export function ToiletDetailCard({
   onReport
 }: ToiletDetailCardProps) {
   const hasEurokey = toilet.tags?.includes('eurokey');
-  const isWheelchairAccessible = toilet.tags?.includes('barrierefrei');
   const isFree = toilet.tags?.includes('kostenlos') || toilet.fee === 'no';
-  const is24_7 = toilet.hours?.type === '24_7' && isWithinAvailability(toilet);
 
   const checked = lastChecked(toilet);
   const tone = freshnessTone(checked);
@@ -54,49 +52,26 @@ export function ToiletDetailCard({
         <Text style={styles.address}>{[toilet.address, toilet.city].filter(Boolean).join(', ')}</Text>
       )}
 
-      {/* Last checked: as prominent as the address, never hidden behind the sources toggle */}
-      <View style={styles.checkedRow} accessibilityRole="text">
-        <View style={[styles.checkedDot, tone === 'fresh' ? styles.dotFresh : tone === 'aging' ? styles.dotAging : styles.dotStale]} />
-        <Text style={[styles.address, styles.checkedText, !checked && styles.checkedUnknown]}>
-          {lastCheckedLabel(toilet)}
-          {tone === 'stale' && checked ? ` · ${t('toilet.mightBeOutdated')}` : ''}
-        </Text>
-      </View>
+      {/* Last checked: as prominent as the address, never hidden behind the sources toggle.
+          Text only, so green stays reserved for "open". */}
+      <Text style={[styles.address, styles.checkedText, tone === 'stale' && checked && styles.checkedStale, !checked && styles.checkedUnknown]}>
+        {lastCheckedLabel(toilet)}
+        {tone === 'stale' && checked ? ` · ${t('toilet.mightBeOutdated')}` : ''}
+      </Text>
 
       {/* Opening Hours */}
       <View style={styles.hoursSection}>
         <ToiletHours toilet={toilet} compact />
       </View>
 
-      {/* Feature Tags */}
+      {/* Facts that are not already stated by the category or the hours line */}
       <View style={styles.tagsRow}>
-        {hasEurokey && (
-          <View style={styles.featureTag}>
-            <Text style={styles.featureIcon}>🔑</Text>
-            <Text style={styles.featureText}>{t('toilet.eurokey')}</Text>
-          </View>
-        )}
-        {isWheelchairAccessible && (
-          <View style={styles.featureTag}>
-            <Text style={styles.featureIcon}>♿</Text>
-            <Text style={styles.featureText}>{t('toilet.wheelchair')}</Text>
-          </View>
-        )}
-        {isFree && (
-          <View style={styles.featureTag}>
-            <Text style={styles.featureIcon}>🆓</Text>
-            <Text style={styles.featureText}>{t('toilet.free')}</Text>
-          </View>
-        )}
-        {is24_7 && (
-          <View style={styles.featureTag}>
-            <Text style={styles.featureIcon}>🕐</Text>
-            <Text style={styles.featureText}>{t('toilet.247')}</Text>
-          </View>
-        )}
+        {hasEurokey && <Chip icon="🔑" label={t('toilet.eurokey')} />}
+        {isFree && <Chip icon="🆓" label={t('toilet.free')} />}
+        <CareFacilitiesDisplay toilet={toilet} inline />
       </View>
 
-      <CareFacilitiesDisplay toilet={toilet} />
+      <CareFacilitiesDisplay toilet={toilet} detailsOnly />
       {toilet.accessNote && <Text style={styles.address}>{toilet.accessNote}</Text>}
       {toilet.locationNote && <Text style={styles.address}>{toilet.locationNote}</Text>}
       {toilet.fee && toilet.fee !== 'no' && <Text style={styles.address}>
@@ -182,28 +157,16 @@ const styles = StyleSheet.create({
   hoursSection: {
     marginBottom: 12,
   },
-  checkedRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginBottom: 8,
-  },
   checkedText: {
-    marginBottom: 0,
-    flexShrink: 1,
+    fontSize: 13,
+  },
+  checkedStale: {
+    color: '#b06000',
   },
   checkedUnknown: {
     fontStyle: 'italic',
     color: '#9aa0a6',
   },
-  checkedDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  dotFresh: { backgroundColor: '#34a853' },
-  dotAging: { backgroundColor: '#f5a623' },
-  dotStale: { backgroundColor: '#9aa0a6' },
   unknownHours: {
     fontSize: 13,
     color: '#9aa0a6',
@@ -213,24 +176,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginBottom: 16,
-  },
-  featureTag: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 8,
-    gap: 4,
-  },
-  featureIcon: {
-    fontSize: 14,
-  },
-  featureText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#444',
+    marginBottom: 12,
   },
   actions: {
     flexDirection: 'row',

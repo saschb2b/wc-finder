@@ -31,6 +31,7 @@ export function useMapBridge(props: ToiletMapProps, ref: Ref<ToiletMapHandle>, s
       if (pendingFocus.current) { send(pendingFocus.current); pendingFocus.current = null; }
     } else if (event.type === "region") latest.current.onRegionChange(event.region, event.isGesture);
     else if (event.type === "select") latest.current.onSelect(event.id);
+    else if (event.type === "deselect") latest.current.onDeselect?.();
     else if (event.type === "navigate") latest.current.onNavigate(event.id);
   }, [send, sendData]);
 

@@ -4,7 +4,8 @@ import { WebView } from "react-native-webview";
 import { createMapDocument, MAP_BASE_URL, MAP_USER_AGENT, mapCommandScript } from "../map/document";
 import { useMapBridge } from "../map/useMapBridge";
 import type { MapCommand, ToiletMapHandle, ToiletMapProps } from "../map/types";
-import { t, getLocale } from "../i18n";
+import { t } from "../i18n";
+import { mapStrings } from "../map/strings";
 
 export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function ToiletMap(props, ref) {
   const webView = useRef<WebView>(null);
@@ -43,12 +44,6 @@ export const ToiletMap = forwardRef<ToiletMapHandle, ToiletMapProps>(function To
     </View>}
   />;
 });
-
-export function mapStrings() {
-  return { lang: getLocale(), title: t("map.title"), zoomIn: t("map.zoomIn"), zoomOut: t("map.zoomOut"),
-    contributors: t("map.contributors"), tilesUnavailable: t("map.tilesUnavailable"),
-    publicToilet: t("toilet.publicName"), startRoute: t("action.startRoute") };
-}
 
 const styles = StyleSheet.create({
   map: { flex: 1, backgroundColor: "#e9eee7" },

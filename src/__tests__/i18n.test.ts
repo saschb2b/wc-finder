@@ -28,7 +28,7 @@ test("notifies subscribers only when the locale actually changes", () => {
 
 test("defaults to German and interpolates", () => {
   expect(getLocale()).toBe("de");
-  expect(t("list.show", { n: 3 })).toBe("3 Toiletten anzeigen");
+  expect(t("list.toiletsCount", { n: 3 })).toBe("3 Toiletten");
   expect(t("toilet.fee", { fee: "0,50 €" })).toBe("Gebühr: 0,50 €");
 });
 

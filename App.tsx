@@ -13,13 +13,13 @@ import {
   ActivityIndicator,
   Platform,
   FlatList,
+  ScrollView,
   Linking,
-  Modal,
   Alert,
   AppState,
   useWindowDimensions,
 } from "react-native";
-import { SafeAreaView, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useToilets } from "./src/hooks/useToilets";
 import { useFavorites } from "./src/hooks/useFavorites";
@@ -27,6 +27,8 @@ import { ToiletListItem } from "./src/components/ToiletListItem";
 import { toiletOpenStatus, isWithinAvailability, availabilityLabel } from "./src/utils/toilet-availability";
 import { filterToilets } from "./src/utils/filter-toilets";
 import { ToiletDetailCard } from "./src/components/ToiletDetailCard";
+import { ToiletPeekCard } from "./src/components/ToiletPeekCard";
+import { BottomSheet, type BottomSheetHandle } from "./src/components/BottomSheet";
 import { ToiletMap } from "./src/components/ToiletMap";
 import type { MapPin, MapRegion, ToiletMapHandle } from "./src/map/types";
 import { Toilet, CATEGORY_COLORS, PIN_COLORS } from "./src/types/toilet";
@@ -39,10 +41,13 @@ import { t, getLocale, setLocale } from "./src/i18n";
 import { detectLocale } from "./src/i18n/detect";
 import { useLocale } from "./src/i18n/useLocale";
 
-// Filter type must be defined outside component
 type FilterMode = "now" | "all";
 
 const isWeb = Platform.OS === "web";
+/** Height of the location button and filter row that float above the sheet surface. */
+const OVERLAY_HEIGHT = 108;
+/** Sheet header height before it is measured. */
+const DEFAULT_PEEK = 150;
 
 function openNavigationWithHaptics(
   toilet: Toilet,
@@ -90,10 +95,10 @@ function openNavigation(toilet: Toilet, showClosedWarning: boolean = true) {
 
 function AppContent() {
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+  const desktopWeb = isWeb && width >= 900;
   // Remount the tree on a locale change so memoized children and the map document pick it up.
   const locale = useLocale();
-  const desktopWeb = isWeb && width >= 900;
   const {
     toilets,
     userLocation,
@@ -126,14 +131,15 @@ function AppContent() {
     [favoriteIds, rawToggleFavorite],
   );
   const mapRef = useRef<ToiletMapHandle>(null);
+  const sheetRef = useRef<BottomSheetHandle>(null);
   const [selectedToilet, setSelectedToilet] = useState<Toilet | null>(null);
-  const [listExpanded, setListExpanded] = useState(false);
   const [filterMode, setFilterMode] = useState<FilterMode>("now");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [requireEurokey, setRequireEurokey] = useState(false);
   const [wheelchairOnly, setWheelchairOnly] = useState(false);
   const [requireBed, setRequireBed] = useState(false);
   const [requireHoist, setRequireHoist] = useState(false);
+  const [peekHeight, setPeekHeight] = useState(DEFAULT_PEEK);
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
     const update = () => setNow(new Date());
@@ -212,7 +218,8 @@ function AppContent() {
     exploreTimerRef.current = null;
     mediumImpact();
     setSelectedToilet(toilet);
-    setListExpanded(false);
+    // Selecting collapses the sheet so the pin is visible on the map.
+    sheetRef.current?.snapTo(0);
     if (mapRef.current) {
       mapRef.current?.animateToRegion(
         {
@@ -272,6 +279,21 @@ function AppContent() {
     [exploreAt],
   );
 
+  const openReportFor = useCallback((toilet?: Toilet) => {
+    setReportToilet(toilet);
+    setShowReport(true);
+  }, []);
+
+  const resetFilters = useCallback(() => {
+    setFilterMode("all");
+    setShowFavoritesOnly(false);
+    setRequireEurokey(false);
+    setWheelchairOnly(false);
+    setRequireBed(false);
+    setRequireHoist(false);
+    setSelectedToilet(null);
+  }, []);
+
   // --- Derived data (MUST be before any early returns) ---
 
   const filteredToilets = useMemo(() => filterToilets(toilets, {
@@ -317,6 +339,15 @@ function AppContent() {
     };
   }), [visibleToilets, selectedToilet, favoriteIds, now]);
 
+  const openNowCount = useMemo(
+    () => toilets.filter((t) => toiletOpenStatus(t, now) === true).length,
+    [toilets, now],
+  );
+  const allCount = useMemo(
+    () => toilets.filter(t => isWithinAvailability(t, now)).length,
+    [toilets, now],
+  );
+
   useEffect(() => () => {
     if (exploreTimerRef.current) clearTimeout(exploreTimerRef.current);
   }, []);
@@ -334,7 +365,7 @@ function AppContent() {
   // --- Error ---
   // Only show full-screen error for initial load failures (no location, etc.)
   // Don't block the map when panning to an empty area
-  if (error && toilets.length === 0 && !userLocation && !exploreBounds) {
+  if (error && toilets.length === 0 && !userLocation) {
     return (
       <>
         <StatusBar style="dark" />
@@ -343,293 +374,181 @@ function AppContent() {
     );
   }
 
-  // --- Bottom card: shows SELECTED toilet or NEAREST if none selected ---
   const toiletToShow = selectedToilet || displayNearest;
 
-  const bottomCard = toiletToShow && (
-    <ToiletDetailCard
-      toilet={toiletToShow}
-      isSelected={!!selectedToilet}
-      onNavigate={() => openNavigationWithHaptics(toiletToShow)}
-      onReport={() => {
-        setReportToilet(toiletToShow);
-        setShowReport(true);
-      }}
+  // --- Filter chips: always visible, one row, horizontally scrollable ---
+  const modeChip = (mode: FilterMode, label: string, count: number) => {
+    const active = filterMode === mode;
+    return (
+      <TouchableOpacity
+        key={mode}
+        accessibilityRole="radio"
+        accessibilityState={{ selected: active }}
+        style={[styles.chip, active && styles.chipActive]}
+        onPress={() => { mediumImpact(); setFilterMode(mode); setSelectedToilet(null); }}
+      >
+        <Text style={[styles.chipText, active && styles.chipTextActive]}>{label}</Text>
+        <Text style={[styles.chipCount, active && styles.chipTextActive]}>{count}</Text>
+      </TouchableOpacity>
+    );
+  };
+  const toggleChip = (
+    key: string, label: string, a11yLabel: string, checked: boolean, setChecked: (v: boolean) => void, icon?: string,
+  ) => (
+    <TouchableOpacity
+      key={key}
+      accessibilityRole="checkbox"
+      accessibilityLabel={a11yLabel}
+      accessibilityState={{ checked }}
+      aria-checked={checked}
+      style={[styles.chip, checked && styles.chipActive]}
+      onPress={() => { mediumImpact(); setChecked(!checked); setSelectedToilet(null); }}
+    >
+      {icon ? <Text style={[styles.chipIcon, checked && styles.chipTextActive]}>{icon}</Text> : null}
+      <Text style={[styles.chipText, checked && styles.chipTextActive]}>{label}</Text>
+    </TouchableOpacity>
+  );
+  const filterChips = [
+    modeChip("now", t("filter.openNow"), openNowCount),
+    modeChip("all", t("filter.all"), allCount),
+    toggleChip("fav", t("filter.favorites"), t("filter.favoritesOnly"), showFavoritesOnly, setShowFavoritesOnly, showFavoritesOnly ? "★" : "☆"),
+    toggleChip("eurokey", t("toilet.eurokey"), t("filter.withEurokey"), requireEurokey, setRequireEurokey, "🔑"),
+    toggleChip("wheelchair", t("filter.wheelchair"), t("filter.wheelchairA11y"), wheelchairOnly, setWheelchairOnly, "♿"),
+    toggleChip("bed", t("care.bed"), t("filter.withEquipment", { label: t("care.bed") }), requireBed, setRequireBed),
+    toggleChip("hoist", t("care.hoist"), t("filter.withEquipment", { label: t("care.hoist") }), requireHoist, setRequireHoist),
+  ];
+
+  const locationButton = (
+    <TouchableOpacity
+      style={styles.locBtn}
+      accessibilityRole="button"
+      accessibilityLabel={t("map.useMyLocation")}
+      onPress={focusUser}
+      activeOpacity={0.8}
+    >
+      <Text style={styles.locBtnIcon}>◎</Text>
+    </TouchableOpacity>
+  );
+
+  const errorBanner = error && (
+    <TouchableOpacity accessibilityRole="button" onPress={refresh} style={styles.errorBanner}>
+      <Text accessibilityRole="alert" style={styles.errorText}>{error} {t("action.retry")}</Text>
+    </TouchableOpacity>
+  );
+
+  // --- List (shared by the sheet body and the desktop side panel) ---
+  const list = (
+    <FlatList
+      data={filteredToilets}
+      keyExtractor={(item) => item.id}
+      initialNumToRender={12}
+      maxToRenderPerBatch={12}
+      keyboardShouldPersistTaps="handled"
+      ListHeaderComponent={
+        toiletToShow ? (
+          <ToiletDetailCard
+            toilet={toiletToShow}
+            isSelected={!!selectedToilet}
+            onNavigate={() => openNavigationWithHaptics(toiletToShow)}
+            onReport={() => openReportFor(toiletToShow)}
+          />
+        ) : null
+      }
+      renderItem={({ item }) => (
+        <ToiletListItem
+          toilet={item}
+          isNearest={item.id === displayNearest?.id}
+          isFavorite={isFavorite(item.id)}
+          isSelected={item.id === selectedToilet?.id}
+          onNavigate={(t) => openNavigation(t)}
+          onSelect={focusToilet}
+          onToggleFavorite={toggleFavorite}
+          onReport={openReportFor}
+        />
+      )}
+      ListEmptyComponent={<EmptyState type="no-results" onAction={resetFilters} />}
+      ListFooterComponent={
+        <TouchableOpacity style={styles.reportMissing} onPress={() => openReportFor(undefined)} accessibilityRole="button">
+          <Text style={styles.reportMissingText}>📍 {t("list.reportMissing")}</Text>
+        </TouchableOpacity>
+      }
+      contentContainerStyle={[styles.listContent, { paddingBottom: insets.bottom + 24 }]}
     />
   );
 
-  // --- Filter chips ---
-  // "Jetzt geöffnet" shows ONLY confirmed open toilets (strict)
-  const openNowCount = toilets.filter(
-    (t) => toiletOpenStatus(t, now) === true,
-  ).length;
-  const filterBar = (
-    <View style={styles.filterContainer}>
-      {/* Primary toggle: Now / All */}
-      <View style={styles.primaryToggle}>
-        <TouchableOpacity
-          style={[
-            styles.toggleBtn,
-            filterMode === "now" && styles.toggleBtnActive,
-          ]}
-          onPress={() => {
-            mediumImpact();
-            setFilterMode("now");
-            setSelectedToilet(null);
-          }}
-        >
-          <Text
-            style={[
-              styles.toggleText,
-              filterMode === "now" && styles.toggleTextActive,
-            ]}
-          >
-            {t("filter.openNow")}
-          </Text>
-          <View
-            style={[styles.badge, filterMode === "now" && styles.badgeActive]}
-          >
-            <Text
-              style={[
-                styles.badgeText,
-                filterMode === "now" && styles.badgeTextActive,
-              ]}
-            >
-              {openNowCount}
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            styles.toggleBtn,
-            filterMode === "all" && styles.toggleBtnActive,
-          ]}
-          onPress={() => {
-            mediumImpact();
-            setFilterMode("all");
-            setSelectedToilet(null);
-          }}
-        >
-          <Text
-            style={[
-              styles.toggleText,
-              filterMode === "all" && styles.toggleTextActive,
-            ]}
-          >
-            {t("filter.all")}
-          </Text>
-          <View
-            style={[styles.badge, filterMode === "all" && styles.badgeActive]}
-          >
-            <Text
-              style={[
-                styles.badgeText,
-                filterMode === "all" && styles.badgeTextActive,
-              ]}
-            >
-              {toilets.filter(t => isWithinAvailability(t, now)).length}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      {/* Secondary toggles */}
-      <View style={styles.secondaryToggles}>
-        <TouchableOpacity
-          accessibilityRole="checkbox"
-          accessibilityLabel={t("filter.favoritesOnly")}
-          accessibilityState={{ checked: showFavoritesOnly }}
-          aria-checked={showFavoritesOnly}
-          style={[
-            styles.secondaryBtn,
-            showFavoritesOnly && styles.secondaryBtnActive,
-          ]}
-          onPress={() => {
-            mediumImpact();
-            setShowFavoritesOnly(!showFavoritesOnly);
-            setSelectedToilet(null);
-          }}
-        >
-          <Text style={[styles.secondaryIcon, showFavoritesOnly && styles.secondaryTextActive]}>
-            {showFavoritesOnly ? "★" : "☆"}
-          </Text>
-          <Text
-            numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.8}
-            style={[
-              styles.secondaryText,
-              showFavoritesOnly && styles.secondaryTextActive,
-            ]}
-          >
-            {t("filter.favorites")}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          accessibilityRole="checkbox"
-          accessibilityLabel={t("filter.withEurokey")}
-          accessibilityState={{ checked: requireEurokey }}
-          aria-checked={requireEurokey}
-          style={[
-            styles.secondaryBtn,
-            requireEurokey && styles.secondaryBtnActive,
-          ]}
-          onPress={() => {
-            mediumImpact();
-            setRequireEurokey(!requireEurokey);
-            setSelectedToilet(null);
-          }}
-        >
-          <Text style={styles.secondaryIcon}>🔑</Text>
-          <Text
-            numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.8}
-            style={[
-              styles.secondaryText,
-              requireEurokey && styles.secondaryTextActive,
-            ]}
-          >
-            {t("toilet.eurokey")}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          accessibilityRole="checkbox"
-          accessibilityLabel={t("filter.wheelchairA11y")}
-          accessibilityState={{ checked: wheelchairOnly }}
-          aria-checked={wheelchairOnly}
-          style={[
-            styles.secondaryBtn,
-            wheelchairOnly && styles.secondaryBtnActive,
-          ]}
-          onPress={() => {
-            mediumImpact();
-            setWheelchairOnly(!wheelchairOnly);
-            setSelectedToilet(null);
-          }}
-        >
-          <Text style={styles.secondaryIcon}>♿</Text>
-          <Text
-            numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.8}
-            style={[
-              styles.secondaryText,
-              wheelchairOnly && styles.secondaryTextActive,
-            ]}
-          >
-            {t("filter.wheelchair")}
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.secondaryToggles}>
-        {([
-          [t("care.bed"), requireBed, setRequireBed],
-          [t("care.hoist"), requireHoist, setRequireHoist],
-        ] as const).map(([label, checked, setChecked]) => (
-          <TouchableOpacity key={label} accessibilityRole="checkbox"
-            accessibilityLabel={t("filter.withEquipment", { label })} accessibilityState={{ checked }}
-            aria-checked={checked}
-            style={[styles.secondaryBtn, checked && styles.secondaryBtnActive]}
-            onPress={() => { mediumImpact(); setChecked(!checked); setSelectedToilet(null); }}>
-            <Text style={[styles.secondaryText, checked && styles.secondaryTextActive]}>{label}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+  const statusPill = (
+    <View style={[styles.statusPill, { top: insets.top + 8 }]} pointerEvents="none">
+      {updating ? (
+        <View style={styles.updatingRow}>
+          <ActivityIndicator size="small" color="#666" />
+          <Text style={styles.statusText}>{t("map.updating")}</Text>
+        </View>
+      ) : (
+        <Text style={styles.statusText}>
+          {exploreBounds
+            ? t("list.toiletsCount", { n: visibleToilets.length })
+            : searchLocation
+              ? t("map.mapLocation")
+              : t("map.myLocation")}
+        </Text>
+      )}
     </View>
   );
 
-  // --- List Modal for Native ---
-  const listModal = (
-    <Modal
-      visible={listExpanded}
-      animationType="slide"
-      onRequestClose={() => setListExpanded(false)}
-    >
-      <SafeAreaView style={styles.modalContainer}>
-        <View style={styles.modalHeader}>
-          <Text style={styles.modalTitle}>
-            {showFavoritesOnly
-              ? t("list.favorites")
-              : wheelchairOnly
-                ? t("list.accessible")
-                : filterMode === "now"
-                  ? t("list.open")
-                  : t("list.all")}
-          </Text>
-          <View style={styles.modalHeaderActions}>
-            <TouchableOpacity
-              onPress={() => {
-                setReportToilet(undefined);
-                setShowReport(true);
-              }}
-              style={styles.modalReportBtn}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
-              <Text style={styles.modalReportText}>{t("list.report")}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setListExpanded(false)}
-              style={styles.modalCloseBtn}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
-              <Text style={styles.modalCloseText}>✕</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {filterBar}
-
-        <FlatList
-          data={filteredToilets}
-          keyExtractor={(item) => item.id}
-          initialNumToRender={15}
-          maxToRenderPerBatch={15}
-          renderItem={({ item }) => (
-            <ToiletListItem
-              toilet={item}
-              isNearest={item.id === displayNearest?.id}
-              isFavorite={isFavorite(item.id)}
-              isSelected={item.id === selectedToilet?.id}
-              onNavigate={(t) => {
-                setListExpanded(false);
-                openNavigation(t);
-              }}
-              onSelect={(t) => {
-                setListExpanded(false);
-                focusToilet(t);
-              }}
-              onToggleFavorite={toggleFavorite}
-              onReport={(t) => {
-                setReportToilet(t);
-                setShowReport(true);
-              }}
-            />
-          )}
-          contentContainerStyle={styles.modalListContent}
-          ListEmptyComponent={
-            <EmptyState
-              type="no-results"
-              onAction={() => {
-                setFilterMode("all");
-                setShowFavoritesOnly(false);
-                setRequireEurokey(false);
-                setWheelchairOnly(false);
-                setRequireBed(false);
-                setRequireHoist(false);
-                setSelectedToilet(null);
-              }}
-            />
-          }
-        />
-      </SafeAreaView>
-    </Modal>
+  const map = (
+    <ToiletMap
+      ref={mapRef}
+      pins={mapPins}
+      userLocation={userLocation}
+      initialRegion={{
+        latitude: userLocation?.lat ?? 52.3759,
+        longitude: userLocation?.lon ?? 9.732,
+        latitudeDelta: userLocation ? 0.04 : 0.1,
+        longitudeDelta: userLocation ? 0.04 : 0.1,
+      }}
+      onSelect={id => {
+        const toilet = visibleToilets.find(t => t.id === id);
+        if (toilet) focusToilet(toilet);
+      }}
+      onDeselect={() => setSelectedToilet(null)}
+      onNavigate={id => {
+        const toilet = visibleToilets.find(t => t.id === id);
+        if (toilet) openNavigationWithHaptics(toilet);
+      }}
+      onRegionChange={handleRegionChange}
+    />
   );
 
-  // --- NATIVE ---
+  // --- Desktop web: map with a fixed side panel, no sheet gesture ---
+  if (desktopWeb) {
+    return (
+      <View style={styles.flex} key={locale}>
+        <StatusBar style="dark" />
+        <View style={styles.desktopRow}>
+          <View style={styles.flex}>
+            {map}
+            {statusPill}
+            <View style={styles.desktopLocBtn}>{locationButton}</View>
+          </View>
+          <View style={styles.sidePanel}>
+            <View style={styles.sideFilters}>{filterChips}</View>
+            {errorBanner}
+            {list}
+          </View>
+        </View>
+        <ReportSheet toilet={reportToilet} visible={showReport} onClose={() => setShowReport(false)} />
+      </View>
+    );
+  }
+
+  // --- Phone: full-screen map with a persistent draggable sheet ---
+  const fullHeight = height - insets.top - 8;
+  const snapPoints = [
+    Math.min(OVERLAY_HEIGHT + peekHeight + insets.bottom, fullHeight),
+    Math.min(Math.round(height * 0.55), fullHeight),
+    fullHeight,
+  ];
+
   return (
     <View style={styles.flex} key={locale}>
       <StatusBar style="dark" />
@@ -641,98 +560,51 @@ function AppContent() {
         onRequestLocation={focusUser}
       />
 
-      {/* List Modal */}
-      {listModal}
-
-      {/* Map - Always Full Screen */}
+      {/* Map - always full screen; the sheet floats above it */}
       <View style={styles.mapFull}>
-        <ToiletMap
-          ref={mapRef}
-          pins={mapPins}
-          userLocation={userLocation}
-          initialRegion={{
-            latitude: userLocation?.lat ?? 52.3759,
-            longitude: userLocation?.lon ?? 9.732,
-            latitudeDelta: userLocation ? 0.04 : 0.1,
-            longitudeDelta: userLocation ? 0.04 : 0.1,
-          }}
-          onSelect={id => {
-            const toilet = visibleToilets.find(t => t.id === id);
-            if (toilet) focusToilet(toilet);
-          }}
-          onNavigate={id => {
-            const toilet = visibleToilets.find(t => t.id === id);
-            if (toilet) openNavigationWithHaptics(toilet);
-          }}
-          onRegionChange={handleRegionChange}
-        />
-
-        {/* Location pill - shows current context */}
-        <View style={[styles.locationPill, desktopWeb && { right: "auto", width: 360, top: 24, left: 24 }]}>
-          {updating ? (
-            <View style={styles.updatingRow}>
-              <ActivityIndicator size="small" color="#666" />
-              <Text style={styles.updatingText}>{t("map.updating")}</Text>
-            </View>
-          ) : (
-            <Text style={styles.locationPillText}>
-              {exploreBounds
-                ? `🔍 ${t("list.toiletsCount", { n: visibleToilets.length })}`
-                : searchLocation
-                  ? t("map.mapLocation")
-                  : t("map.myLocation")}
-            </Text>
-          )}
-        </View>
-
-        {/* My location button */}
-        <TouchableOpacity
-          style={[styles.locBtn, { bottom: desktopWeb ? undefined : 140 + insets.bottom }, desktopWeb && { top: 90, right: 24 }]}
-          accessibilityRole="button"
-          accessibilityLabel={t("map.useMyLocation")}
-          onPress={focusUser}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.locBtnIcon}>◎</Text>
-        </TouchableOpacity>
+        {map}
+        {statusPill}
       </View>
 
-      {/* Bottom panel - Always shows nearest + list button */}
-      <View style={[styles.panel, { paddingBottom: insets.bottom }, desktopWeb && { position: "absolute", right: 24, bottom: 24, width: 400, borderRadius: 16 }]}>
-        {error && (
-          <TouchableOpacity accessibilityRole="button" onPress={refresh} style={{ padding: 12 }}>
-            <Text accessibilityRole="alert" style={{ color: "#9b2c2c" }}>{error} {t("action.retry")}</Text>
-          </TouchableOpacity>
-        )}
-        {/* Nearest card */}
-        {bottomCard}
-
-        {/* Action buttons */}
-        <View style={styles.bottomActions}>
-          <TouchableOpacity
-            style={styles.listButton}
-            onPress={() => setListExpanded(true)}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.listButtonText}>
-              {t("list.show", { n: filteredToilets.length })}
-            </Text>
-            <Text style={styles.listButtonIcon}>⌄</Text>
-          </TouchableOpacity>
-
-          {selectedToilet && (
-            <TouchableOpacity
-              style={styles.clearBtn}
-              onPress={() => setSelectedToilet(null)}
-              activeOpacity={0.8}
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={snapPoints}
+        overlay={
+          <View style={styles.overlay} pointerEvents="box-none">
+            <View style={styles.overlayLocRow} pointerEvents="box-none">{locationButton}</View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.filterRow}
+              keyboardShouldPersistTaps="handled"
             >
-              <Text style={styles.clearBtnText}>✕</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+              {filterChips}
+            </ScrollView>
+          </View>
+        }
+        header={
+          <View onLayout={e => setPeekHeight(Math.ceil(e.nativeEvent.layout.height) + 25)}>
+            {errorBanner}
+            {toiletToShow ? (
+              <ToiletPeekCard
+                toilet={toiletToShow}
+                isSelected={!!selectedToilet}
+                onNavigate={() => openNavigationWithHaptics(toiletToShow)}
+                onList={() => { mediumImpact(); sheetRef.current?.snapTo(1); }}
+              />
+            ) : (
+              <TouchableOpacity style={styles.peekEmpty} onPress={resetFilters} accessibilityRole="button">
+                <Text style={styles.peekEmptyTitle}>{t("empty.noResults.title")}</Text>
+                <Text style={styles.peekEmptyAction}>{t("empty.noResults.action")}</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        }
+      >
+        {list}
+      </BottomSheet>
 
-      {/* Report sheet - triggered from list modal or bottom card */}
+      {/* Report sheet - triggered from the list or the detail card */}
       <ReportSheet
         toilet={reportToilet}
         visible={showReport}
@@ -761,72 +633,23 @@ const S = {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: S.bg },
-  map: { flex: 1 },
   mapFull: { flex: 1 },
 
-  // Loading / Error
-  centered: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: S.bg,
-    paddingHorizontal: 32,
-  },
-  loadingTitle: {
-    marginTop: 20,
-    fontSize: 22,
-    fontWeight: "700",
-    color: S.textPrimary,
-  },
-  loadingSub: { marginTop: 6, fontSize: 14, color: S.textSecondary },
-  errorText: {
-    fontSize: 16,
-    color: S.textPrimary,
-    textAlign: "center",
-    marginBottom: 20,
-    lineHeight: 22,
-  },
-  primaryBtn: {
-    backgroundColor: S.blue,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 24,
-  },
-  primaryBtnText: { color: "#fff", fontSize: 16, fontWeight: "600" },
-
-  // Web
-  webHeader: {
-    paddingTop: 48,
-    paddingBottom: 16,
-    paddingHorizontal: 20,
-    backgroundColor: S.blue,
-  },
-  webTitle: { fontSize: 22, fontWeight: "700", color: "#fff" },
-
-  // Location pill
-  locationPill: {
+  // Status pill: small, top-left, never in the way of pins
+  statusPill: {
     position: "absolute",
-    top: 52,
     left: 16,
-    right: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
     backgroundColor: "#fff",
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
     ...S.shadow,
   },
-  locationPillText: { fontSize: 15, color: S.textPrimary, fontWeight: "500" },
-  updatingRow: { flexDirection: "row" as const, alignItems: "center" as const, gap: 8 },
-  updatingText: { fontSize: 13, color: "#888" },
+  statusText: { fontSize: 13, color: S.textPrimary, fontWeight: "500" },
+  updatingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
 
-  // Location button - positioned above bottom panel
+  // Location button
   locBtn: {
-    position: "absolute",
-    bottom: 140, // Above bottom panel (~120px height + margin)
-    right: 16,
     width: 48,
     height: 48,
     borderRadius: 24,
@@ -836,323 +659,46 @@ const styles = StyleSheet.create({
     ...S.shadow,
   },
   locBtnIcon: { fontSize: 20, color: S.blue },
+  desktopLocBtn: { position: "absolute", top: 90, right: 24 },
 
-  // Bottom panel
-  panel: {
-    backgroundColor: S.bg,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 8,
-  },
-
-  // Nearest card
-  nearestCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 16,
-    marginTop: 14,
-    marginBottom: 4,
-    padding: 14,
-    backgroundColor: "#f4fbf5",
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "#d4edda",
-  },
-  nearestInfo: { flex: 1, marginRight: 10 },
-  nearestLabelRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-  nearestLabel: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: S.green,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  contextBadge: {
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-  },
-  contextBadgeOpen: { backgroundColor: "#34a853" },
-  contextBadgeFav: { backgroundColor: "#f5a623" },
-  contextBadgeEurokey: { backgroundColor: "#1a73e8" },
-  contextBadgeWheelchair: { backgroundColor: "#34a853" },
-  contextBadgeText: {
-    fontSize: 9,
-    fontWeight: "700",
-    color: "#fff",
-  },
-  nearestName: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: S.textPrimary,
-    marginTop: 2,
-  },
-  nearestRight: { alignItems: "center", gap: 4 },
-  nearestDist: { fontSize: 13, fontWeight: "700", color: S.textSecondary },
-  nearestHoursRow: { marginTop: 4 },
-  nearestCardActive: { backgroundColor: "#e8f4fd", borderColor: S.blue },
-  nearestNavBtn: {
-    backgroundColor: S.green,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
-  },
-  nearestNavText: { color: "#fff", fontSize: 13, fontWeight: "700" },
-  cardReportBtn: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-  },
-  cardReportText: {
-    fontSize: 11,
-    color: "#1a73e8",
-    fontWeight: "500",
-  },
-
-  // List button (replaces toggle)
-  listButton: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 14,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 12,
-    gap: 8,
-  },
-  listButtonText: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: S.textPrimary,
-  },
-  listButtonIcon: {
-    fontSize: 18,
-    color: S.textMuted,
-    marginTop: -4,
-  },
-  bottomActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 16,
-    marginBottom: 12,
-    gap: 12,
-  },
-  clearBtn: {
-    width: 46,
-    height: 46,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 12,
-  },
-  clearBtnText: {
-    fontSize: 16,
-    color: S.textSecondary,
-    fontWeight: "600",
-  },
-
-  // Modal styles
-  modalContainer: {
-    flex: 1,
-    backgroundColor: S.bg,
-  },
-  modalHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: S.border,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: S.textPrimary,
-  },
-  modalHeaderActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  modalReportBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 16,
-  },
-  modalReportText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: S.blue,
-  },
-  modalCloseBtn: {
-    width: 36,
-    height: 36,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 18,
-    backgroundColor: "#f0f0f0",
-  },
-  modalCloseText: {
-    fontSize: 18,
-    color: S.textSecondary,
-    fontWeight: "600",
-  },
-  modalFilterBar: {
-    flexDirection: "row",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 8,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: S.border,
-    backgroundColor: "#fafafa",
-  },
-  modalChip: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: "#e8e8e8",
-  },
-  modalListContent: {
-    paddingBottom: 40,
-  },
+  // Overlay above the sheet surface (moves with the sheet)
+  overlay: { height: OVERLAY_HEIGHT, justifyContent: "flex-end" },
+  overlayLocRow: { alignItems: "flex-end", paddingRight: 16, paddingBottom: 8 },
+  filterRow: { paddingHorizontal: 12, gap: 8, paddingBottom: 8 },
+  sideFilters: { flexDirection: "row", flexWrap: "wrap", gap: 8, padding: 12, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: S.border },
 
   // Filter chips
-  filterBar: {
-    flexDirection: "row",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    gap: 6,
-  },
   chip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    minHeight: 40,
     paddingHorizontal: 14,
-    paddingVertical: 7,
-    borderRadius: 18,
-    backgroundColor: "#f0f0f0",
+    borderRadius: 20,
+    backgroundColor: "#fff",
+    ...S.shadow,
   },
   chipActive: { backgroundColor: S.blue },
-  chipOpenNow: { backgroundColor: "#34a853" },
-  chipFav: { backgroundColor: "#f5a623" },
-  chipText: { fontSize: 13, fontWeight: "600", color: S.textSecondary },
+  chipIcon: { fontSize: 14, color: S.textSecondary },
+  chipText: { fontSize: 14, fontWeight: "600", color: S.textPrimary },
+  chipCount: { fontSize: 12, fontWeight: "700", color: S.textMuted },
   chipTextActive: { color: "#fff" },
 
-  // New Filter Styles
-  filterContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 12,
-  },
-  primaryToggle: {
-    flexDirection: "row",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 12,
-    padding: 4,
-  },
-  toggleBtn: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 10,
-    gap: 8,
-  },
-  toggleBtnActive: {
-    backgroundColor: "#fff",
-    ...{
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 3,
-    },
-  },
-  toggleText: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#666",
-  },
-  toggleTextActive: {
-    color: "#1a1a1a",
-  },
-  badge: {
-    backgroundColor: "#ddd",
-    borderRadius: 10,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    minWidth: 20,
-    alignItems: "center",
-  },
-  badgeActive: {
-    backgroundColor: "#34a853",
-  },
-  badgeText: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: "#666",
-  },
-  badgeTextActive: {
-    color: "#fff",
-  },
-  secondaryToggles: {
-    flexDirection: "row",
-    gap: 8,
-  },
-  secondaryBtn: {
-    flex: 1,
-    minWidth: 0,
-    minHeight: 44,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 4,
-    paddingVertical: 10,
-    paddingHorizontal: 6,
-    borderRadius: 10,
-    backgroundColor: "#f5f5f5",
-    borderWidth: 1,
-    borderColor: "#e0e0e0",
-  },
-  secondaryBtnActive: {
-    backgroundColor: "#e8f0fe",
-    borderColor: "#1a73e8",
-  },
-  secondaryIcon: {
-    width: 20,
-    textAlign: "center",
-    fontSize: 16,
-    lineHeight: 20,
-    color: "#666",
-  },
-  secondaryText: {
-    flexShrink: 1,
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "600",
-    color: "#666",
-  },
-  secondaryTextActive: {
-    color: "#185abc",
-  },
+  // Sheet header states
+  peekEmpty: { paddingHorizontal: 16, paddingBottom: 16, gap: 4 },
+  peekEmptyTitle: { fontSize: 16, fontWeight: "700", color: S.textPrimary },
+  peekEmptyAction: { fontSize: 14, color: S.blue, fontWeight: "600" },
+  errorBanner: { paddingHorizontal: 16, paddingBottom: 8 },
+  errorText: { color: "#9b2c2c", fontSize: 13 },
 
   // List
-  listContent: { paddingBottom: 40 },
-  emptyState: {
-    alignItems: "center",
-    paddingVertical: 32,
-    paddingHorizontal: 24,
-  },
-  emptyText: { fontSize: 15, color: S.textMuted, textAlign: "center" },
+  listContent: { paddingTop: 4 },
+  reportMissing: { alignItems: "center", paddingVertical: 16, minHeight: 44 },
+  reportMissingText: { color: S.blue, fontSize: 14, fontWeight: "600" },
+
+  // Desktop web
+  desktopRow: { flex: 1, flexDirection: "row" },
+  sidePanel: { width: 420, borderLeftWidth: StyleSheet.hairlineWidth, borderLeftColor: S.border, backgroundColor: S.bg },
 });
 
 export default function App() {

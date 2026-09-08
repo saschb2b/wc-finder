@@ -70,12 +70,16 @@ test("pins update without remounting, preserve text safely, and send select/navi
     assert.ok(marker);
     marker.dispatchEvent(new dom.window.MouseEvent("click", { bubbles: true }));
     assert.deepEqual(events.at(-1), { type: "select", id: pin.id });
-    assert.equal(document.querySelector(".leaflet-popup strong")?.textContent, unsafeName);
-    assert.equal(document.querySelector(".leaflet-popup img"), null);
-    document.querySelector<HTMLButtonElement>(".route-button")!.click();
-    assert.deepEqual(events.at(-1), { type: "navigate", id: pin.id });
+    // No popup: the selection is shown in the sheet, and untrusted names never become markup.
+    assert.equal(document.querySelector(".leaflet-popup"), null);
+    assert.equal(document.querySelector('img[src="x"]'), null);
+    assert.equal(marker.getAttribute("title"), unsafeName);
     dom.window.eval(mapCommandScript({ type: "data", data }));
     assert.equal(document.querySelector(".wc-marker"), marker);
+    dom.window.eval(mapCommandScript({ type: "data", data: { ...data, pins: [{ ...data.pins[0], selected: true }] } }));
+    assert.ok(document.querySelector(".wc-pin-selected"));
+    document.getElementById("map")!.dispatchEvent(new dom.window.MouseEvent("click", { bubbles: true }));
+    assert.deepEqual(events.at(-1), { type: "deselect" });
     dom.window.eval(mapCommandScript({ type: "data", data: { ...data, pins: [] } }));
     assert.equal(document.querySelectorAll(".wc-marker").length, 0);
     assert.equal(document.querySelectorAll(".leaflet-overlay-pane path").length, 1);
@@ -138,7 +142,7 @@ test("tapping a pin during camera movement keeps the tapped selection", async ()
       pins: [pin, { ...otherPin, selected: true }], userLocation: null,
     } }));
     assert.equal(events.slice(selectedIndex + 1).some(event => event.type === "region" && event.isGesture), false);
-    assert.equal(document.querySelector(".leaflet-popup strong")?.textContent, otherPin.name);
+    assert.ok(document.querySelector('[title="Other WC"] .wc-pin-selected'));
   } finally { dom.window.close(); }
 });
 
