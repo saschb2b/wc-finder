@@ -48,6 +48,10 @@ jobs:
       - name: Test embedded map
         run: pnpm test:map
 
+      - name: Changelog has notes for this version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: pnpm exec tsx scripts/release-notes.ts "${{ github.ref_name }}" --check
+
   build-apk:
     name: Build signed APK
     needs: quality
@@ -126,6 +130,10 @@ jobs:
           compression-level: 0
           retention-days: 30
 
+      - name: Release notes from CHANGELOG.md
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: pnpm exec tsx scripts/release-notes.ts "${{ github.ref_name }}" > "$RUNNER_TEMP/release-notes.md"
+
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
@@ -135,33 +143,8 @@ jobs:
           name: WC Finder ${{ github.ref_name }}
           draft: false
           prerelease: false
-          generate_release_notes: true
-          body: |
-            ## WC Finder Android APK
-
-            ### Download
-            Download `wc-finder.apk` below and install it on your Android device.
-
-            ### Requirements
-            - Android 7.0+ (API level 24)
-            - Location permission (to find nearest toilets)
-            - Internet connection (for map tiles)
-
-            ### Features
-            - Find accessible toilets near you
-            - Filter by "Open Now", Favorites, Eurokey
-            - Navigate directly to the toilet
-            - Toilet data bundled for offline use
-
-            ### Installation
-            1. Download the APK file
-            2. Open it on your Android device
-            3. Allow installation from unknown sources if prompted
-            4. Grant location permission when asked
-
-            ### Accessibility
-            - Separate care-bed and hoist filters
-            - Access notes and specialist directory sources
+          generate_release_notes: false
+          body_path: ${{ runner.temp }}/release-notes.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

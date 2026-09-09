@@ -65,6 +65,12 @@ npx tsx scripts/gen-tile-loader.ts
 
 Cost: Free tier 5,000 places/month, then $17 per 1,000.
 
+### Releasing
+
+1. Move the **Unreleased** entries in `CHANGELOG.md` under `## [X.Y.Z] – YYYY-MM-DD`, written for users, not developers.
+2. Bump `version` and `android.versionCode` in `app.config.js` (and `version` in `package.json`).
+3. Commit, tag `vX.Y.Z`, push the tag. The release workflow builds the APK and uses the changelog section as the release notes; it fails if the section is missing.
+
 ## Architecture
 
 - **App.tsx** — single-screen app: map + bottom panel with nearest card, list, filters
