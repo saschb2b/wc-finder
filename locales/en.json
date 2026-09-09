@@ -1,4 +1,6 @@
 {
-  "NSLocationWhenInUseUsageDescription": "WC Finder needs your location to find the nearest public toilet.",
-  "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder needs your location to find the nearest public toilet."
+  "ios": {
+    "NSLocationWhenInUseUsageDescription": "WC Finder needs your location to find the nearest public toilet.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder needs your location to find the nearest public toilet."
+  }
 }

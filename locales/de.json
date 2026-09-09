@@ -1,4 +1,6 @@
 {
-  "NSLocationWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
-  "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden."
+  "ios": {
+    "NSLocationWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "WC Finder benötigt deinen Standort, um die nächste öffentliche Toilette zu finden."
+  }
 }
