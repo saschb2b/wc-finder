@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-06",
+  "generated": "2026-09-13",
   "source": "OpenStreetMap - Hannover accessible toilets",
-  "endpoint": "https://overpass-api.de/api/interpreter",
+  "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
   "bbox": "52.3,9.6,52.45,9.9",
   "count": 117,
   "toilets": [
