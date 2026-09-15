@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-06",
+  "generated": "2026-09-13",
   "source": "OpenStreetMap - Hannover wheelchair-accessible businesses",
   "count": 408,
   "toilets": [
@@ -1457,7 +1457,7 @@
       "city": "Hannover",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Sa 06:30-20:00; Su 07:30-10:30"
+      "opening_hours": "Su 07:30-10:30; Mo-Sa 06:30-18:30"
     },
     {
       "id": "hbiz_670232805",
@@ -1842,7 +1842,8 @@
       "name": "Pieper",
       "city": "Hannover",
       "category": "other",
-      "tags": []
+      "tags": [],
+      "opening_hours": "Mo-Fr 06:00-18:00; Sa 07:00-15:00; Su 08:00-15:00"
     },
     {
       "id": "hbiz_1504379828",
@@ -2895,7 +2896,7 @@
       "city": "Hannover",
       "category": "gastro",
       "tags": [],
-      "opening_hours": "Mo-Th 11:00-0:00; Fr - Sa 11:00-01:00; Su 12:00-0:00"
+      "opening_hours": "Mo-Th 11:00-00:00; Fr,Sa 11:00-01:00; Su 12:00-00:00"
     },
     {
       "id": "hbiz_4459433615",
@@ -3752,11 +3753,12 @@
       "id": "hbiz_10028141999",
       "lat": 52.4228159,
       "lon": 9.7288645,
-      "name": "Heide Bäckerei",
+      "name": "Heide Bäckerei Meyer",
       "city": "Hannover",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Fr 07:00-18:00, Sa 07:00-13:00"
+      "opening_hours": "Mo-Fr 07:00-18:00, Sa 07:00-13:00",
+      "operator": "Heide Bäckerei Meyer"
     },
     {
       "id": "hbiz_10069300015",
@@ -4366,6 +4368,7 @@
     "hbiz_503560800",
     "hbiz_938884500",
     "hbiz_2482675209",
-    "hbiz_4836816663"
+    "hbiz_4836816663",
+    "hbiz_7389988764"
   ]
 }
