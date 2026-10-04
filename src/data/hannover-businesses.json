@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-13",
+  "generated": "2026-10-04",
   "source": "OpenStreetMap - Hannover wheelchair-accessible businesses",
-  "count": 408,
+  "count": 407,
   "toilets": [
     {
       "id": "hbiz_33443257",
@@ -143,7 +143,7 @@
       "city": "Hannover",
       "category": "other",
       "tags": [],
-      "opening_hours": "Mo-Sa 07:00-23:00; Su,PH off",
+      "opening_hours": "closed",
       "operator": "Rewe"
     },
     {
@@ -850,17 +850,6 @@
       "category": "gastro",
       "tags": [],
       "opening_hours": "Sa 00:00-05:00,12:00-24:00; Mo-Fr 09:00-24:00; Su 12:00-24:00"
-    },
-    {
-      "id": "hbiz_344238459",
-      "lat": 52.3741627,
-      "lon": 9.7899738,
-      "name": "Edeka",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [],
-      "opening_hours": "Mo-Sa 07:00-22:00; PH off",
-      "operator": "EDEKA-Markt Minden-Hannover GmbH Wittelsbacherallee 61, 32427 Minden"
     },
     {
       "id": "hbiz_344446939",
@@ -1896,7 +1885,8 @@
       "category": "gastro",
       "tags": [
         "barrierefrei"
-      ]
+      ],
+      "opening_hours": "Mo off; Tu-Su,PH 12:00-15:00,17:30-22:30"
     },
     {
       "id": "hbiz_1584710236",
@@ -2418,8 +2408,8 @@
     },
     {
       "id": "hbiz_2737043093",
-      "lat": 52.3858502,
-      "lon": 9.8310686,
+      "lat": 52.388993,
+      "lon": 9.8555928,
       "name": "Hansa Croque",
       "city": "Hannover",
       "category": "gastro",
@@ -2854,7 +2844,7 @@
       "city": "Hannover",
       "category": "gastro",
       "tags": [],
-      "opening_hours": "Mo-Su 10:30-23:00",
+      "opening_hours": "Su-Th 11:00-22:00; Fr,Sa 11:00-22:30",
       "operator": "Domino's"
     },
     {
@@ -3358,8 +3348,8 @@
     },
     {
       "id": "hbiz_6403985662",
-      "lat": 52.3685217,
-      "lon": 9.7539928,
+      "lat": 52.3684014,
+      "lon": 9.7540302,
       "name": "nah & gut Räker",
       "city": "Hannover",
       "category": "other",
@@ -4072,7 +4062,8 @@
       "name": "SANDY",
       "city": "Hannover",
       "category": "gastro",
-      "tags": []
+      "tags": [],
+      "opening_hours": "Mo-Sa 11:00-21:00"
     },
     {
       "id": "hbiz_12532892505",
@@ -4364,6 +4355,7 @@
   ],
   "unresolvedBusinessIds": [
     "hbiz_345379480",
+    "hbiz_368367095",
     "hbiz_388428407",
     "hbiz_503560800",
     "hbiz_938884500",
