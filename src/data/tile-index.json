@@ -4,32 +4,33 @@
   "osmUpdate": {
     "source": "OpenStreetMap Overpass API (direct)",
     "sourceTimestamps": {
-      "South (45-48)": "2026-09-13T06:57:56Z",
-      "Mid-South (48-50)": "2026-09-13T07:01:06Z",
-      "Mid-North (50-52)": "2026-09-13T07:04:06Z",
-      "North (52-55.5)": "2026-09-13T07:07:19Z"
+      "South (45-48)": "2026-10-04T07:34:19Z",
+      "Mid-South (48-50)": "2026-10-04T07:39:35Z",
+      "Mid-North (50-52)": "2026-10-04T07:42:36Z",
+      "North (52-55.5)": "2026-10-04T07:44:35Z"
     },
-    "count": 50336
+    "count": 50599
   },
   "municipalUpdate": {
-    "retrievedAt": "2026-09-13T07:09:36.805Z",
+    "retrievedAt": "2026-10-04T07:47:00.404Z",
     "counts": {
-      "berlin": 358,
+      "berlin": 363,
       "hamburg": 28,
       "rostock": 42,
       "oldenburg": 6,
       "muenster": 13
     },
-    "added": 0
+    "added": 5
   },
   "regionalUpdates": {
     "hannover": {
-      "updated": "2026-09-13T07:08:17Z",
+      "updated": "2026-10-04T07:45:36Z",
       "source": "OpenStreetMap",
-      "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+      "endpoint": "https://overpass-api.de/api/interpreter",
       "bbox": "52.3,9.6,52.45,9.9",
       "unresolvedBusinessIds": [
         "hbiz_345379480",
+        "hbiz_368367095",
         "hbiz_388428407",
         "hbiz_503560800",
         "hbiz_938884500",
@@ -37,7 +38,7 @@
         "hbiz_4836816663",
         "hbiz_7389988764"
       ],
-      "count": 1556
+      "count": 1557
     }
   },
   "specialistUpdate": {
@@ -48,7 +49,7 @@
       "https://toiletten-fuer-alle-niedersachsen.de/standorte/"
     ]
   },
-  "totalCount": 87661,
+  "totalCount": 88015,
   "tileCount": 136,
   "tiles": [
     {
@@ -57,7 +58,7 @@
       "latMax": 46,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 272
+      "count": 274
     },
     {
       "key": "45_11",
@@ -65,7 +66,7 @@
       "latMax": 46,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 130
+      "count": 131
     },
     {
       "key": "45_12",
@@ -81,7 +82,7 @@
       "latMax": 46,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 245
+      "count": 246
     },
     {
       "key": "45_14",
@@ -121,7 +122,7 @@
       "latMax": 46,
       "lonMin": 5,
       "lonMax": 6,
-      "count": 303
+      "count": 307
     },
     {
       "key": "45_6",
@@ -129,7 +130,7 @@
       "latMax": 46,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 316
+      "count": 317
     },
     {
       "key": "45_7",
@@ -137,7 +138,7 @@
       "latMax": 46,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 178
+      "count": 181
     },
     {
       "key": "45_8",
@@ -153,7 +154,7 @@
       "latMax": 46,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 453
+      "count": 462
     },
     {
       "key": "46_10",
@@ -169,7 +170,7 @@
       "latMax": 47,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 256
+      "count": 261
     },
     {
       "key": "46_12",
@@ -177,7 +178,7 @@
       "latMax": 47,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 53
+      "count": 58
     },
     {
       "key": "46_13",
@@ -185,7 +186,7 @@
       "latMax": 47,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 206
+      "count": 208
     },
     {
       "key": "46_14",
@@ -201,7 +202,7 @@
       "latMax": 47,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 131
+      "count": 133
     },
     {
       "key": "46_16",
@@ -225,7 +226,7 @@
       "latMax": 47,
       "lonMin": 5,
       "lonMax": 6,
-      "count": 73
+      "count": 74
     },
     {
       "key": "46_6",
@@ -233,7 +234,7 @@
       "latMax": 47,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 919
+      "count": 922
     },
     {
       "key": "46_7",
@@ -241,7 +242,7 @@
       "latMax": 47,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 797
+      "count": 800
     },
     {
       "key": "46_8",
@@ -249,7 +250,7 @@
       "latMax": 47,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 314
+      "count": 318
     },
     {
       "key": "46_9",
@@ -257,7 +258,7 @@
       "latMax": 47,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 207
+      "count": 209
     },
     {
       "key": "47_10",
@@ -265,7 +266,7 @@
       "latMax": 48,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 567
+      "count": 571
     },
     {
       "key": "47_11",
@@ -273,7 +274,7 @@
       "latMax": 48,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 820
+      "count": 823
     },
     {
       "key": "47_12",
@@ -281,7 +282,7 @@
       "latMax": 48,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 660
+      "count": 667
     },
     {
       "key": "47_13",
@@ -289,7 +290,7 @@
       "latMax": 48,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 555
+      "count": 558
     },
     {
       "key": "47_14",
@@ -297,7 +298,7 @@
       "latMax": 48,
       "lonMin": 14,
       "lonMax": 15,
-      "count": 74
+      "count": 76
     },
     {
       "key": "47_15",
@@ -305,7 +306,7 @@
       "latMax": 48,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 607
+      "count": 610
     },
     {
       "key": "47_16",
@@ -313,7 +314,7 @@
       "latMax": 48,
       "lonMin": 16,
       "lonMax": 17,
-      "count": 268
+      "count": 270
     },
     {
       "key": "47_17",
@@ -345,7 +346,7 @@
       "latMax": 48,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 1205
+      "count": 1209
     },
     {
       "key": "47_8",
@@ -353,7 +354,7 @@
       "latMax": 48,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 2223
+      "count": 2229
     },
     {
       "key": "47_9",
@@ -361,7 +362,7 @@
       "latMax": 48,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 1348
+      "count": 1352
     },
     {
       "key": "48_10",
@@ -369,7 +370,7 @@
       "latMax": 49,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 1458
+      "count": 1460
     },
     {
       "key": "48_11",
@@ -377,7 +378,7 @@
       "latMax": 49,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 2679
+      "count": 2688
     },
     {
       "key": "48_12",
@@ -385,7 +386,7 @@
       "latMax": 49,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 785
+      "count": 793
     },
     {
       "key": "48_13",
@@ -393,7 +394,7 @@
       "latMax": 49,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 420
+      "count": 422
     },
     {
       "key": "48_14",
@@ -401,7 +402,7 @@
       "latMax": 49,
       "lonMin": 14,
       "lonMax": 15,
-      "count": 675
+      "count": 678
     },
     {
       "key": "48_15",
@@ -409,7 +410,7 @@
       "latMax": 49,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 278
+      "count": 281
     },
     {
       "key": "48_16",
@@ -417,7 +418,7 @@
       "latMax": 49,
       "lonMin": 16,
       "lonMax": 17,
-      "count": 1747
+      "count": 1753
     },
     {
       "key": "48_17",
@@ -425,7 +426,7 @@
       "latMax": 49,
       "lonMin": 17,
       "lonMax": 18,
-      "count": 104
+      "count": 105
     },
     {
       "key": "48_5",
@@ -449,7 +450,7 @@
       "latMax": 49,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 744
+      "count": 749
     },
     {
       "key": "48_8",
@@ -457,7 +458,7 @@
       "latMax": 49,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 1610
+      "count": 1613
     },
     {
       "key": "48_9",
@@ -465,7 +466,7 @@
       "latMax": 49,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 3172
+      "count": 3188
     },
     {
       "key": "49_10",
@@ -473,7 +474,7 @@
       "latMax": 50,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 1284
+      "count": 1291
     },
     {
       "key": "49_11",
@@ -481,7 +482,7 @@
       "latMax": 50,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 1852
+      "count": 1856
     },
     {
       "key": "49_12",
@@ -513,7 +514,7 @@
       "latMax": 50,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 56
+      "count": 57
     },
     {
       "key": "49_16",
@@ -521,7 +522,7 @@
       "latMax": 50,
       "lonMin": 16,
       "lonMax": 17,
-      "count": 116
+      "count": 117
     },
     {
       "key": "49_17",
@@ -529,7 +530,7 @@
       "latMax": 50,
       "lonMin": 17,
       "lonMax": 18,
-      "count": 45
+      "count": 46
     },
     {
       "key": "49_5",
@@ -545,7 +546,7 @@
       "latMax": 50,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 952
+      "count": 954
     },
     {
       "key": "49_7",
@@ -553,7 +554,7 @@
       "latMax": 50,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 941
+      "count": 944
     },
     {
       "key": "49_8",
@@ -561,7 +562,7 @@
       "latMax": 50,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 3235
+      "count": 3243
     },
     {
       "key": "49_9",
@@ -569,7 +570,7 @@
       "latMax": 50,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 1493
+      "count": 1497
     },
     {
       "key": "50_10",
@@ -577,7 +578,7 @@
       "latMax": 51,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 840
+      "count": 841
     },
     {
       "key": "50_11",
@@ -585,7 +586,7 @@
       "latMax": 51,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 1005
+      "count": 1006
     },
     {
       "key": "50_12",
@@ -593,7 +594,7 @@
       "latMax": 51,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 1046
+      "count": 1050
     },
     {
       "key": "50_13",
@@ -601,7 +602,7 @@
       "latMax": 51,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 246
+      "count": 249
     },
     {
       "key": "50_14",
@@ -609,7 +610,7 @@
       "latMax": 51,
       "lonMin": 14,
       "lonMax": 15,
-      "count": 295
+      "count": 297
     },
     {
       "key": "50_15",
@@ -617,7 +618,7 @@
       "latMax": 51,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 80
+      "count": 82
     },
     {
       "key": "50_16",
@@ -649,7 +650,7 @@
       "latMax": 51,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 1902
+      "count": 1905
     },
     {
       "key": "50_7",
@@ -657,7 +658,7 @@
       "latMax": 51,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 1891
+      "count": 1894
     },
     {
       "key": "50_8",
@@ -665,7 +666,7 @@
       "latMax": 51,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 3020
+      "count": 3024
     },
     {
       "key": "50_9",
@@ -673,7 +674,7 @@
       "latMax": 51,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 644
+      "count": 648
     },
     {
       "key": "51_10",
@@ -681,7 +682,7 @@
       "latMax": 52,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 597
+      "count": 599
     },
     {
       "key": "51_11",
@@ -689,7 +690,7 @@
       "latMax": 52,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 797
+      "count": 801
     },
     {
       "key": "51_12",
@@ -697,7 +698,7 @@
       "latMax": 52,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 1166
+      "count": 1169
     },
     {
       "key": "51_13",
@@ -705,7 +706,7 @@
       "latMax": 52,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 968
+      "count": 971
     },
     {
       "key": "51_14",
@@ -713,7 +714,7 @@
       "latMax": 52,
       "lonMin": 14,
       "lonMax": 15,
-      "count": 473
+      "count": 477
     },
     {
       "key": "51_15",
@@ -737,7 +738,7 @@
       "latMax": 52,
       "lonMin": 17,
       "lonMax": 18,
-      "count": 97
+      "count": 99
     },
     {
       "key": "51_5",
@@ -745,7 +746,7 @@
       "latMax": 52,
       "lonMin": 5,
       "lonMax": 6,
-      "count": 163
+      "count": 164
     },
     {
       "key": "51_6",
@@ -753,7 +754,7 @@
       "latMax": 52,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 3285
+      "count": 3293
     },
     {
       "key": "51_7",
@@ -761,7 +762,7 @@
       "latMax": 52,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 4869
+      "count": 4881
     },
     {
       "key": "51_8",
@@ -769,7 +770,7 @@
       "latMax": 52,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 1157
+      "count": 1158
     },
     {
       "key": "51_9",
@@ -777,7 +778,7 @@
       "latMax": 52,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 1088
+      "count": 1089
     },
     {
       "key": "52_10",
@@ -785,7 +786,7 @@
       "latMax": 53,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 1139
+      "count": 1142
     },
     {
       "key": "52_11",
@@ -793,7 +794,7 @@
       "latMax": 53,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 596
+      "count": 600
     },
     {
       "key": "52_12",
@@ -809,7 +810,7 @@
       "latMax": 53,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 4539
+      "count": 4588
     },
     {
       "key": "52_14",
@@ -817,7 +818,7 @@
       "latMax": 53,
       "lonMin": 14,
       "lonMax": 15,
-      "count": 200
+      "count": 202
     },
     {
       "key": "52_15",
@@ -833,7 +834,7 @@
       "latMax": 53,
       "lonMin": 16,
       "lonMax": 17,
-      "count": 121
+      "count": 122
     },
     {
       "key": "52_17",
@@ -857,7 +858,7 @@
       "latMax": 53,
       "lonMin": 6,
       "lonMax": 7,
-      "count": 295
+      "count": 298
     },
     {
       "key": "52_7",
@@ -873,7 +874,7 @@
       "latMax": 53,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 1407
+      "count": 1408
     },
     {
       "key": "52_9",
@@ -881,7 +882,7 @@
       "latMax": 53,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 2673
+      "count": 2676
     },
     {
       "key": "53_10",
@@ -889,7 +890,7 @@
       "latMax": 54,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 1600
+      "count": 1607
     },
     {
       "key": "53_11",
@@ -897,7 +898,7 @@
       "latMax": 54,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 361
+      "count": 364
     },
     {
       "key": "53_12",
@@ -913,7 +914,7 @@
       "latMax": 54,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 241
+      "count": 242
     },
     {
       "key": "53_14",
@@ -953,7 +954,7 @@
       "latMax": 54,
       "lonMin": 5,
       "lonMax": 6,
-      "count": 56
+      "count": 57
     },
     {
       "key": "53_6",
@@ -969,7 +970,7 @@
       "latMax": 54,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 676
+      "count": 678
     },
     {
       "key": "53_8",
@@ -977,7 +978,7 @@
       "latMax": 54,
       "lonMin": 8,
       "lonMax": 9,
-      "count": 1778
+      "count": 1786
     },
     {
       "key": "53_9",
@@ -985,7 +986,7 @@
       "latMax": 54,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 1632
+      "count": 1637
     },
     {
       "key": "54_10",
@@ -993,7 +994,7 @@
       "latMax": 55,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 713
+      "count": 717
     },
     {
       "key": "54_11",
@@ -1001,7 +1002,7 @@
       "latMax": 55,
       "lonMin": 11,
       "lonMax": 12,
-      "count": 204
+      "count": 205
     },
     {
       "key": "54_12",
@@ -1009,7 +1010,7 @@
       "latMax": 55,
       "lonMin": 12,
       "lonMax": 13,
-      "count": 509
+      "count": 511
     },
     {
       "key": "54_13",
@@ -1017,7 +1018,7 @@
       "latMax": 55,
       "lonMin": 13,
       "lonMax": 14,
-      "count": 455
+      "count": 457
     },
     {
       "key": "54_14",
@@ -1057,7 +1058,7 @@
       "latMax": 55,
       "lonMin": 7,
       "lonMax": 8,
-      "count": 8
+      "count": 9
     },
     {
       "key": "54_8",
@@ -1073,7 +1074,7 @@
       "latMax": 55,
       "lonMin": 9,
       "lonMax": 10,
-      "count": 735
+      "count": 741
     },
     {
       "key": "55_10",
@@ -1081,7 +1082,7 @@
       "latMax": 56,
       "lonMin": 10,
       "lonMax": 11,
-      "count": 66
+      "count": 67
     },
     {
       "key": "55_11",
@@ -1121,7 +1122,7 @@
       "latMax": 56,
       "lonMin": 15,
       "lonMax": 16,
-      "count": 8
+      "count": 9
     },
     {
       "key": "55_8",

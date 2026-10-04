@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-13",
+  "generated": "2026-10-04",
   "source": "OpenStreetMap - Hannover accessible toilets",
-  "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "endpoint": "https://overpass-api.de/api/interpreter",
   "bbox": "52.3,9.6,52.45,9.9",
   "count": 117,
   "toilets": [
@@ -99,11 +99,12 @@
       "lon": 9.7698219,
       "name": "Barrierefreie Toilette",
       "city": "Hannover",
-      "category": "other",
+      "category": "public_24h",
       "tags": [
         "barrierefrei",
         "kostenlos"
       ],
+      "opening_hours": "24/7",
       "fee": "no"
     },
     {
@@ -159,20 +160,6 @@
       ],
       "opening_hours": "Mo-Fr 06:00-21:00; Sa 07:00-14:00",
       "fee": "no"
-    },
-    {
-      "id": "osm_node_368367094",
-      "lat": 52.372048,
-      "lon": 9.7352689,
-      "name": "Barrierefreie Toilette",
-      "city": "Hannover",
-      "category": "other",
-      "tags": [
-        "barrierefrei",
-        "eurokey"
-      ],
-      "opening_hours": "Mo-Su,PH 07:00-22:00",
-      "fee": "yes"
     },
     {
       "id": "osm_node_373820951",
@@ -1206,6 +1193,8 @@
         "eurokey",
         "kostenlos"
       ],
+      "opening_hours": "09:00-17:00",
+      "operator": "Ströer",
       "fee": "no"
     },
     {
@@ -1541,6 +1530,20 @@
         "kostenlos"
       ],
       "fee": "no"
+    },
+    {
+      "id": "osm_way_1562591886",
+      "lat": 52.3720045,
+      "lon": 9.7352785,
+      "name": "Barrierefreie Toilette",
+      "city": "Hannover",
+      "category": "other",
+      "tags": [
+        "barrierefrei",
+        "eurokey"
+      ],
+      "opening_hours": "Mo-Su,PH 07:00-22:00",
+      "fee": "yes"
     }
   ]
 }
